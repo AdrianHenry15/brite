@@ -1,7 +1,12 @@
 import React from "react";
 
-const PageContainer = () => {
-    return <div>PageContainer</div>;
+interface IPageContainerProps {
+    children: React.ReactNode;
+    className?: string;
+}
+
+const PageContainer = (props: IPageContainerProps) => {
+    return <div className={`flex flex-col p-6 ${props.className}`}>{props.children}</div>;
 };
 
 export default PageContainer;
