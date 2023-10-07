@@ -1,7 +1,6 @@
 import React from "react";
 
 interface IButtonProps {
-    path: string;
     text: string;
     onClick: () => void;
     btnClass?: string;
@@ -10,8 +9,8 @@ interface IButtonProps {
 
 const Button = (props: IButtonProps) => {
     return (
-        <button onClick={props.onClick} className={`flex border-2 p-4 m-4 rounded-md ${props.btnClass}`}>
-            <span className={`text-white ${props.textClass}`}>{props.text}</span>
+        <button onClick={props.onClick} className={`${props.btnClass} flex border-2 p-4 m-4 rounded-md bg-black w-min`}>
+            <span className={`${props.textClass} text-white`}>{props.text}</span>
         </button>
     );
 };

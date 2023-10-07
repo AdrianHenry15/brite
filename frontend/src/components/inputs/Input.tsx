@@ -8,7 +8,14 @@ interface IInputProps {
 }
 
 const Input = (props: IInputProps) => {
-    return <input className={`${props.className} `} type="text" placeholder={props.placeHolder} onChange={props.onChange} />;
+    return (
+        <input
+            className={`${props.className} border-black border-[1px] m-2 p-2 rounded-sm w-1/2`}
+            type="text"
+            placeholder={props.placeHolder}
+            onChange={props.onChange}
+        />
+    );
 };
 
 export default Input;

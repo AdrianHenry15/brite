@@ -7,13 +7,13 @@ const Estimate = () => {
     return (
         <PageContainer>
             <span className="py-4 text-4xl font-semibold w-full text-center">Get a Free Estimate</span>
-            <div className="flex flex-col ">
+            <div className="flex flex-col w-full items-center">
                 <Input type="name" placeHolder="Name" onChange={() => {}} />
                 <Input type="email" placeHolder="Email" onChange={() => {}} />
                 <Input type="phone-number" placeHolder="Phone Number" onChange={() => {}} />
                 <Input type="comment" placeHolder="Comment" onChange={() => {}} />
             </div>
-            <Button path={""} text={""} onClick={() => {}} />
+            <Button text="Send" onClick={() => {}} />
         </PageContainer>
     );
 };
