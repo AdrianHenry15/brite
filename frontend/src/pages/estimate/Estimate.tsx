@@ -5,7 +5,7 @@ import Button from "../../components/buttons/Button";
 
 const Estimate = () => {
     return (
-        <PageContainer>
+        <PageContainer className="bg-gray-100">
             <span className="py-4 text-4xl font-semibold w-full text-center">Get a Free Estimate</span>
             <div className="flex flex-col w-full items-center">
                 <Input type="name" placeHolder="Name" onChange={() => {}} />
