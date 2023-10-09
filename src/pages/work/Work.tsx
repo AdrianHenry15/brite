@@ -1,9 +1,22 @@
 import React from "react";
 import PageContainer from "../../components/PageContainer";
+import Pic1 from "../../assets/imgs/night_xmas_lights.jpg";
+import Pic2 from "../../assets/imgs/snow_light_xmas.jpg";
+import Pic3 from "../../assets/imgs/white_light_xmas.jpg";
+// import Swiper core and required modules
+import { Navigation } from "swiper/modules";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+// import "swiper/css/pagination";
+// import "swiper/css/scrollbar";
 
 const Work = () => {
     return (
-        <PageContainer>
+        <PageContainer className="bg-gray-100">
             <span className="text-4xl font-semibold py-6">Our Work</span>
             {/* <span className="pb-10 text-xs text-gray-400">
                 Our focus remains on customer experience. We know the frustrations with outdoor lighting systems that are not designed to
@@ -13,7 +26,23 @@ const Work = () => {
             </span> */}
             <span className="pb-10 text-sm text-gray-400 flex">Outdoor lighting is frustrating. We can fix that.</span>
             {/* PICTURES  */}
-            <div className="border-2 shadow-lg border-black lg:w-1/4 md:w-1/2 w-full lg:h-[500px] md:h-[500px] h-[450px] self-center"></div>
+            <Swiper
+                modules={[Navigation]}
+                spaceBetween={40}
+                slidesPerView={1}
+                navigation
+                className="flex justify-center lg:w-1/2 md:w-1/2 w-full lg:h-[500px] md:h-[500px] h-[450px] border-2 border-black shadow-md"
+            >
+                <SwiperSlide className="flex items-center justify-center w-min h-auto">
+                    <img src={Pic1} alt="pic" />
+                </SwiperSlide>
+                <SwiperSlide className="flex items-center justify-center w-min h-auto">
+                    <img src={Pic2} alt="pic" />
+                </SwiperSlide>
+                <SwiperSlide className="flex items-center justify-center w-min h-auto">
+                    <img src={Pic3} alt="pic" />
+                </SwiperSlide>
+            </Swiper>
         </PageContainer>
     );
 };
