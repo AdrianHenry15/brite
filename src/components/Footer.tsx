@@ -9,8 +9,8 @@ const Footer = () => {
         <PageContainer>
             {/* CONTACT  */}
             <div className="flex flex-col">
-                <div className="flex justify-between">
-                    <div className="flex flex-col">
+                <div className="flex justify-between items-center w-full">
+                    <div className="flex flex-col text-xs w-full">
                         <span className="font-bold pb-4">Contact Us</span>
                         <span className="text-gray-400 pb-4">10130 Mallard Creek Rd. Suite 300 Charlotte, NC 28262</span>
                         <div className="flex flex-col text-gray-400">
@@ -24,7 +24,11 @@ const Footer = () => {
                             </div>
                         </div>
                     </div>
-                    <img src={AMPLogo} alt="amp-logo" className="w-[200px] h-[50px] rounded-lg" />
+                    <img
+                        src={AMPLogo}
+                        alt="amp-logo"
+                        className="lg:w-[200px] lg:h-[50px] md:w-[200px] md:h-[50px] w-[150px] h-[35px] rounded-lg flex"
+                    />
                 </div>
                 {/* SOCIALS  */}
                 <div className="flex w-full justify-center mt-10">
