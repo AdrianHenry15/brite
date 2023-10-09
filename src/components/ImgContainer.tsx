@@ -1,6 +1,7 @@
 import React from "react";
 import PageContainer from "./PageContainer";
 import PageBtn from "./buttons/PageBtn";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 interface IImgContainerProps {
     text: string;
@@ -12,7 +13,7 @@ interface IImgContainerProps {
 const ImgContainer = (props: IImgContainerProps) => {
     return (
         <PageContainer className="w-full h-screen justify-center items-center text-center bg-black text-white">
-            <img src={props.img} alt="client-img" className="absolute opacity-75" />
+            <LazyLoadImage src={props.img} alt="client-img" className="absolute opacity-75" />
             <div className="flex flex-col items-center z-10">
                 {/* <span className="text-4xl">The Future is Brite</span> */}
                 <span className="lg:text-4xl md:text-4xl text-2xl text-white font-semibold">{props.text}</span>

@@ -20,9 +20,9 @@ const Estimate = () => {
 
         alert("Your contact information has been sent!");
 
-        const serviceID = process.env.SERVICE_ID!;
-        const templateID = process.env.TEMPLATE_ID!;
-        const publicKey = process.env.PUBLIC_KEY!;
+        const serviceID = import.meta.env.VITE_SERVICE_ID;
+        const templateID = import.meta.env.VITE_TEMPLATE_ID;
+        const publicKey = import.meta.env.VITE_PUBLIC_KEY;
 
         emailjs.send(serviceID, templateID, templateParams, publicKey).then(
             function (response: any) {
