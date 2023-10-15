@@ -11,6 +11,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
+import { Images } from "../../lib/Images";
 // import "swiper/css/pagination";
 // import "swiper/css/scrollbar";
 
@@ -33,15 +34,13 @@ const Work = () => {
                 navigation
                 className="flex justify-center lg:w-1/2 md:w-1/2 w-full lg:h-[500px] md:h-[500px] h-[450px] border-2 border-black shadow-md"
             >
-                <SwiperSlide className="flex items-center justify-center w-min h-auto">
-                    <img src={Pic1} alt="pic" />
-                </SwiperSlide>
-                <SwiperSlide className="flex items-center justify-center w-min h-auto">
-                    <img src={Pic2} alt="pic" />
-                </SwiperSlide>
-                <SwiperSlide className="flex items-center justify-center w-min h-auto">
-                    <img src={Pic3} alt="pic" />
-                </SwiperSlide>
+                {Images.map((src) => {
+                    return (
+                        <SwiperSlide key={src} className="flex items-center justify-center w-min h-auto">
+                            <img src={src} alt="pic" />
+                        </SwiperSlide>
+                    );
+                })}
             </Swiper>
         </PageContainer>
     );
