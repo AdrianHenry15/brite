@@ -1,9 +1,9 @@
 import express from 'express'
-import { getAllImages } from '../controllers/image/getAllImages';
-import { createImage } from '../controllers/image/createImage';
-import { getImageById } from '../controllers/image/getImageById';
-import { updateImage } from '../controllers/image/updateImage';
-import { deleteImage } from '../controllers/image/deleteImage';
+import { getAllImages } from '../controllers/image/getAllImages.js';
+import { createImage } from '../controllers/image/createImage.js';
+import { getImageById } from '../controllers/image/getImageById.js';
+import { updateImage } from '../controllers/image/updateImage.js';
+import { deleteImage } from '../controllers/image/deleteImage.js';
 
 
 const router = express.Router()
