@@ -1,8 +1,7 @@
 import React from "react";
 import ImgContainer from "../../components/ImgContainer";
-import Pic1 from "../../assets/imgs/white_light_xmas.jpg";
-import Pic2 from "../../assets/imgs/night_xmas_lights.jpg";
-import Pic3 from "../../assets/imgs/snow_light_xmas.jpg";
+import Pic1 from "../../assets/imgs/brite-pic-5.jpg";
+import Pic2 from "../../assets/imgs/brite-pic-9.jpg";
 
 const Home = () => {
     return (
