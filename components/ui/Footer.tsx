@@ -1,8 +1,10 @@
+"use client";
+
 import React from "react";
-import PageContainer from "./PageContainer";
+import PageContainer from "../../src/components/PageContainer";
 import { AiFillFacebook, AiOutlineInstagram } from "react-icons/ai";
-import AMPLogo from "../assets/imgs/amp-logo.png";
-import { Link } from "react-router-dom";
+import AMPLogo from "@/public/assets/imgs/amp-logo.png";
+import Image from "next/image";
 
 const Footer = () => {
     return (
@@ -24,7 +26,7 @@ const Footer = () => {
                             </div>
                         </div>
                     </div>
-                    <img
+                    <Image
                         src={AMPLogo}
                         alt="amp-logo"
                         className="lg:w-[200px] lg:h-[50px] md:w-[200px] md:h-[50px] w-[200px] h-[50px] rounded-lg flex"

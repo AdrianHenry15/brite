@@ -1,7 +1,9 @@
+"use client";
+
 import React from "react";
-import ImgContainer from "../../../components/ImgContainer";
-import Pic1 from "../../assets/imgs/brite-pic-5.jpg";
-import Pic2 from "../../assets/imgs/brite-pic-9.jpg";
+import ImgContainer from "@/components/ImgContainer";
+import Pic1 from "@/public/assets/imgs/brite-pic-5.jpg";
+import Pic2 from "@/public/assets/imgs/brite-pic-9.jpg";
 
 const Home = () => {
     return (

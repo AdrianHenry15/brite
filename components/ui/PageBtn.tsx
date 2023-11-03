@@ -1,5 +1,5 @@
+import Link from "next/link";
 import React from "react";
-import { Link } from "react-router-dom";
 
 interface IPageBtnProps {
     path: string;
@@ -10,7 +10,7 @@ interface IPageBtnProps {
 
 const PageBtn = (props: IPageBtnProps) => {
     return (
-        <Link to={props.path}>
+        <Link href={props.path}>
             <button className={`flex border-2 p-4 m-4 rounded-md ${props.btnClass}`}>
                 <span className={`lg:text-base md:text-base text-xs ${props.textClass}`}>{props.text}</span>
             </button>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PageContainer from "../../components/PageContainer";
-import Input from "../../components/inputs/Input";
-import Button from "../../components/buttons/Button";
+import Input from "../../../components/ui/Input";
+import Button from "../../../components/ui/Button";
 import emailjs from "@emailjs/browser";
 
 const Estimate = () => {

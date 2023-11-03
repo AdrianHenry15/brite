@@ -1,11 +1,11 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import Header from "./components/Header";
+import Header from "../components/ui/Header";
 import Home from "./pages/home/Home";
 import Estimate from "./pages/estimate/Estimate";
 import Work from "./pages/work/Work";
-import Banner from "./components/Banner";
-import Footer from "./components/Footer";
+import Banner from "../components/Banner";
+import Footer from "../components/ui/Footer";
 
 const App = () => {
     return (
