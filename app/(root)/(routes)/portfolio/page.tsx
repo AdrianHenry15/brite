@@ -11,12 +11,13 @@ import { Images } from "@/lib/Images";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
+import PageContainer from "@/components/PageContainer";
 // import "swiper/css/pagination";
 // import "swiper/css/scrollbar";
 
 const Portfolio = () => {
     return (
-        <div className="bg-gray-100">
+        <PageContainer className="bg-gray-100">
             <span className="text-4xl font-semibold py-6">Our Work</span>
             {/* <span className="pb-10 text-xs text-gray-400">
                 Our focus remains on customer experience. We know the frustrations with outdoor lighting systems that are not designed to
@@ -41,7 +42,7 @@ const Portfolio = () => {
                     );
                 })}
             </Swiper>
-        </div>
+        </PageContainer>
     );
 };
 

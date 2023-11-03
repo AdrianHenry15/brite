@@ -1,7 +1,7 @@
 import React from "react";
-import PageContainer from "../src/components/PageContainer";
 import PageBtn from "./ui/PageBtn";
 import Image, { StaticImageData } from "next/image";
+import PageContainer from "./PageContainer";
 
 interface IImgContainerProps {
     text: string;

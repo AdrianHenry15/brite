@@ -1,10 +1,10 @@
 "use client";
 
 import React from "react";
-import PageContainer from "../../src/components/PageContainer";
 import { AiFillFacebook, AiOutlineInstagram } from "react-icons/ai";
 import AMPLogo from "@/public/assets/imgs/amp-logo.png";
 import Image from "next/image";
+import PageContainer from "../PageContainer";
 
 const Footer = () => {
     return (
