@@ -18,6 +18,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     return (
         // <ClerkProvider>
         <html lang="en">
+            <link rel="icon" href="/assets/icons/light.png" />
             <body className={inter.className}>
                 {/* <ToastProvider /> */}
                 {/* <ModalProvider /> */}

@@ -16,14 +16,14 @@ const Header = () => {
                 </Link>
             </div>
             {/* NAVIGATION */}
-            <div className="flex w-full my-8 justify-between">
+            <div className="flex w-full my-8 justify-evenly">
                 <Link href="/">
                     <span className="hover:bg-blue-300 p-4 rounded-md text-sm flex">Home</span>
                 </Link>
                 <Link href="/estimate">
                     <span className="hover:bg-blue-300 p-4 rounded-md text-sm flex">Request Estimate</span>
                 </Link>
-                <Link href="/work">
+                <Link href="/portfolio">
                     <span className="hover:bg-blue-300 p-4 rounded-md text-sm flex">Our Work</span>
                 </Link>
             </div>

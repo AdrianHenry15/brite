@@ -1,8 +1,9 @@
+"use client";
+
 import React, { useState } from "react";
-import PageContainer from "../../components/PageContainer";
-import Input from "../../../components/ui/Input";
-import Button from "../../../components/ui/Button";
 import emailjs from "@emailjs/browser";
+import Input from "@/components/ui/Input";
+import Button from "@/components/ui/Button";
 
 const Estimate = () => {
     const [name, setName] = useState("");
@@ -46,7 +47,7 @@ const Estimate = () => {
         setComment(e.target.value);
     };
     return (
-        <PageContainer className="bg-gray-100">
+        <div className="bg-gray-100">
             <span className="py-4 text-4xl font-semibold w-full text-center">Get a Free Estimate</span>
             <div className="flex flex-col w-full items-center">
                 <Input type="name" placeHolder="Name" onChange={(e) => handleName(e)} />
@@ -55,7 +56,7 @@ const Estimate = () => {
                 <Input className="pb-24" type="comment" placeHolder="Comment" onChange={(e) => handleComment(e)} />
             </div>
             <Button text="Send" onClick={(e) => getEstimate(e)} />
-        </PageContainer>
+        </div>
     );
 };
 
