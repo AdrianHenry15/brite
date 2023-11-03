@@ -6,12 +6,12 @@ import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Image from "next/image";
 
-import { Images } from "@/lib/Images";
+import { Images } from "../../../../lib/Images";
 
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
-import PageContainer from "@/components/PageContainer";
+import PageContainer from "../../../../components/PageContainer";
 // import "swiper/css/pagination";
 // import "swiper/css/scrollbar";
 

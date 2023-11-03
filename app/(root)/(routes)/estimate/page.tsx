@@ -2,9 +2,9 @@
 
 import React, { useState } from "react";
 import emailjs from "@emailjs/browser";
-import Input from "@/components/ui/Input";
-import Button from "@/components/ui/Button";
-import PageContainer from "@/components/PageContainer";
+import Input from "../../../../components/ui/Input";
+import Button from "../../../../components/ui/Button";
+import PageContainer from "../../../../components/PageContainer";
 
 const Estimate = () => {
     const [name, setName] = useState("");
