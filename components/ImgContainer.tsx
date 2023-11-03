@@ -13,7 +13,11 @@ interface IImgContainerProps {
 const ImgContainer = (props: IImgContainerProps) => {
     return (
         <PageContainer className="w-full h-screen justify-center items-center text-center bg-black text-white">
+<<<<<<<< HEAD:components/ImgContainer.tsx
             <Image src={props.img} alt="client-img" className="absolute opacity-75 lg:w-1/2 md:w-1/2 w-2/3" />
+========
+            <img src={props.img} alt="client-img" className="absolute opacity-75 lg:w-1/3 md:w-1/2 w-2/3" />
+>>>>>>>> 6ec92bd3901fec3379b3f51427bed5d5a3a2aab7:frontend/src/components/ImgContainer.tsx
             <div className="flex flex-col items-center z-10">
                 {/* <span className="text-4xl">The Future is Brite</span> */}
                 <span className="lg:text-4xl md:text-4xl text-2xl text-white font-semibold">{props.text}</span>
