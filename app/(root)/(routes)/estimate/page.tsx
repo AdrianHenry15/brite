@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import emailjs from "@emailjs/browser";
 import Input from "../../../../components/ui/Input";
-import Button from "../../../../components/ui/Button";
+import Button from "../../../../components/ui/buttons/Button";
 import PageContainer from "../../../../components/PageContainer";
 
 const Estimate = () => {

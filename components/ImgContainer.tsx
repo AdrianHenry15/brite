@@ -1,5 +1,5 @@
 import React from "react";
-import PageBtn from "./ui/PageBtn";
+import PageBtn from "./ui/buttons/PageBtn";
 import Image, { StaticImageData } from "next/image";
 import PageContainer from "./PageContainer";
 
