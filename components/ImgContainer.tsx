@@ -7,7 +7,7 @@ interface IImgContainerProps {
     text: string;
     path: string;
     pageBtnText: string;
-    img: string;
+    img: any;
 }
 
 const ImgContainer = (props: IImgContainerProps) => {
