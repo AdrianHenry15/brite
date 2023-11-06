@@ -36,16 +36,16 @@ const Header = () => {
     const MobileDropdownClass = "flex flex-col w-2/3 items-center my-4 z-20 bg-blue-400 rounded-lg p-4 text-sm hover:bg-white";
 
     return (
-        <nav className="flex bg-white justify-evenly h-32 lg:h-auto">
+        <nav className="flex bg-white justify-evenly md:h-32 h-20 lg:h-auto">
             <div className="flex items-center lg:justify-evenly justify-between w-full">
                 {/* LOGO  */}
-                <div className="w-full flex items-center justify-between p-10">
-                    <Link className="w-1/6 lg:w-1/6 mr-20" href={"/"}>
+                <div className="w-full flex items-center justify-between">
+                    <Link className="w-1/4 md:w-1/6 lg:w-1/6 mr-20" href={"/"}>
                         <Image alt="logo" src={Logo} />
                     </Link>
                     {/* MENU | MED & SMALL SCREENS*/}
-                    {!menu && <RxHamburgerMenu onClick={() => toggleMenu(true)} className="lg:hidden cursor-pointer" size={25} />}
-                    {menu && <AiOutlineClose onClick={() => toggleMenu(false)} className="lg:hidden  cursor-pointer" size={25} />}
+                    {!menu && <RxHamburgerMenu onClick={() => toggleMenu(true)} className="lg:hidden cursor-pointer mr-4" size={25} />}
+                    {menu && <AiOutlineClose onClick={() => toggleMenu(false)} className="lg:hidden  cursor-pointer mr-4" size={25} />}
                 </div>
                 {/* MOBILE DROPDOWN */}
                 {menu && (

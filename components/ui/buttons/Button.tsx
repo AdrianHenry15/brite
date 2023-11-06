@@ -5,6 +5,7 @@ interface IButtonProps {
     onClick: () => void;
     btnClass?: string;
     textClass?: string;
+    key?: string;
 }
 
 const Button = (props: IButtonProps) => {
