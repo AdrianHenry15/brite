@@ -1,33 +1,21 @@
-"use client"
+"use client";
 
-import React from "react"
-import Pic1 from "../../../../public/assets/imgs/brite-pic-5.jpg"
-import Pic2 from "../../../../public/assets/imgs/brite-pic-9.jpg"
-import ImgContainer from "../../../../components/ImgContainer"
+import React from "react";
+import Pic1 from "../../../../public/assets/imgs/brite-pic-7.jpg";
+import Pic2 from "../../../../public/assets/imgs/brite-pic-9.jpg";
+import ImgContainer from "../../../../components/ImgContainer";
+import Image from "next/image";
+import EstimateModal from "../../../../components/EstimateModal";
 
 const Home = () => {
-  return (
-    <div>
-      <ImgContainer
-        text={"The Future is Brite"}
-        path={"/estimate"}
-        pageBtnText={"Request An Estimate"}
-        img={Pic1}
-      />
-      <div className="flex flex-col w-full justify-center items-center p-10">
-        <span className="lg:text-2xl md:text-2xl text-lg pb-4">
-          Premium Outdoor Lighting Systems
-        </span>
-        <span className="text-xs">Christmas | Landscape | Hardscape</span>
-      </div>
-      <ImgContainer
-        text={"Design | Install | Maintain"}
-        path={"/work"}
-        pageBtnText={"Our Work"}
-        img={Pic2}
-      />
-    </div>
-  )
-}
+    return (
+        <div className="w-full flex flex-col justify-center bg-black">
+            <div className="flex w-full justify-center">
+                <Image className="h-screen w-2/3 flex items-center justify-center" src={Pic1} alt="pic" />
+                <EstimateModal />
+            </div>
+        </div>
+    );
+};
 
-export default Home
+export default Home;

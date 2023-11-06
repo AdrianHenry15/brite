@@ -7,6 +7,7 @@ import { Inter } from "next/font/google";
 // import { ThemeProvider } from "@/providers/theme-provider";
 
 import "./globals.css";
+import StateProvider from "../providers/state-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,14 +19,16 @@ export const metadata = {
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         // <ClerkProvider>
-        <html lang="en">
-            <link rel="icon" href="/assets/icons/brite-logo.png" />
-            <body className={inter.className}>
-                {/* <ToastProvider /> */}
-                {/* <ModalProvider /> */}
-                {children}
-            </body>
-        </html>
+        <StateProvider>
+            <html lang="en">
+                <link rel="icon" href="/assets/icons/brite-logo.png" />
+                <body className={inter.className}>
+                    {/* <ToastProvider /> */}
+                    {/* <ModalProvider /> */}
+                    {children}
+                </body>
+            </html>
+        </StateProvider>
         // </ClerkProvider>
     );
 }
