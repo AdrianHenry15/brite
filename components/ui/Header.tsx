@@ -36,7 +36,7 @@ const Header = () => {
     const MobileDropdownClass = "flex flex-col w-2/3 items-center my-4 z-20 bg-blue-400 rounded-lg p-4 text-sm hover:bg-white";
 
     return (
-        <nav className="flex bg-white justify-evenly md:h-32 h-20 lg:h-auto">
+        <nav className="flex bg-white justify-evenly md:h-32 h-20 lg:h-auto ">
             <div className="flex items-center lg:justify-evenly justify-between w-full">
                 {/* LOGO  */}
                 <div className="w-full flex items-center justify-between">
