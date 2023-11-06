@@ -183,8 +183,8 @@ const Header = () => {
                         {/* COMMERCIAL DROPDOWN  */}
                         {commercial && (
                             <div
-                                onMouseLeave={() => toggleResidentialOptions(false)}
-                                onMouseEnter={() => toggleResidentialOptions(true)}
+                                onMouseLeave={() => toggleCommercialOptions(false)}
+                                onMouseEnter={() => toggleCommercialOptions(true)}
                                 className={DropdownClass}
                             >
                                 {/* RESIDENTIAL DROPDOWN OPTIONS  */}
@@ -214,8 +214,8 @@ const Header = () => {
                         {/* ABOUT DROPDOWN  */}
                         {about && (
                             <div
-                                onMouseLeave={() => toggleResidentialOptions(false)}
-                                onMouseEnter={() => toggleResidentialOptions(true)}
+                                onMouseLeave={() => toggleAboutOptions(false)}
+                                onMouseEnter={() => toggleAboutOptions(true)}
                                 className={DropdownClass}
                             >
                                 {/* RESIDENTIAL DROPDOWN OPTIONS  */}
