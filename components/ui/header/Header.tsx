@@ -33,7 +33,8 @@ const Header = () => {
 
     // const LinkClass = "flex items-center hover:bg-blue-400 p-4 rounded-lg transition ease-in duration-300";
     const DropdownClass = "flex flex-col z-20 absolute pt-4 bg-blue-400 rounded-lg p-4 text-sm";
-    const MobileDropdownClass = "flex flex-col w-2/3 items-center my-4 z-20 bg-blue-400 rounded-lg p-4 text-sm hover:bg-white";
+    const MobileDropdownClass =
+        "flex flex-col w-full items-center my-4 z-20 bg-blue-400 rounded-lg p-4 text-sm md:w-2/3 lg:w-1/3";
 
     return (
         <nav className="flex bg-white w-full md:h-32 h-20 lg:h-40">
@@ -41,23 +42,50 @@ const Header = () => {
                 {/* LOGO  */}
                 <div className="w-full flex items-center">
                     <Link className="w-full" href={"/"}>
-                        <Image className="w-1/4 md:w-1/6 lg:w-1/2" alt="logo" src={Logo} />
+                        <Image className="w-1/4 md:w-1/6 lg:w-1/3" alt="logo" src={Logo} />
                     </Link>
                     {/* MENU | MED & SMALL SCREENS*/}
-                    {!menu && <RxHamburgerMenu onClick={() => toggleMenu(true)} className="lg:hidden cursor-pointer mr-4" size={25} />}
-                    {menu && <AiOutlineClose onClick={() => toggleMenu(false)} className="lg:hidden  cursor-pointer mr-4" size={25} />}
+                    {!menu && (
+                        <RxHamburgerMenu
+                            onClick={() => toggleMenu(true)}
+                            className="lg:hidden cursor-pointer mr-4"
+                            size={25}
+                        />
+                    )}
+                    {menu && (
+                        <AiOutlineClose
+                            onClick={() => toggleMenu(false)}
+                            className="lg:hidden  cursor-pointer mr-4"
+                            size={25}
+                        />
+                    )}
                 </div>
                 {/* MOBILE DROPDOWN */}
                 {menu && (
-                    <div className="absolute bg-white w-full lg:top-32 md:top-32 top-20 flex flex-col items-center z-50 pb-8">
-                        <HeaderLink mobile onClick={() => toggleResidentialOptions(!residential)} name="Residential" isDropdown />
+                    <div
+                        className="
+                            absolute 
+                            bg-white 
+                            w-full 
+                            top-20 
+                            flex 
+                            flex-col 
+                            items-center 
+                            z-50 
+                            pb-8
+                            md:top-32 
+                            lg:top-32 
+                        "
+                    >
+                        <HeaderLink
+                            mobile
+                            onClick={() => toggleResidentialOptions(!residential)}
+                            name="Residential"
+                            isDropdown
+                        />
                         {/* MOBILE RESIDENTIAL DROPDOWN */}
                         {residential && (
-                            <div
-                                onMouseLeave={() => toggleResidentialOptions(false)}
-                                onMouseEnter={() => toggleResidentialOptions(true)}
-                                className={MobileDropdownClass}
-                            >
+                            <div className={MobileDropdownClass}>
                                 {/* RESIDENTIAL DROPDOWN OPTIONS  */}
                                 <Link className="py-4" href={"pro-window-cleaning"}>
                                     Professional Window Cleaning
@@ -79,14 +107,15 @@ const Header = () => {
                                 </Link>
                             </div>
                         )}
-                        <HeaderLink mobile onClick={() => toggleCommercialOptions(!commercial)} name="Commercial" isDropdown />
+                        <HeaderLink
+                            mobile
+                            onClick={() => toggleCommercialOptions(!commercial)}
+                            name="Commercial"
+                            isDropdown
+                        />
                         {/* MOBILE COMMERCIAL DROPDOWN  */}
                         {commercial && (
-                            <div
-                                onMouseLeave={() => toggleCommercialOptions(false)}
-                                onMouseEnter={() => toggleCommercialOptions(true)}
-                                className={MobileDropdownClass}
-                            >
+                            <div className={MobileDropdownClass}>
                                 {/* RESIDENTIAL DROPDOWN OPTIONS  */}
                                 <Link className="py-4" href={"construction-clean-up"}>
                                     Construction Clean Up
@@ -102,14 +131,15 @@ const Header = () => {
                                 </Link>
                             </div>
                         )}
-                        <HeaderLink mobile onClick={() => toggleAboutOptions(!about)} name="About" isDropdown />
+                        <HeaderLink
+                            mobile
+                            onClick={() => toggleAboutOptions(!about)}
+                            name="About"
+                            isDropdown
+                        />
                         {/* MOBILE ABOUT DROPDOWN  */}
                         {about && (
-                            <div
-                                onMouseLeave={() => toggleAboutOptions(false)}
-                                onMouseEnter={() => toggleAboutOptions(true)}
-                                className={MobileDropdownClass}
-                            >
+                            <div className={MobileDropdownClass}>
                                 {/* RESIDENTIAL DROPDOWN OPTIONS  */}
                                 <Link className="py-4" href={"brand-mission"}>
                                     Brand Mission & Values
@@ -239,7 +269,10 @@ const Header = () => {
                     </div>
                     <HeaderLink name="Locations" />
                     <HeaderLink name="Blog" />
-                    <HeaderLink className="bg-blue-500 min-w-[205px] whitespace-nowrap text-center" name="Get Your Free Estimate" />
+                    <HeaderLink
+                        className="bg-blue-500 min-w-[205px] whitespace-nowrap text-center"
+                        name="Get Your Free Estimate"
+                    />
                 </div>
             </div>
         </nav>
