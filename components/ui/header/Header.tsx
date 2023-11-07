@@ -8,7 +8,7 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { BiSolidDownArrow } from "react-icons/bi";
 import { AiOutlineClose } from "react-icons/ai";
 
-import Logo from "../../public/assets/icons/brite-logo.png";
+import Logo from "../../../public/assets/icons/brite-logo.png";
 import HeaderLink from "./HeaderLink";
 
 const Header = () => {
@@ -36,12 +36,12 @@ const Header = () => {
     const MobileDropdownClass = "flex flex-col w-2/3 items-center my-4 z-20 bg-blue-400 rounded-lg p-4 text-sm hover:bg-white";
 
     return (
-        <nav className="flex bg-white justify-evenly md:h-32 h-20 lg:h-auto ">
-            <div className="flex items-center lg:justify-evenly justify-between w-full">
+        <nav className="flex bg-white w-full md:h-32 h-20 lg:h-40">
+            <div className="flex items-center justify-between w-full">
                 {/* LOGO  */}
-                <div className="w-full flex items-center justify-between">
-                    <Link className="w-1/4 md:w-1/6 lg:w-1/6 mr-20" href={"/"}>
-                        <Image alt="logo" src={Logo} />
+                <div className="w-full flex items-center">
+                    <Link className="w-full" href={"/"}>
+                        <Image className="w-1/4 md:w-1/6 lg:w-1/2" alt="logo" src={Logo} />
                     </Link>
                     {/* MENU | MED & SMALL SCREENS*/}
                     {!menu && <RxHamburgerMenu onClick={() => toggleMenu(true)} className="lg:hidden cursor-pointer mr-4" size={25} />}
@@ -49,7 +49,7 @@ const Header = () => {
                 </div>
                 {/* MOBILE DROPDOWN */}
                 {menu && (
-                    <div className="absolute bg-white w-full top-32 flex flex-col items-center z-50 pb-8">
+                    <div className="absolute bg-white w-full lg:top-32 md:top-32 top-20 flex flex-col items-center z-50 pb-8">
                         <HeaderLink mobile onClick={() => toggleResidentialOptions(!residential)} name="Residential" isDropdown />
                         {/* MOBILE RESIDENTIAL DROPDOWN */}
                         {residential && (
@@ -239,7 +239,7 @@ const Header = () => {
                     </div>
                     <HeaderLink name="Locations" />
                     <HeaderLink name="Blog" />
-                    <HeaderLink className="bg-blue-500" name="Get Your Free Estimate" />
+                    <HeaderLink className="bg-blue-500 min-w-[205px] whitespace-nowrap text-center" name="Get Your Free Estimate" />
                 </div>
             </div>
         </nav>
