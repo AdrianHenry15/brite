@@ -22,9 +22,9 @@ const Estimate = () => {
 
         alert("Your contact information has been sent!");
 
-        const serviceID = import.meta.env.VITE_SERVICE_ID;
-        const templateID = import.meta.env.VITE_TEMPLATE_ID;
-        const publicKey = import.meta.env.VITE_PUBLIC_KEY;
+        const serviceID = process.env.SERVICE_ID;
+        const templateID = process.env.TEMPLATE_ID;
+        const publicKey = process.env.PUBLIC_KEY;
 
         emailjs.send(serviceID, templateID, templateParams, publicKey).then(
             function (response: any) {
@@ -49,12 +49,23 @@ const Estimate = () => {
     };
     return (
         <PageContainer className="bg-gray-100">
-            <span className="py-4 text-4xl font-semibold w-full text-center">Get a Free Estimate</span>
+            <span className="py-4 text-4xl font-semibold w-full text-center">
+                Get a Free Estimate
+            </span>
             <div className="flex flex-col w-full items-center">
                 <Input type="name" placeHolder="Name" onChange={(e) => handleName(e)} />
                 <Input type="email" placeHolder="Email" onChange={(e) => handleEmail(e)} />
-                <Input type="phone-number" placeHolder="Phone Number" onChange={(e) => handlePhone(e)} />
-                <Input className="pb-24" type="comment" placeHolder="Comment" onChange={(e) => handleComment(e)} />
+                <Input
+                    type="phone-number"
+                    placeHolder="Phone Number"
+                    onChange={(e) => handlePhone(e)}
+                />
+                <Input
+                    className="pb-24"
+                    type="comment"
+                    placeHolder="Comment"
+                    onChange={(e) => handleComment(e)}
+                />
             </div>
             <Button text="Send" onClick={(e) => getEstimate(e)} />
         </PageContainer>
