@@ -3,13 +3,15 @@
 import React from "react";
 
 import Jumbotron from "../../../../components/ui/home/Jumbotron";
-import LightingPromo from "../../../../components/ui/home/LightingPromo";
+import LightingXmasPromo from "../../../../components/ui/home/LightingXmasPromo";
+import WelcomeMessage from "../../../../components/ui/home/WelcomeMessage";
 
 const Home = () => {
     return (
         <div className="w-full flex flex-col">
             <Jumbotron />
-            <LightingPromo />
+            <LightingXmasPromo />
+            <WelcomeMessage />
         </div>
     );
 };
