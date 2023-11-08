@@ -9,3 +9,24 @@
     background-repeat: no-repeat;
     z-index: 1000;
 }
+
+#base {
+    background: rgb(0, 50, 92);
+    display: inline-block;
+    height: 55px;
+    margin-left: 20px;
+    margin-top: 55px;
+    position: relative;
+    width: 100px;
+}
+#base:before {
+    border-bottom: 35px solid rgb(0, 50, 92);
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    content: "";
+    height: 0;
+    left: 0;
+    position: absolute;
+    top: -35px;
+    width: 0;
+}
