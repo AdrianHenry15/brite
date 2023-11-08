@@ -1,30 +1,21 @@
-import Image from "next/image";
 import React from "react";
-
-import Pic1 from "../../../public/assets/imgs/green-mountains.jpg";
 
 const Jumbotron = () => {
     return (
-        <div className="flex w-full justify-between relative">
-            <Image className="h-fit w-fit flex items-center justify-center" src={Pic1} alt="pic" />
+        <div className="flex w-full items-center justify-between relative bg-cover bg-[url('/assets/imgs/green-mountains.jpg')] h-80 lg:h-[500px]">
             <span
                 className="
-        absolute
-                bg-gradient-to-br
-                text-transparent 
-                from-blue-600 
-                to-zinc-200
-                bg-clip-text 
+                z-20
+                text-white
                 text-3xl
                 w-1/2
                 font-semibold
-                opacity-75
                 text-right
                 md:text-6xl
                 lg:text-7xl 
                 "
             >
-                Radiant Possibilities
+                Radiant <br /> Possibilities
             </span>
         </div>
     );
