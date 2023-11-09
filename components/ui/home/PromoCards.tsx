@@ -15,7 +15,7 @@ const PromoCards = (props: IPromoCardsProps) => {
             {props.children}
             <span className="font-extrabold text-xl text-sky-600 my-4">{props.title}</span>
             <p className="my-4 font-medium">{props.description}</p>
-            <Link className="text-blue-700 underline font-bold" href={props.link}>
+            <Link className="text-sky-500 underline font-bold" href={props.link}>
                 {props.linkText}
             </Link>
         </div>
