@@ -37,29 +37,31 @@ const Header = () => {
         "flex flex-col w-full items-center my-4 z-20 bg-blue-400 rounded-lg p-4 text-sm md:w-2/3 lg:w-1/3";
 
     return (
-        <nav className="flex w-full md:h-32 h-20 lg:h-40 z-50 text-black justify-center">
-            <div className="flex items-center justify-between w-2/3">
+        <header className="flex w-full z-50 text-black justify-center sticky top-0 shadow-md bg-white md:h-32 h-20 lg:h-28">
+            <nav className="flex items-center justify-evenly">
                 {/* LOGO  */}
-                <div className="w-full flex items-center">
-                    <Link className="w-full" href={"/"}>
-                        <Image className="w-1/4 md:w-1/6 lg:w-1/2" alt="logo" src={Logo} />
-                    </Link>
-                    {/* MENU | MED & SMALL SCREENS*/}
-                    {!menu && (
-                        <RxHamburgerMenu
-                            onClick={() => toggleMenu(true)}
-                            className="lg:hidden cursor-pointer mr-4"
-                            size={25}
-                        />
-                    )}
-                    {menu && (
-                        <AiOutlineClose
-                            onClick={() => toggleMenu(false)}
-                            className="lg:hidden  cursor-pointer mr-4"
-                            size={25}
-                        />
-                    )}
-                </div>
+                <Link className="w-full" href={"/"}>
+                    <Image
+                        className="object-contain md:w-1/3 lg:w-1/2 max-w-md w-1/4"
+                        alt="logo"
+                        src={Logo}
+                    />
+                </Link>
+                {/* MENU | MED & SMALL SCREENS*/}
+                {!menu && (
+                    <RxHamburgerMenu
+                        onClick={() => toggleMenu(true)}
+                        className="lg:hidden cursor-pointer mr-4"
+                        size={25}
+                    />
+                )}
+                {menu && (
+                    <AiOutlineClose
+                        onClick={() => toggleMenu(false)}
+                        className="lg:hidden  cursor-pointer mr-4"
+                        size={25}
+                    />
+                )}
                 {/* MOBILE DROPDOWN */}
                 {menu && (
                     <div
@@ -275,8 +277,8 @@ const Header = () => {
                         name="Get Your Free Estimate"
                     />
                 </div>
-            </div>
-        </nav>
+            </nav>
+        </header>
     );
 };
 
