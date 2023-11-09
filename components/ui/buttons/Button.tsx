@@ -3,7 +3,7 @@ import React from "react";
 
 interface IButtonProps {
     text: string;
-    onClick: (e: any) => void;
+    onClick?: (e: any) => void;
     isLink?: boolean;
     link?: string;
     linkClass?: string;
@@ -18,7 +18,7 @@ const Button = (props: IButtonProps) => {
             <Link href={props.link} className={`${props.linkClass} w-min justify-center flex`}>
                 <button
                     onClick={props.onClick}
-                    className={`${props.btnClass} flex border-2 p-2 my-4 rounded-lg border-sky-700 w-2/3 lg:w-[205px] justify-center`}
+                    className={`${props.btnClass} flex border-2 p-2 my-4 rounded-lg border-sky-700 w-2/3 justify-center`}
                 >
                     <span className={`${props.textClass} text-black px-6 text-sm`}>
                         {props.text}
@@ -30,7 +30,7 @@ const Button = (props: IButtonProps) => {
         return (
             <button
                 onClick={props.onClick}
-                className={`${props.btnClass} flex border-2 p-2 my-4 rounded-lg border-sky-700 w-2/3 lg:w-[205px] justify-center`}
+                className={`${props.btnClass} flex border-2 p-2 my-4 rounded-lg border-sky-700 w-2/3 justify-center`}
             >
                 <span className={`${props.textClass} text-black px-6 text-sm`}>{props.text}</span>
             </button>
