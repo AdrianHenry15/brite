@@ -4,10 +4,16 @@ import Stars from "../../../public/assets/imgs/stars.png";
 
 import Button from "../buttons/Button";
 import Image from "next/image";
+import useScrollAnimation from "../../../hooks/useScrollAnimation";
 
 const Guarantee = () => {
+    const { ref, animationClass } = useScrollAnimation();
+
     return (
-        <div className="flex flex-col justify-center items-center text-white bg-sky-600 px-10 pb-8 md:py-8 md:px-48 md:h-96 lg:flex-row">
+        <div
+            ref={ref}
+            className={`${animationClass} flex flex-col justify-center items-center text-white bg-sky-600 px-10 pb-8 md:py-8 md:px-48 md:h-96 lg:flex-row`}
+        >
             <Image
                 className="flex flex-1 object-contain w-96 md:w-[275px]"
                 src={Stars}

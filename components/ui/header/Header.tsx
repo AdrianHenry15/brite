@@ -134,36 +134,8 @@ const Header = () => {
                                 </Link>
                             </div>
                         )}
-                        <HeaderLink
-                            mobile
-                            onClick={() => toggleAboutOptions(!about)}
-                            name="About"
-                            isDropdown
-                        />
-                        {/* MOBILE ABOUT DROPDOWN  */}
-                        {about && (
-                            <div className={MobileDropdownClass}>
-                                {/* RESIDENTIAL DROPDOWN OPTIONS  */}
-                                <Link className="py-4" href={"brand-mission"}>
-                                    Brand Mission & Values
-                                </Link>
-                                <Link className="py-4" href={"giving-back"}>
-                                    Giving Back
-                                </Link>
-                                <Link className="py-4" href={"about"}>
-                                    About Brite
-                                </Link>
-                                <Link className="py-4" href={"guarantee"}>
-                                    Our Guarantee
-                                </Link>
-                                <Link className="py-4" href={"leadership-history"}>
-                                    Leadership & History
-                                </Link>
-                            </div>
-                        )}
-                        <HeaderLink name="Locations" />
-                        <HeaderLink name="Blog" />
-                        <HeaderLink className="bg-blue-500" name="Get Your Free Estimate" />
+                        <HeaderLink mobile name="About" />
+                        <HeaderLink name="Get Your Free Estimate" />
                     </div>
                 )}
                 {/* MENU FOR LG SCREENS */}
@@ -241,39 +213,11 @@ const Header = () => {
                         <HeaderLink
                             onMouseEnter={() => toggleAboutOptions(true)}
                             onMouseLeave={() => toggleAboutOptions(false)}
-                            isDropdown
                             name="About"
                         />
-                        {/* ABOUT DROPDOWN  */}
-                        {about && (
-                            <div
-                                onMouseLeave={() => toggleAboutOptions(false)}
-                                onMouseEnter={() => toggleAboutOptions(true)}
-                                className={DropdownClass}
-                            >
-                                {/* RESIDENTIAL DROPDOWN OPTIONS  */}
-                                <Link className="py-4" href={"brand-mission"}>
-                                    Brand Mission & Values
-                                </Link>
-                                <Link className="py-4" href={"giving-back"}>
-                                    Giving Back
-                                </Link>
-                                <Link className="py-4" href={"about"}>
-                                    About Brite
-                                </Link>
-                                <Link className="py-4" href={"guarantee"}>
-                                    Our Guarantee
-                                </Link>
-                                <Link className="py-4" href={"leadership-history"}>
-                                    Leadership & History
-                                </Link>
-                            </div>
-                        )}
                     </div>
-                    <HeaderLink name="Locations" />
-                    <HeaderLink name="Blog" />
                     <HeaderLink
-                        className="bg-blue-500 min-w-[205px] whitespace-nowrap text-center"
+                        className=" min-w-[205px] whitespace-nowrap text-center"
                         name="Get Your Free Estimate"
                     />
                 </div>
