@@ -29,7 +29,7 @@ const WelcomeMessage = () => {
                 </div>
                 {/* PROMO CARDS  */}
                 <div className="flex flex-col md:flex-row">
-                    <PromoCards
+                    {/* <PromoCards
                         title="Much More Than Window Washing"
                         description="Pressure Washing, 
                         screen cleaning, 
@@ -67,7 +67,7 @@ const WelcomeMessage = () => {
                         linkText="Learn how we give back..."
                     >
                         <MdOutlineBrightnessLow size={80} />
-                    </PromoCards>
+                    </PromoCards> */}
                 </div>
             </div>
         </div>
