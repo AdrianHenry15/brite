@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "description": "",
     "scripts": {
-        "dev": "next dev --port 3300",
+        "dev": "next dev",
         "build": "next build",
         "start": "next start",
         "lint": "next lint"
@@ -23,6 +23,8 @@
     "dependencies": {
         "@clerk/nextjs": "^4.28.1",
         "@emailjs/browser": "^3.11.0",
+        "@headlessui/react": "^1.7.17",
+        "@heroicons/react": "^2.1.1",
         "@reduxjs/toolkit": "^1.9.5",
         "axios": "^1.5.1",
         "dotenv": "^16.3.1",

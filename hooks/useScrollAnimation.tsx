@@ -6,7 +6,7 @@ interface UseScrollAnimationOptions {
     threshold?: number;
 }
 
-const useScrollAnimation = ({ threshold = 0.5 }: UseScrollAnimationOptions = {}) => {
+export const useScrollAnimation = ({ threshold = 0.5 }: UseScrollAnimationOptions = {}) => {
     const [ref, inView] = useInView({
         triggerOnce: true,
         threshold,
@@ -19,4 +19,11 @@ const useScrollAnimation = ({ threshold = 0.5 }: UseScrollAnimationOptions = {})
     return { ref, animationClass };
 };
 
-export default useScrollAnimation;
+export const useAnimation = ({ threshold = 0.5 }: UseScrollAnimationOptions = {}) => {
+    const [ref, inView] = useInView({
+        triggerOnce: true,
+        threshold,
+    });
+
+    return { ref, inView };
+};
