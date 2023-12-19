@@ -7,7 +7,7 @@ import WelcomeMessage from "../../../../components/ui/home/WelcomeMessage";
 
 const Home = () => {
     return (
-        <div className="w-full flex flex-col">
+        <div className="w-full flex flex-col bg-black">
             <Jumbotron />
             <WelcomeMessage />
         </div>
