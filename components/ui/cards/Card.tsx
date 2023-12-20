@@ -12,7 +12,7 @@ interface ICardProps {
 
 const Card = (props: ICardProps) => {
     return (
-        <div className="max-w-sm my-2 mx-10 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <div className="max-w-sm my-2 mx-10 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 hidden md:flex">
             <Link href={props.link}>
                 <Image
                     className="rounded-t-lg hidden object-cover object-center h-[300px] lg:flex"
@@ -44,9 +44,9 @@ const Card = (props: ICardProps) => {
                     >
                         <path
                             stroke="currentColor"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
                             d="M1 5h12m0 0L9 1m4 4L9 9"
                         />
                     </svg>

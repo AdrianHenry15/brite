@@ -86,17 +86,17 @@ export default function MobileMenu() {
                                 </ul>
                             </div>
                             {/* NAV BUTTONS */}
-                            <ul className="bottom-0 mb-36 fixed self-center w-full">
+                            <ul className="bottom-0 mb-36 fixed flex flex-col self-center w-full">
                                 <NavButton
                                     className="mb-4 py-4"
                                     name="Contact Us"
-                                    link="contact-us"
+                                    link="/contact-us"
                                     altColor
                                 />
                                 <NavButton
                                     className="py-4"
                                     name="Get Your Free Estimate"
-                                    link="/get-your-free-estimate"
+                                    link="/estimate"
                                 />
                             </ul>
                         </Dialog.Panel>

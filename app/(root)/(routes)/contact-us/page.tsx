@@ -3,7 +3,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 
-export default function Estimate() {
+export default function ContactUs() {
     const InputClass = "border-2 border-gray-400 my-2 p-2 w-full";
     const {
         register,
@@ -17,7 +17,7 @@ export default function Estimate() {
 
     return (
         <div className="flex flex-col w-full px-4 lg:w-1/2">
-            <h5 className="font-semibold text-4xl py-10">Get Your Free Estimate Today!</h5>
+            <h5 className="font-semibold text-4xl py-10">Contact Us</h5>
             {/* FORM */}
             <form className="self-center w-full md:w-2/3" onSubmit={handleSubmit(onSubmit)}>
                 <div>
@@ -84,7 +84,7 @@ export default function Estimate() {
                 </div>
                 <div className="mt-4 mb-24">
                     <button className="bg-blue-600 p-4 rounded-lg text-white" type="submit">
-                        Get Free Estimate!
+                        Contact Us
                     </button>
                 </div>
             </form>

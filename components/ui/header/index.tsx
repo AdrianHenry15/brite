@@ -6,7 +6,7 @@ import Image from "next/image";
 
 import MobileHeader from "./MobileMenu";
 
-import { NavButtons, NavMenu, NavMenuItems } from "../../../lib/constants";
+import { NavMenu, NavMenuItems } from "../../../lib/constants";
 
 import logo from "../../../public/assets/icons/brite-logo.png";
 import NavButton from "./NavButton";
@@ -27,7 +27,7 @@ export default function Navbar() {
                 <div className="flex items-center">
                     <Link href="/" className="lg:mr-10">
                         {/* TODO: LOGO */}
-                        <Image src={logo} alt="logo" width={100} />
+                        <Image className="" src={logo} alt="logo" width={100} />
                     </Link>
                     {/* LINKS  */}
                     <ul className="hidden text-gray-600 self-center lg:flex">
@@ -47,8 +47,8 @@ export default function Navbar() {
                 </div>
                 {/* NAV BUTTONS */}
                 <ul className="self-center hidden lg:flex">
-                    <NavButton name="Contact Us" link="contact-us" altColor />
-                    <NavButton name="Get Your Free Estimate" link="/get-your-free-estimate" />
+                    <NavButton name="Contact Us" link="/contact-us" altColor />
+                    <NavButton name="Get Your Free Estimate" link="/estimate" />
                 </ul>
             </div>
         </nav>
