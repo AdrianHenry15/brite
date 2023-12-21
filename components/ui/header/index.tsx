@@ -6,18 +6,17 @@ import Image from "next/image";
 
 import MobileHeader from "./MobileMenu";
 
-import { NavMenu, NavMenuItems } from "../../../lib/constants";
+import { NavMenuItems } from "../../../lib/constants";
 
 import logo from "../../../public/assets/icons/brite-logo.png";
 import NavButton from "./NavButton";
+import { NavMenu } from "../../../lib/types";
 
 export default function Navbar() {
     const pathname = usePathname();
 
     return (
-        <nav
-            className={`bg-white text-sm font-semibold flex w-full self-center rounded-b-lg sticky top-0 z-50`}
-        >
+        <nav className={`bg-white text-sm font-semibold flex w-full self-center sticky top-0 z-50`}>
             {/* MOBILE CONTAINER */}
             <div className="fixed self-center right-0 lg:hidden">
                 <MobileHeader />

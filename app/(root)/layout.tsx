@@ -9,7 +9,7 @@ export default async function SetupLayout({ children }: { children: React.ReactN
     return (
         <div className="w-full flex flex-col items-center h-full">
             <Navbar />
-            {children}
+            <div className="w-full flex flex-col bg-black">{children}</div>
             <Footer />
         </div>
     );
