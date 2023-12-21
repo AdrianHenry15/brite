@@ -1,21 +1,15 @@
-"use client";
-
 import React from "react";
 
 import Jumbotron from "../../../../components/ui/home/Jumbotron";
-import LightingXmasPromo from "../../../../components/ui/home/LightingXmasPromo";
 import WelcomeMessage from "../../../../components/ui/home/WelcomeMessage";
-import Guarantee from "../../../../components/ui/home/Guarantee";
+import SocialProof from "../../../../components/ui/SocialProof";
 
-const Home = () => {
+export default async function Home() {
     return (
-        <div className="w-full flex flex-col">
+        <div className="w-full flex flex-col bg-black">
             <Jumbotron />
-            <LightingXmasPromo />
+            <SocialProof />
             <WelcomeMessage />
-            <Guarantee />
         </div>
     );
-};
-
-export default Home;
+}
