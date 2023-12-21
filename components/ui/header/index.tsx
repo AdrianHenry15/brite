@@ -18,7 +18,7 @@ export default function Navbar() {
     return (
         <nav className={`bg-white text-sm font-semibold flex w-full self-center sticky top-0 z-50`}>
             {/* MOBILE CONTAINER */}
-            <div className="fixed self-center right-0 lg:hidden">
+            <div className="absolute self-center right-0 lg:hidden">
                 <MobileHeader />
             </div>
             {/* TITLE & LINKS  */}

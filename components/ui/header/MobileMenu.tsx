@@ -32,7 +32,7 @@ export default function MobileMenu() {
     }, [pathname, searchParams]);
 
     return (
-        <>
+        <div className="relative">
             <button
                 onClick={openMobileMenu}
                 aria-label="Open mobile menu"
@@ -103,6 +103,6 @@ export default function MobileMenu() {
                     </Transition.Child>
                 </Dialog>
             </Transition>
-        </>
+        </div>
     );
 }
