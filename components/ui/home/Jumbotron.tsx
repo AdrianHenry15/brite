@@ -14,7 +14,7 @@ import Image from "next/image";
 
 const Jumbotron = () => {
     return (
-        <div className="relative flex w-full">
+        <section className="relative flex w-full">
             <Image
                 className="object-cover object-top w-full h-[80vh] md:h-[80vh] lg:h-[75vh] opacity-75"
                 src={GreenMountains}
@@ -27,7 +27,7 @@ const Jumbotron = () => {
             >
                 {/* ON MEDIUM TO LARGE SCREENS */}
                 <Card
-                    link={""}
+                    link={"/exterior-cleaning"}
                     title={"Exterior Cleaning"}
                     img={Roof}
                     description={
@@ -35,7 +35,7 @@ const Jumbotron = () => {
                     }
                 />
                 <Card
-                    link={""}
+                    link={"landscape-lighting"}
                     title={"Landscape Lighting"}
                     img={LandscapeLights}
                     description={
@@ -43,7 +43,7 @@ const Jumbotron = () => {
                     }
                 />
                 <Card
-                    link={""}
+                    link={"christmas-lighting"}
                     title={"Christmas Lighting"}
                     img={xmasLights}
                     description={
@@ -65,47 +65,7 @@ const Jumbotron = () => {
                     </MobileCard>
                 </div>
             </div>
-        </div>
-        // </div>
-        // <div className="flex flex-col w-full items-center justify-center relative bg-cover bg-[url('/assets/imgs/green-mountains.jpg')] h-80 bg-opacity-70 md:h-[80vh] lg:h-[75vh] lg:flex-row">
-        //     {/* ON MEDIUM TO LARGE SCREENS */}
-        //     <Card
-        //         link={""}
-        //         title={"Exterior Cleaning"}
-        //         img={Roof}
-        //         description={
-        //             "Brite's Exterior Cleaning includes: Window Washing, Pressure Wash Cleaning, Gutter Cleaning, and Roof Cleaning"
-        //         }
-        //     />
-        //     <Card
-        //         link={""}
-        //         title={"Landscape Lighting"}
-        //         img={LandscapeLights}
-        //         description={
-        //             "Brite's Landscape lights enhance aesthetics with strategically placed fixtures and energy-efficient illumination"
-        //         }
-        //     />
-        //     <Card
-        //         link={""}
-        //         title={"Christmas Lighting"}
-        //         img={xmasLights}
-        //         description={
-        //             "Brite's Christmas lights bring festive joy to outdoor spaces with carefully placed and eco-friendly lighting"
-        //         }
-        //     />
-        //     {/* MOBILE CARDS */}
-        //     <MobileCard link="/exterior-cleaning" title="Exterior Cleaning">
-        //         <GiVacuumCleaner className="text-white" size={30} />
-        //     </MobileCard>
-        //     {/* MOBILE CARDS */}
-        //     <MobileCard link="/landscape-lighting" title="Landscape Lighting">
-        //         <FcLandscape size={30} />
-        //     </MobileCard>
-        //     {/* MOBILE CARDS */}
-        //     <MobileCard link="/christmas-lighting" title="Christmas Lighting">
-        //         <GiPineTree className="text-white" size={30} />
-        //     </MobileCard>
-        // </div>
+        </section>
     );
 };
 

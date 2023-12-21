@@ -14,8 +14,8 @@ export const NavMenuItems: NavMenu[] = [
 ];
 export const NavMenuAltItems: NavMenu[] = [
     {
-        title: "Contact",
-        link: "/contact",
+        title: "Contact Us",
+        link: "/contact-us",
     },
     {
         title: "Get Your Free Estimate",

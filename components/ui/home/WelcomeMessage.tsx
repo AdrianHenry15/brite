@@ -2,7 +2,7 @@ import React from "react";
 
 const WelcomeMessage = () => {
     return (
-        <div
+        <section
             // ref={ref}
             className={`flex flex-col w-full items-center relative bg-cover bg-[url('/assets/imgs/brick.jpg')] h-min-content`}
         >
@@ -20,7 +20,7 @@ const WelcomeMessage = () => {
                     <span>Start with a FREE, no obligation estimate today!</span>
                 </div>
             </div>
-        </div>
+        </section>
     );
 };
 
