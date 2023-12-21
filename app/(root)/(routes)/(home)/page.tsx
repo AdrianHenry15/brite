@@ -6,7 +6,7 @@ import SocialProof from "../../../../components/ui/home/SocialProof";
 
 export default async function Home() {
     return (
-        <div className="w-full flex flex-col bg-black">
+        <div>
             <Jumbotron />
             <SocialProof />
             <WelcomeMessage />
