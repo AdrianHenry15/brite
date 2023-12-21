@@ -1,3 +1,5 @@
+import { NavMenu } from "./types";
+
 export const NavMenuItems: NavMenu[] = [
     {
         title: "Exterior Cleaning",
@@ -22,7 +24,3 @@ export const NavMenuAltItems: NavMenu[] = [
         link: "/estimate",
     },
 ];
-export type NavMenu = {
-    title: string;
-    link: string;
-};
