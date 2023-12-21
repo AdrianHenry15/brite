@@ -23,46 +23,51 @@ const Jumbotron = () => {
 
             {/* Text overlay */}
             <div
-                className={`absolute w-full flex top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 justify-around flex-col items-center lg:flex-row`}
+                className={`absolute w-full flex top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 justify-around flex-col items-center`}
             >
-                {/* ON MEDIUM TO LARGE SCREENS */}
-                <Card
-                    link={"/exterior-cleaning"}
-                    title={"Exterior Cleaning"}
-                    img={Roof}
-                    description={
-                        "Brite's Exterior Cleaning includes: Window Washing, Pressure Wash Cleaning, Gutter Cleaning, and Roof Cleaning"
-                    }
-                />
-                <Card
-                    link={"landscape-lighting"}
-                    title={"Landscape Lighting"}
-                    img={LandscapeLights}
-                    description={
-                        "Brite's Landscape lights enhance aesthetics with strategically placed fixtures and energy-efficient illumination"
-                    }
-                />
-                <Card
-                    link={"christmas-lighting"}
-                    title={"Christmas Lighting"}
-                    img={xmasLights}
-                    description={
-                        "Brite's Christmas lights bring festive joy to outdoor spaces with carefully placed and eco-friendly lighting"
-                    }
-                />
-                {/* MOBILE CARDS */}
-                <div className="flex flex-col w-full md:hidden">
-                    <MobileCard link="/exterior-cleaning" title="Exterior Cleaning">
-                        <GiVacuumCleaner className="text-white" size={30} />
-                    </MobileCard>
+                <h5 className="opacity-50 font-semibold tracking-wider italic text-5xl p-4 text-white">
+                    Brite Lighting
+                </h5>
+                <div className="w-full flex flex-col items-center lg:flex-row lg:flex lg:justify-around">
+                    {/* ON MEDIUM TO LARGE SCREENS */}
+                    <Card
+                        link={"/exterior-cleaning"}
+                        title={"Exterior Cleaning"}
+                        img={Roof}
+                        description={
+                            "Brite's Exterior Cleaning includes: Window Washing, Pressure Wash Cleaning, Gutter Cleaning, and Roof Cleaning"
+                        }
+                    />
+                    <Card
+                        link={"landscape-lighting"}
+                        title={"Landscape Lighting"}
+                        img={LandscapeLights}
+                        description={
+                            "Brite's Landscape lights enhance aesthetics with strategically placed fixtures and energy-efficient illumination"
+                        }
+                    />
+                    <Card
+                        link={"christmas-lighting"}
+                        title={"Christmas Lighting"}
+                        img={xmasLights}
+                        description={
+                            "Brite's Christmas lights bring festive joy to outdoor spaces with carefully placed and eco-friendly lighting"
+                        }
+                    />
                     {/* MOBILE CARDS */}
-                    <MobileCard link="/landscape-lighting" title="Landscape Lighting">
-                        <FcLandscape size={30} />
-                    </MobileCard>
-                    {/* MOBILE CARDS */}
-                    <MobileCard link="/christmas-lighting" title="Christmas Lighting">
-                        <GiPineTree className="text-white" size={30} />
-                    </MobileCard>
+                    <div className="flex flex-col w-full md:hidden">
+                        <MobileCard link="/exterior-cleaning" title="Exterior Cleaning">
+                            <GiVacuumCleaner className="text-white" size={30} />
+                        </MobileCard>
+                        {/* MOBILE CARDS */}
+                        <MobileCard link="/landscape-lighting" title="Landscape Lighting">
+                            <FcLandscape size={30} />
+                        </MobileCard>
+                        {/* MOBILE CARDS */}
+                        <MobileCard link="/christmas-lighting" title="Christmas Lighting">
+                            <GiPineTree className="text-white" size={30} />
+                        </MobileCard>
+                    </div>
                 </div>
             </div>
         </section>
