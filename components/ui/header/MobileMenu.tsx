@@ -7,7 +7,6 @@ import { Fragment, useEffect, useState } from "react";
 
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { NavMenu, NavMenuItems } from "../../../lib/constants";
-import { NavButtons } from "../../../lib/constants";
 import NavButton from "./NavButton";
 
 export default function MobileMenu() {
