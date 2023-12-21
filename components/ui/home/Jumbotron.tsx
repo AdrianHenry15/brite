@@ -25,8 +25,8 @@ const Jumbotron = () => {
             <div
                 className={`absolute w-full flex top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 justify-around flex-col items-center`}
             >
-                <h5 className="opacity-50 font-semibold tracking-wider italic text-5xl p-4 text-white">
-                    Brite Lighting
+                <h5 className="font-semibold tracking-wider underline-offset-2 italic text-5xl p-4 text-white drop-shadow-xl">
+                    Our Services
                 </h5>
                 <div className="w-full flex flex-col items-center lg:flex-row lg:flex lg:justify-around">
                     {/* ON MEDIUM TO LARGE SCREENS */}
