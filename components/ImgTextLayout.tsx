@@ -1,6 +1,4 @@
 import React from "react";
-
-import RoofSplash from "../public/assets/imgs/roof-splash.jpg";
 import Image from "next/image";
 
 interface IImgTextProps {

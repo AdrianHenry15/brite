@@ -5,12 +5,10 @@ import { usePathname } from "next/navigation";
 import Image from "next/image";
 
 import MobileHeader from "./MobileMenu";
-
-import { NavMenuItems } from "../../../lib/constants";
-
-import logo from "../../../public/assets/icons/brite-logo.png";
+import logo from "../../public/assets/icons/brite-logo.png";
 import NavButton from "./NavButton";
-import { NavMenu } from "../../../lib/types";
+import { NavMenuItems } from "../../lib/constants";
+import { NavMenu } from "../../lib/types";
 
 export default function Navbar() {
     const pathname = usePathname();

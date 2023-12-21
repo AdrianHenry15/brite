@@ -4,11 +4,11 @@ import { Dialog, Transition } from "@headlessui/react";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import { Fragment, useEffect, useState } from "react";
-
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { NavMenuItems } from "../../../lib/constants";
+
+import { NavMenuItems } from "../../lib/constants";
 import NavButton from "./NavButton";
-import { NavMenu } from "../../../lib/types";
+import { NavMenu } from "../../lib/types";
 
 export default function MobileMenu() {
     const pathname = usePathname();

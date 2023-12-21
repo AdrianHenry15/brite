@@ -1,8 +1,8 @@
 import React from "react";
 
-import Jumbotron from "../../../../components/ui/home/Jumbotron";
-import WelcomeMessage from "../../../../components/ui/home/WelcomeMessage";
-import SocialProof from "../../../../components/ui/home/SocialProof";
+import Jumbotron from "../../../../components/home/Jumbotron";
+import WelcomeMessage from "../../../../components/home/WelcomeMessage";
+import SocialProof from "../../../../components/home/SocialProof";
 
 export default async function Home() {
     return (

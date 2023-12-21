@@ -2,7 +2,7 @@ import Image from "next/image";
 import React from "react";
 import { FaRegCopyright } from "react-icons/fa6";
 
-import Logo from "../../../public/assets/icons/brite-logo.png";
+import Logo from "../../public/assets/icons/brite-logo.png";
 
 const LogoCard = () => {
     return (
