@@ -1,25 +1,25 @@
 export const NavMenuItems: NavMenu[] = [
     {
         title: "Exterior Cleaning",
-        link: "exterior-cleaning",
+        link: "/exterior-cleaning",
     },
     {
         title: "Landscape Lighting",
-        link: "Landscape Lighting",
+        link: "/landscape-lighting",
     },
     {
         title: "Christmas Lighting",
-        link: "Christmas Lighting",
+        link: "/christmas-lighting",
     },
 ];
-export const NavButtons: NavMenu[] = [
+export const NavMenuAltItems: NavMenu[] = [
     {
         title: "Contact",
-        link: "contact",
+        link: "/contact",
     },
     {
         title: "Get Your Free Estimate",
-        link: "get-your-free-estimate",
+        link: "/estimate",
     },
 ];
 export type NavMenu = {
