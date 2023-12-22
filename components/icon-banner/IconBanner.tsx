@@ -16,7 +16,7 @@ interface IIconBannerProps {
 
 const IconBanner = (props: IIconBannerProps) => {
     return (
-        <section className="bg-white text-black w-full text-center py-24 px-4 flex flex-col md:flex-row">
+        <section className="bg-white text-black w-full justify-evenly text-center py-24 px-4 flex flex-1 flex-col md:flex-row">
             <IconItem icon={props.icon1} title={props.title1} description={props.description1} />
             <IconItem icon={props.icon2} title={props.title2} description={props.description2} />
             <IconItem icon={props.icon3} title={props.title3} description={props.description3} />
