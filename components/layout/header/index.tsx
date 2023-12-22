@@ -5,10 +5,10 @@ import { usePathname } from "next/navigation";
 import Image from "next/image";
 
 import MobileHeader from "./MobileMenu";
-import logo from "../../public/assets/icons/brite-logo.png";
+import logo from "../../../public/assets/icons/brite-logo.png";
 import NavButton from "./NavButton";
-import { NavMenuItems } from "../../lib/constants";
-import { NavMenu } from "../../lib/types";
+import { NavMenuItems } from "../../../lib/constants";
+import { NavMenu } from "../../../lib/types";
 
 export default function Navbar() {
     const pathname = usePathname();
@@ -30,7 +30,7 @@ export default function Navbar() {
                     <ul className="hidden text-gray-600 self-center lg:flex">
                         {NavMenuItems.map((item: NavMenu) =>
                             item.title === "Home" ? (
-                                <div></div>
+                                <div key={item.link}></div>
                             ) : (
                                 <li
                                     className={`mx-2 transition-all duration-300 ease-in-out hover:text-blue-700 hover:underline ${

@@ -1,3 +1,5 @@
+import Button from "@mui/material/Button";
+import Link from "next/link";
 import React from "react";
 
 const WelcomeMessage = () => {
@@ -18,6 +20,11 @@ const WelcomeMessage = () => {
                         time.
                     </span>
                     <span>Start with a FREE, no obligation estimate today!</span>
+                    <Link href="/estimate">
+                        <button className="mt-4 px-6 py-2 bg-blue-500 rounded-lg shadow-lg">
+                            Get Your Free Estimate Today!
+                        </button>
+                    </Link>
                 </div>
             </div>
         </section>

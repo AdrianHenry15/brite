@@ -3,14 +3,14 @@ import React from "react";
 import { GiVacuumCleaner, GiWindow } from "react-icons/gi";
 import { MdOutlineRoofing } from "react-icons/md";
 
-import ImgTextLayout from "../../../../components/ImgTextLayout";
+import ImgTextOverlay from "../../../../components/ImgTextOverlay";
 import RoofSplash from "../../../../public/assets/imgs/roof-splash.jpg";
 import IconBanner from "../../../../components/icon-banner/IconBanner";
 
 const ExteriorCleaning = () => {
     return (
         <div>
-            <ImgTextLayout imgClass="object-bottom" src={RoofSplash} name="Exterior Cleaning" />
+            <ImgTextOverlay imgClass="object-bottom" src={RoofSplash} name="Exterior Cleaning" />
             <IconBanner
                 icon1={<GiVacuumCleaner size={50} />}
                 title1={"Pressure Washing"}

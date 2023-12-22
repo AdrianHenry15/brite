@@ -7,7 +7,7 @@ interface IImgTextProps {
     imgClass?: string;
 }
 
-const ImgText = (props: IImgTextProps) => {
+const ImgTextOverlay = (props: IImgTextProps) => {
     return (
         <section className="relative flex w-full">
             <Image
@@ -28,4 +28,4 @@ const ImgText = (props: IImgTextProps) => {
     );
 };
 
-export default ImgText;
+export default ImgTextOverlay;

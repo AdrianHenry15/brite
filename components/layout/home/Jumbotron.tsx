@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 
-import Card from "../cards/Card";
+import Card from "../../cards/Card";
 
 import { GiVacuumCleaner, GiPineTree } from "react-icons/gi";
 import { FcLandscape } from "react-icons/fc";
@@ -11,7 +11,7 @@ import Roof from "../../public/assets/imgs/brite-pic-1.jpg";
 import LandscapeLights from "../../public/assets/imgs/brite-pic-7.jpg";
 import xmasLights from "../../public/assets/imgs/brite-pic-3.jpg";
 import GreenMountains from "../../public/assets/imgs/green-mountains.jpg";
-import MobileCard from "../cards/MobileCard";
+import MobileCard from "../../cards/MobileCard";
 import Image from "next/image";
 
 const Jumbotron = () => {
