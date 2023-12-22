@@ -1,14 +1,16 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
 
 import Card from "../cards/Card";
 
 import { GiVacuumCleaner, GiPineTree } from "react-icons/gi";
 import { FcLandscape } from "react-icons/fc";
 
-import Roof from "../../../public/assets/imgs/roof.jpg";
-import LandscapeLights from "../../../public/assets/imgs/brite-pic-7.jpg";
-import xmasLights from "../../../public/assets/imgs/brite-pic-3.jpg";
-import GreenMountains from "../../../public/assets/imgs/green-mountains.jpg";
+import Roof from "../../public/assets/imgs/brite-pic-1.jpg";
+import LandscapeLights from "../../public/assets/imgs/brite-pic-7.jpg";
+import xmasLights from "../../public/assets/imgs/brite-pic-3.jpg";
+import GreenMountains from "../../public/assets/imgs/green-mountains.jpg";
 import MobileCard from "../cards/MobileCard";
 import Image from "next/image";
 
@@ -31,6 +33,7 @@ const Jumbotron = () => {
                 <div className="w-full flex flex-col items-center lg:flex-row lg:flex lg:justify-around">
                     {/* ON MEDIUM TO LARGE SCREENS */}
                     <Card
+                        buttonTitle="Exterior Cleaning Page"
                         link={"/exterior-cleaning"}
                         title={"Exterior Cleaning"}
                         img={Roof}
@@ -39,6 +42,7 @@ const Jumbotron = () => {
                         }
                     />
                     <Card
+                        buttonTitle="Landscape Lighting Page"
                         link={"landscape-lighting"}
                         title={"Landscape Lighting"}
                         img={LandscapeLights}
@@ -47,6 +51,7 @@ const Jumbotron = () => {
                         }
                     />
                     <Card
+                        buttonTitle="Christmas Lighting Page"
                         link={"christmas-lighting"}
                         title={"Christmas Lighting"}
                         img={xmasLights}

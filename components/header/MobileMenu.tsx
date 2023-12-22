@@ -4,11 +4,11 @@ import { Dialog, Transition } from "@headlessui/react";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import { Fragment, useEffect, useState } from "react";
-
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { NavMenuItems } from "../../../lib/constants";
+
+import { NavMenuItems } from "../../lib/constants";
 import NavButton from "./NavButton";
-import { NavMenu } from "../../../lib/types";
+import { NavMenu } from "../../lib/types";
 
 export default function MobileMenu() {
     const pathname = usePathname();
@@ -17,26 +17,12 @@ export default function MobileMenu() {
     const openMobileMenu = () => setIsOpen(true);
     const closeMobileMenu = () => setIsOpen(false);
 
-    useEffect(() => {
-        const handleResize = () => {
-            if (window.innerWidth > 768) {
-                setIsOpen(false);
-            }
-        };
-        window.addEventListener("resize", handleResize);
-        return () => window.removeEventListener("resize", handleResize);
-    }, [isOpen]);
-
-    useEffect(() => {
-        setIsOpen(false);
-    }, [pathname, searchParams]);
-
     return (
-        <>
+        <div className="relative">
             <button
                 onClick={openMobileMenu}
                 aria-label="Open mobile menu"
-                className="flex h-11 w-11 items-center justify-center rounded-full text-black transition-colors lg:hidden"
+                className="flex h-11 w-11 items-center justify-center rounded-full text-black transition-colors overflow-hidden lg:hidden"
             >
                 <Bars3Icon className="h-6 text-black" />
             </button>
@@ -55,14 +41,14 @@ export default function MobileMenu() {
                     </Transition.Child>
                     <Transition.Child
                         as={Fragment}
-                        enter="transition-all ease-in-out duration-300"
+                        enter="transition-all ease-in-out duration-500"
                         enterFrom="translate-x-[100%]"
-                        enterTo="translate-x-0"
-                        leave="transition-all ease-in-out duration-200"
+                        enterTo="translate-x-[0%]"
+                        leave="transition-all ease-in-out duration-500"
                         leaveFrom="translate-x-0"
                         leaveTo="translate-x-[-100%]"
                     >
-                        <Dialog.Panel className="fixed bottom-0 left-0 right-0 top-0 flex h-full w-full flex-col bg-white pb-6 ">
+                        <Dialog.Panel className="fixed bottom-0 left-0 right-0 top-0 flex h-full flex-col bg-white pb-6 w-full">
                             <div className="p-4">
                                 <button
                                     className="mb-4 flex h-11 w-11 items-center justify-center rounded-md text-black transition-colors"
@@ -103,6 +89,6 @@ export default function MobileMenu() {
                     </Transition.Child>
                 </Dialog>
             </Transition>
-        </>
+        </div>
     );
 }
