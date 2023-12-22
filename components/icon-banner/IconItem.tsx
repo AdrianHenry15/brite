@@ -1,15 +1,18 @@
 import React from "react";
 
-import { GiVacuumCleaner } from "react-icons/gi";
+interface IIconItemProps {
+    icon: React.ReactNode;
+    title: string;
+    description: string;
+}
 
-const IconItem = () => {
+const IconItem = (props: IIconItemProps) => {
     return (
         <div className="flex flex-col items-center">
-            <GiVacuumCleaner size={40} />
-            <h5 className="py-6 text-xl">Pressure Washing</h5>
-            <aside className="w-9/12 mb-20 text-sm italic text-zinc-700 md:mb-0">
-                I be pressure washing these stepa dn come up for air and im like damn, where da
-                cheesecake?
+            {props.icon}
+            <h5 className="py-6 text-xl">{props.title}</h5>
+            <aside className="leading-7 w-9/12 mb-20 text-sm italic text-zinc-700 md:mb-0">
+                {props.description}
             </aside>
         </div>
     );

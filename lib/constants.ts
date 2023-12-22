@@ -2,6 +2,10 @@ import { NavMenu } from "./types";
 
 export const NavMenuItems: NavMenu[] = [
     {
+        title: "Home",
+        link: "/",
+    },
+    {
         title: "Exterior Cleaning",
         link: "/exterior-cleaning",
     },

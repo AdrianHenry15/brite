@@ -41,10 +41,10 @@ export default function MobileMenu() {
                     </Transition.Child>
                     <Transition.Child
                         as={Fragment}
-                        enter="transition-all ease-in-out duration-500"
+                        enter="transition-all ease-in-out duration-300"
                         enterFrom="translate-x-[100%]"
                         enterTo="translate-x-[0%]"
-                        leave="transition-all ease-in-out duration-500"
+                        leave="transition-all ease-in-out duration-300"
                         leaveFrom="translate-x-0"
                         leaveTo="translate-x-[-100%]"
                     >
