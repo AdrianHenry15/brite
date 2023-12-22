@@ -6,9 +6,9 @@ import Image from "next/image";
 
 import MobileHeader from "./MobileMenu";
 import logo from "../../../public/assets/icons/brite-logo.png";
-import NavButton from "./NavButton";
 import { NavMenuItems } from "../../../lib/constants";
 import { NavMenu } from "../../../lib/types";
+import Button from "../../Button";
 
 export default function Navbar() {
     const pathname = usePathname();
@@ -47,9 +47,13 @@ export default function Navbar() {
                     </ul>
                 </div>
                 {/* NAV BUTTONS */}
-                <ul className="self-center hidden lg:flex">
-                    <NavButton name="Contact Us" link="/contact-us" altColor />
-                    <NavButton name="Get Your Free Estimate" link="/estimate" />
+                <ul className="hidden lg:flex">
+                    <Link className="mr-4" href={"/contact-us"}>
+                        <Button roundedFull name="Contact Us" altColor />
+                    </Link>
+                    <Link href={"/estimate"}>
+                        <Button roundedFull name="Get Your Free Estimate" />
+                    </Link>
                 </ul>
             </div>
         </nav>
