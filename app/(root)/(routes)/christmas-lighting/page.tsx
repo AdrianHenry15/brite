@@ -4,14 +4,14 @@ import { GiSewingString } from "react-icons/gi";
 import { TbDeviceProjector } from "react-icons/tb";
 import { FaIcicles } from "react-icons/fa";
 
-import ImgTextLayout from "../../../../components/ImgTextLayout";
+import ImgTextOverlay from "../../../../components/ImgTextOverlay";
 import ChristmasLightingSplash from "../../../../public/assets/imgs/christmas-lights.jpg";
 import IconBanner from "../../../../components/icon-banner/IconBanner";
 
 const ChristmasLighting = () => {
     return (
         <div>
-            <ImgTextLayout
+            <ImgTextOverlay
                 imgClass="object-center"
                 src={ChristmasLightingSplash}
                 name="Christmas Lighting"

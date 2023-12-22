@@ -4,7 +4,7 @@ import { FaRegLightbulb } from "react-icons/fa6";
 import { CiLight } from "react-icons/ci";
 import { MdHighlight } from "react-icons/md";
 
-import ImgTextLayout from "../../../../components/ImgTextLayout";
+import ImgTextLayout from "../../../../components/ImgTextOverlay";
 import LightingSplash from "../../../../public/assets/imgs/landscape-lighting.jpg";
 import IconBanner from "../../../../components/icon-banner/IconBanner";
 

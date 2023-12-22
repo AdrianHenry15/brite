@@ -1,0 +1,27 @@
+import Link from "next/link";
+import React from "react";
+
+interface IButtonProps {
+    name: string;
+    className?: string;
+    icon?: React.ReactNode;
+    roundedFull?: boolean;
+    altColor?: boolean;
+}
+
+const Button = (props: IButtonProps) => {
+    return (
+        <button
+            className={`${props.className} ${props.roundedFull ? "rounded-full" : "rounded-lg"} ${
+                props.altColor
+                    ? "text-blue-600 bg-zinc-300 hover:text-white"
+                    : "bg-blue-600 transition-all duration-300 ease-in-out hover:text-black text-white"
+            } flex items-center py-2 px-6 shadow-lg`}
+        >
+            {props.name}
+            {props.icon ? props.icon : null}
+        </button>
+    );
+};
+
+export default Button;
