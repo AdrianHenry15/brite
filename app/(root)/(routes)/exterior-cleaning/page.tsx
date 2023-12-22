@@ -14,11 +14,13 @@ const ExteriorCleaning = () => {
             <IconBanner
                 icon1={<GiVacuumCleaner size={50} />}
                 title1={"Pressure Washing"}
-                description1={"Under pressure to impress? Let Brite do the washing"}
+                description1={
+                    "Enhance your property's appearance with our thorough pressure washing services. We effectively remove dirt, grime, and stains, revitalizing surfaces for a refreshed and inviting look"
+                }
                 icon2={<GiWindow size={50} />}
                 title2={"Window Washing"}
                 description2={
-                    "Illuminate your space with Brite windows! Our expert window washing services bring a clear and sparkling sine to brighten up your home or business"
+                    "Illuminate your space with Brite windows, our expert window washing services bring a clear and sparkling sine to brighten up your home or business"
                 }
                 icon3={<MdOutlineRoofing size={50} />}
                 title3={"Roof Cleaning"}
