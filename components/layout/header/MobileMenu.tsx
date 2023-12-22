@@ -12,7 +12,6 @@ import Button from "../../Button";
 
 export default function MobileMenu() {
     const pathname = usePathname();
-    const searchParams = useSearchParams();
     const [isOpen, setIsOpen] = useState(false);
     const openMobileMenu = () => setIsOpen(true);
     const closeMobileMenu = () => setIsOpen(false);
@@ -60,10 +59,16 @@ export default function MobileMenu() {
 
                                 <ul className="flex w-full flex-col h-full">
                                     {NavMenuItems.map((item: NavMenu) => (
-                                        <Link href={item.link} onClick={closeMobileMenu}>
+                                        <Link
+                                            key={item.title}
+                                            href={item.link}
+                                            onClick={closeMobileMenu}
+                                            className={`${
+                                                pathname === item.link ? "underline" : ""
+                                            }`}
+                                        >
                                             <li
-                                                className="py-4 text-xl text-black transition-colors hover:text-neutral-500 "
-                                                key={item.title}
+                                                className={`py-4 text-xl text-black transition-colors hover:text-neutral-500`}
                                             >
                                                 {item.title}
                                             </li>
