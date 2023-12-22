@@ -28,18 +28,22 @@ export default function Navbar() {
                     </Link>
                     {/* LINKS  */}
                     <ul className="hidden text-gray-600 self-center lg:flex">
-                        {NavMenuItems.map((item: NavMenu) => (
-                            <li
-                                className={`mx-2 transition-all duration-300 ease-in-out hover:text-blue-700 hover:underline ${
-                                    pathname === item.link ? "underline" : ""
-                                }`}
-                                key={item.title}
-                            >
-                                <Link href={item.link} className="">
-                                    {item.title}
-                                </Link>
-                            </li>
-                        ))}
+                        {NavMenuItems.map((item: NavMenu) =>
+                            item.title === "Home" ? (
+                                <div></div>
+                            ) : (
+                                <li
+                                    className={`mx-2 transition-all duration-300 ease-in-out hover:text-blue-700 hover:underline ${
+                                        pathname === item.link ? "underline" : ""
+                                    }`}
+                                    key={item.title}
+                                >
+                                    <Link href={item.link} className="">
+                                        {item.title}
+                                    </Link>
+                                </li>
+                            )
+                        )}
                     </ul>
                 </div>
                 {/* NAV BUTTONS */}
