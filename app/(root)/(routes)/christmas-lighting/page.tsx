@@ -1,7 +1,8 @@
 import React from "react";
-import ImgTextLayout from "../../../../components/ImgTextLayout";
 
+import ImgTextLayout from "../../../../components/ImgTextLayout";
 import ChristmasLightingSplash from "../../../../public/assets/imgs/christmas-lights.jpg";
+import IconBanner from "../../../../components/icon-banner/IconBanner";
 
 const ChristmasLighting = () => {
     return (
@@ -11,6 +12,7 @@ const ChristmasLighting = () => {
                 src={ChristmasLightingSplash}
                 name="Christmas Lighting"
             />
+            <IconBanner />
         </div>
     );
 };

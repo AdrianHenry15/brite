@@ -1,7 +1,8 @@
 import React from "react";
-import ImgTextLayout from "../../../../components/ImgTextLayout";
 
+import ImgTextLayout from "../../../../components/ImgTextLayout";
 import LightingSplash from "../../../../public/assets/imgs/landscape-lighting.jpg";
+import IconBanner from "../../../../components/icon-banner/IconBanner";
 
 const LandscapeLighting = () => {
     return (
@@ -11,6 +12,7 @@ const LandscapeLighting = () => {
                 src={LightingSplash}
                 name="Landscape Lighting"
             />
+            <IconBanner />
         </div>
     );
 };
