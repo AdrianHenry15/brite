@@ -35,7 +35,7 @@ const WelcomeMessage = () => {
             className={`fade-in flex flex-col w-full items-center relative bg-cover bg-[url('/assets/imgs/brick.jpg')] h-min-content`}
         >
             {/* WHITE BG  */}
-            <div className="bg-white flex flex-col mx-4 my-24 h-full shadow-xl md:p-20 px-4 py-10">
+            <div className="bg-white flex flex-col mx-4 my-24 h-full shadow-xl rounded-md md:p-20 px-4 py-10">
                 {/* TEXT  */}
                 <div className="text-center flex flex-col">
                     <span className="font-extrabold md:text-4xl text-2xl mb-4">
