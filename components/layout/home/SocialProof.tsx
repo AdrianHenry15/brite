@@ -28,6 +28,7 @@ const SocialProof = () => {
 
         return () => observer.disconnect(); // Cleanup observer on component unmount
     }, []);
+
     return (
         // TODO: UPGRADE TO BASIC PLAN FOR ELFSIGHT TO TAKE OFF ELFSIGHT BRANDING
         <section

@@ -35,7 +35,7 @@ const ImgTextOverlay = (props: IImgTextProps) => {
     }, []);
 
     return (
-        <section className="relative flex w-full bg-black">
+        <section ref={containerRef} className="fade-in relative flex w-full bg-black">
             <Image
                 className={`${props.imgClass} object-cover w-full h-[80vh] md:h-[80vh] lg:h-[75vh] opacity-75`}
                 src={props.src}
@@ -47,8 +47,7 @@ const ImgTextOverlay = (props: IImgTextProps) => {
                 className={`absolute w-full flex top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 justify-around flex-col items-center`}
             >
                 <h5
-                    ref={containerRef}
-                    className={`fade-in font-semibold tracking-wider underline-offset-2 italic text-5xl p-4 text-white drop-shadow-xl`}
+                    className={`font-semibold tracking-wider underline-offset-2 italic text-5xl p-4 text-white drop-shadow-xl`}
                 >
                     {props.name}
                 </h5>
