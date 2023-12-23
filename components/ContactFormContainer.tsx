@@ -1,15 +1,17 @@
 "use client";
 
 import Image from "next/image";
-import React from "react";
+import React, { use } from "react";
 import { useForm } from "react-hook-form";
+import { usePathname } from "next/navigation";
 
 import Logo from "../public/assets/icons/brite-logo.png";
 import HandyMan from "../public/assets/imgs/handyman.webp";
 
 import Button from "./Button";
 
-const ContactForm = () => {
+const ContactFormContainer = () => {
+    const pathname = usePathname();
     const InputClass = "border-2 border-gray-400 my-2 p-2 rounded-sm w-full shadow-md";
     const {
         register,
@@ -25,7 +27,9 @@ const ContactForm = () => {
             <div className="absolute hidden top-[250px] left-60 2xl:flex">
                 <Image src={HandyMan} alt="Brite Logo" />
             </div>
-            <h1 className="text-3xl mb-10 font-light animate-bounce">Get Your Free Estimate!</h1>
+            <h1 className="text-3xl mb-10 font-light animate-bounce">{`${
+                pathname === "/contact-us" ? "Contact Us" : "Get Your Free Estimate!"
+            }`}</h1>
             {/* FORM CONTAINER */}
             <div className="flex flex-col w-[350px] p-6 rounded-2xl shadow-blue-600 shadow-lg border-2 md:w-[650px]">
                 {/* LOGO */}
@@ -109,4 +113,4 @@ const ContactForm = () => {
     );
 };
 
-export default ContactForm;
+export default ContactFormContainer;

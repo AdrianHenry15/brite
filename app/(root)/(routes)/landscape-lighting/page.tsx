@@ -13,7 +13,6 @@ import LightingSplash from "../../../../public/assets/imgs/landscape-lighting.jp
 import AccentLighting from "../../../../public/assets/imgs/brite-pic-8.jpg";
 import PathLighting from "../../../../public/assets/imgs/brite-pic-7.jpg";
 import UpLighting from "../../../../public/assets/imgs/brite-pic-10.jpg";
-import ContactForm from "../../../../components/ContactForm";
 
 const LandscapeLighting = () => {
     return (
@@ -100,7 +99,6 @@ const LandscapeLighting = () => {
                     }
                 />
             </div>
-            <ContactForm />
         </div>
     );
 };

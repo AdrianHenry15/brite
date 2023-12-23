@@ -7,8 +7,8 @@ import { FaIcicles } from "react-icons/fa";
 import ImgTextOverlay from "../../../../components/layout/sections/ImgTextOverlay";
 import ChristmasLightingSplash from "../../../../public/assets/imgs/christmas-lights.jpg";
 import IconBanner from "../../../../components/icon-banner/IconBanner";
+import MobileImgText from "../../../../components/layout/sections/MobileImgText";
 import ImgTextRow from "../../../../components/layout/sections/ImgTextRow";
-import ContactForm from "../../../../components/ContactForm";
 
 const ChristmasLighting = () => {
     return (
@@ -35,7 +35,85 @@ const ChristmasLighting = () => {
                     "Mimicking the appearance of hanging icicles, these lights are often used to decorate rooflines, eaves, or outdoor structures, creating a charming and whimsicle winter-inspired ambiance"
                 }
             />
-            <ContactForm />
+            <div>
+                <ImgTextRow
+                    textLeft={true}
+                    imgLeft={false}
+                    src={ChristmasLightingSplash}
+                    link={"/estimate"}
+                    title={"Window Washing"}
+                    description={
+                        "Prevent water damage and maintain the proper functioning your drainage system by removing debris, leaves, and dirt from gutters. Get a Twice A Year Estimate for our Gutter Cleaning services"
+                    }
+                />
+                <ImgTextRow
+                    textLeft={false}
+                    imgLeft={true}
+                    src={ChristmasLightingSplash}
+                    link={"/estimate"}
+                    title={"Pressure Washing"}
+                    description={
+                        "Prevent water damage and maintain the proper functioning your drainage system by removing debris, leaves, and dirt from gutters. Get a Twice A Year Estimate for our Gutter Cleaning services"
+                    }
+                />
+                <ImgTextRow
+                    textLeft={true}
+                    imgLeft={false}
+                    src={ChristmasLightingSplash}
+                    link={"/estimate"}
+                    title={"Gutter Cleaning"}
+                    description={
+                        "Prevent water damage and maintain the proper functioning your drainage system by removing debris, leaves, and dirt from gutters. Get a Twice A Year Estimate for our Gutter Cleaning services"
+                    }
+                />
+                <ImgTextRow
+                    textLeft={false}
+                    imgLeft={true}
+                    src={ChristmasLightingSplash}
+                    link={"/estimate"}
+                    title={"Roof Cleaning"}
+                    description={
+                        "Prevent water damage and maintain the proper functioning your drainage system by removing debris, leaves, and dirt from gutters. Get a Twice A Year Estimate for our Gutter Cleaning services"
+                    }
+                />
+                {/* MOBILE */}
+                <MobileImgText
+                    textLeft={true}
+                    src={ChristmasLightingSplash}
+                    link={"/estimate"}
+                    title={"Window Washing"}
+                    description={
+                        "Prevent water damage and maintain the proper functioning your drainage system by removing debris, leaves, and dirt from gutters. Get a Twice A Year Estimate for our Gutter Cleaning services"
+                    }
+                />
+                <MobileImgText
+                    textLeft={false}
+                    src={ChristmasLightingSplash}
+                    link={"/estimate"}
+                    title={"Pressure Washing"}
+                    description={
+                        "Prevent water damage and maintain the proper functioning your drainage system by removing debris, leaves, and dirt from gutters. Get a Twice A Year Estimate for our Gutter Cleaning services"
+                    }
+                />
+                <MobileImgText
+                    textLeft={true}
+                    src={ChristmasLightingSplash}
+                    link={"/estimate"}
+                    title={"Gutter Cleaning"}
+                    description={
+                        "Prevent water damage and maintain the proper functioning your drainage system by removing debris, leaves, and dirt from gutters. Get a Twice A Year Estimate for our Gutter Cleaning services"
+                    }
+                />
+                <MobileImgText
+                    textLeft={true}
+                    src={ChristmasLightingSplash}
+                    link={"/estimate"}
+                    title={"Roof Cleaning"}
+                    description={
+                        "Prevent water damage and maintain the proper functioning your drainage system by removing debris, leaves, and dirt from gutters. Get a Twice A Year Estimate for our Gutter Cleaning services"
+                    }
+                />
+            </div>
         </div>
     );
 };

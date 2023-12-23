@@ -8,7 +8,6 @@ import { MdOutlineRoofing } from "react-icons/md";
 import ImgTextOverlay from "../../../../components/layout/sections/ImgTextOverlay";
 import IconBanner from "../../../../components/icon-banner/IconBanner";
 import ImgTextRow from "../../../../components/layout/sections/ImgTextRow";
-import ContactForm from "../../../../components/ContactForm";
 import MobileImgText from "../../../../components/layout/sections/MobileImgText";
 
 import RoofSplash from "../../../../public/assets/imgs/roof-splash.jpg";
@@ -144,7 +143,6 @@ const ExteriorCleaning = () => {
                     }
                 />
             </div>
-            <ContactForm />
         </div>
     );
 };

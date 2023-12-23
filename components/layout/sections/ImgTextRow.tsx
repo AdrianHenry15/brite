@@ -48,7 +48,7 @@ const ImgTextRow = (props: IImgTextRowProps) => {
                 {/* IMAGE */}
                 {props.imgLeft || props.imgTopOnMobile ? (
                     <div className="md:flex md:flex-1">
-                        <Image src={props.src} alt={props.title} />
+                        <Image loading="eager" src={props.src} alt={props.title} />
                     </div>
                 ) : null}
                 {/* TEXT */}
@@ -65,7 +65,7 @@ const ImgTextRow = (props: IImgTextRowProps) => {
                     </p>
                     <Link href={"/estimate"}>
                         <Button
-                            className="animate-bounce mt-4"
+                            className={`${props.textLeft ? "ml-4" : "mr-4"} animate-pulse mt-4`}
                             name={"Get Your Free Estimate Now"}
                         />
                     </Link>
@@ -73,7 +73,7 @@ const ImgTextRow = (props: IImgTextRowProps) => {
                 {/* IMAGE */}
                 {!props.imgLeft ? (
                     <div className="md:flex md:flex-1">
-                        <Image src={props.src} alt={props.title} />
+                        <Image loading="eager" src={props.src} alt={props.title} />
                     </div>
                 ) : null}
             </div>
