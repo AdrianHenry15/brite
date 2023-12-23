@@ -1,5 +1,9 @@
+"use client";
+
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useRef } from "react";
+import Button from "../../Button";
+import Link from "next/link";
 
 interface IImgTextRowProps {
     imgLeft?: boolean;
@@ -12,8 +16,34 @@ interface IImgTextRowProps {
 }
 
 const ImgTextRow = (props: IImgTextRowProps) => {
+    const containerRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const options = {
+            threshold: 0.5, // Adjust the threshold as needed (percentage of element visibility)
+        };
+
+        const callback: IntersectionObserverCallback = (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    containerRef.current?.classList.add("show");
+                }
+            });
+        };
+
+        const observer = new IntersectionObserver(callback, options);
+
+        if (containerRef.current) {
+            observer.observe(containerRef.current);
+        }
+
+        return () => observer.disconnect(); // Cleanup observer on component unmount
+    }, []);
     return (
-        <section className="hidden items-center px-4 py-10 md:flex md:w-full md:justify-center">
+        <section
+            ref={containerRef}
+            className="fade-in hidden items-center px-4 py-10 md:flex md:w-full md:justify-center"
+        >
             <div className="self-center md:w-[1200px] md:flex">
                 {/* IMAGE */}
                 {props.imgLeft || props.imgTopOnMobile ? (
@@ -33,6 +63,12 @@ const ImgTextRow = (props: IImgTextRowProps) => {
                     <p className="text-light text-sm text-zinc-950 px-4 md:max-w-md lg:max-w-lg">
                         {props.description}
                     </p>
+                    <Link href={"/estimate"}>
+                        <Button
+                            className="animate-bounce mt-4"
+                            name={"Get Your Free Estimate Now"}
+                        />
+                    </Link>
                 </div>
                 {/* IMAGE */}
                 {!props.imgLeft ? (

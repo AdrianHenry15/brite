@@ -8,6 +8,7 @@ import ImgTextOverlay from "../../../../components/layout/sections/ImgTextOverla
 import ChristmasLightingSplash from "../../../../public/assets/imgs/christmas-lights.jpg";
 import IconBanner from "../../../../components/icon-banner/IconBanner";
 import ImgTextRow from "../../../../components/layout/sections/ImgTextRow";
+import ContactForm from "../../../../components/ContactForm";
 
 const ChristmasLighting = () => {
     return (
@@ -34,7 +35,7 @@ const ChristmasLighting = () => {
                     "Mimicking the appearance of hanging icicles, these lights are often used to decorate rooflines, eaves, or outdoor structures, creating a charming and whimsicle winter-inspired ambiance"
                 }
             />
-            {/* <ImgTextRow /> */}
+            <ContactForm />
         </div>
     );
 };

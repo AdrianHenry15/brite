@@ -1,5 +1,9 @@
+"use client";
+
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useRef } from "react";
+import Button from "../../Button";
+import Link from "next/link";
 
 interface IMobileImgTextRowProps {
     textLeft?: boolean;
@@ -10,8 +14,34 @@ interface IMobileImgTextRowProps {
 }
 
 const MobileImgText = (props: IMobileImgTextRowProps) => {
+    const containerRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const options = {
+            threshold: 0.5, // Adjust the threshold as needed (percentage of element visibility)
+        };
+
+        const callback: IntersectionObserverCallback = (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    containerRef.current?.classList.add("show");
+                }
+            });
+        };
+
+        const observer = new IntersectionObserver(callback, options);
+
+        if (containerRef.current) {
+            observer.observe(containerRef.current);
+        }
+
+        return () => observer.disconnect(); // Cleanup observer on component unmount
+    }, []);
     return (
-        <section className="flex flex-col items-center px-4 pt-10 pb-24">
+        <section
+            ref={containerRef}
+            className="fade-in flex flex-col items-center px-4 pt-10 pb-20 md:hidden"
+        >
             <div className="">
                 {/* IMAGE */}
                 <div className="">
@@ -25,6 +55,12 @@ const MobileImgText = (props: IMobileImgTextRowProps) => {
                 >
                     <h5 className="font-semibold py-6 text-2xl">{props.title}</h5>
                     <p className="text-light text-sm text-zinc-950 px-4">{props.description}</p>
+                    <Link href={"/estimate"}>
+                        <Button
+                            className="animate-pulse mt-4 items-center flex justify-center self-center"
+                            name={"Get Your Free Estimate Now"}
+                        />
+                    </Link>
                 </div>
             </div>
         </section>

@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useRef } from "react";
 
 import { GiVacuumCleaner, GiWindow } from "react-icons/gi";
 import { MdOutlineRoofing } from "react-icons/md";
@@ -6,13 +8,39 @@ import { MdOutlineRoofing } from "react-icons/md";
 import ImgTextOverlay from "../../../../components/layout/sections/ImgTextOverlay";
 import IconBanner from "../../../../components/icon-banner/IconBanner";
 import ImgTextRow from "../../../../components/layout/sections/ImgTextRow";
-
-import RoofSplash from "../../../../public/assets/imgs/roof-splash.jpg";
-import Gutter from "../../../../public/assets/imgs/gutter.jpg";
 import ContactForm from "../../../../components/ContactForm";
 import MobileImgText from "../../../../components/layout/sections/MobileImgText";
 
+import RoofSplash from "../../../../public/assets/imgs/roof-splash.jpg";
+import Gutter from "../../../../public/assets/imgs/gutter.jpg";
+import WindowWashing from "../../../../public/assets/imgs/window-washing.jpg";
+import PressureWashing from "../../../../public/assets/imgs/pressure-washing.jpg";
+import Roof from "../../../../public/assets/imgs/roof.jpg";
+
 const ExteriorCleaning = () => {
+    const textRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const options = {
+            threshold: 0.5, // Adjust the threshold as needed (percentage of element visibility)
+        };
+
+        const callback: IntersectionObserverCallback = (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    textRef.current?.classList.add("show");
+                }
+            });
+        };
+
+        const observer = new IntersectionObserver(callback, options);
+
+        if (textRef.current) {
+            observer.observe(textRef.current);
+        }
+
+        return () => observer.disconnect(); // Cleanup observer on component unmount
+    }, []);
     return (
         <div className="w-full justify-center items-center self-center">
             <ImgTextOverlay imgClass="object-bottom" src={RoofSplash} name="Exterior Cleaning" />
@@ -34,14 +62,14 @@ const ExteriorCleaning = () => {
                 }
             />
             {/* EXTERIOR CLEANING SERVICES */}
-            <h5 className="text-black text-center text-2xl underline">
+            <h5 ref={textRef} className="fade-in text-black text-center text-2xl underline">
                 Our Exterior Cleaning Services
             </h5>
             <div>
                 <ImgTextRow
                     textLeft={true}
                     imgLeft={false}
-                    src={Gutter}
+                    src={WindowWashing}
                     link={"/estimate"}
                     title={"Window Washing"}
                     description={
@@ -51,7 +79,7 @@ const ExteriorCleaning = () => {
                 <ImgTextRow
                     textLeft={false}
                     imgLeft={true}
-                    src={Gutter}
+                    src={PressureWashing}
                     link={"/estimate"}
                     title={"Pressure Washing"}
                     description={
@@ -71,7 +99,7 @@ const ExteriorCleaning = () => {
                 <ImgTextRow
                     textLeft={false}
                     imgLeft={true}
-                    src={Gutter}
+                    src={Roof}
                     link={"/estimate"}
                     title={"Roof Cleaning"}
                     description={
@@ -81,7 +109,7 @@ const ExteriorCleaning = () => {
                 {/* MOBILE */}
                 <MobileImgText
                     textLeft={true}
-                    src={Gutter}
+                    src={WindowWashing}
                     link={"/estimate"}
                     title={"Window Washing"}
                     description={
@@ -90,7 +118,7 @@ const ExteriorCleaning = () => {
                 />
                 <MobileImgText
                     textLeft={false}
-                    src={Gutter}
+                    src={PressureWashing}
                     link={"/estimate"}
                     title={"Pressure Washing"}
                     description={
@@ -108,7 +136,7 @@ const ExteriorCleaning = () => {
                 />
                 <MobileImgText
                     textLeft={true}
-                    src={Gutter}
+                    src={Roof}
                     link={"/estimate"}
                     title={"Roof Cleaning"}
                     description={

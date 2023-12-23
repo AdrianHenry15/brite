@@ -96,7 +96,7 @@ const ContactForm = () => {
                             {...register("comment", { required: false })}
                         />
                     </div>
-                    <div className="my-10 animate-bounce">
+                    <div className="my-10 animate-pulse">
                         <Button
                             submit
                             name="Get Your Free Estimate"

@@ -5,9 +5,15 @@ import { CiLight } from "react-icons/ci";
 import { MdHighlight } from "react-icons/md";
 
 import ImgTextLayout from "../../../../components/layout/sections/ImgTextOverlay";
-import LightingSplash from "../../../../public/assets/imgs/landscape-lighting.jpg";
 import IconBanner from "../../../../components/icon-banner/IconBanner";
 import ImgTextRow from "../../../../components/layout/sections/ImgTextRow";
+import MobileImgText from "../../../../components/layout/sections/MobileImgText";
+
+import LightingSplash from "../../../../public/assets/imgs/landscape-lighting.jpg";
+import AccentLighting from "../../../../public/assets/imgs/brite-pic-8.jpg";
+import PathLighting from "../../../../public/assets/imgs/brite-pic-7.jpg";
+import UpLighting from "../../../../public/assets/imgs/brite-pic-10.jpg";
+import ContactForm from "../../../../components/ContactForm";
 
 const LandscapeLighting = () => {
     return (
@@ -34,7 +40,67 @@ const LandscapeLighting = () => {
                     "Up lighting involves positioning fixtures at ground level to cast light upward, emphasizing tall structures like trees or the facade of a building. This technique creates a visually striking and dynamic effect, adding depth to the landscape"
                 }
             />
-            {/* <ImgTextRow /> */}
+            <div>
+                <ImgTextRow
+                    textLeft={true}
+                    imgLeft={false}
+                    src={AccentLighting}
+                    link={"/estimate"}
+                    title={"Accent Lighting"}
+                    description={
+                        "Prevent water damage and maintain the proper functioning your drainage system by removing debris, leaves, and dirt from gutters. Get a Twice A Year Estimate for our Gutter Cleaning services"
+                    }
+                />
+                <ImgTextRow
+                    textLeft={false}
+                    imgLeft={true}
+                    src={PathLighting}
+                    link={"/estimate"}
+                    title={"Path Lighting"}
+                    description={
+                        "Prevent water damage and maintain the proper functioning your drainage system by removing debris, leaves, and dirt from gutters. Get a Twice A Year Estimate for our Gutter Cleaning services"
+                    }
+                />
+                <ImgTextRow
+                    textLeft={true}
+                    imgLeft={false}
+                    src={UpLighting}
+                    link={"/estimate"}
+                    title={"Up Lighting"}
+                    description={
+                        "Prevent water damage and maintain the proper functioning your drainage system by removing debris, leaves, and dirt from gutters. Get a Twice A Year Estimate for our Gutter Cleaning services"
+                    }
+                />
+                {/* MOBILE */}
+                <MobileImgText
+                    textLeft={true}
+                    src={AccentLighting}
+                    link={"/estimate"}
+                    title={"Accent Lighting"}
+                    description={
+                        "Prevent water damage and maintain the proper functioning your drainage system by removing debris, leaves, and dirt from gutters. Get a Twice A Year Estimate for our Gutter Cleaning services"
+                    }
+                />
+                <MobileImgText
+                    textLeft={false}
+                    src={PathLighting}
+                    link={"/estimate"}
+                    title={"Path Lighting"}
+                    description={
+                        "Prevent water damage and maintain the proper functioning your drainage system by removing debris, leaves, and dirt from gutters. Get a Twice A Year Estimate for our Gutter Cleaning services"
+                    }
+                />
+                <MobileImgText
+                    textLeft={true}
+                    src={UpLighting}
+                    link={"/estimate"}
+                    title={"Up Lighting"}
+                    description={
+                        "Prevent water damage and maintain the proper functioning your drainage system by removing debris, leaves, and dirt from gutters. Get a Twice A Year Estimate for our Gutter Cleaning services"
+                    }
+                />
+            </div>
+            <ContactForm />
         </div>
     );
 };
