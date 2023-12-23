@@ -10,7 +10,7 @@ import ImgTextRow from "../../../../components/layout/sections/ImgTextRow";
 import RoofSplash from "../../../../public/assets/imgs/roof-splash.jpg";
 import Gutter from "../../../../public/assets/imgs/gutter.jpg";
 import ContactForm from "../../../../components/ContactForm";
-import MobileImgTextRow from "../../../../components/layout/sections/MobileImgTextRow";
+import MobileImgText from "../../../../components/layout/sections/MobileImgText";
 
 const ExteriorCleaning = () => {
     return (
@@ -33,7 +33,10 @@ const ExteriorCleaning = () => {
                     "A spotless roof is the crowning glory of a Brite property, reach new heights of cleanliness with Brite's roof cleaning service"
                 }
             />
-            {/* ROWS */}
+            {/* EXTERIOR CLEANING SERVICES */}
+            <h5 className="text-black text-center text-2xl underline">
+                Our Exterior Cleaning Services
+            </h5>
             <div>
                 <ImgTextRow
                     textLeft={true}
@@ -76,7 +79,7 @@ const ExteriorCleaning = () => {
                     }
                 />
                 {/* MOBILE */}
-                <MobileImgTextRow
+                <MobileImgText
                     textLeft={true}
                     src={Gutter}
                     link={"/estimate"}
@@ -85,7 +88,7 @@ const ExteriorCleaning = () => {
                         "Prevent water damage and maintain the proper functioning your drainage system by removing debris, leaves, and dirt from gutters. Get a Twice A Year Estimate for our Gutter Cleaning services"
                     }
                 />
-                <MobileImgTextRow
+                <MobileImgText
                     textLeft={false}
                     src={Gutter}
                     link={"/estimate"}
@@ -94,7 +97,7 @@ const ExteriorCleaning = () => {
                         "Prevent water damage and maintain the proper functioning your drainage system by removing debris, leaves, and dirt from gutters. Get a Twice A Year Estimate for our Gutter Cleaning services"
                     }
                 />
-                <MobileImgTextRow
+                <MobileImgText
                     textLeft={true}
                     src={Gutter}
                     link={"/estimate"}
@@ -103,7 +106,7 @@ const ExteriorCleaning = () => {
                         "Prevent water damage and maintain the proper functioning your drainage system by removing debris, leaves, and dirt from gutters. Get a Twice A Year Estimate for our Gutter Cleaning services"
                     }
                 />
-                <MobileImgTextRow
+                <MobileImgText
                     textLeft={true}
                     src={Gutter}
                     link={"/estimate"}

@@ -27,7 +27,7 @@ const ContactForm = () => {
             </div>
             <h1 className="text-3xl mb-10 font-light animate-bounce">Get Your Free Estimate!</h1>
             {/* FORM CONTAINER */}
-            <div className="flex flex-col w-[400px] p-6 rounded-2xl shadow-blue-600 shadow-lg border-2 md:w-[650px]">
+            <div className="flex flex-col w-[350px] p-6 rounded-2xl shadow-blue-600 shadow-lg border-2 md:w-[650px]">
                 {/* LOGO */}
                 <div className="flex justify-center">
                     <Image width={100} src={Logo} alt="Brite Logo" />
@@ -96,7 +96,7 @@ const ContactForm = () => {
                             {...register("comment", { required: false })}
                         />
                     </div>
-                    <div className="mt-4 mb-24 animate-bounce">
+                    <div className="my-10 animate-bounce">
                         <Button
                             submit
                             name="Get Your Free Estimate"

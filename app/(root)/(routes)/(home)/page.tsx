@@ -7,8 +7,12 @@ import { FaRegLightbulb } from "react-icons/fa6";
 import WelcomeMessage from "../../../../components/layout/home/WelcomeMessage";
 import SocialProof from "../../../../components/layout/home/SocialProof";
 import ImgTextOverlay from "../../../../components/layout/sections/ImgTextOverlay";
-import GreenMountains from "../../../../public/assets/imgs/green-mountains.jpg";
 import IconBanner from "../../../../components/icon-banner/IconBanner";
+import ContactForm from "../../../../components/ContactForm";
+import ImgTextRow from "../../../../components/layout/sections/ImgTextRow";
+
+import GreenMountains from "../../../../public/assets/imgs/green-mountains.jpg";
+import Roof from "../../../../public/assets/imgs/roof.jpg";
 
 export default async function Home() {
     return (
@@ -39,7 +43,14 @@ export default async function Home() {
                 link3="/christmas-lighting"
             />
             <SocialProof />
+            <ImgTextRow
+                src={Roof}
+                link={"/exterior-cleaning"}
+                title={"Exterior Cleaning"}
+                description={"Our Exterior Cleaning services are undeniably Brite"}
+            />
             <WelcomeMessage />
+            <ContactForm />
         </div>
     );
 }

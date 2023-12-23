@@ -9,7 +9,7 @@ interface IMobileImgTextRowProps {
     description: string;
 }
 
-const MobileImgTextRow = (props: IMobileImgTextRowProps) => {
+const MobileImgText = (props: IMobileImgTextRowProps) => {
     return (
         <section className="flex flex-col items-center px-4 pt-10 pb-24">
             <div className="">
@@ -31,4 +31,4 @@ const MobileImgTextRow = (props: IMobileImgTextRowProps) => {
     );
 };
 
-export default MobileImgTextRow;
+export default MobileImgText;

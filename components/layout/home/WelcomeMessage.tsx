@@ -47,7 +47,7 @@ const WelcomeMessage = () => {
                     </span>
                     <span>Start with a FREE, no obligation estimate today!</span>
                     <Link className="flex justify-center mt-10" href="/estimate">
-                        <Button name="Get Your Free Estimate!" />
+                        <Button className="animate-bounce" name="Get Your Free Estimate!" />
                     </Link>
                 </div>
             </div>

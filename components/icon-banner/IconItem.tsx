@@ -40,8 +40,9 @@ const IconItem = (props: IIconItemProps) => {
             {props.addBtn ? (
                 <Link className="mt-4" href={props.link}>
                     <Button
+                        altColor
                         name={props.title}
-                        icon={<IoArrowRedoOutline size={20} className="ml-2" />}
+                        icon={<IoArrowRedoOutline size={20} className={`ml-2`} />}
                     />
                 </Link>
             ) : null}
