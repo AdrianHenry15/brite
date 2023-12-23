@@ -1,7 +1,7 @@
 "use client";
 
-import { ClipLoader } from "react-spinners";
+import { ClimbingBoxLoader } from "react-spinners";
 
 export const Loader = () => {
-    return <ClipLoader color="#3498db" size={50} />;
+    return <ClimbingBoxLoader color="#1770e4" size={50} />;
 };

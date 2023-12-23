@@ -6,7 +6,7 @@ import { FaRegLightbulb } from "react-icons/fa6";
 
 import WelcomeMessage from "../../../../components/layout/home/WelcomeMessage";
 import SocialProof from "../../../../components/layout/home/SocialProof";
-import ImgTextOverlay from "../../../../components/ImgTextOverlay";
+import ImgTextOverlay from "../../../../components/layout/sections/ImgTextOverlay";
 import GreenMountains from "../../../../public/assets/imgs/green-mountains.jpg";
 import IconBanner from "../../../../components/icon-banner/IconBanner";
 

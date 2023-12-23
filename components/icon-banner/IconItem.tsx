@@ -34,9 +34,9 @@ const IconItem = (props: IIconItemProps) => {
         >
             {props.icon}
             <h5 className="py-6 text-xl">{props.title}</h5>
-            <aside className="leading-7 text-sm italic text-zinc-700 flex flex-1">
+            <p className="leading-7 text-sm italic text-zinc-700 flex flex-1">
                 {props.description}
-            </aside>
+            </p>
             {props.addBtn ? (
                 <Link className="mt-4" href={props.link}>
                     <Button

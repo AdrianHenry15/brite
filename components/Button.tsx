@@ -1,4 +1,3 @@
-import Link from "next/link";
 import React from "react";
 
 interface IButtonProps {
@@ -7,11 +6,15 @@ interface IButtonProps {
     icon?: React.ReactNode;
     roundedFull?: boolean;
     altColor?: boolean;
+    onClick?: () => void;
+    submit?: boolean;
 }
 
 const Button = (props: IButtonProps) => {
     return (
         <button
+            type={props.submit ? "submit" : "button"}
+            onClick={props.onClick}
             className={`${props.className} ${props.roundedFull ? "rounded-full" : "rounded-lg"} ${
                 props.altColor
                     ? "text-blue-600 bg-zinc-300 hover:text-white"

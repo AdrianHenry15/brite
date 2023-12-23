@@ -4,9 +4,10 @@ import { FaRegLightbulb } from "react-icons/fa6";
 import { CiLight } from "react-icons/ci";
 import { MdHighlight } from "react-icons/md";
 
-import ImgTextLayout from "../../../../components/ImgTextOverlay";
+import ImgTextLayout from "../../../../components/layout/sections/ImgTextOverlay";
 import LightingSplash from "../../../../public/assets/imgs/landscape-lighting.jpg";
 import IconBanner from "../../../../components/icon-banner/IconBanner";
+import ImgTextRow from "../../../../components/layout/sections/ImgTextRow";
 
 const LandscapeLighting = () => {
     return (
@@ -33,6 +34,7 @@ const LandscapeLighting = () => {
                     "Up lighting involves positioning fixtures at ground level to cast light upward, emphasizing tall structures like trees or the facade of a building. This technique creates a visually striking and dynamic effect, adding depth to the landscape"
                 }
             />
+            {/* <ImgTextRow /> */}
         </div>
     );
 };

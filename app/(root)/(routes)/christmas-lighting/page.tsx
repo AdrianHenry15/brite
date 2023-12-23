@@ -4,9 +4,10 @@ import { GiSewingString } from "react-icons/gi";
 import { TbDeviceProjector } from "react-icons/tb";
 import { FaIcicles } from "react-icons/fa";
 
-import ImgTextOverlay from "../../../../components/ImgTextOverlay";
+import ImgTextOverlay from "../../../../components/layout/sections/ImgTextOverlay";
 import ChristmasLightingSplash from "../../../../public/assets/imgs/christmas-lights.jpg";
 import IconBanner from "../../../../components/icon-banner/IconBanner";
+import ImgTextRow from "../../../../components/layout/sections/ImgTextRow";
 
 const ChristmasLighting = () => {
     return (
@@ -33,6 +34,7 @@ const ChristmasLighting = () => {
                     "Mimicking the appearance of hanging icicles, these lights are often used to decorate rooflines, eaves, or outdoor structures, creating a charming and whimsicle winter-inspired ambiance"
                 }
             />
+            {/* <ImgTextRow /> */}
         </div>
     );
 };
