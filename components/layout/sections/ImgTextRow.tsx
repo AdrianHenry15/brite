@@ -2,8 +2,9 @@
 
 import Image from "next/image";
 import React, { useEffect, useRef } from "react";
-import Button from "../../Button";
 import Link from "next/link";
+
+import Button from "../../Button";
 
 interface IImgTextRowProps {
     imgLeft?: boolean;
@@ -44,7 +45,7 @@ const ImgTextRow = (props: IImgTextRowProps) => {
             ref={containerRef}
             className="fade-in hidden items-center px-4 py-10 md:flex md:w-full md:justify-center"
         >
-            <div className="self-center md:w-[1200px] md:flex">
+            <div className="self-center md:h-[350px] md:w-[1200px] md:flex">
                 {/* IMAGE */}
                 {props.imgLeft || props.imgTopOnMobile ? (
                     <div className="shadow-inner md:flex md:flex-1">
