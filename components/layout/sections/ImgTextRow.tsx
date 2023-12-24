@@ -49,7 +49,7 @@ const ImgTextRow = (props: IImgTextRowProps) => {
                 {/* IMAGE */}
                 {props.imgLeft || props.imgTopOnMobile ? (
                     <div className="shadow-inner md:flex md:flex-1">
-                        <Image loading="eager" src={props.src} alt={props.title} />
+                        <Image priority loading="eager" src={props.src} alt={props.title} />
                     </div>
                 ) : null}
                 {/* TEXT */}
@@ -74,7 +74,7 @@ const ImgTextRow = (props: IImgTextRowProps) => {
                 {/* IMAGE */}
                 {!props.imgLeft ? (
                     <div className="md:flex md:flex-1">
-                        <Image loading="eager" src={props.src} alt={props.title} />
+                        <Image priority loading="eager" src={props.src} alt={props.title} />
                     </div>
                 ) : null}
             </div>

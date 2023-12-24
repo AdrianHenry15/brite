@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import React from "react";
-import { useForm } from "react-hook-form";
+import React, { useState } from "react";
+import { set, useForm } from "react-hook-form";
 import { usePathname } from "next/navigation";
 import emailjs from "@emailjs/browser";
 
@@ -15,12 +15,14 @@ const ContactFormContainer = () => {
     // SWITCH BETWEEN CONTACT AND ESTIMATE FORM | BOTH FORMS DO THE SAME THING FOR NOW
     const pathname = usePathname();
 
+    const [inputClicked, setInputClicked] = useState(false);
+
     const InputClass = "border-2 border-gray-400 my-2 p-2 rounded-sm w-full shadow-md";
 
     // EMAIL JS
-    const SERVICE_ID = process.env.SERVICE_ID as string;
-    const TEMPLATE_ID = process.env.TEMPLATE_ID as string;
-    const PUBLIC_KEY = process.env.PUBLIC_KEY as string;
+    const SERVICE_ID = process.env.NEXT_PUBLIC_SERVICE_ID as string;
+    const TEMPLATE_ID = process.env.NEXT_PUBLIC_TEMPLATE_ID as string;
+    const PUBLIC_KEY = process.env.NEXT_PUBLIC_KEY as string;
 
     const {
         register,
@@ -73,6 +75,7 @@ const ContactFormContainer = () => {
                         {/* FIRST NAME */}
                         <input
                             className={InputClass}
+                            onClick={() => setInputClicked(true)}
                             type="text"
                             name="firstName"
                             placeholder="First Name"
@@ -83,6 +86,7 @@ const ContactFormContainer = () => {
                         {/* LAST NAME */}
                         <input
                             className={InputClass}
+                            onClick={() => setInputClicked(true)}
                             type="text"
                             name="lastName"
                             placeholder="Last Name"
@@ -93,6 +97,7 @@ const ContactFormContainer = () => {
                         {/* PHONE NUMBER */}
                         <input
                             className={InputClass}
+                            onClick={() => setInputClicked(true)}
                             type="tel"
                             name="phone"
                             placeholder="Phone Number"
@@ -110,6 +115,7 @@ const ContactFormContainer = () => {
                     <div>
                         <input
                             className={InputClass}
+                            onClick={() => setInputClicked(true)}
                             type="text"
                             name="email"
                             placeholder="Email *"
@@ -131,9 +137,10 @@ const ContactFormContainer = () => {
                             placeholder="Comment"
                             name="comment"
                             {...register("comment", { required: false })}
+                            onClick={() => setInputClicked(true)}
                         />
                     </div>
-                    <div className="my-10 animate-pulse">
+                    <div className={`${inputClicked ? "" : "animate-pulse"} my-10`}>
                         <Button
                             onClick={() => {}}
                             submit

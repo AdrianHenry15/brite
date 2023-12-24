@@ -37,6 +37,7 @@ const ImgTextOverlay = (props: IImgTextProps) => {
     return (
         <section ref={containerRef} className="fade-in relative flex w-full bg-black">
             <Image
+                priority
                 loading="eager"
                 className={`${props.imgClass} object-cover w-full h-[80vh] md:h-[80vh] lg:h-[75vh] opacity-75`}
                 src={props.src}

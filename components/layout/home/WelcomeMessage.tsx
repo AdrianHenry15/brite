@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import React, { useEffect, useRef } from "react";
+
 import Button from "../../Button";
 
 const WelcomeMessage = () => {
