@@ -50,7 +50,11 @@ export default function Navbar() {
                         <Button roundedFull name="Contact Us" altColor />
                     </Link>
                     <Link href={"/estimate"}>
-                        <Button roundedFull name="Get Your Free Estimate" />
+                        <Button
+                            className="animate-pulse"
+                            roundedFull
+                            name="Get Your Free Estimate"
+                        />
                     </Link>
                 </ul>
             </div>

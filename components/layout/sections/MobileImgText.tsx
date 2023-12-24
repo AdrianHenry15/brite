@@ -2,8 +2,9 @@
 
 import Image from "next/image";
 import React, { useEffect, useRef } from "react";
-import Button from "../../Button";
 import Link from "next/link";
+
+import Button from "../../Button";
 
 interface IMobileImgTextRowProps {
     textLeft?: boolean;
@@ -44,8 +45,12 @@ const MobileImgText = (props: IMobileImgTextRowProps) => {
         >
             <div className="">
                 {/* IMAGE */}
-                <div className="">
-                    <Image src={props.src} alt={props.title} />
+                <div>
+                    <Image
+                        className="max-h-[275px] min-h-[275px]"
+                        src={props.src}
+                        alt={props.title}
+                    />
                 </div>
                 {/* TEXT */}
                 <div

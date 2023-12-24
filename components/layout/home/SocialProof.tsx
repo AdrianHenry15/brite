@@ -46,7 +46,7 @@ const SocialProof = () => {
             ></div>
             <Button
                 name="Get Your Free Estimate!"
-                className="flex justify-center mt-10 w-[300px] animate-bounce"
+                className="flex justify-center mt-10 w-[300px] animate-pulse"
             />
         </section>
     );

@@ -9,9 +9,12 @@ import SocialProof from "../../../../components/layout/home/SocialProof";
 import ImgTextOverlay from "../../../../components/layout/sections/ImgTextOverlay";
 import IconBanner from "../../../../components/icon-banner/IconBanner";
 import ImgTextRow from "../../../../components/layout/sections/ImgTextRow";
+import MobileImgText from "../../../../components/layout/sections/MobileImgText";
 
 import GreenMountains from "../../../../public/assets/imgs/green-mountains.jpg";
-import Roof from "../../../../public/assets/imgs/roof.jpg";
+import Water from "../../../../public/assets/imgs/blue-water.jpg";
+import AccentLighting from "../../../../public/assets/imgs/accent-lighting.jpg";
+import StringLighting from "../../../../public/assets/imgs/string-lighting.jpg";
 
 export default async function Home() {
     return (
@@ -43,18 +46,57 @@ export default async function Home() {
             />
             <SocialProof />
             <ImgTextRow
-                src={Roof}
+                src={Water}
                 textLeft
-                link={"/exterior-cleaning"}
-                title={"Exterior Cleaning"}
-                description={"Our Exterior Cleaning services are undeniably Brite"}
+                link={"/estimate"}
+                title={"Pressure Washing"}
+                description={
+                    "Pressure Washing is a highly effective method of cleaning surfaces using a high-pressure stream of water. This technique is employed to remove dirt, grime, mold, mildew, stains, and other contaminants from a variety of surfaces."
+                }
             />
             <ImgTextRow
-                src={Roof}
+                src={AccentLighting}
                 imgLeft
-                link={"/exterior-cleaning"}
-                title={"Exterior Cleaning"}
-                description={"Our Exterior Cleaning services are undeniably Brite"}
+                link={"/estimate"}
+                title={"Accent Lighting"}
+                description={
+                    "Accent Lighting is a form of illumination designed to highlight specific features or areas within a space. Using strategically placed light fixtures, such as spotlights or wall-mounted fixtures, accent lighting adds emphasis to objects like artwork, architectural details or focal points"
+                }
+            />
+            <ImgTextRow
+                src={StringLighting}
+                textLeft
+                link={"/estimate"}
+                title={"String Lighting"}
+                description={
+                    "String Lighting consists of a series of small, decorative light bulbs connected by a flexible cord or wire, creating a charming and festive illumination. Typically used for outdoor and decorative purposes, string lights are popular for enhancing the ambiance of various spaces"
+                }
+            />
+            <MobileImgText
+                src={Water}
+                textLeft
+                link={"/estimate"}
+                title={"Pressure Washing"}
+                description={
+                    "Pressure Washing is a highly effective method of cleaning surfaces using a high-pressure stream of water. This technique is employed to remove dirt, grime, mold, mildew, stains, and other contaminants from a variety of surfaces."
+                }
+            />
+            <MobileImgText
+                src={AccentLighting}
+                link={"/estimate"}
+                title={"Accent Lighting"}
+                description={
+                    "Accent Lighting is a form of illumination designed to highlight specific features or areas within a space. Using strategically placed light fixtures, such as spotlights or wall-mounted fixtures, accent lighting adds emphasis to objects like artwork, architectural details or focal points"
+                }
+            />
+            <MobileImgText
+                src={StringLighting}
+                textLeft
+                link={"/estimate"}
+                title={"String Lighting"}
+                description={
+                    "String Lighting consists of a series of small, decorative light bulbs connected by a flexible cord or wire, creating a charming and festive illumination. Typically used for outdoor and decorative purposes, string lights are popular for enhancing the ambiance of various spaces"
+                }
             />
             <WelcomeMessage />
         </div>

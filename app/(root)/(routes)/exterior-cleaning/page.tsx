@@ -44,16 +44,19 @@ const ExteriorCleaning = () => {
         <div className="w-full justify-center items-center self-center">
             <ImgTextOverlay imgClass="object-bottom" src={RoofSplash} name="Exterior Cleaning" />
             <IconBanner
+                link1="/estimate"
                 icon1={<GiVacuumCleaner size={50} />}
                 title1={"Pressure Washing"}
                 description1={
                     "Enhance your property's appearance with our thorough pressure washing services. We effectively remove dirt, grime, and stains, revitalizing surfaces for a refreshed and inviting look"
                 }
+                link2="/estimate"
                 icon2={<GiWindow size={50} />}
                 title2={"Window Washing"}
                 description2={
                     "Illuminate your space with Brite windows, our expert window washing services bring a clear and sparkling sine to brighten up your home or business"
                 }
+                link3="/estimate"
                 icon3={<MdOutlineRoofing size={50} />}
                 title3={"Roof Cleaning"}
                 description3={

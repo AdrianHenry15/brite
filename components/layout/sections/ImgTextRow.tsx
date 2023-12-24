@@ -47,7 +47,7 @@ const ImgTextRow = (props: IImgTextRowProps) => {
             <div className="self-center md:w-[1200px] md:flex">
                 {/* IMAGE */}
                 {props.imgLeft || props.imgTopOnMobile ? (
-                    <div className="md:flex md:flex-1">
+                    <div className="shadow-inner md:flex md:flex-1">
                         <Image loading="eager" src={props.src} alt={props.title} />
                     </div>
                 ) : null}
