@@ -23,7 +23,7 @@ const ContactFormContainer = () => {
         console.log(data);
     };
     return (
-        <section className="flex flex-col items-center px-4 py-20 shadow-inner relative">
+        <section className="flex flex-col items-center px-4 py-20 shadow-inner relative w-full">
             <div className="absolute hidden top-[250px] left-60 2xl:flex">
                 <Image src={HandyMan} alt="Brite Logo" />
             </div>
@@ -102,8 +102,11 @@ const ContactFormContainer = () => {
                     </div>
                     <div className="my-10 animate-pulse">
                         <Button
+                            onClick={() => {}}
                             submit
-                            name="Get Your Free Estimate"
+                            name={`${
+                                pathname === "/contact-us" ? "Contact Us" : "Get Your Free Estimate"
+                            }`}
                             className="w-full justify-center"
                         ></Button>
                     </div>

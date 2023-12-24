@@ -75,7 +75,7 @@ const ExteriorCleaning = () => {
                     link={"/estimate"}
                     title={"Window Washing"}
                     description={
-                        "Prevent water damage and maintain the proper functioning your drainage system by removing debris, leaves, and dirt from gutters. Get a Twice A Year Estimate for our Gutter Cleaning services"
+                        "Window Washing is the process of cleaning and maintaining the glass surfaces of windows to ensure clarity, cleanliness, and a clear view. It is an essential aspect of building maintenance, both for residential and commercial properties. "
                     }
                 />
                 <ImgTextRow
@@ -85,7 +85,7 @@ const ExteriorCleaning = () => {
                     link={"/estimate"}
                     title={"Pressure Washing"}
                     description={
-                        "Prevent water damage and maintain the proper functioning your drainage system by removing debris, leaves, and dirt from gutters. Get a Twice A Year Estimate for our Gutter Cleaning services"
+                        "Pressure washing, also known as power washing, is a highly effective method of cleaning surfaces using a high-pressure stream of water. This technique is employed to remove dirt, grime, mold, mildew, stains, and other contaminants from a variety of surfaces."
                     }
                 />
                 <ImgTextRow
@@ -95,7 +95,7 @@ const ExteriorCleaning = () => {
                     link={"/estimate"}
                     title={"Gutter Cleaning"}
                     description={
-                        "Prevent water damage and maintain the proper functioning your drainage system by removing debris, leaves, and dirt from gutters. Get a Twice A Year Estimate for our Gutter Cleaning services"
+                        "Gutter cleaning is the process of removing debris, leaves, dirt, and other materials from the gutters and downspouts of a building. This maintenance task is crucial to ensure the proper functioning of the gutter system, preventing water damage and maintaining the integrity of the structure."
                     }
                 />
                 <ImgTextRow
@@ -105,7 +105,7 @@ const ExteriorCleaning = () => {
                     link={"/estimate"}
                     title={"Roof Cleaning"}
                     description={
-                        "Prevent water damage and maintain the proper functioning your drainage system by removing debris, leaves, and dirt from gutters. Get a Twice A Year Estimate for our Gutter Cleaning services"
+                        "Roof cleaning is the process of removing dirt, algae, moss, lichen, and other contaminants from the roof surface to maintain its appearance, extend its lifespan, and prevent potential damage."
                     }
                 />
                 {/* MOBILE */}
@@ -115,7 +115,7 @@ const ExteriorCleaning = () => {
                     link={"/estimate"}
                     title={"Window Washing"}
                     description={
-                        "Prevent water damage and maintain the proper functioning your drainage system by removing debris, leaves, and dirt from gutters. Get a Twice A Year Estimate for our Gutter Cleaning services"
+                        "Window Washing is the process of cleaning and maintaining the glass surfaces of windows to ensure clarity, cleanliness, and a clear view. It is an essential aspect of building maintenance, both for residential and commercial properties. "
                     }
                 />
                 <MobileImgText
@@ -124,7 +124,7 @@ const ExteriorCleaning = () => {
                     link={"/estimate"}
                     title={"Pressure Washing"}
                     description={
-                        "Prevent water damage and maintain the proper functioning your drainage system by removing debris, leaves, and dirt from gutters. Get a Twice A Year Estimate for our Gutter Cleaning services"
+                        "Pressure washing, also known as power washing, is a highly effective method of cleaning surfaces using a high-pressure stream of water. This technique is employed to remove dirt, grime, mold, mildew, stains, and other contaminants from a variety of surfaces."
                     }
                 />
                 <MobileImgText
@@ -133,7 +133,7 @@ const ExteriorCleaning = () => {
                     link={"/estimate"}
                     title={"Gutter Cleaning"}
                     description={
-                        "Prevent water damage and maintain the proper functioning your drainage system by removing debris, leaves, and dirt from gutters. Get a Twice A Year Estimate for our Gutter Cleaning services"
+                        "Gutter cleaning is the process of removing debris, leaves, dirt, and other materials from the gutters and downspouts of a building. This maintenance task is crucial to ensure the proper functioning of the gutter system, preventing water damage and maintaining the integrity of the structure."
                     }
                 />
                 <MobileImgText
@@ -142,7 +142,7 @@ const ExteriorCleaning = () => {
                     link={"/estimate"}
                     title={"Roof Cleaning"}
                     description={
-                        "Prevent water damage and maintain the proper functioning your drainage system by removing debris, leaves, and dirt from gutters. Get a Twice A Year Estimate for our Gutter Cleaning services"
+                        "Roof cleaning is the process of removing dirt, algae, moss, lichen, and other contaminants from the roof surface to maintain its appearance, extend its lifespan, and prevent potential damage."
                     }
                 />
             </div>

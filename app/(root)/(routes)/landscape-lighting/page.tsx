@@ -10,9 +10,9 @@ import ImgTextRow from "../../../../components/layout/sections/ImgTextRow";
 import MobileImgText from "../../../../components/layout/sections/MobileImgText";
 
 import LightingSplash from "../../../../public/assets/imgs/landscape-lighting.jpg";
-import AccentLighting from "../../../../public/assets/imgs/brite-pic-8.jpg";
-import PathLighting from "../../../../public/assets/imgs/brite-pic-7.jpg";
-import UpLighting from "../../../../public/assets/imgs/brite-pic-10.jpg";
+import AccentLighting from "../../../../public/assets/imgs/accent-lighting.jpg";
+import PathLighting from "../../../../public/assets/imgs/path-lighting.jpg";
+import UpLighting from "../../../../public/assets/imgs/up-lighting.jpg";
 
 const LandscapeLighting = () => {
     return (
@@ -47,7 +47,7 @@ const LandscapeLighting = () => {
                     link={"/estimate"}
                     title={"Accent Lighting"}
                     description={
-                        "Prevent water damage and maintain the proper functioning your drainage system by removing debris, leaves, and dirt from gutters. Get a Twice A Year Estimate for our Gutter Cleaning services"
+                        "Accent lighting is a type of lighting design that focuses on highlighting specific objects, areas, or architectural features within a space. The purpose of accent lighting is to draw attention to particular elements, creating visual interest and enhancing the overall atmosphere."
                     }
                 />
                 <ImgTextRow
@@ -57,7 +57,7 @@ const LandscapeLighting = () => {
                     link={"/estimate"}
                     title={"Path Lighting"}
                     description={
-                        "Prevent water damage and maintain the proper functioning your drainage system by removing debris, leaves, and dirt from gutters. Get a Twice A Year Estimate for our Gutter Cleaning services"
+                        "Path lighting refers to the use of strategically placed light fixtures to illuminate walkways, pathways, or outdoor trails. The primary purpose of path lighting is to enhance safety by providing visibility along routes, guide people through outdoor spaces, and add aesthetic appeal to landscapes during the nighttime."
                     }
                 />
                 <ImgTextRow
@@ -67,7 +67,7 @@ const LandscapeLighting = () => {
                     link={"/estimate"}
                     title={"Up Lighting"}
                     description={
-                        "Prevent water damage and maintain the proper functioning your drainage system by removing debris, leaves, and dirt from gutters. Get a Twice A Year Estimate for our Gutter Cleaning services"
+                        "Uplighting is a lighting technique in which light fixtures are strategically positioned on or near the ground to illuminate architectural features, trees, plants, or other elements from the bottom upward. This method creates a visually appealing effect by casting light on surfaces, emphasizing textures, and adding depth to the environment."
                     }
                 />
                 {/* MOBILE */}
@@ -77,7 +77,7 @@ const LandscapeLighting = () => {
                     link={"/estimate"}
                     title={"Accent Lighting"}
                     description={
-                        "Prevent water damage and maintain the proper functioning your drainage system by removing debris, leaves, and dirt from gutters. Get a Twice A Year Estimate for our Gutter Cleaning services"
+                        "Accent lighting is a type of lighting design that focuses on highlighting specific objects, areas, or architectural features within a space. The purpose of accent lighting is to draw attention to particular elements, creating visual interest and enhancing the overall atmosphere."
                     }
                 />
                 <MobileImgText
@@ -86,7 +86,7 @@ const LandscapeLighting = () => {
                     link={"/estimate"}
                     title={"Path Lighting"}
                     description={
-                        "Prevent water damage and maintain the proper functioning your drainage system by removing debris, leaves, and dirt from gutters. Get a Twice A Year Estimate for our Gutter Cleaning services"
+                        "Path lighting refers to the use of strategically placed light fixtures to illuminate walkways, pathways, or outdoor trails. The primary purpose of path lighting is to enhance safety by providing visibility along routes, guide people through outdoor spaces, and add aesthetic appeal to landscapes during the nighttime."
                     }
                 />
                 <MobileImgText
@@ -95,7 +95,7 @@ const LandscapeLighting = () => {
                     link={"/estimate"}
                     title={"Up Lighting"}
                     description={
-                        "Prevent water damage and maintain the proper functioning your drainage system by removing debris, leaves, and dirt from gutters. Get a Twice A Year Estimate for our Gutter Cleaning services"
+                        "Uplighting is a lighting technique in which light fixtures are strategically positioned on or near the ground to illuminate architectural features, trees, plants, or other elements from the bottom upward. This method creates a visually appealing effect by casting light on surfaces, emphasizing textures, and adding depth to the environment."
                     }
                 />
             </div>

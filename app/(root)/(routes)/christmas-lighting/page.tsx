@@ -5,10 +5,14 @@ import { TbDeviceProjector } from "react-icons/tb";
 import { FaIcicles } from "react-icons/fa";
 
 import ImgTextOverlay from "../../../../components/layout/sections/ImgTextOverlay";
-import ChristmasLightingSplash from "../../../../public/assets/imgs/christmas-lights.jpg";
 import IconBanner from "../../../../components/icon-banner/IconBanner";
 import MobileImgText from "../../../../components/layout/sections/MobileImgText";
 import ImgTextRow from "../../../../components/layout/sections/ImgTextRow";
+
+import ChristmasLightingSplash from "../../../../public/assets/imgs/christmas-lights.jpg";
+import CurtainLights from "../../../../public/assets/imgs/curtain-lights.jpg";
+import RopeLights from "../../../../public/assets/imgs/rope-lights.jpg";
+import ProjectorLights from "../../../../public/assets/imgs/projector-lights.jpg";
 
 const ChristmasLighting = () => {
     return (
@@ -39,76 +43,57 @@ const ChristmasLighting = () => {
                 <ImgTextRow
                     textLeft={true}
                     imgLeft={false}
-                    src={ChristmasLightingSplash}
+                    src={CurtainLights}
                     link={"/estimate"}
-                    title={"Window Washing"}
+                    title={"Curtain Lights"}
                     description={
-                        "Prevent water damage and maintain the proper functioning your drainage system by removing debris, leaves, and dirt from gutters. Get a Twice A Year Estimate for our Gutter Cleaning services"
+                        "Curtain lights are a type of decorative Christmas lighting that features strands of lights arranged in a vertical curtain-like pattern. These lights are designed to create a visually appealing backdrop or curtain effect, adding a touch of magic and elegance to various settings."
                     }
                 />
                 <ImgTextRow
                     textLeft={false}
                     imgLeft={true}
-                    src={ChristmasLightingSplash}
+                    src={RopeLights}
                     link={"/estimate"}
-                    title={"Pressure Washing"}
+                    title={"Rope Lights"}
                     description={
-                        "Prevent water damage and maintain the proper functioning your drainage system by removing debris, leaves, and dirt from gutters. Get a Twice A Year Estimate for our Gutter Cleaning services"
+                        "Rope lights are a type of decorative lighting consisting of small bulbs encased in a flexible, transparent, or colored tube. This tubing resembles a rope, giving the lights their distinctive appearance."
                     }
                 />
                 <ImgTextRow
                     textLeft={true}
                     imgLeft={false}
-                    src={ChristmasLightingSplash}
+                    src={ProjectorLights}
                     link={"/estimate"}
-                    title={"Gutter Cleaning"}
+                    title={"Projector Lights"}
                     description={
-                        "Prevent water damage and maintain the proper functioning your drainage system by removing debris, leaves, and dirt from gutters. Get a Twice A Year Estimate for our Gutter Cleaning services"
-                    }
-                />
-                <ImgTextRow
-                    textLeft={false}
-                    imgLeft={true}
-                    src={ChristmasLightingSplash}
-                    link={"/estimate"}
-                    title={"Roof Cleaning"}
-                    description={
-                        "Prevent water damage and maintain the proper functioning your drainage system by removing debris, leaves, and dirt from gutters. Get a Twice A Year Estimate for our Gutter Cleaning services"
+                        "Projector lights, also known as holiday projector lights or LED projection lights, are lighting devices that use light projection technology to display colorful patterns, images, or animations onto surfaces. These lights are commonly used for holiday decorations, events, and special occasions. "
                     }
                 />
                 {/* MOBILE */}
                 <MobileImgText
                     textLeft={true}
-                    src={ChristmasLightingSplash}
+                    src={CurtainLights}
                     link={"/estimate"}
-                    title={"Window Washing"}
+                    title={"Curtain Lights"}
                     description={
                         "Prevent water damage and maintain the proper functioning your drainage system by removing debris, leaves, and dirt from gutters. Get a Twice A Year Estimate for our Gutter Cleaning services"
                     }
                 />
                 <MobileImgText
                     textLeft={false}
-                    src={ChristmasLightingSplash}
+                    src={RopeLights}
                     link={"/estimate"}
-                    title={"Pressure Washing"}
+                    title={"Rope Lights"}
                     description={
                         "Prevent water damage and maintain the proper functioning your drainage system by removing debris, leaves, and dirt from gutters. Get a Twice A Year Estimate for our Gutter Cleaning services"
                     }
                 />
                 <MobileImgText
                     textLeft={true}
-                    src={ChristmasLightingSplash}
+                    src={ProjectorLights}
                     link={"/estimate"}
-                    title={"Gutter Cleaning"}
-                    description={
-                        "Prevent water damage and maintain the proper functioning your drainage system by removing debris, leaves, and dirt from gutters. Get a Twice A Year Estimate for our Gutter Cleaning services"
-                    }
-                />
-                <MobileImgText
-                    textLeft={true}
-                    src={ChristmasLightingSplash}
-                    link={"/estimate"}
-                    title={"Roof Cleaning"}
+                    title={"Projector Lights"}
                     description={
                         "Prevent water damage and maintain the proper functioning your drainage system by removing debris, leaves, and dirt from gutters. Get a Twice A Year Estimate for our Gutter Cleaning services"
                     }
