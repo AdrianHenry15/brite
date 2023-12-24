@@ -1,19 +1,64 @@
+import Link from "next/link";
 import React from "react";
+
+import { IoArrowRedoOutline } from "react-icons/io5";
+
+import Button from "../Button";
 
 interface IIconItemProps {
     icon: React.ReactNode;
     title: string;
     description: string;
+    link?: string;
+    addBtn?: boolean;
 }
 
 const IconItem = (props: IIconItemProps) => {
+    // const containerRef = useRef<HTMLDivElement>(null);
+
+    // useEffect(() => {
+    //     const options = {
+    //         threshold: 0.1, // Adjust the threshold as needed (percentage of element visibility)
+    //     };
+
+    //     const callback: IntersectionObserverCallback = (entries) => {
+    //         entries.forEach((entry) => {
+    //             if (entry.isIntersecting) {
+    //                 containerRef.current?.classList.add("show");
+    //             }
+    //         });
+    //     };
+
+    //     const observer = new IntersectionObserver(callback, options);
+
+    //     if (containerRef.current) {
+    //         observer.observe(containerRef.current);
+    //     }
+
+    //     return () => observer.disconnect(); // Cleanup observer on component unmount
+    // }, []);
+
     return (
-        <div className="flex flex-col items-center flex-1 px-6 md:px-2 lg:px-12 xl:px-16">
-            {props.icon}
-            <h5 className="py-6 text-xl">{props.title}</h5>
-            <aside className="leading-7 mb-20 text-sm italic text-zinc-700 flex flex-1 md:mb-0">
+        <div
+            // ref={containerRef}
+            className={`flex flex-col items-center flex-1 px-6 py-10 md:py-0 md:px-2 lg:px-12 xl:px-16`}
+        >
+            <a className="flex flex-col items-center" href={props.link}>
+                {props.icon}
+                <h5 className="py-6 text-xl">{props.title}</h5>
+            </a>
+            <p className="leading-7 text-sm italic text-zinc-700 flex flex-1">
                 {props.description}
-            </aside>
+            </p>
+            {props.addBtn ? (
+                <Link className="mt-4" href={props.link}>
+                    <Button
+                        altColor
+                        name={props.title}
+                        icon={<IoArrowRedoOutline size={20} className={`ml-2`} />}
+                    />
+                </Link>
+            ) : null}
         </div>
     );
 };

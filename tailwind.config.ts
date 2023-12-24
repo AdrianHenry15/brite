@@ -10,11 +10,22 @@ const config: Config = {
         extend: {
             animation: {
                 "infinite-scroll": "infinite-scroll 25s linear infinite",
+                bounce: "bounce 1s infinite",
             },
             keyframes: {
                 "infinite-scroll": {
                     from: { transform: "translateX(0)" },
                     to: { transform: "translateX(-100%)" },
+                },
+                bounce: {
+                    "0%, 100%": {
+                        transform: "translateY(-25%)",
+                        animationTimingFunction: "cubic-bezier(0.8, 0, 1, 1)",
+                    },
+                    "50%": {
+                        transform: "translateY(0)",
+                        animationTimingFunction: "cubic-bezier(0, 0, 0.2, 1)",
+                    },
                 },
             },
             backgroundImage: {
