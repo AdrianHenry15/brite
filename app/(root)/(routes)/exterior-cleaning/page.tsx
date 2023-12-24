@@ -21,7 +21,7 @@ const ExteriorCleaning = () => {
 
     useEffect(() => {
         const options = {
-            threshold: 0.5, // Adjust the threshold as needed (percentage of element visibility)
+            threshold: 0.1, // Adjust the threshold as needed (percentage of element visibility)
         };
 
         const callback: IntersectionObserverCallback = (entries) => {
@@ -91,16 +91,6 @@ const ExteriorCleaning = () => {
                 <ImgTextRow
                     textLeft={true}
                     imgLeft={false}
-                    src={Gutter}
-                    link={"/estimate"}
-                    title={"Gutter Cleaning"}
-                    description={
-                        "Gutter cleaning is the process of removing debris, leaves, dirt, and other materials from the gutters and downspouts of a building. This maintenance task is crucial to ensure the proper functioning of the gutter system, preventing water damage and maintaining the integrity of the structure."
-                    }
-                />
-                <ImgTextRow
-                    textLeft={false}
-                    imgLeft={true}
                     src={Roof}
                     link={"/estimate"}
                     title={"Roof Cleaning"}
@@ -125,15 +115,6 @@ const ExteriorCleaning = () => {
                     title={"Pressure Washing"}
                     description={
                         "Pressure washing, also known as power washing, is a highly effective method of cleaning surfaces using a high-pressure stream of water. This technique is employed to remove dirt, grime, mold, mildew, stains, and other contaminants from a variety of surfaces."
-                    }
-                />
-                <MobileImgText
-                    textLeft={true}
-                    src={Gutter}
-                    link={"/estimate"}
-                    title={"Gutter Cleaning"}
-                    description={
-                        "Gutter cleaning is the process of removing debris, leaves, dirt, and other materials from the gutters and downspouts of a building. This maintenance task is crucial to ensure the proper functioning of the gutter system, preventing water damage and maintaining the integrity of the structure."
                     }
                 />
                 <MobileImgText

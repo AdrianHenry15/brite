@@ -11,6 +11,7 @@ import HandyMan from "../public/assets/imgs/handyman.webp";
 import Button from "./Button";
 
 const ContactFormContainer = () => {
+    // SWITCH BETWEEN CONTACT AND ESTIMATE FORM | BOTH FORMS DO THE SAME THING FOR NOW
     const pathname = usePathname();
     const InputClass = "border-2 border-gray-400 my-2 p-2 rounded-sm w-full shadow-md";
     const {

@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useRef } from "react";
 
 import { GiSewingString } from "react-icons/gi";
 import { TbDeviceProjector } from "react-icons/tb";
@@ -15,6 +17,29 @@ import RopeLights from "../../../../public/assets/imgs/rope-lights.jpg";
 import ProjectorLights from "../../../../public/assets/imgs/projector-lights.jpg";
 
 const ChristmasLighting = () => {
+    const textRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const options = {
+            threshold: 0.1, // Adjust the threshold as needed (percentage of element visibility)
+        };
+
+        const callback: IntersectionObserverCallback = (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    textRef.current?.classList.add("show");
+                }
+            });
+        };
+
+        const observer = new IntersectionObserver(callback, options);
+
+        if (textRef.current) {
+            observer.observe(textRef.current);
+        }
+
+        return () => observer.disconnect(); // Cleanup observer on component unmount
+    }, []);
     return (
         <div>
             <ImgTextOverlay
@@ -39,6 +64,10 @@ const ChristmasLighting = () => {
                     "Mimicking the appearance of hanging icicles, these lights are often used to decorate rooflines, eaves, or outdoor structures, creating a charming and whimsicle winter-inspired ambiance"
                 }
             />
+            {/* LANDSCAPE LIGHTING SERVICES */}
+            <h5 ref={textRef} className="fade-in text-black text-center text-2xl underline">
+                Our Christmas Lighting Services
+            </h5>
             <div>
                 <ImgTextRow
                     textLeft={true}

@@ -14,7 +14,7 @@ const ImgTextOverlay = (props: IImgTextProps) => {
 
     useEffect(() => {
         const options = {
-            threshold: 0.5, // Adjust the threshold as needed (percentage of element visibility)
+            threshold: 0.1, // Adjust the threshold as needed (percentage of element visibility)
         };
 
         const callback: IntersectionObserverCallback = (entries) => {
@@ -37,6 +37,7 @@ const ImgTextOverlay = (props: IImgTextProps) => {
     return (
         <section ref={containerRef} className="fade-in relative flex w-full bg-black">
             <Image
+                loading="eager"
                 className={`${props.imgClass} object-cover w-full h-[80vh] md:h-[80vh] lg:h-[75vh] opacity-75`}
                 src={props.src}
                 alt={props.name}

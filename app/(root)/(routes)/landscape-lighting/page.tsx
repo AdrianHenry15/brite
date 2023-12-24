@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useRef } from "react";
 
 import { FaRegLightbulb } from "react-icons/fa6";
 import { CiLight } from "react-icons/ci";
@@ -15,6 +17,29 @@ import PathLighting from "../../../../public/assets/imgs/path-lighting.jpg";
 import UpLighting from "../../../../public/assets/imgs/up-lighting.jpg";
 
 const LandscapeLighting = () => {
+    const textRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const options = {
+            threshold: 0.1, // Adjust the threshold as needed (percentage of element visibility)
+        };
+
+        const callback: IntersectionObserverCallback = (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    textRef.current?.classList.add("show");
+                }
+            });
+        };
+
+        const observer = new IntersectionObserver(callback, options);
+
+        if (textRef.current) {
+            observer.observe(textRef.current);
+        }
+
+        return () => observer.disconnect(); // Cleanup observer on component unmount
+    }, []);
     return (
         <div>
             <ImgTextLayout
@@ -39,6 +64,10 @@ const LandscapeLighting = () => {
                     "Up lighting involves positioning fixtures at ground level to cast light upward, emphasizing tall structures like trees or the facade of a building. This technique creates a visually striking and dynamic effect, adding depth to the landscape"
                 }
             />
+            {/* LANDSCAPE LIGHTING SERVICES */}
+            <h5 ref={textRef} className="fade-in text-black text-center text-2xl underline">
+                Our Landscape Lighting Services
+            </h5>
             <div>
                 <ImgTextRow
                     textLeft={true}

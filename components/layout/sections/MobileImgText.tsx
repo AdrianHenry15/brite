@@ -19,7 +19,7 @@ const MobileImgText = (props: IMobileImgTextRowProps) => {
 
     useEffect(() => {
         const options = {
-            threshold: 0.5, // Adjust the threshold as needed (percentage of element visibility)
+            threshold: 0.1, // Adjust the threshold as needed (percentage of element visibility)
         };
 
         const callback: IntersectionObserverCallback = (entries) => {
@@ -47,6 +47,7 @@ const MobileImgText = (props: IMobileImgTextRowProps) => {
                 {/* IMAGE */}
                 <div>
                     <Image
+                        loading="eager"
                         className="max-h-[275px] min-h-[275px]"
                         src={props.src}
                         alt={props.title}
@@ -62,7 +63,9 @@ const MobileImgText = (props: IMobileImgTextRowProps) => {
                     <p className="text-light text-sm text-zinc-950 px-4">{props.description}</p>
                     <Link href={"/estimate"}>
                         <Button
-                            className="animate-pulse mt-4 items-center flex justify-center self-center"
+                            className={`${
+                                props.textLeft ? "ml-4" : "mr-4"
+                            } animate-pulse mt-4 items-center flex justify-center self-center`}
                             name={"Get Your Free Estimate Now"}
                         />
                     </Link>

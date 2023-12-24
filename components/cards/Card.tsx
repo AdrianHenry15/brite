@@ -1,9 +1,5 @@
-"use client";
-
-import { Transition } from "@headlessui/react";
 import Image from "next/image";
 import Link from "next/link";
-import React, { use, useEffect, useState } from "react";
 
 interface ICardProps {
     link: string;
@@ -18,6 +14,7 @@ const Card = (props: ICardProps) => {
         <div className="max-w-sm my-2 bg-white border border-gray-200 rounded-lg shadow dark:bg-black dark:border-gray-700 hidden flex-col flex-1 md:flex">
             <Link href={props.link}>
                 <Image
+                    loading="eager"
                     className="rounded-t-lg hidden object-cover object-center h-[300px] lg:flex"
                     src={props.img}
                     alt={props.title}
