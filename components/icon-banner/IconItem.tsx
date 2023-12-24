@@ -19,7 +19,7 @@ const IconItem = (props: IIconItemProps) => {
 
     useEffect(() => {
         const options = {
-            threshold: 0.5, // Adjust the threshold as needed (percentage of element visibility)
+            threshold: 0.1, // Adjust the threshold as needed (percentage of element visibility)
         };
 
         const callback: IntersectionObserverCallback = (entries) => {
