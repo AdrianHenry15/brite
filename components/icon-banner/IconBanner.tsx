@@ -49,7 +49,7 @@ const IconBanner = (props: IIconBannerProps) => {
     }, []);
     return (
         <section
-            // ref={containerRef}
+            ref={containerRef}
             className={`${
                 props.dark ? "bg-black text-white" : "bg-white text-black"
             } fade-in w-full justify-evenly text-center py-24 px-4 flex flex-1 flex-col md:flex-row`}
