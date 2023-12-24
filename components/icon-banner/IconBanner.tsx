@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 
 import React, { useEffect, useRef } from "react";
 
@@ -24,35 +24,35 @@ interface IIconBannerProps {
 }
 
 const IconBanner = (props: IIconBannerProps) => {
-    const containerRef = useRef<HTMLDivElement>(null);
+    // const containerRef = useRef<HTMLDivElement>(null);
 
-    useEffect(() => {
-        const options = {
-            threshold: 0.1, // Adjust the threshold as needed (percentage of element visibility)
-        };
+    // useEffect(() => {
+    //     const options = {
+    //         threshold: 0.1, // Adjust the threshold as needed (percentage of element visibility)
+    //     };
 
-        const callback: IntersectionObserverCallback = (entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    containerRef.current?.classList.add("show");
-                }
-            });
-        };
+    //     const callback: IntersectionObserverCallback = (entries) => {
+    //         entries.forEach((entry) => {
+    //             if (entry.isIntersecting) {
+    //                 containerRef.current?.classList.add("show");
+    //             }
+    //         });
+    //     };
 
-        const observer = new IntersectionObserver(callback, options);
+    //     const observer = new IntersectionObserver(callback, options);
 
-        if (containerRef.current) {
-            observer.observe(containerRef.current);
-        }
+    //     if (containerRef.current) {
+    //         observer.observe(containerRef.current);
+    //     }
 
-        return () => observer.disconnect(); // Cleanup observer on component unmount
-    }, []);
+    //     return () => observer.disconnect(); // Cleanup observer on component unmount
+    // }, []);
     return (
         <section
-            ref={containerRef}
+            // ref={containerRef}
             className={`${
                 props.dark ? "bg-black text-white" : "bg-white text-black"
-            } fade-in w-full justify-evenly text-center py-24 px-4 flex flex-1 flex-col md:flex-row`}
+            } w-full justify-evenly text-center py-24 px-4 flex flex-1 flex-col md:flex-row`}
         >
             <IconItem
                 addBtn={props.addBtn1}
