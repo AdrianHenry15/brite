@@ -10,12 +10,16 @@ import Logo from "../public/assets/icons/brite-logo.png";
 import HandyMan from "../public/assets/imgs/handyman.webp";
 
 import Button from "./Button";
+import ConfirmationModal from "./modals/ConfirmationModal";
+import SuccessModal from "./modals/SuccessModal";
 
 const ContactFormContainer = () => {
     // SWITCH BETWEEN CONTACT AND ESTIMATE FORM | BOTH FORMS DO THE SAME THING FOR NOW
     const pathname = usePathname();
 
     const [inputClicked, setInputClicked] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
+    const [estimateSuccess, setEstimateSuccess] = useState(false);
 
     const InputClass = "border-2 border-gray-400 my-2 p-2 rounded-sm w-full shadow-md";
 
@@ -32,6 +36,11 @@ const ContactFormContainer = () => {
     } = useForm();
 
     const onSubmit = (data) => {
+        setIsOpen(true);
+        console.log(data);
+    };
+
+    const confirmEstimate = () => {
         // EMAIL JS
         emailjs
             .send(SERVICE_ID as string, TEMPLATE_ID as string, templateParams, PUBLIC_KEY as string)
@@ -43,7 +52,10 @@ const ContactFormContainer = () => {
                     console.log("FAILED...", error);
                 }
             );
-        console.log(data);
+        // close modal
+        setIsOpen(false);
+        // open success modal
+        setEstimateSuccess(true);
     };
 
     //EMAIL JS
@@ -57,6 +69,19 @@ const ContactFormContainer = () => {
 
     return (
         <section className="flex flex-col items-center px-4 py-20 shadow-inner relative w-full">
+            {isOpen && (
+                <ConfirmationModal
+                    confirmEstimate={confirmEstimate}
+                    isOpen={isOpen}
+                    closeModal={() => setIsOpen(false)}
+                />
+            )}
+            {estimateSuccess && (
+                <SuccessModal
+                    isOpen={estimateSuccess}
+                    closeModal={() => setEstimateSuccess(false)}
+                />
+            )}
             <div className="absolute hidden top-[250px] left-60 2xl:flex">
                 <Image loading="eager" src={HandyMan} alt="Brite Logo" />
             </div>
@@ -77,7 +102,6 @@ const ContactFormContainer = () => {
                             className={InputClass}
                             onClick={() => setInputClicked(true)}
                             type="text"
-                            name="firstName"
                             placeholder="First Name"
                             {...register("firstName", { required: false })}
                         />
@@ -88,7 +112,6 @@ const ContactFormContainer = () => {
                             className={InputClass}
                             onClick={() => setInputClicked(true)}
                             type="text"
-                            name="lastName"
                             placeholder="Last Name"
                             {...register("lastName", { required: false })}
                         />
@@ -99,7 +122,6 @@ const ContactFormContainer = () => {
                             className={InputClass}
                             onClick={() => setInputClicked(true)}
                             type="tel"
-                            name="phone"
                             placeholder="Phone Number"
                             {...register("phoneNumber", {
                                 required: false,
@@ -117,7 +139,6 @@ const ContactFormContainer = () => {
                             className={InputClass}
                             onClick={() => setInputClicked(true)}
                             type="text"
-                            name="email"
                             placeholder="Email *"
                             {...register("email", {
                                 required: true,
@@ -135,7 +156,6 @@ const ContactFormContainer = () => {
                         <textarea
                             className="border-2 border-gray-400 my-2 p-2 w-full h-40"
                             placeholder="Comment"
-                            name="comment"
                             {...register("comment", { required: false })}
                             onClick={() => setInputClicked(true)}
                         />
