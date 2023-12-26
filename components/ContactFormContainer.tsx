@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import React, { useState } from "react";
-import { set, useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { usePathname } from "next/navigation";
 import emailjs from "@emailjs/browser";
 
@@ -13,6 +13,13 @@ import Button from "./Button";
 import ConfirmationModal from "./modals/ConfirmationModal";
 import SuccessModal from "./modals/SuccessModal";
 import { Loader } from "./Loader";
+
+const services = [
+    { name: "Exterior Cleaning" },
+    { name: "Landscape Lighting" },
+    { name: "Christmas Lighting" },
+    { name: "Other" },
+];
 
 const ContactFormContainer = () => {
     // SWITCH BETWEEN CONTACT AND ESTIMATE FORM | BOTH FORMS DO THE SAME THING FOR NOW
@@ -34,6 +41,7 @@ const ContactFormContainer = () => {
         register,
         handleSubmit,
         getValues,
+        control,
         formState: { errors },
     } = useForm();
 
@@ -72,6 +80,8 @@ const ContactFormContainer = () => {
         lastName: getValues("lastName"),
         phone: getValues("phone"),
         email: getValues("email"),
+        address: getValues("address"),
+        service: getValues("service"),
         comment: getValues("comment"),
     };
 
@@ -143,12 +153,13 @@ const ContactFormContainer = () => {
                             </p>
                         )}
                     </div>
+                    {/* EMAIL */}
                     <div>
                         <input
                             className={InputClass}
                             onClick={() => setInputClicked(true)}
                             type="text"
-                            placeholder="Email *"
+                            placeholder="Email*"
                             {...register("email", {
                                 required: true,
                                 pattern: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/,
@@ -161,6 +172,57 @@ const ContactFormContainer = () => {
                             <p className="text-sm text-red-600 ml-4">Email is not valid.</p>
                         )}
                     </div>
+                    {/* ADDRESS */}
+                    <div>
+                        <input
+                            className={InputClass}
+                            onClick={() => setInputClicked(true)}
+                            type="text"
+                            placeholder="2211 Allen Lane Orlando, FL 32792"
+                            {...register("address", {
+                                required: true,
+                                pattern: /^\d+\s[a-zA-Z]+\s[a-zA-Z]+$/,
+                            })}
+                        />
+                        {errors.address && errors.address.type === "required" && (
+                            <p className="text-sm text-red-600 ml-4">Address is required.</p>
+                        )}
+                        {errors.address && errors.address.type === "pattern" && (
+                            <p className="text-sm text-red-600 ml-4">Address is not valid.</p>
+                        )}
+                    </div>
+                    {/* SERVICE */}
+                    <div className="py-2 w-full">
+                        <label className="font-semibold text-lg mb-2 underline">
+                            Choose Service:
+                        </label>
+                        <Controller
+                            name="service"
+                            control={control}
+                            defaultValue={services[0].name}
+                            render={({ field }) => (
+                                <select
+                                    className={`${InputClass}`}
+                                    {...field}
+                                    onClick={() => setInputClicked(true)}
+                                >
+                                    {services.map((service) => (
+                                        <option
+                                            key={service.name}
+                                            value={service.name}
+                                            onClick={() => setInputClicked(true)}
+                                        >
+                                            {service.name}
+                                        </option>
+                                    ))}
+                                </select>
+                            )}
+                        />
+                        {errors.service && errors.service.type === "required" && (
+                            <p className="text-sm text-red-600 ml-4">Service is required.</p>
+                        )}
+                    </div>
+                    {/* COMMENT */}
                     <div>
                         <textarea
                             className="border-2 border-gray-400 my-2 p-2 w-full h-40"
