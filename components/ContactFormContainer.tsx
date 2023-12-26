@@ -12,6 +12,7 @@ import HandyMan from "../public/assets/imgs/handyman.webp";
 import Button from "./Button";
 import ConfirmationModal from "./modals/ConfirmationModal";
 import SuccessModal from "./modals/SuccessModal";
+import { Loader } from "./Loader";
 
 const ContactFormContainer = () => {
     // SWITCH BETWEEN CONTACT AND ESTIMATE FORM | BOTH FORMS DO THE SAME THING FOR NOW
@@ -20,6 +21,7 @@ const ContactFormContainer = () => {
     const [inputClicked, setInputClicked] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
     const [estimateSuccess, setEstimateSuccess] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const InputClass = "border-2 border-gray-400 my-2 p-2 rounded-sm w-full shadow-md";
 
@@ -36,6 +38,7 @@ const ContactFormContainer = () => {
     } = useForm();
 
     const onSubmit = (data) => {
+        // open confirmation modal
         setIsOpen(true);
         console.log(data);
     };
@@ -54,8 +57,13 @@ const ContactFormContainer = () => {
             );
         // close modal
         setIsOpen(false);
-        // open success modal
-        setEstimateSuccess(true);
+        setTimeout(() => {
+            // open success modal
+            setEstimateSuccess(true);
+            setLoading(false);
+        }, 1000);
+
+        setLoading(true);
     };
 
     //EMAIL JS
@@ -82,6 +90,7 @@ const ContactFormContainer = () => {
                     closeModal={() => setEstimateSuccess(false)}
                 />
             )}
+            {loading ? <Loader /> : null}
             <div className="absolute hidden top-[250px] left-60 2xl:flex">
                 <Image loading="eager" src={HandyMan} alt="Brite Logo" />
             </div>
