@@ -13,6 +13,7 @@ import Button from "./Button";
 import ConfirmationModal from "./modals/ConfirmationModal";
 import SuccessModal from "./modals/SuccessModal";
 import { Loader } from "./Loader";
+import Search from "./Search";
 
 const services = [
     { name: "Exterior Cleaning" },
@@ -42,6 +43,7 @@ const ContactFormContainer = () => {
         handleSubmit,
         getValues,
         control,
+        setValue,
         formState: { errors },
     } = useForm();
 
@@ -72,6 +74,14 @@ const ContactFormContainer = () => {
         }, 1000);
 
         setLoading(true);
+    };
+
+    const handleAutocompleteSelect = (address: string, latLng: { lat: number; lng: number }) => {
+        setValue("address", address); // Update the address value in the form
+    };
+
+    const handleUpdateAddressValue = (address: string) => {
+        setValue("address", address); // Update the address value in the form
     };
 
     //EMAIL JS
@@ -178,12 +188,15 @@ const ContactFormContainer = () => {
                             className={InputClass}
                             onClick={() => setInputClicked(true)}
                             type="text"
-                            placeholder="2211 Allen Lane Orlando, FL 32792"
+                            placeholder="Address*"
                             {...register("address", {
                                 required: true,
-                                pattern: /^\d+\s[a-zA-Z]+\s[a-zA-Z]+$/,
                             })}
                         />
+                        {/* <Search
+                            updateAddressValue={handleUpdateAddressValue}
+                            onSelect={handleAutocompleteSelect}
+                        /> */}
                         {errors.address && errors.address.type === "required" && (
                             <p className="text-sm text-red-600 ml-4">Address is required.</p>
                         )}
