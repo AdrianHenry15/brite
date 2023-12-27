@@ -1,6 +1,6 @@
 // "use client";
 
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
 import IconItem from "./IconItem";
 
