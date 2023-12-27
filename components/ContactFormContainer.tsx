@@ -215,7 +215,7 @@ const ContactFormContainer = () => {
                             defaultValue={services[0].name}
                             render={({ field }) => (
                                 <select
-                                    className={`${InputClass}`}
+                                    className={`${InputClass} py-4`}
                                     {...field}
                                     onClick={() => setInputClicked(true)}
                                 >
