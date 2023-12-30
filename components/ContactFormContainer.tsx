@@ -14,6 +14,7 @@ import ConfirmationModal from "./modals/ConfirmationModal";
 import SuccessModal from "./modals/SuccessModal";
 import { Loader } from "./Loader";
 import Search from "./Search";
+import toast from "react-hot-toast";
 
 const services = [
     { name: "Exterior Cleaning" },
@@ -59,9 +60,11 @@ const ContactFormContainer = () => {
             .send(SERVICE_ID as string, TEMPLATE_ID as string, templateParams, PUBLIC_KEY as string)
             .then(
                 function (response) {
+                    toast.success("Your estimate has been submitted successfully!");
                     console.log("SUCCESS!", response.status, response.text);
                 },
                 function (error) {
+                    toast.error("There was an error submitting your estimate. Please try again.");
                     console.log("FAILED...", error);
                 }
             );
