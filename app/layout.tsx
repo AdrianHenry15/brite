@@ -1,6 +1,7 @@
 // import { ClerkProvider } from "@clerk/nextjs";
 import React, { Suspense } from "react";
 import { Inter } from "next/font/google";
+import { Toaster } from "react-hot-toast";
 
 import { Loader } from "../components/Loader";
 
@@ -20,6 +21,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <html lang="en">
             <link rel="icon" href="/assets/icons/brite-logo.png" />
             <body className={inter.className}>
+                <Toaster />
                 <Script
                     strategy="beforeInteractive"
                     id="googlemaps"
