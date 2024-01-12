@@ -24,29 +24,6 @@ interface IIconBannerProps {
 }
 
 const IconBanner = (props: IIconBannerProps) => {
-    // const containerRef = useRef<HTMLDivElement>(null);
-
-    // useEffect(() => {
-    //     const options = {
-    //         threshold: 0.1, // Adjust the threshold as needed (percentage of element visibility)
-    //     };
-
-    //     const callback: IntersectionObserverCallback = (entries) => {
-    //         entries.forEach((entry) => {
-    //             if (entry.isIntersecting) {
-    //                 containerRef.current?.classList.add("show");
-    //             }
-    //         });
-    //     };
-
-    //     const observer = new IntersectionObserver(callback, options);
-
-    //     if (containerRef.current) {
-    //         observer.observe(containerRef.current);
-    //     }
-
-    //     return () => observer.disconnect(); // Cleanup observer on component unmount
-    // }, []);
     return (
         <section
             // ref={containerRef}
@@ -63,14 +40,14 @@ const IconBanner = (props: IIconBannerProps) => {
             />
             <IconItem
                 addBtn={props.addBtn2}
-                link={props.link1}
+                link={props.link2}
                 icon={props.icon2}
                 title={props.title2}
                 description={props.description2}
             />
             <IconItem
                 addBtn={props.addBtn3}
-                link={props.link1}
+                link={props.link3}
                 icon={props.icon3}
                 title={props.title3}
                 description={props.description3}
