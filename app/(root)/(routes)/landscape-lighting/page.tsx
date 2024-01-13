@@ -9,7 +9,6 @@ import { MdHighlight } from "react-icons/md";
 import ImgTextLayout from "../../../../components/layout/sections/ImgTextOverlay";
 import IconBanner from "../../../../components/icon-banner/IconBanner";
 import ImgTextRow from "../../../../components/layout/sections/ImgTextRow";
-import MobileImgText from "../../../../components/layout/sections/MobileImgText";
 
 import LightingSplash from "../../../../public/assets/imgs/landscape-lighting.jpg";
 import AccentLighting from "../../../../public/assets/imgs/accent-lighting.jpg";
@@ -65,12 +64,17 @@ const LandscapeLighting = () => {
                 }
             />
             {/* LANDSCAPE LIGHTING SERVICES */}
-            <h5 ref={textRef} className="fade-in text-black text-center text-2xl underline">
+            <h5
+                ref={textRef}
+                // add 'fade-in' class to fade in on scroll
+                className="text-black text-center text-2xl underline"
+            >
                 Our Landscape Lighting Services
             </h5>
             <div>
                 <ImgTextRow
                     textLeft={true}
+                    imgTopOnMobile
                     imgLeft={false}
                     src={AccentLighting}
                     link={"/estimate"}
@@ -81,6 +85,7 @@ const LandscapeLighting = () => {
                 />
                 <ImgTextRow
                     textLeft={false}
+                    imgTopOnMobile
                     imgLeft={true}
                     src={PathLighting}
                     link={"/estimate"}
@@ -91,35 +96,8 @@ const LandscapeLighting = () => {
                 />
                 <ImgTextRow
                     textLeft={true}
+                    imgTopOnMobile
                     imgLeft={false}
-                    src={UpLighting}
-                    link={"/estimate"}
-                    title={"Up Lighting"}
-                    description={
-                        "Uplighting is a lighting technique in which light fixtures are strategically positioned on or near the ground to illuminate architectural features, trees, plants, or other elements from the bottom upward. This method creates a visually appealing effect by casting light on surfaces, emphasizing textures, and adding depth to the environment."
-                    }
-                />
-                {/* MOBILE */}
-                <MobileImgText
-                    textLeft={true}
-                    src={AccentLighting}
-                    link={"/estimate"}
-                    title={"Accent Lighting"}
-                    description={
-                        "Accent lighting is a type of lighting design that focuses on highlighting specific objects, areas, or architectural features within a space. The purpose of accent lighting is to draw attention to particular elements, creating visual interest and enhancing the overall atmosphere."
-                    }
-                />
-                <MobileImgText
-                    textLeft={false}
-                    src={PathLighting}
-                    link={"/estimate"}
-                    title={"Path Lighting"}
-                    description={
-                        "Path lighting refers to the use of strategically placed light fixtures to illuminate walkways, pathways, or outdoor trails. The primary purpose of path lighting is to enhance safety by providing visibility along routes, guide people through outdoor spaces, and add aesthetic appeal to landscapes during the nighttime."
-                    }
-                />
-                <MobileImgText
-                    textLeft={true}
                     src={UpLighting}
                     link={"/estimate"}
                     title={"Up Lighting"}

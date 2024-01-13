@@ -8,10 +8,8 @@ import { MdOutlineRoofing } from "react-icons/md";
 import ImgTextOverlay from "../../../../components/layout/sections/ImgTextOverlay";
 import IconBanner from "../../../../components/icon-banner/IconBanner";
 import ImgTextRow from "../../../../components/layout/sections/ImgTextRow";
-import MobileImgText from "../../../../components/layout/sections/MobileImgText";
 
 import RoofSplash from "../../../../public/assets/imgs/roof-splash.jpg";
-import Gutter from "../../../../public/assets/imgs/gutter.jpg";
 import WindowWashing from "../../../../public/assets/imgs/window-washing.jpg";
 import PressureWashing from "../../../../public/assets/imgs/pressure-washing.jpg";
 import Roof from "../../../../public/assets/imgs/roof.jpg";
@@ -64,11 +62,16 @@ const ExteriorCleaning = () => {
                 }
             />
             {/* EXTERIOR CLEANING SERVICES */}
-            <h5 ref={textRef} className="fade-in text-black text-center text-2xl underline">
+            <h5
+                ref={textRef}
+                // add 'fade-in' class to fade in on scroll
+                className="text-black text-center text-4xl underline"
+            >
                 Our Exterior Cleaning Services
             </h5>
             <div>
                 <ImgTextRow
+                    imgTopOnMobile
                     textLeft={true}
                     imgLeft={false}
                     src={WindowWashing}
@@ -79,6 +82,7 @@ const ExteriorCleaning = () => {
                     }
                 />
                 <ImgTextRow
+                    imgTopOnMobile
                     textLeft={false}
                     imgLeft={true}
                     src={PressureWashing}
@@ -89,36 +93,9 @@ const ExteriorCleaning = () => {
                     }
                 />
                 <ImgTextRow
+                    imgTopOnMobile
                     textLeft={true}
                     imgLeft={false}
-                    src={Roof}
-                    link={"/estimate"}
-                    title={"Roof Cleaning"}
-                    description={
-                        "Roof cleaning is the process of removing dirt, algae, moss, lichen, and other contaminants from the roof surface to maintain its appearance, extend its lifespan, and prevent potential damage."
-                    }
-                />
-                {/* MOBILE */}
-                <MobileImgText
-                    textLeft={true}
-                    src={WindowWashing}
-                    link={"/estimate"}
-                    title={"Window Washing"}
-                    description={
-                        "Window Washing is the process of cleaning and maintaining the glass surfaces of windows to ensure clarity, cleanliness, and a clear view. It is an essential aspect of building maintenance, both for residential and commercial properties. "
-                    }
-                />
-                <MobileImgText
-                    textLeft={false}
-                    src={PressureWashing}
-                    link={"/estimate"}
-                    title={"Pressure Washing"}
-                    description={
-                        "Pressure washing, also known as power washing, is a highly effective method of cleaning surfaces using a high-pressure stream of water. This technique is employed to remove dirt, grime, mold, mildew, stains, and other contaminants from a variety of surfaces."
-                    }
-                />
-                <MobileImgText
-                    textLeft={true}
                     src={Roof}
                     link={"/estimate"}
                     title={"Roof Cleaning"}

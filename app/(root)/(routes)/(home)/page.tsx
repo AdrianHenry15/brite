@@ -9,93 +9,75 @@ import SocialProof from "../../../../components/layout/home/SocialProof";
 import ImgTextOverlay from "../../../../components/layout/sections/ImgTextOverlay";
 import IconBanner from "../../../../components/icon-banner/IconBanner";
 import ImgTextRow from "../../../../components/layout/sections/ImgTextRow";
-import MobileImgText from "../../../../components/layout/sections/MobileImgText";
 
-import GreenMountains from "../../../../public/assets/imgs/green-mountains.jpg";
-import Water from "../../../../public/assets/imgs/blue-water.jpg";
-import AccentLighting from "../../../../public/assets/imgs/accent-lighting.jpg";
-import StringLighting from "../../../../public/assets/imgs/string-lighting.jpg";
+import BriteSplash from "../../../../public/assets/imgs/brite-splash.webp";
+import CustomerCentric from "../../../../public/assets/imgs/customer-centric.jpg";
+import Workmanship from "../../../../public/assets/imgs/workmanship.jpg";
+import Community from "../../../../public/assets/imgs/community.jpg";
 
 export default async function Home() {
     return (
         <div>
-            <ImgTextOverlay src={GreenMountains} name={"Brite Lighting"} />
+            <ImgTextOverlay
+                src={BriteSplash}
+                name={"The Last Exterior Cleaning Company You Will Call"}
+            />
             {/* <Jumbotron /> */}
             <IconBanner
+                // ITEM 1 - EXTERIOR CLEANING
                 icon1={<MdOutlineRoofing size={50} />}
                 title1={"Exterior Cleaning"}
                 description1={
-                    "Brite's Exterior Cleaning includes: Window Washing, Pressure Wash Cleaning, Gutter Cleaning, and Roof Cleaning"
+                    "Brite delivers Window Cleaning, Trash Bin Cleaning, Pressure Washing, Soft Washing & more to Charlotte’s homes and businesses. "
                 }
                 addBtn1
                 link1="/exterior-cleaning"
+                // ITEM 2 - LANDSCAPE LIGHTING
                 icon2={<FaRegLightbulb size={50} />}
                 title2={"Landscape Lighting"}
                 description2={
-                    "Brite's Landscape lights enhance aesthetics with strategically placed fixtures and energy-efficient illumination"
+                    "Brite's professionally designed lighting systems are engineered to provide safety, functionality and beauty in your outdoor areas."
                 }
                 addBtn2
                 link2="/landscape-lighting"
+                // ITEM 3 - CHRISTMAS LIGHTING
                 icon3={<FaIcicles size={50} />}
                 title3={"Christmas Lighting"}
                 description3={
-                    "Brite's Christmas lights bring festive joy to outdoor spaces with carefully placed and eco-friendly lighting"
+                    "Brite provides the design, quality material, installation and storage to bring your winter wonderland to life year after year."
                 }
                 addBtn3
                 link3="/christmas-lighting"
             />
             <SocialProof />
+            {/* IMAGE TEXT ROWS */}
             <ImgTextRow
-                src={Water}
-                textLeft
-                link={"/estimate"}
-                title={"Pressure Washing"}
-                description={
-                    "Pressure Washing is a highly effective method of cleaning surfaces using a high-pressure stream of water. This technique is employed to remove dirt, grime, mold, mildew, stains, and other contaminants from a variety of surfaces."
-                }
-            />
-            <ImgTextRow
-                src={AccentLighting}
                 imgLeft
+                src={CustomerCentric}
+                imgTopOnMobile
                 link={"/estimate"}
-                title={"Accent Lighting"}
+                title={"Customer Centric"}
                 description={
-                    "Accent Lighting is a form of illumination designed to highlight specific features or areas within a space. Using strategically placed light fixtures, such as spotlights or wall-mounted fixtures, accent lighting adds emphasis to objects like artwork, architectural details or focal points"
+                    "We are committed to providing the best customer service experience in the industry. We are not satisfied until you are satisfied."
                 }
             />
             <ImgTextRow
-                src={StringLighting}
+                src={Workmanship}
                 textLeft
                 link={"/estimate"}
-                title={"String Lighting"}
+                title={"Quality Workmanship"}
                 description={
-                    "String Lighting consists of a series of small, decorative light bulbs connected by a flexible cord or wire, creating a charming and festive illumination. Typically used for outdoor and decorative purposes, string lights are popular for enhancing the ambiance of various spaces"
+                    "Exemplifying unparalleled skill and precision, our workmanship is a testament to quality, ensuring every project is crafted with expertise and dedication for lasting excellence."
                 }
             />
-            <MobileImgText
-                src={Water}
-                textLeft
+            <ImgTextRow
+                src={Community}
+                imgLeft
+                imgTopOnMobile
                 link={"/estimate"}
-                title={"Pressure Washing"}
+                title={"Community First"}
                 description={
-                    "Pressure Washing is a highly effective method of cleaning surfaces using a high-pressure stream of water. This technique is employed to remove dirt, grime, mold, mildew, stains, and other contaminants from a variety of surfaces."
-                }
-            />
-            <MobileImgText
-                src={AccentLighting}
-                link={"/estimate"}
-                title={"Accent Lighting"}
-                description={
-                    "Accent Lighting is a form of illumination designed to highlight specific features or areas within a space. Using strategically placed light fixtures, such as spotlights or wall-mounted fixtures, accent lighting adds emphasis to objects like artwork, architectural details or focal points"
-                }
-            />
-            <MobileImgText
-                src={StringLighting}
-                textLeft
-                link={"/estimate"}
-                title={"String Lighting"}
-                description={
-                    "String Lighting consists of a series of small, decorative light bulbs connected by a flexible cord or wire, creating a charming and festive illumination. Typically used for outdoor and decorative purposes, string lights are popular for enhancing the ambiance of various spaces"
+                    "We prioritize community well-being, fostering connections and contributing meaningfully to create a positive impact, putting the community at the heart of everything we do."
                 }
             />
             <WelcomeMessage />

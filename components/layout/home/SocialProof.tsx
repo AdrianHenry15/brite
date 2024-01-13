@@ -33,7 +33,8 @@ const SocialProof = () => {
         // TODO: UPGRADE TO BASIC PLAN FOR ELFSIGHT TO TAKE OFF ELFSIGHT BRANDING
         <section
             ref={containerRef}
-            className={`fade-in bg-white w-full flex flex-col items-center py-24 px-10 justify-center relative overflow-hidden shadow-inner border-y-[1px]`}
+            // add 'fade-in' class to fade in on scroll
+            className={`bg-white w-full flex flex-col items-center py-24 px-10 justify-center relative overflow-hidden shadow-inner border-y-[1px]`}
         >
             <Script
                 src="https://static.elfsight.com/platform/platform.js"

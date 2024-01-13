@@ -8,7 +8,6 @@ import { FaIcicles } from "react-icons/fa";
 
 import ImgTextOverlay from "../../../../components/layout/sections/ImgTextOverlay";
 import IconBanner from "../../../../components/icon-banner/IconBanner";
-import MobileImgText from "../../../../components/layout/sections/MobileImgText";
 import ImgTextRow from "../../../../components/layout/sections/ImgTextRow";
 
 import ChristmasLightingSplash from "../../../../public/assets/imgs/christmas-lights.jpg";
@@ -65,12 +64,17 @@ const ChristmasLighting = () => {
                 }
             />
             {/* LANDSCAPE LIGHTING SERVICES */}
-            <h5 ref={textRef} className="fade-in text-black text-center text-2xl underline">
+            <h5
+                ref={textRef}
+                // add 'fade-in' class to fade in on scroll
+                className="text-black text-center text-4xl underline"
+            >
                 Our Christmas Lighting Services
             </h5>
             <div>
                 <ImgTextRow
                     textLeft={true}
+                    imgTopOnMobile
                     imgLeft={false}
                     src={CurtainLights}
                     link={"/estimate"}
@@ -81,6 +85,7 @@ const ChristmasLighting = () => {
                 />
                 <ImgTextRow
                     textLeft={false}
+                    imgTopOnMobile
                     imgLeft={true}
                     src={RopeLights}
                     link={"/estimate"}
@@ -91,40 +96,13 @@ const ChristmasLighting = () => {
                 />
                 <ImgTextRow
                     textLeft={true}
+                    imgTopOnMobile
                     imgLeft={false}
                     src={ProjectorLights}
                     link={"/estimate"}
                     title={"Projector Lights"}
                     description={
                         "Projector lights, also known as holiday projector lights or LED projection lights, are lighting devices that use light projection technology to display colorful patterns, images, or animations onto surfaces. These lights are commonly used for holiday decorations, events, and special occasions. "
-                    }
-                />
-                {/* MOBILE */}
-                <MobileImgText
-                    textLeft={true}
-                    src={CurtainLights}
-                    link={"/estimate"}
-                    title={"Curtain Lights"}
-                    description={
-                        "Prevent water damage and maintain the proper functioning your drainage system by removing debris, leaves, and dirt from gutters. Get a Twice A Year Estimate for our Gutter Cleaning services"
-                    }
-                />
-                <MobileImgText
-                    textLeft={false}
-                    src={RopeLights}
-                    link={"/estimate"}
-                    title={"Rope Lights"}
-                    description={
-                        "Prevent water damage and maintain the proper functioning your drainage system by removing debris, leaves, and dirt from gutters. Get a Twice A Year Estimate for our Gutter Cleaning services"
-                    }
-                />
-                <MobileImgText
-                    textLeft={true}
-                    src={ProjectorLights}
-                    link={"/estimate"}
-                    title={"Projector Lights"}
-                    description={
-                        "Prevent water damage and maintain the proper functioning your drainage system by removing debris, leaves, and dirt from gutters. Get a Twice A Year Estimate for our Gutter Cleaning services"
                     }
                 />
             </div>

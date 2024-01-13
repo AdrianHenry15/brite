@@ -40,43 +40,44 @@ const ImgTextRow = (props: IImgTextRowProps) => {
 
         return () => observer.disconnect(); // Cleanup observer on component unmount
     }, []);
+
     return (
         <section
             ref={containerRef}
-            className="fade-in hidden items-center px-4 py-10 md:flex md:w-full md:justify-center"
+            // add 'fade-in' class to fade in on scroll
+            className="flex flex-col-reverse items-center px-4 my-10 py-10 md:flex md:w-full md:justify-center"
         >
-            <div className="self-center md:h-[350px] md:w-[1200px] md:flex">
-                {/* IMAGE */}
-                {props.imgLeft || props.imgTopOnMobile ? (
-                    <div className="shadow-inner md:flex md:flex-1">
-                        <Image priority loading="eager" src={props.src} alt={props.title} />
-                    </div>
-                ) : null}
-                {/* TEXT */}
+            {/* THIS CONTAINER HOLDS THE IMAGE AND THE TEXT CONTAINER  */}
+            <div
+                className={`${
+                    props.imgLeft ? "lg:flex-row" : "lg:flex-row-reverse"
+                } self-center items-center lg:w-9/12 lg:h-[350px] lg:flex`}
+            >
+                {/* IMAGE AND TEXT */}
+                <div className="shadow-inner md:max-w-[550px] md:flex md:flex-1">
+                    <Image priority loading="eager" src={props.src} alt={props.title} />
+                </div>
                 <div
                     className={`${
                         props.textLeft
                             ? "md:text-left md:items-start"
                             : "md:text-right md:items-end"
-                    } md:flex md:flex-1 md:flex-col`}
+                    } text-center md:flex md:flex-1 md:flex-col`}
                 >
+                    {/* TITLE */}
                     <h5 className="font-semibold py-6 text-2xl">{props.title}</h5>
+                    {/* DESCRIPTION */}
                     <p className="text-light text-sm text-zinc-950 px-4 md:max-w-md lg:max-w-lg">
                         {props.description}
                     </p>
-                    <Link href={"/estimate"}>
+                    {/* BUTTON */}
+                    <Link className="flex justify-center" href={"/estimate"}>
                         <Button
                             className={`${props.textLeft ? "ml-4" : "mr-4"} animate-pulse mt-4`}
                             name={"Get Your Free Estimate Now"}
                         />
                     </Link>
                 </div>
-                {/* IMAGE */}
-                {!props.imgLeft ? (
-                    <div className="md:flex md:flex-1">
-                        <Image priority loading="eager" src={props.src} alt={props.title} />
-                    </div>
-                ) : null}
             </div>
         </section>
     );
