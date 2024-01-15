@@ -16,6 +16,8 @@ import { Loader } from "./Loader";
 import toast from "react-hot-toast";
 import Dropdown from "./inputs/Dropdown";
 import { FrequencyList, ServicesList } from "../lib/constants";
+import Input from "./inputs/Input";
+import Textarea from "./inputs/Textarea";
 
 const ContactFormContainer = () => {
     // SWITCH BETWEEN CONTACT AND ESTIMATE FORM | BOTH FORMS DO THE SAME THING FOR NOW
@@ -115,122 +117,57 @@ const ContactFormContainer = () => {
                 </div>
                 {/* FORM */}
                 <form className="self-center w-full md:w-2/3" onSubmit={handleSubmit(onSubmit)}>
-                    <div>
-                        {/* FIRST NAME */}
-                        <input
-                            className={InputClass}
-                            onClick={() => setInputClicked(true)}
-                            type="text"
-                            placeholder="First Name"
-                            {...register("firstName", { required: false })}
-                        />
-                    </div>
-                    <div>
-                        {/* LAST NAME */}
-                        <input
-                            className={InputClass}
-                            onClick={() => setInputClicked(true)}
-                            type="text"
-                            placeholder="Last Name"
-                            {...register("lastName", { required: false })}
-                        />
-                    </div>
-                    <div>
-                        {/* PHONE NUMBER */}
-                        <input
-                            className={InputClass}
-                            onClick={() => setInputClicked(true)}
-                            type="tel"
-                            placeholder="Phone Number"
-                            {...register("phoneNumber", {
-                                required: false,
-                                pattern: /^[0-9]{10}$/,
-                            })}
-                        />
-                        {errors.phoneNumber && errors.phoneNumber.type === "pattern" && (
-                            <p className="text-sm text-red-600 ml-4">
-                                Phone Number should be 10 digits.
-                            </p>
-                        )}
-                    </div>
+                    {/* FIRST NAME */}
+                    <Input
+                        inputName={"firstName"}
+                        inputLabel={"First Name"}
+                        placeholder={"First Name"}
+                        control={control}
+                    />
+                    {/* LAST NAME */}
+                    <Input
+                        inputName={"lastName"}
+                        inputLabel={"Last Name"}
+                        placeholder={"Last Name"}
+                        control={control}
+                    />
+                    {/* PHONE NUMBER */}
+                    <Input
+                        inputName={"phoneNumber"}
+                        inputLabel={"Phone Number"}
+                        placeholder={"Phone Number*"}
+                        control={control}
+                        errors={errors}
+                        errorPatternText={"Phone Number is not valid."}
+                    />
                     {/* EMAIL */}
-                    <div>
-                        <input
-                            className={InputClass}
-                            onClick={() => setInputClicked(true)}
-                            type="text"
-                            placeholder="Email*"
-                            {...register("email", {
-                                required: true,
-                                pattern: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/,
-                            })}
-                        />
-                        {errors.email && errors.email.type === "required" && (
-                            <p className="text-sm text-red-600 ml-4">Email is required.</p>
-                        )}
-                        {errors.email && errors.email.type === "pattern" && (
-                            <p className="text-sm text-red-600 ml-4">Email is not valid.</p>
-                        )}
-                    </div>
+                    <Input
+                        inputName={"email"}
+                        inputLabel={"Email"}
+                        placeholder={"Email*"}
+                        control={control}
+                        errors={errors}
+                        errorRequiredText={"Email is Required."}
+                        errorPatternText={"Email is not valid."}
+                    />
                     {/* ADDRESS */}
-                    <div>
-                        <input
-                            className={InputClass}
-                            onClick={() => setInputClicked(true)}
-                            type="text"
-                            placeholder="Address*"
-                            {...register("address", {
-                                required: true,
-                            })}
-                        />
-                        {/* <Search
-                            updateAddressValue={handleUpdateAddressValue}
-                            onSelect={handleAutocompleteSelect}
-                        /> */}
-                        {errors.address && errors.address.type === "required" && (
-                            <p className="text-sm text-red-600 ml-4">Address is required.</p>
-                        )}
-                        {errors.address && errors.address.type === "pattern" && (
-                            <p className="text-sm text-red-600 ml-4">Address is not valid.</p>
-                        )}
-                    </div>
+                    <Input
+                        inputName={"address"}
+                        inputLabel={"Address"}
+                        placeholder={"Address*"}
+                        control={control}
+                        errors={errors}
+                        errorRequiredText={"Address is Required."}
+                        errorPatternText={"Address is not valid."}
+                    />
                     {/* SERVICE */}
-                    {/* <div className="py-2 w-full">
-                        <label className="font-semibold text-lg mb-2 underline">
-                            Choose Service:
-                        </label>
-                        <Controller
-                            name="service"
-                            control={control}
-                            defaultValue={services[0].name}
-                            render={({ field }) => (
-                                <select
-                                    className={`${InputClass} py-4`}
-                                    {...field}
-                                    onClick={() => setInputClicked(true)}
-                                >
-                                    {services.map((service) => (
-                                        <option
-                                            key={service.name}
-                                            value={service.name}
-                                            onClick={() => setInputClicked(true)}
-                                        >
-                                            {service.name}
-                                        </option>
-                                    ))}
-                                </select>
-                            )}
-                        />
-                        {errors.service && errors.service.type === "required" && (
-                            <p className="text-sm text-red-600 ml-4">Service is required.</p>
-                        )}
-                    </div> */}
                     <Dropdown
                         inputName={"service"}
                         inputLabel={"Choose Service:"}
                         control={control}
                         errors={errors}
                         options={ServicesList}
+                        errorText="Service is required."
                     />
                     {/* FREQUENCY */}
                     {watch("service") === "Exterior Cleaning" ? (
@@ -240,17 +177,16 @@ const ContactFormContainer = () => {
                             control={control}
                             errors={errors}
                             options={FrequencyList}
+                            errorText="Frequency is required."
                         />
                     ) : null}
                     {/* COMMENT */}
-                    <div>
-                        <textarea
-                            className="border-2 border-gray-400 my-2 p-2 w-full h-40"
-                            placeholder="Comment"
-                            {...register("comment", { required: false })}
-                            onClick={() => setInputClicked(true)}
-                        />
-                    </div>
+                    <Textarea
+                        inputName={"comment"}
+                        inputLabel={"Comment"}
+                        placeholder={"Comment"}
+                        control={control}
+                    />
                     <div className={`${inputClicked ? "" : "animate-pulse"} my-10`}>
                         <Button
                             onClick={() => {}}

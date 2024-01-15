@@ -9,7 +9,7 @@ interface IDropdownProps {
     control: any;
     errors: FieldErrors;
     options: { name: string }[];
-    errorText?: string;
+    errorText: string;
 }
 
 const Dropdown = ({

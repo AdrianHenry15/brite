@@ -30,9 +30,9 @@ export const NavMenuAltItems: NavMenu[] = [
 ];
 
 export const ServicesList = [
+    { name: "Christmas Lighting" },
     { name: "Exterior Cleaning" },
     { name: "Landscape Lighting" },
-    { name: "Christmas Lighting" },
     { name: "Other" },
 ];
 
