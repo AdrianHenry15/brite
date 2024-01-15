@@ -38,7 +38,7 @@ const ImgTextOverlay = (props: IImgTextProps) => {
         <section
             ref={containerRef}
             // add 'fade-in' class to fade in on scroll
-            className="relative flex w-full bg-black"
+            className="fade-in relative flex w-full bg-black"
         >
             <Image
                 priority

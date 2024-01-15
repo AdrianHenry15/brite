@@ -13,15 +13,9 @@ import Button from "./Button";
 import ConfirmationModal from "./modals/ConfirmationModal";
 import SuccessModal from "./modals/SuccessModal";
 import { Loader } from "./Loader";
-import Search from "./Search";
 import toast from "react-hot-toast";
-
-const services = [
-    { name: "Exterior Cleaning" },
-    { name: "Landscape Lighting" },
-    { name: "Christmas Lighting" },
-    { name: "Other" },
-];
+import Dropdown from "./inputs/Dropdown";
+import { FrequencyList, ServicesList } from "../lib/constants";
 
 const ContactFormContainer = () => {
     // SWITCH BETWEEN CONTACT AND ESTIMATE FORM | BOTH FORMS DO THE SAME THING FOR NOW
@@ -44,7 +38,7 @@ const ContactFormContainer = () => {
         handleSubmit,
         getValues,
         control,
-        setValue,
+        watch,
         formState: { errors },
     } = useForm();
 
@@ -79,14 +73,6 @@ const ContactFormContainer = () => {
         setLoading(true);
     };
 
-    const handleAutocompleteSelect = (address: string, latLng: { lat: number; lng: number }) => {
-        setValue("address", address); // Update the address value in the form
-    };
-
-    const handleUpdateAddressValue = (address: string) => {
-        setValue("address", address); // Update the address value in the form
-    };
-
     //EMAIL JS
     const templateParams = {
         firstName: getValues("firstName"),
@@ -95,6 +81,7 @@ const ContactFormContainer = () => {
         email: getValues("email"),
         address: getValues("address"),
         service: getValues("service"),
+        frequency: getValues("frequency"),
         comment: getValues("comment"),
     };
 
@@ -208,7 +195,7 @@ const ContactFormContainer = () => {
                         )}
                     </div>
                     {/* SERVICE */}
-                    <div className="py-2 w-full">
+                    {/* <div className="py-2 w-full">
                         <label className="font-semibold text-lg mb-2 underline">
                             Choose Service:
                         </label>
@@ -237,7 +224,24 @@ const ContactFormContainer = () => {
                         {errors.service && errors.service.type === "required" && (
                             <p className="text-sm text-red-600 ml-4">Service is required.</p>
                         )}
-                    </div>
+                    </div> */}
+                    <Dropdown
+                        inputName={"service"}
+                        inputLabel={"Choose Service:"}
+                        control={control}
+                        errors={errors}
+                        options={ServicesList}
+                    />
+                    {/* FREQUENCY */}
+                    {watch("service") === "Exterior Cleaning" ? (
+                        <Dropdown
+                            inputName={"frequency"}
+                            inputLabel={"Choose Frequency:"}
+                            control={control}
+                            errors={errors}
+                            options={FrequencyList}
+                        />
+                    ) : null}
                     {/* COMMENT */}
                     <div>
                         <textarea

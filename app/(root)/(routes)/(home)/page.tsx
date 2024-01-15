@@ -51,7 +51,7 @@ export default async function Home() {
             />
             <SocialProof />
             {/* IMAGE TEXT ROWS */}
-            <ImgTextRow
+            {/* <ImgTextRow
                 imgLeft
                 src={CustomerCentric}
                 imgTopOnMobile
@@ -79,7 +79,7 @@ export default async function Home() {
                 description={
                     "We prioritize community well-being, fostering connections and contributing meaningfully to create a positive impact, putting the community at the heart of everything we do."
                 }
-            />
+            /> */}
             <WelcomeMessage />
         </div>
     );

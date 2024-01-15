@@ -28,3 +28,18 @@ export const NavMenuAltItems: NavMenu[] = [
         link: "/estimate",
     },
 ];
+
+export const ServicesList = [
+    { name: "Exterior Cleaning" },
+    { name: "Landscape Lighting" },
+    { name: "Christmas Lighting" },
+    { name: "Other" },
+];
+
+export const FrequencyList = [
+    { name: "Once A Year" },
+    { name: "Twice A Year" },
+    { name: "Quarterly" },
+    { name: "Monthly" },
+    { name: "Other" },
+];

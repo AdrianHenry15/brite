@@ -18,32 +18,32 @@ interface IIconItemProps {
 const IconItem = (props: IIconItemProps) => {
     const containerRef = useRef<HTMLDivElement>(null);
 
-    useEffect(() => {
-        const options = {
-            threshold: 0.1, // Adjust the threshold as needed (percentage of element visibility)
-        };
+    // useEffect(() => {
+    //     const options = {
+    //         threshold: 0.1, // Adjust the threshold as needed (percentage of element visibility)
+    //     };
 
-        const callback: IntersectionObserverCallback = (entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    containerRef.current?.classList.add("show");
-                }
-            });
-        };
+    //     const callback: IntersectionObserverCallback = (entries) => {
+    //         entries.forEach((entry) => {
+    //             if (entry.isIntersecting) {
+    //                 containerRef.current?.classList.add("show");
+    //             }
+    //         });
+    //     };
 
-        const observer = new IntersectionObserver(callback, options);
+    //     const observer = new IntersectionObserver(callback, options);
 
-        if (containerRef.current) {
-            observer.observe(containerRef.current);
-        }
+    //     if (containerRef.current) {
+    //         observer.observe(containerRef.current);
+    //     }
 
-        return () => observer.disconnect(); // Cleanup observer on component unmount
-    }, []);
+    //     return () => observer.disconnect(); // Cleanup observer on component unmount
+    // }, []);
 
     return (
         <div
-            ref={containerRef}
-            className={`fade-in flex flex-col items-center flex-1 px-6 py-10 md:py-0 md:px-2 lg:px-12 xl:px-16`}
+            // ref={containerRef}
+            className={`flex flex-col items-center flex-1 px-6 py-10 md:py-0 md:px-2 lg:px-12 xl:px-16`}
         >
             <a className="flex flex-col items-center" href={props.link}>
                 {props.icon}
