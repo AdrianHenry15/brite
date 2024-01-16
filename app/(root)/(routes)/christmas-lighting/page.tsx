@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React from "react";
 
 import { GiSewingString } from "react-icons/gi";
 import { TbDeviceProjector } from "react-icons/tb";
@@ -16,29 +16,6 @@ import RopeLights from "../../../../public/assets/imgs/rope-lights.jpg";
 import ProjectorLights from "../../../../public/assets/imgs/projector-lights.jpg";
 
 const ChristmasLighting = () => {
-    const textRef = useRef<HTMLDivElement>(null);
-
-    useEffect(() => {
-        const options = {
-            threshold: 0.1, // Adjust the threshold as needed (percentage of element visibility)
-        };
-
-        const callback: IntersectionObserverCallback = (entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    textRef.current?.classList.add("show");
-                }
-            });
-        };
-
-        const observer = new IntersectionObserver(callback, options);
-
-        if (textRef.current) {
-            observer.observe(textRef.current);
-        }
-
-        return () => observer.disconnect(); // Cleanup observer on component unmount
-    }, []);
     return (
         <div>
             <ImgTextOverlay
@@ -48,24 +25,23 @@ const ChristmasLighting = () => {
             />
             <IconBanner
                 icon1={<GiSewingString size={50} />}
-                title1={"String Lights"}
+                title1={"Design"}
                 description1={
-                    "Versatile and classic, suitable for wrapping around trees, outlining structures, or decorating both indoor and outdoor spaces"
+                    "Work with one of our lighting experts to give your home a look you’ll love for the holidays"
                 }
                 icon2={<TbDeviceProjector size={50} />}
-                title2={"LED Projection Lights"}
+                title2={"Installation, Removal, & Storage"}
                 description2={
-                    "LED Projection Lights project festive patterns or animations onto surfaces, adding a dynamic and visually engaging element to holiday decorations"
+                    "Never worry about your holiday decor again. We keep your display stored safely  and ready for installation and removal on your schedule."
                 }
                 icon3={<FaIcicles size={50} />}
-                title3={"Icicle Lights"}
+                title3={"Fast Service"}
                 description3={
-                    "Mimicking the appearance of hanging icicles, these lights are often used to decorate rooflines, eaves, or outdoor structures, creating a charming and whimsicle winter-inspired ambiance"
+                    "Nobody can control mother nature, but we can control how fast we solve the problems she may cause. We solve any service calls within 36 hours of notification."
                 }
             />
             {/* LANDSCAPE LIGHTING SERVICES */}
             <h5
-                ref={textRef}
                 // add 'fade-in' class to fade in on scroll
                 className="text-black text-center text-4xl underline"
             >
@@ -74,36 +50,33 @@ const ChristmasLighting = () => {
             <div>
                 <ImgTextRow
                     textLeft={true}
-                    imgTopOnMobile
                     imgLeft={false}
                     src={CurtainLights}
                     link={"/estimate"}
-                    title={"Curtain Lights"}
-                    description={
-                        "Curtain lights are a type of decorative Christmas lighting that features strands of lights arranged in a vertical curtain-like pattern. These lights are designed to create a visually appealing backdrop or curtain effect, adding a touch of magic and elegance to various settings."
-                    }
+                    title={"Commercial-Grade Material"}
+                    // description={
+                    //     "Curtain lights are a type of decorative Christmas lighting that features strands of lights arranged in a vertical curtain-like pattern. These lights are designed to create a visually appealing backdrop or curtain effect, adding a touch of magic and elegance to various settings."
+                    // }
                 />
                 <ImgTextRow
                     textLeft={false}
-                    imgTopOnMobile
                     imgLeft={true}
                     src={RopeLights}
                     link={"/estimate"}
-                    title={"Rope Lights"}
-                    description={
-                        "Rope lights are a type of decorative lighting consisting of small bulbs encased in a flexible, transparent, or colored tube. This tubing resembles a rope, giving the lights their distinctive appearance."
-                    }
+                    title={"Christmas Displays Custom to Your Home"}
+                    // description={
+                    //     "Rope lights are a type of decorative lighting consisting of small bulbs encased in a flexible, transparent, or colored tube. This tubing resembles a rope, giving the lights their distinctive appearance."
+                    // }
                 />
                 <ImgTextRow
                     textLeft={true}
-                    imgTopOnMobile
                     imgLeft={false}
                     src={ProjectorLights}
                     link={"/estimate"}
-                    title={"Projector Lights"}
-                    description={
-                        "Projector lights, also known as holiday projector lights or LED projection lights, are lighting devices that use light projection technology to display colorful patterns, images, or animations onto surfaces. These lights are commonly used for holiday decorations, events, and special occasions. "
-                    }
+                    title={"Quality-Trained Technicians"}
+                    // description={
+                    //     "Projector lights, also known as holiday projector lights or LED projection lights, are lighting devices that use light projection technology to display colorful patterns, images, or animations onto surfaces. These lights are commonly used for holiday decorations, events, and special occasions. "
+                    // }
                 />
             </div>
         </div>

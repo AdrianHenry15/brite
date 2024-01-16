@@ -16,29 +16,29 @@ import PathLighting from "../../../../public/assets/imgs/path-lighting.jpg";
 import UpLighting from "../../../../public/assets/imgs/up-lighting.jpg";
 
 const LandscapeLighting = () => {
-    const textRef = useRef<HTMLDivElement>(null);
+    // const textRef = useRef<HTMLDivElement>(null);
 
-    useEffect(() => {
-        const options = {
-            threshold: 0.1, // Adjust the threshold as needed (percentage of element visibility)
-        };
+    // useEffect(() => {
+    //     const options = {
+    //         threshold: 0.1, // Adjust the threshold as needed (percentage of element visibility)
+    //     };
 
-        const callback: IntersectionObserverCallback = (entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    textRef.current?.classList.add("show");
-                }
-            });
-        };
+    //     const callback: IntersectionObserverCallback = (entries) => {
+    //         entries.forEach((entry) => {
+    //             if (entry.isIntersecting) {
+    //                 textRef.current?.classList.add("show");
+    //             }
+    //         });
+    //     };
 
-        const observer = new IntersectionObserver(callback, options);
+    //     const observer = new IntersectionObserver(callback, options);
 
-        if (textRef.current) {
-            observer.observe(textRef.current);
-        }
+    //     if (textRef.current) {
+    //         observer.observe(textRef.current);
+    //     }
 
-        return () => observer.disconnect(); // Cleanup observer on component unmount
-    }, []);
+    //     return () => observer.disconnect(); // Cleanup observer on component unmount
+    // }, []);
     return (
         <div>
             <ImgTextLayout
@@ -48,61 +48,58 @@ const LandscapeLighting = () => {
             />
             <IconBanner
                 icon1={<FaRegLightbulb size={50} />}
-                title1={"Accent Lighting"}
+                title1={"Design"}
                 description1={
-                    "Accent Lighting is used to highlight specific features of your landscape, such as trees, sculptures, or architectural elements. It adds a touch of drama and draws attention to focal points"
+                    "Brite’s low-voltage lighting team will curate a design to professionally illuminate your landscapes and hardscapes. Our designs prioritize beauty and safety."
                 }
                 icon2={<CiLight size={50} />}
-                title2={"Path Lighting"}
+                title2={"Install"}
                 description2={
-                    "Path lighting is designed to illuminate walkways, driveways, and garden paths, providing both safety and aesthetics. It guides the way for pedestrians while enhancing the overall beauty of the landscape"
+                    "Brite will only use quality products installed by technicians trained to safely install a variety of low voltage systems."
                 }
                 icon3={<MdHighlight size={50} />}
-                title3={"Up Lighting"}
+                title3={"Maintain"}
                 description3={
-                    "Up lighting involves positioning fixtures at ground level to cast light upward, emphasizing tall structures like trees or the facade of a building. This technique creates a visually striking and dynamic effect, adding depth to the landscape"
+                    "Lifetime service and maintenance. We use material designed to last and partner with manufacturers who stand behind the products they deliver."
                 }
             />
             {/* LANDSCAPE LIGHTING SERVICES */}
             <h5
-                ref={textRef}
                 // add 'fade-in' class to fade in on scroll
                 className="text-black text-center text-2xl underline"
             >
                 Our Landscape Lighting Services
             </h5>
+            {/* ROWS */}
             <div>
                 <ImgTextRow
                     textLeft={true}
-                    imgTopOnMobile
                     imgLeft={false}
                     src={AccentLighting}
                     link={"/estimate"}
-                    title={"Accent Lighting"}
+                    title={"Design"}
                     description={
-                        "Accent lighting is a type of lighting design that focuses on highlighting specific objects, areas, or architectural features within a space. The purpose of accent lighting is to draw attention to particular elements, creating visual interest and enhancing the overall atmosphere."
+                        "Brite’s low-voltage lighting team will curate a design to professionally illuminate your landscapes and hardscapes. Our designs prioritize beauty and safety."
                     }
                 />
                 <ImgTextRow
                     textLeft={false}
-                    imgTopOnMobile
                     imgLeft={true}
                     src={PathLighting}
                     link={"/estimate"}
-                    title={"Path Lighting"}
+                    title={"Install"}
                     description={
-                        "Path lighting refers to the use of strategically placed light fixtures to illuminate walkways, pathways, or outdoor trails. The primary purpose of path lighting is to enhance safety by providing visibility along routes, guide people through outdoor spaces, and add aesthetic appeal to landscapes during the nighttime."
+                        "Brite will only use quality products installed by technicians trained to safely install a variety of low voltage systems."
                     }
                 />
                 <ImgTextRow
                     textLeft={true}
-                    imgTopOnMobile
                     imgLeft={false}
                     src={UpLighting}
                     link={"/estimate"}
-                    title={"Up Lighting"}
+                    title={"Maintain"}
                     description={
-                        "Uplighting is a lighting technique in which light fixtures are strategically positioned on or near the ground to illuminate architectural features, trees, plants, or other elements from the bottom upward. This method creates a visually appealing effect by casting light on surfaces, emphasizing textures, and adding depth to the environment."
+                        "Lifetime service and maintenance. We use material designed to last and partner with manufacturers who stand behind the products they deliver."
                     }
                 />
             </div>

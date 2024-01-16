@@ -17,7 +17,7 @@ const Button = (props: IButtonProps) => {
             onClick={props.onClick}
             className={`${props.className} ${props.roundedFull ? "rounded-full" : "rounded-lg"} ${
                 props.altColor
-                    ? "text-blue-600 bg-transparent hover:text-white"
+                    ? "text-blue-600 bg-transparent hover:text-black"
                     : "bg-blue-600 transition-all duration-300 ease-in-out hover:text-black text-white"
             } flex items-center py-2 px-6 shadow-lg`}
         >

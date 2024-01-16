@@ -8,12 +8,11 @@ import Button from "../../Button";
 
 interface IImgTextRowProps {
     imgLeft?: boolean;
-    imgTopOnMobile?: boolean;
     textLeft?: boolean;
     src: any;
     link: string;
     title: string;
-    description: string;
+    description?: string;
 }
 
 const ImgTextRow = (props: IImgTextRowProps) => {
