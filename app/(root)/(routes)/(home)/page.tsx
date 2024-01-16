@@ -50,36 +50,6 @@ export default async function Home() {
                 link3="/christmas-lighting"
             />
             <SocialProof />
-            {/* IMAGE TEXT ROWS */}
-            {/* <ImgTextRow
-                imgLeft
-                src={CustomerCentric}
-                imgTopOnMobile
-                link={"/estimate"}
-                title={"Customer Centric"}
-                description={
-                    "We are committed to providing the best customer service experience in the industry. We are not satisfied until you are satisfied."
-                }
-            />
-            <ImgTextRow
-                src={Workmanship}
-                textLeft
-                link={"/estimate"}
-                title={"Quality Workmanship"}
-                description={
-                    "Exemplifying unparalleled skill and precision, our workmanship is a testament to quality, ensuring every project is crafted with expertise and dedication for lasting excellence."
-                }
-            />
-            <ImgTextRow
-                src={Community}
-                imgLeft
-                imgTopOnMobile
-                link={"/estimate"}
-                title={"Community First"}
-                description={
-                    "We prioritize community well-being, fostering connections and contributing meaningfully to create a positive impact, putting the community at the heart of everything we do."
-                }
-            /> */}
             <WelcomeMessage />
         </div>
     );
