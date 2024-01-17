@@ -14,38 +14,17 @@ import LightingSplash from "../../../../public/assets/imgs/landscape-lighting.jp
 import AccentLighting from "../../../../public/assets/imgs/accent-lighting.jpg";
 import PathLighting from "../../../../public/assets/imgs/path-lighting.jpg";
 import UpLighting from "../../../../public/assets/imgs/up-lighting.jpg";
+import Splash from "../../../../components/Splash";
 
 const LandscapeLighting = () => {
-    // const textRef = useRef<HTMLDivElement>(null);
-
-    // useEffect(() => {
-    //     const options = {
-    //         threshold: 0.1, // Adjust the threshold as needed (percentage of element visibility)
-    //     };
-
-    //     const callback: IntersectionObserverCallback = (entries) => {
-    //         entries.forEach((entry) => {
-    //             if (entry.isIntersecting) {
-    //                 textRef.current?.classList.add("show");
-    //             }
-    //         });
-    //     };
-
-    //     const observer = new IntersectionObserver(callback, options);
-
-    //     if (textRef.current) {
-    //         observer.observe(textRef.current);
-    //     }
-
-    //     return () => observer.disconnect(); // Cleanup observer on component unmount
-    // }, []);
     return (
         <div>
-            <ImgTextLayout
+            {/* <ImgTextLayout
                 imgClass="object-center"
                 src={LightingSplash}
                 name="Landscape Lighting"
-            />
+            /> */}
+            <Splash title="Landscape Lighting" img={LightingSplash} />
             <IconBanner
                 icon1={<FaRegLightbulb size={50} />}
                 title1={"Design"}
