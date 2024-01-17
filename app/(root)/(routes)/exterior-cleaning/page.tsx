@@ -20,7 +20,7 @@ const ExteriorCleaning = () => {
     return (
         <div className="w-full justify-center items-center self-center">
             {/* <ImgTextOverlay imgClass="object-bottom" src={RoofSplash} name="Exterior Cleaning" /> */}
-            <Splash title="Exterior Cleaning" img={RoofSplash} />
+            <Splash center title="Exterior Cleaning" img={RoofSplash} />
             {/* ICON BANNER */}
             <IconBanner
                 link1="/estimate"
