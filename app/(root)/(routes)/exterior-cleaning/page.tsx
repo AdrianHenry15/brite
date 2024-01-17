@@ -14,11 +14,13 @@ import RoofSplash from "../../../../public/assets/imgs/roof-splash.jpg";
 import TrashBinCleaning from "../../../../public/assets/imgs/window-washing.jpg";
 import WindowWashing from "../../../../public/assets/imgs/window-washing.jpg";
 import PressureWashing from "../../../../public/assets/imgs/pressure-washing.jpg";
+import Splash from "../../../../components/Splash";
 
 const ExteriorCleaning = () => {
     return (
         <div className="w-full justify-center items-center self-center">
-            <ImgTextOverlay imgClass="object-bottom" src={RoofSplash} name="Exterior Cleaning" />
+            {/* <ImgTextOverlay imgClass="object-bottom" src={RoofSplash} name="Exterior Cleaning" /> */}
+            <Splash title="Exterior Cleaning" img={RoofSplash} />
             {/* ICON BANNER */}
             <IconBanner
                 link1="/estimate"

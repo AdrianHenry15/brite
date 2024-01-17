@@ -14,14 +14,16 @@ import BriteSplash from "../../../../public/assets/imgs/brite-splash.webp";
 import CustomerCentric from "../../../../public/assets/imgs/customer-centric.jpg";
 import Workmanship from "../../../../public/assets/imgs/workmanship.jpg";
 import Community from "../../../../public/assets/imgs/community.jpg";
+import Splash from "../../../../components/Splash";
 
 export default async function Home() {
     return (
         <div>
-            <ImgTextOverlay
+            {/* <ImgTextOverlay
                 src={BriteSplash}
                 name={"The Last Exterior Cleaning Company You Will Call"}
-            />
+            /> */}
+            <Splash title={"The Last Exterior Cleaning Company You Will Call"} img={BriteSplash} />
             {/* <Jumbotron /> */}
             <IconBanner
                 // ITEM 1 - EXTERIOR CLEANING

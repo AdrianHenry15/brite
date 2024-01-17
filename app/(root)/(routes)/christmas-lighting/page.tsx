@@ -14,15 +14,17 @@ import ChristmasLightingSplash from "../../../../public/assets/imgs/christmas-li
 import CurtainLights from "../../../../public/assets/imgs/curtain-lights.jpg";
 import RopeLights from "../../../../public/assets/imgs/rope-lights.jpg";
 import ProjectorLights from "../../../../public/assets/imgs/projector-lights.jpg";
+import Splash from "../../../../components/Splash";
 
 const ChristmasLighting = () => {
     return (
         <div>
-            <ImgTextOverlay
+            {/* <ImgTextOverlay
                 imgClass="object-center"
                 src={ChristmasLightingSplash}
                 name="Christmas Lighting"
-            />
+            /> */}
+            <Splash title="Christmas Lighting" img={ChristmasLightingSplash} />
             <IconBanner
                 icon1={<GiSewingString size={50} />}
                 title1={"Design"}
