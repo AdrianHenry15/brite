@@ -40,7 +40,7 @@ const Splash = (props: ISplashProps) => {
                     <Link className="flex w-max" href={"/"}>
                         <Image src={Logo} alt="logo" className="w-20 " />
                     </Link>
-                    <h1 className="text-white w-full text-3xl sm:w-[60%] lg:text-5xl">
+                    <h1 className="text-white w-full text-3xl sm:w-[60%] lg:text-5xl lg:w-[700px]">
                         {props.title}
                     </h1>
                     <div className="my-4 ">
