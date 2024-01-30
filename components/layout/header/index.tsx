@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import Image from "next/image";
 
 import MobileHeader from "./MobileMenu";
-import logo from "../../../public/assets/icons/brite-logo.png";
+import AltLogo from "../../../public/assets/icons/brite-logo-alt.png";
 import { NavMenuItems } from "../../../lib/constants";
 import { NavMenu } from "../../../lib/types";
 import Button from "../../Button";
@@ -26,7 +26,7 @@ export default function Navbar() {
                 <div className="flex items-center">
                     <Link href="/" className="lg:mr-10">
                         {/* TODO: LOGO */}
-                        <Image className="" src={logo} alt="logo" width={100} />
+                        <Image className="" src={AltLogo} alt="logo" width={100} />
                     </Link>
                     {/* LINKS  */}
                     <ul className="hidden text-gray-600 items-center lg:flex">

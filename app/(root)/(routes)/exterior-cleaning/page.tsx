@@ -6,21 +6,16 @@ import { GiWindow } from "react-icons/gi";
 import { MdOutlineRoofing } from "react-icons/md";
 import { FaTrash } from "react-icons/fa";
 
-import ImgTextOverlay from "../../../../components/layout/sections/ImgTextOverlay";
 import IconBanner from "../../../../components/icon-banner/IconBanner";
-import ImgTextRow from "../../../../components/layout/sections/ImgTextRow";
 
-import RoofSplash from "../../../../public/assets/imgs/roof-splash.jpg";
-import TrashBinCleaning from "../../../../public/assets/imgs/window-washing.jpg";
-import WindowWashing from "../../../../public/assets/imgs/window-washing.jpg";
-import PressureWashing from "../../../../public/assets/imgs/pressure-washing.jpg";
+import ExCleaning from "../../../../public/assets/imgs/ex-cleaning.png";
 import Splash from "../../../../components/Splash";
 
 const ExteriorCleaning = () => {
     return (
         <div className="w-full justify-center items-center self-center">
             {/* <ImgTextOverlay imgClass="object-bottom" src={RoofSplash} name="Exterior Cleaning" /> */}
-            <Splash center title="Exterior Cleaning" img={RoofSplash} />
+            <Splash center title="Exterior Cleaning" img={ExCleaning} />
             {/* ICON BANNER */}
             <IconBanner
                 link1="/estimate"
@@ -42,46 +37,6 @@ const ExteriorCleaning = () => {
                     "From your roof down, Brite’s expert technicians will use the right methods to bring any surface at your home or business back to life."
                 }
             />
-            {/* EXTERIOR CLEANING SERVICES */}
-            <h5
-                // add 'fade-in' class to fade in on scroll
-                className="text-black text-center text-4xl underline"
-            >
-                Our Exterior Cleaning Services
-            </h5>
-            {/* ROWS */}
-            <div>
-                <ImgTextRow
-                    textLeft={true}
-                    imgLeft={false}
-                    src={TrashBinCleaning}
-                    link={"/estimate"}
-                    title={"Curbside Trash Bin Cleaning"}
-                    description={
-                        "Our technicians use a combination of degreasers, detergents and hot high-pressure water to ensure you don’t have to deal with dirty, smelly trash bins. "
-                    }
-                />
-                <ImgTextRow
-                    textLeft={false}
-                    imgLeft={true}
-                    src={WindowWashing}
-                    link={"/estimate"}
-                    title={"Window Washing"}
-                    description={
-                        "Our expert window cleaners will use traditional methods combined with a pure water-fed brush to ensure the every component of your window is left shining Brite. "
-                    }
-                />
-                <ImgTextRow
-                    textLeft={true}
-                    imgLeft={false}
-                    src={PressureWashing}
-                    link={"/estimate"}
-                    title={"Pressure Washing & Soft Washing"}
-                    description={
-                        "Brite’s variety of professional cleaning equipment allows our expert cleaners to clean any surface the safe way!"
-                    }
-                />
-            </div>
         </div>
     );
 };
