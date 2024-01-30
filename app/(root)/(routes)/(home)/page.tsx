@@ -14,7 +14,7 @@ import Splash from "../../../../components/Splash";
 export default async function Home() {
     return (
         <div>
-            <Splash title={""} noShadow img={BriteSplash} />
+            <Splash title={""} img={BriteSplash} />
             {/* <Jumbotron /> */}
             <IconBanner
                 // ITEM 1 - EXTERIOR CLEANING
