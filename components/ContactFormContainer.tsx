@@ -121,15 +121,18 @@ const ContactFormContainer = () => {
                     <Input
                         inputName={"firstName"}
                         inputLabel={"First Name"}
-                        placeholder={"First Name"}
+                        placeholder={"First Name*"}
                         control={control}
+                        errors={errors}
+                        errorPatternText="First Name is required."
                     />
                     {/* LAST NAME */}
                     <Input
                         inputName={"lastName"}
                         inputLabel={"Last Name"}
-                        placeholder={"Last Name"}
+                        placeholder={"Last Name*"}
                         control={control}
+                        errorPatternText="Last Name is required."
                     />
                     {/* PHONE NUMBER */}
                     <Input
@@ -170,7 +173,7 @@ const ContactFormContainer = () => {
                         errorText="Service is required."
                     />
                     {/* FREQUENCY */}
-                    {watch("service") === "Exterior Cleaning" ? (
+                    {/* {watch("service") === "Exterior Cleaning" ? (
                         <Dropdown
                             inputName={"frequency"}
                             inputLabel={"Choose Frequency:"}
@@ -179,7 +182,7 @@ const ContactFormContainer = () => {
                             options={FrequencyList}
                             errorText="Frequency is required."
                         />
-                    ) : null}
+                    ) : null} */}
                     {/* COMMENT */}
                     <Textarea
                         inputName={"comment"}
