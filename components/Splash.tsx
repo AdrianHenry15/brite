@@ -10,6 +10,7 @@ interface ISplashProps {
     top?: boolean;
     center?: boolean;
     bottom?: boolean;
+    multiple?: boolean;
 }
 
 const Splash = (props: ISplashProps) => {
