@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import React, { useState } from "react";
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { usePathname } from "next/navigation";
 import emailjs from "@emailjs/browser";
 
@@ -15,7 +15,7 @@ import SuccessModal from "./modals/SuccessModal";
 import { Loader } from "./Loader";
 import toast from "react-hot-toast";
 import Dropdown from "./inputs/Dropdown";
-import { FrequencyList, ServicesList } from "../lib/constants";
+import { ServicesList } from "../lib/constants";
 import Input from "./inputs/Input";
 import Textarea from "./inputs/Textarea";
 

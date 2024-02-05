@@ -8,13 +8,13 @@ import WelcomeMessage from "../../../../components/layout/home/WelcomeMessage";
 import SocialProof from "../../../../components/layout/home/SocialProof";
 import IconBanner from "../../../../components/icon-banner/IconBanner";
 
-import BriteSplash from "../../../../public/assets/imgs/window-washing.png";
+import BriteSplash from "../../../../public/assets/imgs/brite-splash.webp";
 import Splash from "../../../../components/Splash";
 
 export default async function Home() {
     return (
         <div>
-            <Splash title={""} img={BriteSplash} />
+            <Splash title={"The Last Exterior Cleaning Company You Will Call"} img={BriteSplash} />
             {/* <Jumbotron /> */}
             <IconBanner
                 // ITEM 1 - EXTERIOR CLEANING

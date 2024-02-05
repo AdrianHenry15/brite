@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
-import { Controller, FieldErrors, useForm } from "react-hook-form";
+import React from "react";
+import { Controller, FieldErrors } from "react-hook-form";
 
 interface IDropdownProps {
     inputName: string;
