@@ -17,10 +17,10 @@ const ContactCard = () => {
                             <label>Office: </label>
                             <Link href="tel:7049445574">704-944-5574</Link>
                         </span>
-                        <span className="pb-4">
+                        {/* <span className="pb-4">
                             <label>Email: </label>
                             <Link href="email:info@britellc.net">info@britellc.net</Link>
-                        </span>
+                        </span> */}
                     </div>
                 </div>
             </div>

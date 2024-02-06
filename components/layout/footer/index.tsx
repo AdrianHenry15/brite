@@ -28,15 +28,11 @@ const Footer = () => {
             <SocialsCard />
             {/* CREATED BY */}
             <div className="flex flex-col items-center justify-center text-center self-center w-full border-t-[1px] py-14 text-xs border-zinc-500">
-                {/* BRITE LOGO */}
-                <div className="w-64 pb-10">
-                    <Image loading="eager" src={Brite} alt="logo" />
-                </div>
                 <div className="flex flex-col pt-4 items-center">
-                    <p className="mb-2">Created by</p>
+                    <p className="mb-2 text-xs">Created by</p>
                     {/* THIRD GEN LOGO */}
                     <Link href={"thirdgenerationstudios.com"}>
-                        <Image className="w-36" src={ThirdGen} alt="third-gen-logo" />
+                        <Image className="w-32" src={ThirdGen} alt="third-gen-logo" />
                     </Link>
                 </div>
             </div>
