@@ -29,7 +29,7 @@ const Footer = () => {
             {/* CREATED BY */}
             <div className="flex flex-col items-center justify-center text-center self-center w-full border-t-[1px] py-14 text-xs border-zinc-500">
                 <div className="flex flex-col pt-4 items-center">
-                    <p className="mb-2 text-xs">Created by</p>
+                    <p className="mb-4 text-xs">Created by</p>
                     {/* THIRD GEN LOGO */}
                     <Link href={"thirdgenerationstudios.com"}>
                         <Image className="w-32" src={ThirdGen} alt="third-gen-logo" />

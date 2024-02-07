@@ -4,10 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import { Autoplay } from "swiper/modules";
 import "swiper/css"; // Import Swiper styles
-import "swiper/css/navigation"; // Import Swiper navigation styles
-import "swiper/css/pagination"; // Import Swiper pagination styles
 
 import Logo from "../public/assets/icons/brite-logo.png";
 import { HomePageImages } from "../lib/Images";
@@ -16,15 +14,12 @@ const SplashSlideShow = () => {
     return (
         <div className="relative w-full h-screen text-white">
             {/* SHADOW */}
-            <div className="z-50 absolute w-full h-screen bg-gradient-to-r from-black"></div>
+            <div className="z-10 absolute w-full h-screen bg-gradient-to-r from-black"></div>
             <Swiper
                 centeredSlides={true}
                 autoplay={{ delay: 3000 }} // Set autoplay delay to 3 seconds
                 slidesPerView={1}
-                pagination={{
-                    clickable: true,
-                }}
-                modules={[Autoplay, Pagination, Navigation]}
+                modules={[Autoplay]}
             >
                 {HomePageImages.map((item) => (
                     <SwiperSlide key={item.title}>
@@ -40,7 +35,7 @@ const SplashSlideShow = () => {
                 ))}
             </Swiper>
 
-            <div className="z-50 absolute w-full p-4 top-[38%]">
+            <div className="z-10 absolute w-full p-4 top-[38%]">
                 <div className="flex flex-col relative w-min items-center">
                     <Link href={"/"}>
                         <Image src={Logo} alt="logo" className="w-48 cursor-pointer" />
