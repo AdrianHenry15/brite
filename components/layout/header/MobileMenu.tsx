@@ -6,9 +6,9 @@ import { usePathname } from "next/navigation";
 import { Fragment, useEffect, useState } from "react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
-import { NavMenuItems } from "../../../lib/constants";
-import { NavMenu } from "../../../lib/types";
 import Button from "../../Button";
+import { AltNavMenuItems, AltNavMenuLinks, NavMenu } from "../../../lib/constants";
+import { NavMenuType } from "../../../lib/types";
 
 export default function MobileMenu() {
     const pathname = usePathname();
@@ -33,10 +33,10 @@ export default function MobileMenu() {
                 <Dialog onClose={closeMobileMenu} className="relative z-50">
                     <Transition.Child
                         as={Fragment}
-                        enter="transition-all ease-in-out duration-300"
+                        enter="transition-all ease-in-out duration-100"
                         enterFrom="opacity-0 backdrop-blur-none"
                         enterTo="opacity-100 backdrop-blur-[.5px]"
-                        leave="transition-all ease-in-out duration-200"
+                        leave="transition-all ease-in-out duration-100"
                         leaveFrom="opacity-100 backdrop-blur-[.5px]"
                         leaveTo="opacity-0 backdrop-blur-none"
                     >
@@ -44,10 +44,10 @@ export default function MobileMenu() {
                     </Transition.Child>
                     <Transition.Child
                         as={Fragment}
-                        enter="transition-all ease-in-out duration-300"
+                        enter="transition-all ease-in-out duration-100"
                         enterFrom="translate-x-[100%]"
                         enterTo="translate-x-[0%] sm:translate-x-[45%] md:translate-x-[60%]"
-                        leave="transition-all ease-in-out duration-300"
+                        leave="transition-all ease-in-out duration-100"
                         leaveFrom="translate-x-0"
                         leaveTo="translate-x-[100%]"
                     >
@@ -64,7 +64,7 @@ export default function MobileMenu() {
                                 </div>
 
                                 <ul className="flex w-full flex-col h-full">
-                                    {NavMenuItems.map((item: NavMenu) => (
+                                    {NavMenu.map((item: NavMenuType) => (
                                         <Link
                                             key={item.title}
                                             href={item.link}
@@ -87,24 +87,24 @@ export default function MobileMenu() {
                                 <Link
                                     onClick={closeMobileMenu}
                                     className="w-full px-10 flex justify-start"
-                                    href={"/contact-us"}
+                                    href={AltNavMenuLinks.CONTACT_US}
                                 >
                                     <Button
                                         roundedFull
                                         className="mb-4 w-full py-4 flex justify-center sm:w-[300px]"
-                                        name="Contact Us"
+                                        name={AltNavMenuItems.CONTACT_US}
                                         altColor
                                     />
                                 </Link>
                                 <Link
                                     onClick={closeMobileMenu}
                                     className="w-full px-10 flex justify-start"
-                                    href={"/estimate"}
+                                    href={AltNavMenuLinks.ESTIMATE}
                                 >
                                     <Button
                                         roundedFull
                                         className="mb-4 w-full py-4 flex justify-center sm:w-[300px]"
-                                        name="Get Your Free Estimate"
+                                        name={AltNavMenuItems.ESTIMATE}
                                     />
                                 </Link>
                             </ul>

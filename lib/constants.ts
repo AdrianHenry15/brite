@@ -1,38 +1,62 @@
-import { NavMenu } from "./types";
+import { NavMenuType } from "./types";
 
-export const NavMenuItems: NavMenu[] = [
+export enum NavMenuItems {
+    HOME = "Home",
+    WINDOW_CLEANING = "Window Cleaning",
+    PRESSURE_WASHING = "Pressure Washing",
+    HOLIDAY_LIGHTING = "Holiday Lighting",
+}
+
+export enum AltNavMenuItems {
+    CONTACT_US = "Contact Us",
+    ESTIMATE = "Get Your Free Estimate",
+}
+
+export enum NavMenuLinks {
+    HOME = "/",
+    WINDOW_CLEANING = "/window-cleaning",
+    PRESSURE_WASHING = "/pressure-washing",
+    HOLIDAY_LIGHTING = "/holiday-lighting",
+}
+
+export enum AltNavMenuLinks {
+    CONTACT_US = "/contact-us",
+    ESTIMATE = "/estimate",
+}
+
+export const NavMenu: NavMenuType[] = [
     {
-        title: "Home",
-        link: "/",
+        title: NavMenuItems.HOME,
+        link: NavMenuLinks.HOME,
     },
     {
-        title: "Exterior Cleaning",
-        link: "/exterior-cleaning",
+        title: NavMenuItems.WINDOW_CLEANING,
+        link: NavMenuLinks.WINDOW_CLEANING,
     },
     {
-        title: "Landscape Lighting",
-        link: "/landscape-lighting",
+        title: NavMenuItems.PRESSURE_WASHING,
+        link: NavMenuLinks.PRESSURE_WASHING,
     },
     {
-        title: "Christmas Lighting",
-        link: "/christmas-lighting",
+        title: NavMenuItems.HOLIDAY_LIGHTING,
+        link: NavMenuLinks.HOLIDAY_LIGHTING,
     },
 ];
-export const NavMenuAltItems: NavMenu[] = [
+export const AltNavMenu: NavMenuType[] = [
     {
-        title: "Contact Us",
-        link: "/contact-us",
+        title: AltNavMenuItems.CONTACT_US,
+        link: AltNavMenuLinks.CONTACT_US,
     },
     {
-        title: "Get Your Free Estimate",
-        link: "/estimate",
+        title: AltNavMenuItems.ESTIMATE,
+        link: AltNavMenuLinks.ESTIMATE,
     },
 ];
 
 export const ServicesList = [
     { name: "Christmas Lighting" },
-    { name: "Exterior Cleaning" },
-    { name: "Landscape Lighting" },
+    { name: "Window Cleaning" },
+    { name: "Pressure Washing" },
     { name: "Other" },
 ];
 

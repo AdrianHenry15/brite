@@ -10,11 +10,12 @@ import IconBanner from "../../../../components/icon-banner/IconBanner";
 
 import ChristmasLightingSplash from "../../../../public/assets/imgs/christmas-lights.jpg";
 import Splash from "../../../../components/Splash";
+import { NavMenuItems } from "../../../../lib/constants";
 
 const ChristmasLighting = () => {
     return (
         <div>
-            <Splash title="Christmas Lighting" img={ChristmasLightingSplash} />
+            <Splash title={NavMenuItems.HOLIDAY_LIGHTING} img={ChristmasLightingSplash} />
             <IconBanner
                 icon1={<CiRuler size={50} />}
                 title1={"Design"}

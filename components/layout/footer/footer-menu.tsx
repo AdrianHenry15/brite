@@ -4,7 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { NavMenuAltItems, NavMenuItems } from "../../../lib/constants";
+import { AltNavMenu, NavMenu } from "../../../lib/constants";
 
 const FooterMenu = () => {
     const pathname = usePathname();
@@ -12,7 +12,7 @@ const FooterMenu = () => {
         <nav className="text-gray-400 text-sm flex-1 md:text-left">
             <h5 className="font-light text-2xl tracking-wider text-white">Company</h5>
             <ul className="text-xs">
-                {NavMenuItems.map((item) => {
+                {NavMenu.map((item) => {
                     return (
                         <li
                             key={item.title}
@@ -22,7 +22,7 @@ const FooterMenu = () => {
                         </li>
                     );
                 })}
-                {NavMenuAltItems.map((item) => {
+                {AltNavMenu.map((item) => {
                     return (
                         <li
                             className={`${pathname === item.link ? "underline" : ""} my-4`}

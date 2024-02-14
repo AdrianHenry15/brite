@@ -15,7 +15,7 @@ import SuccessModal from "./modals/SuccessModal";
 import { Loader } from "./Loader";
 import toast from "react-hot-toast";
 import Dropdown from "./inputs/Dropdown";
-import { ServicesList } from "../lib/constants";
+import { AltNavMenuItems, AltNavMenuLinks, NavMenuItems, ServicesList } from "../lib/constants";
 import Input from "./inputs/Input";
 import Textarea from "./inputs/Textarea";
 
@@ -195,7 +195,9 @@ const ContactFormContainer = () => {
                             onClick={() => {}}
                             submit
                             name={`${
-                                pathname === "/contact-us" ? "Contact Us" : "Get Your Free Estimate"
+                                pathname === AltNavMenuLinks.CONTACT_US
+                                    ? AltNavMenuItems.CONTACT_US
+                                    : AltNavMenuItems.ESTIMATE
                             }`}
                             className="w-full justify-center"
                         ></Button>

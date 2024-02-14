@@ -6,9 +6,9 @@ import Image from "next/image";
 
 import MobileHeader from "./MobileMenu";
 import AltLogo from "../../../public/assets/icons/brite-logo-alt.png";
-import { NavMenuItems } from "../../../lib/constants";
-import { NavMenu } from "../../../lib/types";
 import Button from "../../Button";
+import { NavMenu } from "../../../lib/constants";
+import { NavMenuType } from "../../../lib/types";
 
 export default function Navbar() {
     const pathname = usePathname();
@@ -30,7 +30,7 @@ export default function Navbar() {
                     </Link>
                     {/* LINKS  */}
                     <ul className="hidden text-gray-600 items-center lg:flex">
-                        {NavMenuItems.map((item: NavMenu) => (
+                        {NavMenu.map((item: NavMenuType) => (
                             <li
                                 className={`mx-2 transition-all duration-300 ease-in-out hover:text-blue-700 hover:underline ${
                                     pathname === item.link ? "underline" : ""

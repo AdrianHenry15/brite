@@ -8,29 +8,29 @@ import { FaTrash } from "react-icons/fa";
 
 import IconBanner from "../../../../components/icon-banner/IconBanner";
 
-import ExCleaning from "../../../../public/assets/imgs/ex-cleaning.png";
+import PressureWashing from "../../../../public/assets/imgs/ex-cleaning.png";
 import Splash from "../../../../components/Splash";
+import { AltNavMenuLinks, NavMenuItems } from "../../../../lib/constants";
 
-const ExteriorCleaning = () => {
+const PressureWashingPage = () => {
     return (
         <div className="w-full justify-center items-center self-center">
-            {/* <ImgTextOverlay imgClass="object-bottom" src={RoofSplash} name="Exterior Cleaning" /> */}
-            <Splash center title="Exterior Cleaning" img={ExCleaning} />
+            <Splash center title={NavMenuItems.PRESSURE_WASHING} img={PressureWashing} />
             {/* ICON BANNER */}
             <IconBanner
-                link1="/estimate"
+                link1={AltNavMenuLinks.ESTIMATE}
                 icon1={<GiWindow size={50} />}
                 title1={"Window Washing"}
                 description1={
                     "Illuminate your space with Brite windows. Our expert window washing services bring a clear and sparkling finish to your home or business."
                 }
-                link2="/estimate"
+                link2={AltNavMenuLinks.ESTIMATE}
                 icon2={<FaTrash size={50} />}
                 title2={"Trash Bin Cleaning"}
                 description2={
                     "Never touch a dirty trash can again with routine curbside trash bin cleaning from Brite. Keep your trash cans clean, sanitized and deodorized all year long."
                 }
-                link3="/estimate"
+                link3={AltNavMenuLinks.ESTIMATE}
                 icon3={<MdOutlineRoofing size={50} />}
                 title3={"Pressure Washing & Soft Washing"}
                 description3={
@@ -41,4 +41,4 @@ const ExteriorCleaning = () => {
     );
 };
 
-export default ExteriorCleaning;
+export default PressureWashingPage;
