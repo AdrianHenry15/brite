@@ -54,9 +54,9 @@ export const AltNavMenu: NavMenuType[] = [
 ];
 
 export const ServicesList = [
-    { name: "Christmas Lighting" },
-    { name: "Window Cleaning" },
-    { name: "Pressure Washing" },
+    { name: NavMenuItems.WINDOW_CLEANING },
+    { name: NavMenuItems.PRESSURE_WASHING },
+    { name: NavMenuItems.HOLIDAY_LIGHTING },
     { name: "Other" },
 ];
 
