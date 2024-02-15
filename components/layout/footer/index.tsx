@@ -27,8 +27,8 @@ const Footer = () => {
             {/* SOCIALS  */}
             <SocialsCard />
             {/* CREATED BY */}
-            <div className="flex flex-col items-center justify-center text-center self-center w-full border-t-[1px] py-14 text-xs border-zinc-500">
-                <div className="flex flex-col pt-4 items-center">
+            <div className="flex flex-col items-center justify-center text-center self-center w-full border-t-[1px] py-14 text-xs border-zinc-900">
+                <div className="flex flex-col items-center">
                     <p className="mb-4 text-xs">Created by</p>
                     {/* THIRD GEN LOGO */}
                     <Link href={"thirdgenerationstudios.com"}>

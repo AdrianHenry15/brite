@@ -1,11 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import React, { useEffect, useRef } from "react";
-
-import { IoArrowRedoOutline } from "react-icons/io5";
+import React, { useRef } from "react";
 
 import Button from "../Button";
+import { FaChevronRight } from "react-icons/fa6";
 
 interface IIconItemProps {
     icon: React.ReactNode;
@@ -57,7 +56,7 @@ const IconItem = (props: IIconItemProps) => {
                     <Button
                         altColor
                         name={props.title}
-                        icon={<IoArrowRedoOutline size={20} className={`ml-2`} />}
+                        // icon={<FaChevronRight size={12} className={`ml-2`}
                     />
                 </Link>
             ) : null}

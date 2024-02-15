@@ -13,8 +13,8 @@ import SplashSlideShow from "../../../../components/SplashSlideShow";
 export default async function Home() {
     return (
         <div>
-            <SplashSlideShow />
             {/* <Jumbotron /> */}
+            <SplashSlideShow />
             <IconBanner
                 // ITEM 1 - WINDOW CLEANING
                 icon1={<MdOutlineRoofing size={50} />}
@@ -44,8 +44,8 @@ export default async function Home() {
                 }
                 addBtn3
             />
-            <SocialProof />
             <WelcomeMessage />
+            <SocialProof />
         </div>
     );
 }

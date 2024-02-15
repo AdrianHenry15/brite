@@ -5,12 +5,19 @@ import { AiFillFacebook, AiOutlineInstagram } from "react-icons/ai";
 
 const SocialsCard = () => {
     return (
-        <div className="flex w-full justify-around py-10 border-y-[1px] border-zinc-900">
-            <Link target="_blank" href="https://www.facebook.com/britelightingllc">
-                <AiFillFacebook size={35} />
+        <div className="flex w-full justify-evenly py-10 border-y-[1px] border-zinc-900">
+            <Link
+                className="hover:scale-125 transition-all duration-300 ease-in-out"
+                target="_blank"
+                href="https://www.facebook.com/britelightingllc"
+            >
+                <AiFillFacebook size={25} />
             </Link>
             <Link target="_blank" href="https://www.instagram.com/britelightingllc/">
-                <AiOutlineInstagram size={35} />
+                <AiOutlineInstagram
+                    className="hover:scale-125 transition-all duration-300 ease-in-out"
+                    size={25}
+                />
             </Link>
         </div>
     );
