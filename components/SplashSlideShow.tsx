@@ -12,9 +12,9 @@ import { HomePageImages } from "../lib/Images";
 
 const SplashSlideShow = () => {
     return (
-        <div className="relative w-full h-screen text-white">
+        <div className="relative w-full text-white md:h-screen">
             {/* SHADOW */}
-            <div className="z-10 absolute w-full h-screen bg-gradient-to-r from-black"></div>
+            <div className="z-10 hidden w-full h-screen bg-gradient-to-r from-black md:absolute"></div>
             <Swiper
                 centeredSlides={true}
                 autoplay={{ delay: 3000 }} // Set autoplay delay to 3 seconds
@@ -23,7 +23,7 @@ const SplashSlideShow = () => {
             >
                 {HomePageImages.map((item) => (
                     <SwiperSlide key={item.title}>
-                        <div className="w-full h-screen flex justify-center items-center">
+                        <div className="w-full h-[200px] flex justify-center items-center md:h-screen">
                             <Image
                                 loading="eager"
                                 className="h-full w-full object-cover"
@@ -35,10 +35,14 @@ const SplashSlideShow = () => {
                 ))}
             </Swiper>
 
-            <div className="z-10 absolute w-full p-4 top-[38%]">
+            <div className="z-10 w-full p-4 top-[38%] md:absolute">
                 <div className="flex flex-col relative w-min items-center">
-                    <Link href={"/"}>
-                        <Image src={Logo} alt="logo" className="w-48 cursor-pointer" />
+                    <Link className="hidden md:flex" href={"/"}>
+                        <Image
+                            src={Logo}
+                            alt="logo"
+                            className="cursor-pointer w-24 md:w-48 bg-black rounded-lg"
+                        />
                     </Link>
                     <div className="my-4 flex items-center w-auto">
                         <Link
@@ -49,7 +53,7 @@ const SplashSlideShow = () => {
                         </Link>
                         <Link
                             href={"/estimate"}
-                            className="border text-white text-sm border-gray-300 py-2 px-5 ml-4 whitespace-nowrap"
+                            className="border text-sm border-gray-300 py-2 px-5 ml-4 whitespace-nowrap text-black md:text-white"
                         >
                             Get Estimate
                         </Link>
