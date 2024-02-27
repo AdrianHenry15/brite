@@ -14,13 +14,32 @@ const ContactCard = () => {
                     </address>
                     <div className="flex flex-col text-gray-400">
                         <span className="pb-4">
-                            <label>Office: </label>
-                            <Link href="tel:7049445574">704-944-5574</Link>
+                            <label className="text-white">Office: </label>
+                            <Link
+                                className="hover:underline underline-offset-2"
+                                href="tel:7049445574"
+                            >
+                                704-944-5574
+                            </Link>
                         </span>
-                        {/* <span className="pb-4">
-                            <label>Email: </label>
-                            <Link href="email:info@britellc.net">info@britellc.net</Link>
-                        </span> */}
+                        <span className="pb-4">
+                            <label className="text-white">Sales: </label>
+                            <Link
+                                className="hover:underline underline-offset-2"
+                                href="email:joey.mckenna@britellc.com"
+                            >
+                                joey.mckenna@britellc.com
+                            </Link>
+                        </span>
+                        <span className="pb-4">
+                            <label className="text-white">Other Inquiries: </label>
+                            <Link
+                                className="hover:underline underline-offset-2"
+                                href="email:nick.walker@britellc.com"
+                            >
+                                nick.walker@britellc.com
+                            </Link>
+                        </span>
                     </div>
                 </div>
             </div>
