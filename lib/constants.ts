@@ -2,8 +2,7 @@ import { NavMenuType } from "./types";
 
 export enum NavMenuItems {
     HOME = "Home",
-    WINDOW_CLEANING = "Window Cleaning",
-    PRESSURE_WASHING = "Pressure Washing",
+    EXTERIOR_CLEANING = "Exterior Cleaning",
     HOLIDAY_LIGHTING = "Holiday Lighting",
 }
 
@@ -14,8 +13,7 @@ export enum AltNavMenuItems {
 
 export enum NavMenuLinks {
     HOME = "/",
-    WINDOW_CLEANING = "/window-cleaning",
-    PRESSURE_WASHING = "/pressure-washing",
+    EXTERIOR_CLEANING = "/exterior-cleaning",
     HOLIDAY_LIGHTING = "/holiday-lighting",
 }
 
@@ -30,12 +28,8 @@ export const NavMenu: NavMenuType[] = [
         link: NavMenuLinks.HOME,
     },
     {
-        title: NavMenuItems.WINDOW_CLEANING,
-        link: NavMenuLinks.WINDOW_CLEANING,
-    },
-    {
-        title: NavMenuItems.PRESSURE_WASHING,
-        link: NavMenuLinks.PRESSURE_WASHING,
+        title: NavMenuItems.EXTERIOR_CLEANING,
+        link: NavMenuLinks.EXTERIOR_CLEANING,
     },
     {
         title: NavMenuItems.HOLIDAY_LIGHTING,
@@ -54,9 +48,11 @@ export const AltNavMenu: NavMenuType[] = [
 ];
 
 export const ServicesList = [
-    { name: NavMenuItems.WINDOW_CLEANING },
-    { name: NavMenuItems.PRESSURE_WASHING },
-    { name: NavMenuItems.HOLIDAY_LIGHTING },
+    { name: "Window Cleaning" },
+    { name: "Pressure Washing" },
+    { name: "House Wash" },
+    { name: "Roof Wash" },
+    { name: "Holiday Lighting" },
     { name: "Other" },
 ];
 

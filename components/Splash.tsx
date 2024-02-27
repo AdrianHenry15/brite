@@ -42,15 +42,8 @@ const Splash = (props: ISplashProps) => {
                 <div className="flex w-full p-4 top-[38%] md:absolute">
                     <div className="flex flex-col relative w-min items-center">
                         <Link className="flex" href={"/"}>
-                            <Image
-                                src={Logo}
-                                alt="logo"
-                                className="w-24 rounded-lg bg-black md:w-48"
-                            />
+                            <Image src={Logo} alt="logo" className="w-24 rounded-lg  md:w-48" />
                         </Link>
-                        {/* <h1 className="text-white w-full text-3xl text-center lg:text-5xl lg:w-[700px] whitespace-nowrap">
-                            {props.title}
-                        </h1> */}
                         <div className="my-4 flex items-center w-auto">
                             <Link
                                 href={AltNavMenuLinks.CONTACT_US}
@@ -60,7 +53,7 @@ const Splash = (props: ISplashProps) => {
                             </Link>
                             <Link
                                 href={AltNavMenuLinks.ESTIMATE}
-                                className="border text-black text-sm border-gray-300 py-2 px-5 ml-4 whitespace-nowrap md:text-white"
+                                className="border text-black text-sm border-gray-300 py-2 px-5 ml-4 whitespace-nowrap md:text-white md:bg-black"
                             >
                                 Get Estimate
                             </Link>

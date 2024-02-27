@@ -1,16 +1,14 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
+import Link from "next/link";
 
-import Brite from "../../../public/assets/icons/brite-logo.png";
-import ThirdGen from "../../../public/assets/icons/thirdgenstudios-logo.png";
+import { MdCopyright } from "react-icons/md";
 
 import ContactCard from "./contact-card";
 import SocialsCard from "./socials-card";
 import FooterMenu from "./footer-menu";
 import LogoCard from "./logo-card";
-import Link from "next/link";
 
 const Footer = () => {
     return (
@@ -29,10 +27,11 @@ const Footer = () => {
             {/* CREATED BY */}
             <div className="flex flex-col items-center justify-center text-center self-center w-full border-t-[1px] py-14 text-xs border-zinc-900">
                 <div className="flex flex-col items-center">
-                    <p className="mb-4 text-xs">Created by</p>
+                    <p className="text-xs">Created by</p>
                     {/* THIRD GEN LOGO */}
-                    <Link href={"thirdgenerationstudios.com"}>
-                        <Image className="w-32" src={ThirdGen} alt="third-gen-logo" />
+                    <Link className="flex items-center" href={"thirdgenerationstudios.com"}>
+                        <MdCopyright size={12} className="mb-2 mr-1 text-zinc-700" />
+                        <p className="text-zinc-500">Third Generation Studios</p>
                     </Link>
                 </div>
             </div>
