@@ -36,8 +36,8 @@ const SplashSlideShow = () => {
                 ))}
             </Swiper>
 
-            <div className="z-10 w-full p-4 top-[38%] md:absolute">
-                <div className="flex flex-col relative w-min items-center">
+            <div className="z-10 w-full p-4 top-[38%] justify-center md:absolute">
+                <div className="flex flex-col relative w-full items-center md:w-min">
                     {/* ON MEDIUM/LARGE SCREENS */}
                     <Link className="hidden md:flex" href={"/"}>
                         <Image

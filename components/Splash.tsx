@@ -30,7 +30,7 @@ const Splash = (props: ISplashProps) => {
         <div className="w-[100%] self-center text-white md:h-screen">
             <div className="w-full h-full">
                 {/* SHADOW */}
-                <div className="flex w-full bg-gradient-to-r from-black md:absolute md:screen"></div>
+                <div className="w-full bg-gradient-to-r from-black absolute h-screen hidden md:flex"></div>
                 <div className="w-full h-full flex justify-center items-center">
                     <Image
                         loading="eager"
@@ -40,8 +40,8 @@ const Splash = (props: ISplashProps) => {
                     />
                 </div>
                 <div className="flex w-full p-4 top-[38%] md:absolute">
-                    <div className="flex flex-col relative w-min items-center">
-                        <Link className="flex" href={"/"}>
+                    <div className="flex flex-col relative w-full justify-center items-center md:w-min">
+                        <Link className="flex justify-start self-center md:self-start" href={"/"}>
                             <Image src={Logo} alt="logo" className="w-24 rounded-lg  md:w-48" />
                         </Link>
                         <div className="my-4 flex items-center w-auto">

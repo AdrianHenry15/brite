@@ -1,8 +1,8 @@
 import React from "react";
 
-import { MdOutlineRoofing } from "react-icons/md";
-import { FaIcicles } from "react-icons/fa";
-import { FaRegLightbulb } from "react-icons/fa6";
+import { GiWindow } from "react-icons/gi";
+import { IoWaterOutline } from "react-icons/io5";
+import { TbChristmasTree } from "react-icons/tb";
 
 import WelcomeMessage from "../../../../components/layout/home/WelcomeMessage";
 import SocialProof from "../../../../components/layout/home/SocialProof";
@@ -17,8 +17,8 @@ export default async function Home() {
             <SplashSlideShow />
             <IconBanner
                 // ITEM 1 - WINDOW CLEANING
-                icon1={<MdOutlineRoofing size={50} />}
-                link1="window-cleaning"
+                icon1={<GiWindow size={50} />}
+                link1="/exterior-cleaning"
                 title1={"Window Cleaning"}
                 // TODO: NEEDS UPDATING
                 description1={
@@ -26,8 +26,8 @@ export default async function Home() {
                 }
                 addBtn1
                 // ITEM 2 - PRESSURE WASHING
-                link2="/pressure-washing"
-                icon2={<FaRegLightbulb size={50} />}
+                link2="/exterior/cleaning"
+                icon2={<IoWaterOutline size={50} />}
                 title2={"Pressure Washing"}
                 // TODO: NEEDS UPDATING
                 description2={
@@ -36,7 +36,7 @@ export default async function Home() {
                 addBtn2
                 // ITEM 3 - HOLIDAY LIGHTING
                 link3="/holiday-lighting"
-                icon3={<FaIcicles size={50} />}
+                icon3={<TbChristmasTree size={50} />}
                 title3={"Holiday Lighting"}
                 // TODO: NEEDS UPDATING
                 description3={
