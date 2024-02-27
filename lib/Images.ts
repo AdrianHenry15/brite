@@ -13,6 +13,7 @@ import Pic11 from "../public/assets/imgs/brite-pic-11.jpg";
 import Driveway from "../public/assets/imgs/Driveway.jpg";
 import ExCleaning from "../public/assets/imgs/ex-cleaning.png";
 import WindowWashing from "../public/assets/imgs/window-washing.png";
+import ChristmasLighting from "../public/assets/imgs/christmas-lights-home.jpg";
 
 export const Images = [Pic1, Pic2, Pic3, Pic4, Pic5, Pic6, Pic7, Pic8, Pic9, Pic10, Pic11];
 
@@ -28,5 +29,9 @@ export const HomePageImages = [
     {
         title: "Image 3",
         img: WindowWashing,
+    },
+    {
+        title: "Image 4",
+        img: ChristmasLighting,
     },
 ];

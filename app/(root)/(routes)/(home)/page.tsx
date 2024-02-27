@@ -22,7 +22,7 @@ export default async function Home() {
                 title1={"Window Cleaning"}
                 // TODO: NEEDS UPDATING
                 description1={
-                    "Brite specializes in professional window washing services for both residential and commercial properties in Charlotte."
+                    "Brite's professional window detailing service is Charlotte's first choice for spotless windows year-round"
                 }
                 addBtn1
                 // ITEM 2 - PRESSURE WASHING
@@ -31,7 +31,7 @@ export default async function Home() {
                 title2={"Pressure Washing"}
                 // TODO: NEEDS UPDATING
                 description2={
-                    "Brite's pressure washing services are expertly crafted to deliver exceptional cleanliness and revitalization to your outdoor surfaces."
+                    "Brite's professional window detailing service is Charlotte's first choice for spotless windows year-round"
                 }
                 addBtn2
                 // ITEM 3 - HOLIDAY LIGHTING
@@ -40,7 +40,7 @@ export default async function Home() {
                 title3={"Holiday Lighting"}
                 // TODO: NEEDS UPDATING
                 description3={
-                    "Brite offers comprehensive holiday lighting solutions, including design, high-quality materials, installation, and storage, to illuminate your festive celebrations year after year."
+                    "Brite's holiday light services are here to provide you with the holiday display of your dreams year after year. We take care of the design, installation, removal and storage of your entire display."
                 }
                 addBtn3
             />
