@@ -30,6 +30,7 @@ const Input = ({
                 <div>
                     <input
                         {...field}
+                        required
                         className={InputClass}
                         type="text"
                         placeholder={placeholder}

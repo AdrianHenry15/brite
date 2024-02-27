@@ -30,7 +30,7 @@ const Dropdown = ({
                 control={control}
                 defaultValue={options[0].name}
                 render={({ field }) => (
-                    <select className={`${InputClass} py-4`} {...field}>
+                    <select required className={`${InputClass} py-4`} {...field}>
                         {options.map((service) => (
                             <option key={service.name} value={service.name}>
                                 {service.name}
