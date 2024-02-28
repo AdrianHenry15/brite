@@ -1,6 +1,5 @@
-"use client";
-
 import React from "react";
+import { Metadata } from "next";
 
 import { GiRabbit } from "react-icons/gi";
 import { FaWrench } from "react-icons/fa";
@@ -11,6 +10,11 @@ import IconBanner from "../../../../components/icon-banner/IconBanner";
 import ChristmasLightingSplash from "../../../../public/assets/imgs/christmas-lights.jpg";
 import Splash from "../../../../components/Splash";
 import { NavMenuItems } from "../../../../lib/constants";
+
+export const metadata: Metadata = {
+    title: "Brite's Holiday Lighting",
+    description: "Holiday Lighting At Brite",
+};
 
 const ChristmasLighting = () => {
     return (

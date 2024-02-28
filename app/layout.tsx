@@ -2,15 +2,16 @@
 import React, { Suspense } from "react";
 import { Inter } from "next/font/google";
 import { Toaster } from "react-hot-toast";
+import Script from "next/script";
 
 import { Loader } from "../components/Loader";
 
 import "./globals.css";
-import Script from "next/script";
+import { Metadata } from "next";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata = {
+export const metadata: Metadata = {
     title: "Brite",
     description: "Residential/Commercial Maintenance Services",
 };
@@ -18,7 +19,7 @@ export const metadata = {
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         // <ClerkProvider>
-        <html lang="en">
+        <div>
             <link rel="icon" href="/assets/icons/brite-logo.png" />
             <body className={inter.className}>
                 <Toaster />
@@ -30,7 +31,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
                 />
                 <Suspense fallback={<Loader />}>{children}</Suspense>
             </body>
-        </html>
+        </div>
         // </ClerkProvider>
     );
 }
