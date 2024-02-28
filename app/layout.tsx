@@ -3,6 +3,7 @@ import React, { Suspense } from "react";
 import { Inter } from "next/font/google";
 import { Toaster } from "react-hot-toast";
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/react";
 
 import { Loader } from "../components/Loader";
 
@@ -22,6 +23,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <div>
             <link rel="icon" href="/assets/icons/brite-logo.png" />
             <body className={inter.className}>
+                <Analytics />
                 <Toaster />
                 <Script
                     strategy="beforeInteractive"
