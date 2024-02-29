@@ -27,12 +27,12 @@ export default async function RootLayout({ children }: { children: React.ReactNo
                 {/* <Analytics />
                 <SpeedInsights /> */}
                 <Toaster />
-                <Script
+                {/* <Script
                     strategy="beforeInteractive"
                     id="googlemaps"
                     type="text/javascript"
                     src={`https://maps.googleapis.com/maps/api/js?key=${process.env.GOOGLE_API_KEY}&libraries=places`}
-                />
+                /> */}
                 <Suspense fallback={<Loader />}>{children}</Suspense>
             </body>
         </div>
