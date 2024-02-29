@@ -24,8 +24,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <div>
             <link rel="icon" href="/assets/icons/brite-logo.png" />
             <body className={inter.className}>
-                <Analytics />
-                <SpeedInsights />
+                {/* <Analytics />
+                <SpeedInsights /> */}
                 <Toaster />
                 <Script
                     strategy="beforeInteractive"
