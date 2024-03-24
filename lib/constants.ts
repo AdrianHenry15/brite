@@ -48,6 +48,7 @@ export const AltNavMenu: NavMenuType[] = [
 ];
 
 export const ServicesList = [
+    { name: "None" },
     { name: "Window Cleaning" },
     { name: "Pressure Washing" },
     { name: "House Wash" },

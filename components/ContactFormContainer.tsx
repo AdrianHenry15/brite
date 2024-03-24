@@ -142,6 +142,7 @@ const ContactFormContainer = () => {
                         control={control}
                         errors={errors}
                         errorPatternText={"Phone Number is not valid."}
+                        errorRequiredText={"Phone Number is Required"}
                     />
                     {/* EMAIL */}
                     <Input

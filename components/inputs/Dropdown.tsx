@@ -30,18 +30,21 @@ const Dropdown = ({
                 control={control}
                 defaultValue={options[0].name}
                 render={({ field }) => (
-                    <select required className={`${InputClass} py-4`} {...field}>
-                        {options.map((service) => (
-                            <option key={service.name} value={service.name}>
-                                {service.name}
-                            </option>
-                        ))}
-                    </select>
+                    <>
+                        <select required className={`${InputClass} py-4`} {...field}>
+                            {options.map((service) => (
+                                <option key={service.name} value={service.name}>
+                                    {service.name}
+                                </option>
+                            ))}
+                        </select>
+                        {(errors[inputName] && errors[inputName].type === "required") ||
+                        field.value === "None" ? (
+                            <p className="text-sm text-red-600 ml-4">{errorText}</p>
+                        ) : null}
+                    </>
                 )}
             />
-            {errors[inputName] && errors[inputName].type === "required" && (
-                <p className="text-sm text-red-600 ml-4">{errorText}</p>
-            )}
         </div>
     );
 };

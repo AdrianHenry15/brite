@@ -30,7 +30,7 @@ const Input = ({
                 <div>
                     <input
                         {...field}
-                        required
+                        required={errorRequiredText ? true : false}
                         className={InputClass}
                         type="text"
                         placeholder={placeholder}
