@@ -1,7 +1,7 @@
 import React from "react";
 import { Controller, FieldErrors } from "react-hook-form";
 
-interface IInputAltProps {
+interface IInputProps {
     inputName: string;
     inputLabel: string;
     placeholder: string;
@@ -11,15 +11,15 @@ interface IInputAltProps {
     errorPatternText?: string;
 }
 
-const Input = ({
+const InputAlt = ({
     inputName,
     control,
     errors,
     errorRequiredText,
     errorPatternText,
     placeholder,
-}: IInputAltProps) => {
-    const InputClass = "border-2 border-gray-400 my-2 p-2 rounded-sm w-full shadow-md";
+}: IInputProps) => {
+    const InputClass = "border-2 border-gray-400 my-2 p-2 rounded-sm w-full h-8 shadow-md";
 
     return (
         <Controller
@@ -47,4 +47,4 @@ const Input = ({
     );
 };
 
-export default Input;
+export default InputAlt;

@@ -9,13 +9,14 @@ import SocialProof from "../../../../components/layout/home/SocialProof";
 import IconBanner from "../../../../components/icon-banner/IconBanner";
 
 import SplashSlideShow from "../../../../components/SplashSlideShow";
+import ContactFormContainer from "../../../../components/contact-form-section/ContactFormContainer";
 
 export default async function Home() {
     return (
         <div>
             {/* <Jumbotron /> */}
             <SplashSlideShow />
-            <IconBanner
+            {/* <IconBanner
                 // ITEM 1 - WINDOW CLEANING
                 icon1={<GiWindow size={50} />}
                 link1="/exterior-cleaning"
@@ -40,7 +41,7 @@ export default async function Home() {
                     "Brite's holiday light services are here to provide you with the holiday display of your dreams year after year. We take care of the design, installation, removal and storage of your entire display."
                 }
                 addBtn3
-            />
+            /> */}
             <WelcomeMessage />
             <SocialProof />
         </div>

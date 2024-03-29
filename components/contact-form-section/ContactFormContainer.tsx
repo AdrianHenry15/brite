@@ -6,18 +6,18 @@ import { useForm } from "react-hook-form";
 import { usePathname } from "next/navigation";
 import emailjs from "@emailjs/browser";
 
-import Logo from "../public/assets/icons/brite-logo.png";
-import HandyMan from "../public/assets/imgs/handyman.webp";
+import Logo from "../../public/assets/icons/brite-logo.png";
+import HandyMan from "../../public/assets/imgs/handyman.webp";
 
-import Button from "./Button";
-import ConfirmationModal from "./modals/ConfirmationModal";
-import SuccessModal from "./modals/SuccessModal";
-import { Loader } from "./Loader";
+import Button from "../Button";
+import ConfirmationModal from "../modals/ConfirmationModal";
+import SuccessModal from "../modals/SuccessModal";
+import { Loader } from "../Loader";
 import toast from "react-hot-toast";
-import Dropdown from "./inputs/Dropdown";
-import { AltNavMenuItems, AltNavMenuLinks, NavMenuItems, ServicesList } from "../lib/constants";
-import Input from "./inputs/Input";
-import Textarea from "./inputs/Textarea";
+import Dropdown from "../inputs/Dropdown";
+import { AltNavMenuItems, AltNavMenuLinks, NavMenuItems, ServicesList } from "../../lib/constants";
+import Input from "../inputs/Input";
+import Textarea from "../inputs/Textarea";
 
 const ContactFormContainer = () => {
     // SWITCH BETWEEN CONTACT AND ESTIMATE FORM | BOTH FORMS DO THE SAME THING FOR NOW
@@ -88,7 +88,10 @@ const ContactFormContainer = () => {
     };
 
     return (
-        <section className="flex flex-col items-center px-4 py-20 shadow-inner relative w-full">
+        <section
+            id="contact-form"
+            className="flex flex-col items-center px-4 py-20 shadow-inner relative w-full"
+        >
             {isOpen && (
                 <ConfirmationModal
                     confirmEstimate={confirmEstimate}
