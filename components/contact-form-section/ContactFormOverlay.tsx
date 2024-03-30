@@ -90,7 +90,7 @@ const ContactFormOverlay = () => {
     };
 
     return (
-        <section className="flex flex-col z-20 items-center px-4 py-20 shadow-inner absolute top-0 w-full">
+        <section className="flex flex-col z-20 items-center shadow-inner absolute w-full">
             {isOpen && (
                 <ConfirmationModal
                     confirmEstimate={confirmEstimate}
@@ -106,50 +106,64 @@ const ContactFormOverlay = () => {
             )}
             {loading ? <Loader /> : null}
             {/* FORM CONTAINER */}
-            <div className="flex flex-col w-[250px] bg-white/70 py-6 rounded-2xl shadow-blue-600 shadow-lg border-2 md:w-[650px]">
+            <div className="flex flex-col w-[400px] bg-zinc-900/80 py-6 rounded-2xl shadow-blue-600 shadow-lg border-2">
                 {/* LOGO */}
                 <div className="flex justify-center">
                     <Image className="w-20" src={Logo} alt="Brite Logo" />
                 </div>
                 {/* FORM */}
-                <form className="self-center w-full md:w-2/3" onSubmit={handleSubmit(onSubmit)}>
-                    {/* FIRST NAME */}
-                    <InputAlt
-                        inputName={"firstName"}
-                        inputLabel={"First Name"}
-                        placeholder={"First Name*"}
-                        control={control}
-                        errors={errors}
-                        errorPatternText="First Name is required."
-                    />
-                    {/* LAST NAME */}
-                    <InputAlt
-                        inputName={"lastName"}
-                        inputLabel={"Last Name"}
-                        placeholder={"Last Name*"}
-                        control={control}
-                        errorPatternText="Last Name is required."
-                    />
-                    {/* PHONE NUMBER */}
-                    <InputAlt
-                        inputName={"phoneNumber"}
-                        inputLabel={"Phone Number"}
-                        placeholder={"Phone Number*"}
-                        control={control}
-                        errors={errors}
-                        errorPatternText={"Phone Number is not valid."}
-                        errorRequiredText={"Phone Number is Required"}
-                    />
-                    {/* EMAIL */}
-                    <InputAlt
-                        inputName={"email"}
-                        inputLabel={"Email"}
-                        placeholder={"Email*"}
-                        control={control}
-                        errors={errors}
-                        errorRequiredText={"Email is Required."}
-                        errorPatternText={"Email is not valid."}
-                    />
+                <form
+                    className="self-center text-sm w-full md:w-2/3 z-50"
+                    onSubmit={handleSubmit(onSubmit)}
+                >
+                    <h5 className="font-semibold text-lg text-white mb-2 underline">
+                        Contact Info
+                    </h5>
+                    <div className="flex items-center justify-between">
+                        {/* FIRST NAME */}
+                        <span className="flex mr-2">
+                            <InputAlt
+                                inputName={"firstName"}
+                                inputLabel={"First Name"}
+                                placeholder={"First Name*"}
+                                control={control}
+                                errors={errors}
+                                errorPatternText="First Name is required."
+                            />
+                        </span>
+                        {/* LAST NAME */}
+                        <InputAlt
+                            inputName={"lastName"}
+                            inputLabel={"Last Name"}
+                            placeholder={"Last Name*"}
+                            control={control}
+                            errorPatternText="Last Name is required."
+                        />
+                    </div>
+                    <div className="flex items-center justify-between">
+                        {/* PHONE NUMBER */}
+                        <span className="flex mr-2">
+                            <InputAlt
+                                inputName={"phoneNumber"}
+                                inputLabel={"Phone Number"}
+                                placeholder={"Phone Number*"}
+                                control={control}
+                                errors={errors}
+                                errorPatternText={"Phone Number is not valid."}
+                                errorRequiredText={"Phone Number is Required"}
+                            />
+                        </span>
+                        {/* EMAIL */}
+                        <InputAlt
+                            inputName={"email"}
+                            inputLabel={"Email"}
+                            placeholder={"Email*"}
+                            control={control}
+                            errors={errors}
+                            errorRequiredText={"Email is Required."}
+                            errorPatternText={"Email is not valid."}
+                        />
+                    </div>
                     {/* ADDRESS */}
                     <InputAlt
                         inputName={"address"}
@@ -188,16 +202,15 @@ const ContactFormOverlay = () => {
                         control={control}
                     />
                     <div className={`${inputClicked ? "" : "animate-pulse"} my-10`}>
-                        <Link href={"#contact-form"}>
-                            <Button
-                                name={`${
-                                    pathname === AltNavMenuLinks.CONTACT_US
-                                        ? AltNavMenuItems.CONTACT_US
-                                        : AltNavMenuItems.ESTIMATE
-                                }`}
-                                className="w-full justify-center"
-                            ></Button>
-                        </Link>
+                        <Button
+                            submit
+                            name={`${
+                                pathname === AltNavMenuLinks.CONTACT_US
+                                    ? AltNavMenuItems.CONTACT_US
+                                    : AltNavMenuItems.ESTIMATE
+                            }`}
+                            className="w-full justify-center"
+                        ></Button>
                     </div>
                 </form>
             </div>

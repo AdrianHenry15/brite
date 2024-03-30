@@ -10,13 +10,12 @@ import "swiper/css"; // Import Swiper styles
 import Logo from "../public/assets/icons/brite-logo.png";
 import AltLogo from "../public/assets/icons/brite-logo-alt.png";
 import { HomePageImages } from "../lib/Images";
-import ContactFormContainer from "./contact-form-section/ContactFormContainer";
 import ContactFormOverlay from "./contact-form-section/ContactFormOverlay";
 
 const SplashSlideShow = () => {
     return (
         <div className="relative w-full text-white md:h-screen">
-            <div className="absolute top-[30px]  right-[500px]">
+            <div className="absolute hidden right-[250px] top-[20%] md:flex lg:top-[15%] lg:right-[350px]">
                 <ContactFormOverlay />
             </div>
             {/* SHADOW */}
@@ -41,7 +40,7 @@ const SplashSlideShow = () => {
                 ))}
             </Swiper>
 
-            <div className="z-10 w-full p-4 top-[38%] justify-center md:absolute">
+            <div className="z-10 w-full p-4 top-[32%] justify-center md:absolute">
                 <div className="flex flex-col relative w-full items-center md:w-min">
                     {/* ON MEDIUM/LARGE SCREENS */}
                     <Link className="hidden md:flex" href={"/"}>

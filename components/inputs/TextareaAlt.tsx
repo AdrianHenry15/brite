@@ -17,7 +17,7 @@ const TextareaAlt = ({ inputName, control, placeholder }: ITextareaAltProps) => 
             render={({ field }) => (
                 <div>
                     <textarea
-                        className="border-2 border-gray-400 h-14 my-2 p-2 w-full"
+                        className="border-2 border-gray-400 h-14 my-2 p-2 w-full text-black"
                         placeholder={placeholder}
                         {...field}
                     />

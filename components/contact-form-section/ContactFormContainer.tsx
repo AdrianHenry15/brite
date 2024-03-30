@@ -120,6 +120,9 @@ const ContactFormContainer = () => {
                 </div>
                 {/* FORM */}
                 <form className="self-center w-full md:w-2/3" onSubmit={handleSubmit(onSubmit)}>
+                    <h5 className="font-semibold text-lg text-black mb-2 underline">
+                        Contact Info
+                    </h5>
                     {/* FIRST NAME */}
                     <Input
                         inputName={"firstName"}
