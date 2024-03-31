@@ -7,5 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default function Estimate() {
-    return <div></div>;
+    return <section></section>;
 }

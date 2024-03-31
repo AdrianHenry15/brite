@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 const ExteriorCleaningPage = () => {
     return (
-        <div className="w-full justify-center items-center self-center">
+        <section className="w-full justify-center items-center self-center">
             <Splash center title={NavMenuItems.EXTERIOR_CLEANING} img={PressureWashing} />
             {/* ICON BANNER */}
             <IconBanner
@@ -37,7 +37,7 @@ const ExteriorCleaningPage = () => {
                     "From your roof down, Brite’s expert technicians will use the right methods to bring any surface at your home or business back to life."
                 }
             />
-        </div>
+        </section>
     );
 };
 

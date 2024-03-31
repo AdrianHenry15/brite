@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 
 const ChristmasLighting = () => {
     return (
-        <div>
+        <section>
             <Splash title={NavMenuItems.HOLIDAY_LIGHTING} img={ChristmasLightingSplash} />
             <IconBanner
                 icon1={<CiRuler size={50} />}
@@ -37,7 +37,7 @@ const ChristmasLighting = () => {
                     "Nobody can control mother nature, but we can control how fast we solve the problems she may cause. We solve any service calls within 36 hours of notification."
                 }
             />
-        </div>
+        </section>
     );
 };
 
