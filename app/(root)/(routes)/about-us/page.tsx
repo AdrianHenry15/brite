@@ -16,9 +16,11 @@ export const metadata: Metadata = {
 export default function AboutUs() {
     return (
         <section className="flex flex-col w-full bg-white px-2">
+            {/* TITLE */}
             <h5 className="text-[75px] trackling-wide pt-32">
                 Our Story
             </h5>
+            {/* ABOUT US COMPONENTS */}
             <div className="w-full px-4 md:px-10 lg:px-24">
                 <TextImgContainer
                     textLeft

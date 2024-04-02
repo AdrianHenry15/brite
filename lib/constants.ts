@@ -1,9 +1,30 @@
 import { NavMenuType } from "./types";
 
+export enum FAQNav {
+    BRITE = "Brite",
+    EXTERIOR_CLEANING = "Exterior Cleaning",
+    HOLIDAY_LIGHTING = "Holiday Lighting",
+    TRASH_BIN_CLEANING = "Trash-Bin Cleaning",
+    WINDOW_CLEANING = "Window Cleaning",
+    PRESSURE_WASHING = "Pressure Washing",
+    SOFT_WASHING = "Soft Washing",
+}
+
+export enum FAQNavLinks {
+    BRITE = "#brite",
+    EXTERIOR_CLEANING = "#exterior-cleaning",
+    HOLIDAY_LIGHTING = "#holiday-lighting",
+    TRASH_BIN_CLEANING = "#trash-bin-cleaning",
+    WINDOW_CLEANING = "#window-cleaning",
+    PRESSURE_WASHING = "#pressure-washing",
+    SOFT_WASHING = "#soft-washing",
+}
+
 export enum NavMenuItems {
     HOME = "Home",
     EXTERIOR_CLEANING = "Exterior Cleaning",
     HOLIDAY_LIGHTING = "Holiday Lighting",
+    FAQS = "FAQs",
     ABOUT_US = "About Us",
 }
 
@@ -16,6 +37,7 @@ export enum NavMenuLinks {
     HOME = "/",
     EXTERIOR_CLEANING = "/exterior-cleaning",
     HOLIDAY_LIGHTING = "/holiday-lighting",
+    FAQS = "/faqs",
     ABOUT_US = "/about-us",
 }
 
@@ -23,6 +45,37 @@ export enum AltNavMenuLinks {
     CONTACT_US = "/contact-us",
     ESTIMATE = "/estimate",
 }
+
+export const FAQNavMenu: NavMenuType[] = [
+    {
+        title: FAQNav.BRITE,
+        link: FAQNavLinks.BRITE,
+    },
+    {
+        title: FAQNav.EXTERIOR_CLEANING,
+        link: FAQNavLinks.EXTERIOR_CLEANING,
+    },
+    {
+        title: FAQNav.HOLIDAY_LIGHTING,
+        link: FAQNavLinks.HOLIDAY_LIGHTING,
+    },
+    {
+        title: FAQNav.PRESSURE_WASHING,
+        link: FAQNavLinks.PRESSURE_WASHING,
+    },
+    {
+        title: FAQNav.SOFT_WASHING,
+        link: FAQNavLinks.SOFT_WASHING,
+    },
+    {
+        title: FAQNav.TRASH_BIN_CLEANING,
+        link: FAQNavLinks.TRASH_BIN_CLEANING,
+    },
+    {
+        title: FAQNav.WINDOW_CLEANING,
+        link: FAQNavLinks.WINDOW_CLEANING,
+    },
+];
 
 export const NavMenu: NavMenuType[] = [
     {
@@ -36,6 +89,10 @@ export const NavMenu: NavMenuType[] = [
     {
         title: NavMenuItems.HOLIDAY_LIGHTING,
         link: NavMenuLinks.HOLIDAY_LIGHTING,
+    },
+    {
+        title: NavMenuItems.FAQS,
+        link: NavMenuLinks.FAQS,
     },
     {
         title: NavMenuItems.ABOUT_US,
