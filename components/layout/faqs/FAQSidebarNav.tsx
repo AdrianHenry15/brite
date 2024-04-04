@@ -12,20 +12,28 @@ interface IFAQSidebarNavProps {
 const FAQSidebarNav = (props: IFAQSidebarNavProps) => {
     const [linkHash, setLinkHash] = useState("");
     const [dropdownOpen, setDropdownOpen] = useState(false);
-    const [isSticky, setIsSticky] = useState(false);
+    const [sticky, setSticky] = useState(false);
+    const [navBarHeight, setNavBarHeight] = useState(0);
 
     useEffect(() => {
+        // Get the height of the navigation bar
+        const navBar = document.getElementById("#nav-bar");
+        if (navBar) {
+            setNavBarHeight(navBar.clientHeight);
+        }
+
         const handleScroll = () => {
-            const scrollPosition = window.scrollY;
-            if (scrollPosition > 100) {
-                setIsSticky(true);
+            const offset = window.scrollY;
+            if (offset > navBarHeight) {
+                setSticky(true);
             } else {
-                setIsSticky(false);
+                setSticky(false);
             }
         };
 
         window.addEventListener("scroll", handleScroll);
 
+        // Clean up the event listener
         return () => {
             window.removeEventListener("scroll", handleScroll);
         };
@@ -37,9 +45,11 @@ const FAQSidebarNav = (props: IFAQSidebarNavProps) => {
                 return (
                     <nav
                         key={index}
-                        className={`flex items-center w-full justify-between border-y-[1px] border-gray-600 p-4 z-50 md:hidden`}
+                        className={`${
+                            sticky ? "fixed top-[71px] left-0 w-full bg-white shadow-md" : ""
+                        } flex items-center w-full justify-between border-y-[1px] border-zinc-200 p-4 z-50 transition-transform duration-500 ease-in-out md:hidden`}
                     >
-                        <h5>{item.title}</h5>
+                        <h5 className="text-blue-600 font-semibold">{item.title}</h5>
                         {!dropdownOpen ? (
                             <FaChevronUp onClick={() => setDropdownOpen(true)} size={15} />
                         ) : (
@@ -49,7 +59,7 @@ const FAQSidebarNav = (props: IFAQSidebarNavProps) => {
                 );
             } else {
                 return (
-                    <nav className="p-2 text-blue-600 text-sm md:hidden" key={index}>
+                    <nav className="p-2 px-6 text-blue-600 text-sm md:hidden" key={index}>
                         {dropdownOpen && <Link href={item.link}>{item.title}</Link>}
                     </nav>
                 );
@@ -59,7 +69,7 @@ const FAQSidebarNav = (props: IFAQSidebarNavProps) => {
 
     const renderRegularNav = () => {
         return (
-            <div className="hidden flex-col text-sm md:flex md:flex-1">
+            <div className="hidden flex-col text-sm pl-10 md:flex md:flex-1">
                 {props.items.map((item, index) => (
                     <Link
                         key={index}
@@ -79,7 +89,7 @@ const FAQSidebarNav = (props: IFAQSidebarNavProps) => {
     };
 
     return (
-        <div className="mb-24 w-full md:w-1/3">
+        <div className="mb-10 w-full md:w-1/3">
             {renderMobileDropdown()}
             {renderRegularNav()}
         </div>

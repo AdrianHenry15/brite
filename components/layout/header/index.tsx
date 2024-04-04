@@ -15,6 +15,7 @@ export default function Navbar() {
 
     return (
         <nav
+            id="nav-bar"
             className={`bg-white text-sm font-semibold flex w-full self-center sticky top-0 z-50 shadow-md`}
         >
             {/* MOBILE CONTAINER */}

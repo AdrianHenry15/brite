@@ -22,7 +22,7 @@ export default function FAQsPage() {
                 FAQs
             </h5>
             {/* MAIN PAGE WORKSPACE */}
-            <div className="flex flex-col my-24 px-6 w-full md:flex-row">
+            <div className="flex flex-col w-full mb-10 md:my-10 md:flex-row">
                 {/* FAQs Sidebar Nav */}
                 <FAQSidebarNav items={FAQNavMenu} />
                 <div className="flex flex-col flex-1 w-full">
