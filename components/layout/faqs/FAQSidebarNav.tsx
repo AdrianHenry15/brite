@@ -40,31 +40,44 @@ const FAQSidebarNav = (props: IFAQSidebarNavProps) => {
     }, []);
 
     const renderMobileDropdown = () => {
-        return props.items.map((item, index) => {
-            if (linkHash === item.link || index === 0) {
-                return (
-                    <nav
-                        key={index}
-                        className={`${
-                            sticky ? "fixed top-[71px] left-0 w-full bg-white shadow-md" : ""
-                        } flex items-center w-full justify-between border-y-[1px] border-zinc-200 p-4 z-50 transition-transform duration-500 ease-in-out md:hidden`}
-                    >
-                        <h5 className="text-blue-600 font-semibold">{item.title}</h5>
-                        {!dropdownOpen ? (
-                            <FaChevronUp onClick={() => setDropdownOpen(true)} size={15} />
-                        ) : (
-                            <FaChevronDown onClick={() => setDropdownOpen(false)} size={15} />
-                        )}
-                    </nav>
-                );
-            } else {
-                return (
-                    <nav className="p-2 px-6 text-blue-600 text-sm md:hidden" key={index}>
-                        {dropdownOpen && <Link href={item.link}>{item.title}</Link>}
-                    </nav>
-                );
-            }
-        });
+        return (
+            <nav
+                className={`${
+                    sticky ? "fixed top-[71px] left-0 w-full bg-white" : ""
+                } flex flex-col items-start w-full justify-between border-y-[1px] shadow-md border-zinc-200 p-4 z-50 transition-transform duration-500 ease-in-out md:hidden`}
+            >
+                {props.items.map((item, index) => {
+                    if (linkHash === item.link || index === 0) {
+                        return (
+                            <div className="flex items-center justify-between w-full" key={index}>
+                                <h5 className="text-blue-600 font-semibold">{item.title}</h5>
+                                {!dropdownOpen ? (
+                                    <FaChevronUp onClick={() => setDropdownOpen(true)} size={15} />
+                                ) : (
+                                    <FaChevronDown
+                                        onClick={() => setDropdownOpen(false)}
+                                        size={15}
+                                    />
+                                )}
+                            </div>
+                        );
+                    } else {
+                        return (
+                            <div>
+                                {dropdownOpen && (
+                                    <div
+                                        className="py-4 px-8 text-blue-600 text-sm md:hidden"
+                                        key={index}
+                                    >
+                                        {dropdownOpen && <Link href={item.link}>{item.title}</Link>}
+                                    </div>
+                                )}
+                            </div>
+                        );
+                    }
+                })}
+            </nav>
+        );
     };
 
     const renderRegularNav = () => {
@@ -75,7 +88,7 @@ const FAQSidebarNav = (props: IFAQSidebarNavProps) => {
                         key={index}
                         href={item.link}
                         onClick={() => setLinkHash(item.link)}
-                        className={`pb-6 text-blue-600 hover:text-blue-950 ease-in-out duration-300 ${
+                        className={`pb-10 text-blue-600 hover:text-blue-950 ease-in-out duration-300 ${
                             linkHash === item.link
                                 ? "underline underline-offset-4 text-blue-950"
                                 : ""
@@ -89,7 +102,7 @@ const FAQSidebarNav = (props: IFAQSidebarNavProps) => {
     };
 
     return (
-        <div className="mb-10 w-full md:w-1/3">
+        <div className="mb-6 w-full md:w-1/3">
             {renderMobileDropdown()}
             {renderRegularNav()}
         </div>
