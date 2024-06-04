@@ -50,18 +50,15 @@ const ContactFormContainer = () => {
     const PRIVATE_KEY = process.env.NEXT_PRIVATE_KEY as string;
 
     const {
-        register,
         handleSubmit,
         getValues,
         control,
-        watch,
         formState: { errors },
     } = useForm();
 
     const onSubmit = (data) => {
         // open confirmation modal
         setIsOpen(true);
-        console.log(data);
     };
 
     const confirmEstimate = () => {

@@ -52,18 +52,15 @@ const ContactFormOverlay = () => {
     const PRIVATE_KEY = process.env.NEXT_PRIVATE_KEY as string;
 
     const {
-        register,
         handleSubmit,
         getValues,
         control,
-        watch,
         formState: { errors },
     } = useForm();
 
     const onSubmit = (data) => {
         // open confirmation modal
         setIsOpen(true);
-        console.log(data);
     };
 
     const confirmEstimate = () => {
@@ -84,9 +81,7 @@ const ContactFormOverlay = () => {
             ({ success }) => {
                 if (success) {
                     setEstimateSuccess(true);
-                    setEstimateFail(false);
                 } else {
-                    setEstimateSuccess(false);
                     setEstimateFail(true);
                 }
                 setIsOpen(false);
@@ -131,7 +126,7 @@ const ContactFormOverlay = () => {
                     title="Estimate Request failed"
                     description="Your Estimate Request has failed submitted. Please contact administrator."
                     isOpen={estimateSuccess}
-                    closeModal={() => setEstimateSuccess(false)}
+                    closeModal={() => setEstimateFail(false)}
                 />
             )}
             {loading ? <Loader /> : null}
