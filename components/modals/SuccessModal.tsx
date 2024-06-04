@@ -4,12 +4,15 @@ import { Fragment, useState } from "react";
 interface ISuccessModalProps {
     isOpen: boolean;
     closeModal: () => void;
+    title: string;
+    description: string;
 }
 
 const SuccessModal = (props: ISuccessModalProps) => {
+    const { title, description } = props;
     return (
         <Transition appear show={props.isOpen} as={Fragment}>
-            <Dialog as="div" className="relative z-10" onClose={props.closeModal}>
+            <Dialog as="div" className="relative z-50" onClose={props.closeModal}>
                 <Transition.Child
                     as={Fragment}
                     enter="ease-out duration-300"
@@ -38,13 +41,15 @@ const SuccessModal = (props: ISuccessModalProps) => {
                                     as="h3"
                                     className="text-lg font-medium leading-6 text-gray-900"
                                 >
-                                    Estimate Request successful
+                                    {/* Estimate Request successful */}
+                                    {title}
                                 </Dialog.Title>
                                 <div className="mt-2">
                                     <p className="text-sm text-gray-500">
-                                        Your Estimate Request has been successfully submitted. We’ve
+                                        {/* Your Estimate Request has been successfully submitted. We’ve
                                         sent you an email with all of the details of your Estimate
-                                        Request.
+                                        Request. */}
+                                        {description}
                                     </p>
                                 </div>
 

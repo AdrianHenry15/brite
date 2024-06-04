@@ -20,6 +20,18 @@ import TextareaAlt from "../inputs/TextareaAlt";
 import Link from "next/link";
 import InputAlt from "../inputs/InputAlt";
 import DropdownAlt from "../inputs/DropdownAlt";
+import sendEmail from "../../lib/emailService";
+
+type FormValues = {
+    firstName: string;
+    lastName: string;
+    phone: string;
+    email: string;
+    address: string;
+    service: string;
+    frequency?: string;
+    comment?: string;
+};
 
 const ContactFormOverlay = () => {
     // SWITCH BETWEEN CONTACT AND ESTIMATE FORM | BOTH FORMS DO THE SAME THING FOR NOW
@@ -28,6 +40,7 @@ const ContactFormOverlay = () => {
     const [inputClicked, setInputClicked] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
     const [estimateSuccess, setEstimateSuccess] = useState(false);
+    const [estimateFail, setEstimateFail] = useState(false);
     const [loading, setLoading] = useState(false);
 
     const InputClass = "border-2 border-gray-400 my-2 p-2 rounded-sm w-full shadow-md";
@@ -36,6 +49,7 @@ const ContactFormOverlay = () => {
     const SERVICE_ID = process.env.NEXT_PUBLIC_SERVICE_ID as string;
     const TEMPLATE_ID = process.env.NEXT_PUBLIC_TEMPLATE_ID as string;
     const PUBLIC_KEY = process.env.NEXT_PUBLIC_KEY as string;
+    const PRIVATE_KEY = process.env.NEXT_PRIVATE_KEY as string;
 
     const {
         register,
@@ -53,41 +67,45 @@ const ContactFormOverlay = () => {
     };
 
     const confirmEstimate = () => {
-        // EMAIL JS
-        emailjs
-            .send(SERVICE_ID as string, TEMPLATE_ID as string, templateParams, PUBLIC_KEY as string)
-            .then(
-                function (response) {
-                    toast.success("Your estimate has been submitted successfully!");
-                    console.log("SUCCESS!", response.status, response.text);
-                },
-                function (error) {
-                    toast.error("There was an error submitting your estimate. Please try again.");
-                    console.log("FAILED...", error);
-                }
-            );
-        // close modal
-        setIsOpen(false);
-        setTimeout(() => {
-            // open success modal
-            setEstimateSuccess(true);
-            setLoading(false);
-        }, 1000);
-
         setLoading(true);
+
+        const templateParams: FormValues = {
+            firstName: getValues("firstName"),
+            lastName: getValues("lastName"),
+            phone: getValues("phone"),
+            email: getValues("email"),
+            address: getValues("address"),
+            service: getValues("service"),
+            frequency: getValues("frequency"),
+            comment: getValues("comment"),
+        };
+
+        sendEmail(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY, PRIVATE_KEY).then(
+            ({ success }) => {
+                if (success) {
+                    setEstimateSuccess(true);
+                    setEstimateFail(false);
+                } else {
+                    setEstimateSuccess(false);
+                    setEstimateFail(true);
+                }
+                setIsOpen(false);
+                setLoading(false);
+            }
+        );
     };
 
-    //EMAIL JS
-    const templateParams = {
-        firstName: getValues("firstName"),
-        lastName: getValues("lastName"),
-        phone: getValues("phone"),
-        email: getValues("email"),
-        address: getValues("address"),
-        service: getValues("service"),
-        frequency: getValues("frequency"),
-        comment: getValues("comment"),
-    };
+    // //EMAIL JS
+    // const templateParams: FormValues = {
+    //     firstName: getValues("firstName"),
+    //     lastName: getValues("lastName"),
+    //     phone: getValues("phone"),
+    //     email: getValues("email"),
+    //     address: getValues("address"),
+    //     service: getValues("service"),
+    //     frequency: getValues("frequency"),
+    //     comment: getValues("comment"),
+    // };
 
     return (
         <section className="flex flex-col z-20 items-center shadow-inner absolute w-full">
@@ -100,6 +118,18 @@ const ContactFormOverlay = () => {
             )}
             {estimateSuccess && (
                 <SuccessModal
+                    title="Estimate Request successful"
+                    description="Your Estimate Request has been successfully submitted. We’ve
+                sent you an email with all of the details of your Estimate
+                Request."
+                    isOpen={estimateSuccess}
+                    closeModal={() => setEstimateSuccess(false)}
+                />
+            )}
+            {estimateFail && (
+                <SuccessModal
+                    title="Estimate Request failed"
+                    description="Your Estimate Request has failed submitted. Please contact administrator."
                     isOpen={estimateSuccess}
                     closeModal={() => setEstimateSuccess(false)}
                 />
