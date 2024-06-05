@@ -7,19 +7,19 @@ interface IDropdownAltProps {
     inputName: string;
     inputLabel: string;
     control: any;
-    errors: FieldErrors;
+    // errors: FieldErrors;
     options: { name: string }[];
-    errorText: string;
+    // errorText: string;
 }
 
 const DropdownAlt = ({
     inputName,
     inputLabel,
     options,
-    errorText,
+    // errorText,
     control,
-    errors,
-}: IDropdownAltProps) => {
+}: // errors,
+IDropdownAltProps) => {
     const InputClass =
         "border-2 border-gray-400 text-black z-50 my-2 px-2 rounded-sm w-full shadow-md";
 
@@ -43,10 +43,10 @@ const DropdownAlt = ({
                                 </option>
                             ))}
                         </select>
-                        {(errors[inputName] && errors[inputName].type === "required") ||
+                        {/* {(errors[inputName] && errors[inputName].type === "required") ||
                         field.value === "None" ? (
                             <p className="text-sm text-red-600 ml-4">{errorText}</p>
-                        ) : null}
+                        ) : null} */}
                     </>
                 )}
             />

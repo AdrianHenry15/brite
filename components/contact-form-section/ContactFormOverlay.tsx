@@ -204,9 +204,9 @@ const ContactFormOverlay = () => {
                         inputName={"service"}
                         inputLabel={"Choose Service:"}
                         control={control}
-                        errors={errors}
+                        // errors={errors}
                         options={ServicesList}
-                        errorText="Service is required."
+                        // errorText=""
                     />
                     {/* FREQUENCY */}
                     {/* {watch("service") === "Exterior Cleaning" ? (
