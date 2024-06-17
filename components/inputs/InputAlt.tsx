@@ -7,23 +7,15 @@ interface IInputAltProps {
     placeholder: string;
     control: any;
     errors?: FieldErrors;
-    errorRequiredText?: string;
-    errorPatternText?: string;
+    validationRules?: any;
 }
 
-const InputAlt = ({
-    inputName,
-    control,
-    errors,
-    errorRequiredText,
-    errorPatternText,
-    placeholder,
-}: IInputAltProps) => {
-    const InputClass =
-        "border-2 border-gray-400 text-black flex w-full my-2 p-2 rounded-sm h-8 shadow-md";
+const InputAlt = ({ inputName, control, errors, placeholder, validationRules }: IInputAltProps) => {
+    const InputClass = `border-2 border-gray-400 text-black flex w-full my-2 p-2 rounded-sm h-8 shadow-md`;
 
     return (
         <Controller
+            rules={validationRules}
             name={inputName}
             control={control}
             defaultValue={""}
@@ -31,16 +23,18 @@ const InputAlt = ({
                 <div>
                     <input
                         {...field}
-                        required={errorRequiredText ? true : false}
                         className={InputClass}
                         type="text"
                         placeholder={placeholder}
                     />
-                    {errors && errors[inputName] && errors[inputName].type === "required" && (
-                        <p className="text-sm text-red-600 ml-4">{errorRequiredText}</p>
-                    )}
-                    {errors && errors[inputName] && errors[inputName].type === "pattern" && (
-                        <p className="text-sm text-red-600 ml-4">{errorPatternText}</p>
+                    {errors && errors[inputName] && (
+                        <p
+                            className={`${
+                                errors && errors[inputName] ? "text-red-600" : "text-transparent"
+                            } text-[10px]`}
+                        >
+                            {errors[inputName].message.toString()}
+                        </p>
                     )}
                 </div>
             )}

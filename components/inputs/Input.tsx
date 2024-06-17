@@ -7,22 +7,15 @@ interface IInputAltProps {
     placeholder: string;
     control: any;
     errors?: FieldErrors;
-    errorRequiredText?: string;
-    errorPatternText?: string;
+    validationRules?: any;
 }
 
-const Input = ({
-    inputName,
-    control,
-    errors,
-    errorRequiredText,
-    errorPatternText,
-    placeholder,
-}: IInputAltProps) => {
+const Input = ({ inputName, control, errors, validationRules, placeholder }: IInputAltProps) => {
     const InputClass = "border-2 border-gray-400 my-2 p-2 rounded-sm w-full shadow-md";
 
     return (
         <Controller
+            rules={validationRules}
             name={inputName}
             control={control}
             defaultValue={""}
@@ -30,16 +23,17 @@ const Input = ({
                 <div>
                     <input
                         {...field}
-                        required={errorRequiredText ? true : false}
                         className={InputClass}
                         type="text"
                         placeholder={placeholder}
                     />
-                    {errors && errors[inputName] && errors[inputName].type === "required" && (
+                    {/* {errors && errors[inputName] && (
                         <p className="text-sm text-red-600 ml-4">{errorRequiredText}</p>
-                    )}
-                    {errors && errors[inputName] && errors[inputName].type === "pattern" && (
-                        <p className="text-sm text-red-600 ml-4">{errorPatternText}</p>
+                    )} */}
+                    {errors && errors[inputName] && (
+                        <p className="text-sm text-red-600 ml-4">
+                            {errors[inputName].message.toString()}
+                        </p>
                     )}
                 </div>
             )}

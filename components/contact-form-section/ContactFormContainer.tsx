@@ -183,7 +183,21 @@ const ContactFormContainer = () => {
                         placeholder={"First Name*"}
                         control={control}
                         errors={errors}
-                        errorPatternText="First Name is required."
+                        validationRules={{
+                            required: "First Name is required",
+                            minLength: {
+                                value: 2,
+                                message: "First Name must be at least 2 characters long",
+                            },
+                            maxLength: {
+                                value: 100,
+                                message: "First Name cannot exceed 100 characters",
+                            },
+                            pattern: {
+                                value: /^[^\s]+(\s+[^\s]+)*$/,
+                                message: "First Name cannot contain spaces",
+                            },
+                        }}
                     />
                     {/* LAST NAME */}
                     <Input
@@ -191,7 +205,22 @@ const ContactFormContainer = () => {
                         inputLabel={"Last Name"}
                         placeholder={"Last Name*"}
                         control={control}
-                        errorPatternText="Last Name is required."
+                        errors={errors}
+                        validationRules={{
+                            required: "Last Name is required",
+                            minLength: {
+                                value: 2,
+                                message: "Last Name must be at least 2 characters long",
+                            },
+                            maxLength: {
+                                value: 100,
+                                message: "Last Name cannot exceed 100 characters",
+                            },
+                            pattern: {
+                                value: /^[^\s]+(\s+[^\s]+)*$/,
+                                message: "Last Name cannot contain spaces",
+                            },
+                        }}
                     />
                     {/* PHONE NUMBER */}
                     <Input
@@ -200,8 +229,13 @@ const ContactFormContainer = () => {
                         placeholder={"Phone Number*"}
                         control={control}
                         errors={errors}
-                        errorPatternText={"Phone Number is not valid."}
-                        errorRequiredText={"Phone Number is Required"}
+                        validationRules={{
+                            required: "Phone number is required",
+                            pattern: {
+                                value: /^[0-9]{10}$/, // Adjust pattern as per your requirement
+                                message: "Enter a valid phone number",
+                            },
+                        }}
                     />
                     {/* EMAIL */}
                     <Input
@@ -210,8 +244,17 @@ const ContactFormContainer = () => {
                         placeholder={"Email*"}
                         control={control}
                         errors={errors}
-                        errorRequiredText={"Email is Required."}
-                        errorPatternText={"Email is not valid."}
+                        validationRules={{
+                            required: "Email is required",
+                            pattern: {
+                                value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                                message: "Enter a valid email address",
+                            },
+                            maxLength: {
+                                value: 100,
+                                message: "Email Address cannot exceed 100 characters",
+                            },
+                        }}
                     />
                     {/* ADDRESS */}
                     <Input
@@ -220,8 +263,21 @@ const ContactFormContainer = () => {
                         placeholder={"Address*"}
                         control={control}
                         errors={errors}
-                        errorRequiredText={"Address is Required."}
-                        errorPatternText={"Address is not valid."}
+                        validationRules={{
+                            required: "Address is required",
+                            minLength: {
+                                value: 5,
+                                message: "Address must be at least 5 characters long",
+                            },
+                            maxLength: {
+                                value: 100,
+                                message: "Address cannot exceed 100 characters",
+                            },
+                            pattern: {
+                                value: /^[^\s]+(\s+[^\s]+)*$/,
+                                message: "Address cannot contain spaces",
+                            },
+                        }}
                     />
                     {/* SERVICE */}
                     <Dropdown

@@ -148,7 +148,21 @@ const ContactFormOverlay = () => {
                                 placeholder={"First Name*"}
                                 control={control}
                                 errors={errors}
-                                errorPatternText="First Name is required."
+                                validationRules={{
+                                    required: "Invalid",
+                                    minLength: {
+                                        value: 2,
+                                        message: "Must be at least 2 characters long",
+                                    },
+                                    maxLength: {
+                                        value: 100,
+                                        message: "Cannot exceed 100 characters",
+                                    },
+                                    pattern: {
+                                        value: /^[^\s]+(\s+[^\s]+)*$/,
+                                        message: "Cannot contain spaces",
+                                    },
+                                }}
                             />
                         </span>
                         {/* LAST NAME */}
@@ -157,7 +171,22 @@ const ContactFormOverlay = () => {
                             inputLabel={"Last Name"}
                             placeholder={"Last Name*"}
                             control={control}
-                            errorPatternText="Last Name is required."
+                            errors={errors}
+                            validationRules={{
+                                required: "Invalid",
+                                minLength: {
+                                    value: 2,
+                                    message: "Must be at least 2 characters long",
+                                },
+                                maxLength: {
+                                    value: 100,
+                                    message: "Cannot exceed 100 characters",
+                                },
+                                pattern: {
+                                    value: /^[^\s]+(\s+[^\s]+)*$/,
+                                    message: "Cannot contain spaces",
+                                },
+                            }}
                         />
                     </div>
                     <div className="flex items-center justify-between">
@@ -169,8 +198,13 @@ const ContactFormOverlay = () => {
                                 placeholder={"Phone Number*"}
                                 control={control}
                                 errors={errors}
-                                errorPatternText={"Phone Number is not valid."}
-                                errorRequiredText={"Phone Number is Required"}
+                                validationRules={{
+                                    required: "Invalid",
+                                    pattern: {
+                                        value: /^[0-9]{10}$/, // Adjust pattern as per your requirement
+                                        message: "Invalid",
+                                    },
+                                }}
                             />
                         </span>
                         {/* EMAIL */}
@@ -180,8 +214,17 @@ const ContactFormOverlay = () => {
                             placeholder={"Email*"}
                             control={control}
                             errors={errors}
-                            errorRequiredText={"Email is Required."}
-                            errorPatternText={"Email is not valid."}
+                            validationRules={{
+                                required: "Invalid",
+                                pattern: {
+                                    value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                                    message: "invalid Email",
+                                },
+                                maxLength: {
+                                    value: 100,
+                                    message: "Cannot exceed 100 characters",
+                                },
+                            }}
                         />
                     </div>
                     {/* ADDRESS */}
@@ -191,8 +234,21 @@ const ContactFormOverlay = () => {
                         placeholder={"Address*"}
                         control={control}
                         errors={errors}
-                        errorRequiredText={"Address is Required."}
-                        errorPatternText={"Address is not valid."}
+                        validationRules={{
+                            required: "Invalid",
+                            minLength: {
+                                value: 5,
+                                message: "Must be at least 5 characters long",
+                            },
+                            maxLength: {
+                                value: 100,
+                                message: "Cannot exceed 100 characters",
+                            },
+                            pattern: {
+                                value: /^[^\s]+(\s+[^\s]+)*$/,
+                                message: "Cannot contain spaces",
+                            },
+                        }}
                     />
                     {/* SERVICE */}
                     <DropdownAlt
