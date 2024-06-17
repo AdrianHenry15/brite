@@ -4,7 +4,6 @@ import Image from "next/image";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { usePathname } from "next/navigation";
-import emailjs from "@emailjs/browser";
 
 import Logo from "../../public/assets/icons/brite-logo.png";
 import HandyMan from "../../public/assets/imgs/handyman.webp";
@@ -13,9 +12,8 @@ import Button from "../Button";
 import ConfirmationModal from "../modals/ConfirmationModal";
 import SuccessModal from "../modals/SuccessModal";
 import { Loader } from "../Loader";
-import toast from "react-hot-toast";
 import Dropdown from "../inputs/Dropdown";
-import { AltNavMenuItems, AltNavMenuLinks, NavMenuItems, ServicesList } from "../../lib/constants";
+import { AltNavMenuItems, AltNavMenuLinks, ServicesList } from "../../lib/constants";
 import Input from "../inputs/Input";
 import Textarea from "../inputs/Textarea";
 import sendEmail from "../../lib/emailService";
@@ -197,7 +195,7 @@ const ContactFormContainer = () => {
                     />
                     {/* PHONE NUMBER */}
                     <Input
-                        inputName={"phoneNumber"}
+                        inputName={"phone"}
                         inputLabel={"Phone Number"}
                         placeholder={"Phone Number*"}
                         control={control}

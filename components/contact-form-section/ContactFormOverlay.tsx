@@ -4,7 +4,6 @@ import Image from "next/image";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { usePathname } from "next/navigation";
-import emailjs from "@emailjs/browser";
 
 import Logo from "../../public/assets/icons/brite-logo.png";
 
@@ -12,12 +11,8 @@ import Button from "../Button";
 import ConfirmationModal from "../modals/ConfirmationModal";
 import SuccessModal from "../modals/SuccessModal";
 import { Loader } from "../Loader";
-import toast from "react-hot-toast";
-import Dropdown from "../inputs/Dropdown";
 import { AltNavMenuItems, AltNavMenuLinks, ServicesList } from "../../lib/constants";
-import Input from "../inputs/Input";
 import TextareaAlt from "../inputs/TextareaAlt";
-import Link from "next/link";
 import InputAlt from "../inputs/InputAlt";
 import DropdownAlt from "../inputs/DropdownAlt";
 import sendEmail from "../../lib/emailService";
@@ -169,7 +164,7 @@ const ContactFormOverlay = () => {
                         {/* PHONE NUMBER */}
                         <span className="flex mr-2">
                             <InputAlt
-                                inputName={"phoneNumber"}
+                                inputName={"phone"}
                                 inputLabel={"Phone Number"}
                                 placeholder={"Phone Number*"}
                                 control={control}
