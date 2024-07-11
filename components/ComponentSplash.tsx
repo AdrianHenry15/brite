@@ -41,10 +41,16 @@ const ComponentSplash = (props: ISplashProps) => {
                 </div>
                 <div className="flex w-full p-4 top-[38%] md:absolute">
                     <div className="flex flex-col relative w-full justify-center items-center md:w-min">
-                        <Link className="flex justify-start self-center" href={"/"}>
+                        {/* LOGO */}
+                        <Link className="flex justify-start self-start" href={"/"}>
                             <Image src={Logo} alt="logo" className="w-24 rounded-lg  md:w-48" />
                         </Link>
-                        <div className="my-4 flex items-center w-auto">
+                        {/* TITLE */}
+                        <h5 className="items-center py-2 justify-center text-7xl whitespace-nowrap hidden lg:flex">
+                            {props.title}
+                        </h5>
+                        {/* BUTTONS */}
+                        <div className="my-4 flex self-start items-center w-auto">
                             <Link
                                 href={AltNavMenuLinks.CONTACT_US}
                                 className="border bg-gray-300 text-black text-sm border-gray-300 py-2 px-5 my-2 whitespace-nowrap"
