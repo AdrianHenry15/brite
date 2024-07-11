@@ -7,7 +7,7 @@ import { IoWater, IoWaterOutline } from "react-icons/io5";
 import IconBanner from "../../../../components/icon-banner/IconBanner";
 
 import PressureWashing from "../../../../public/assets/imgs/ex-cleaning.png";
-import Splash from "../../../../components/Splash";
+import ComponentSplash from "../../../../components/ComponentSplash";
 import { NavMenuItems } from "../../../../lib/constants";
 
 export const metadata: Metadata = {
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 const ExteriorCleaningPage = () => {
     return (
         <section className="w-full justify-center items-center self-center">
-            <Splash center title={NavMenuItems.EXTERIOR_CLEANING} img={PressureWashing} />
+            <ComponentSplash center title={NavMenuItems.EXTERIOR_CLEANING} img={PressureWashing} />
             {/* ICON BANNER */}
             <IconBanner
                 icon1={<GiWindow size={50} />}

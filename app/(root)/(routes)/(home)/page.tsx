@@ -2,12 +2,12 @@ import React from "react";
 
 import WelcomeMessage from "../../../../components/layout/home/WelcomeMessage";
 import SocialProof from "../../../../components/layout/home/SocialProof";
-import SplashSlideShow from "../../../../components/SplashSlideShow";
+import HomeSplash from "../../../../components/HomeSplash";
 
 export default async function Home() {
     return (
         <section>
-            <SplashSlideShow />
+            <HomeSplash />
             <WelcomeMessage />
             <SocialProof />
         </section>

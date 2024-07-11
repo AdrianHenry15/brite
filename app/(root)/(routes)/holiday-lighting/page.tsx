@@ -8,7 +8,7 @@ import { CiRuler } from "react-icons/ci";
 import IconBanner from "../../../../components/icon-banner/IconBanner";
 
 import ChristmasLightingSplash from "../../../../public/assets/imgs/christmas-lights.jpg";
-import Splash from "../../../../components/Splash";
+import ComponentSplash from "../../../../components/ComponentSplash";
 import { NavMenuItems } from "../../../../lib/constants";
 
 export const metadata: Metadata = {
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 const ChristmasLighting = () => {
     return (
         <section>
-            <Splash title={NavMenuItems.HOLIDAY_LIGHTING} img={ChristmasLightingSplash} />
+            <ComponentSplash title={NavMenuItems.HOLIDAY_LIGHTING} img={ChristmasLightingSplash} />
             <IconBanner
                 icon1={<CiRuler size={50} />}
                 title1={"Design"}

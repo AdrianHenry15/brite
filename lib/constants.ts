@@ -24,8 +24,9 @@ export enum NavMenuItems {
     HOME = "Home",
     EXTERIOR_CLEANING = "Exterior Cleaning",
     HOLIDAY_LIGHTING = "Holiday Lighting",
-    FAQS = "FAQs",
-    ABOUT_US = "About Us",
+    COMMERCIAL_SERVICES = "Commercial Services",
+    // FAQS = "FAQs",
+    // ABOUT_US = "About Us",
 }
 
 export enum AltNavMenuItems {
@@ -37,6 +38,7 @@ export enum NavMenuLinks {
     HOME = "/",
     EXTERIOR_CLEANING = "/exterior-cleaning",
     HOLIDAY_LIGHTING = "/holiday-lighting",
+    COMMERCIAL_SERVICES = "/commercial-services",
     // FAQS = "/faqs",
     // ABOUT_US = "/about-us",
 }
@@ -89,6 +91,10 @@ export const NavMenu: NavMenuType[] = [
     {
         title: NavMenuItems.HOLIDAY_LIGHTING,
         link: NavMenuLinks.HOLIDAY_LIGHTING,
+    },
+    {
+        title: NavMenuItems.COMMERCIAL_SERVICES,
+        link: NavMenuLinks.COMMERCIAL_SERVICES,
     },
     // {
     //     title: NavMenuItems.FAQS,
