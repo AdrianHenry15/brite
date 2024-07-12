@@ -8,7 +8,7 @@ export default async function Home() {
     return (
         <section>
             <HomeSplash />
-            <WelcomeMessage />
+            {/* <WelcomeMessage /> */}
             <SocialProof />
         </section>
     );
