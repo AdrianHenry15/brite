@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import Image from "next/image";
 
 import MobileHeader from "./MobileMenu";
-import AltLogo from "../../../public/assets/icons/brite-logo-alt.png";
+import Logo from "../../../public/assets/icons/brite-logo.png";
 import Button from "../../Button";
 import { NavMenu } from "../../../lib/constants";
 import { NavMenuType } from "../../../lib/types";
@@ -16,7 +16,7 @@ export default function Navbar() {
     return (
         <nav
             id="nav-bar"
-            className={`bg-white text-sm font-semibold flex w-full self-center sticky top-0 z-50 shadow-md`}
+            className={`bg-zinc-200 text-sm font-semibold flex w-full self-center sticky top-0 z-50 shadow-md`}
         >
             {/* MOBILE CONTAINER */}
             <div className="absolute self-center right-0 xl:hidden">
@@ -27,7 +27,7 @@ export default function Navbar() {
                 <div className="flex items-center">
                     <Link href="/" className="lg:mr-10">
                         {/* TODO: LOGO */}
-                        <Image className="" src={AltLogo} alt="logo" width={100} />
+                        <Image className="pb-2" src={Logo} alt="logo" width={75} />
                     </Link>
                     {/* LINKS  */}
                     <ul className="hidden text-gray-600 items-center lg:flex">

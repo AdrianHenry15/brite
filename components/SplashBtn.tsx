@@ -12,10 +12,10 @@ const SplashBtn = (props: ISplashBtnProps) => {
     return (
         <Link
             href={link}
-            className="flex m-2 bg-gray-100 rounded-md whitespace-nowrap items-center w-[350px] h-full hover:bg-zinc-200 ease-in-out transition-colors duration-300 lg:w-auto"
+            className="flex m-2 bg-gray-100 rounded-md whitespace-nowrap items-center w-[350px] h-full hover:bg-zinc-200 ease-in-out transition-colors duration-300 md:w-[500px] lg:my-10 lg:w-full"
         >
             <div className="bg-blue-600 flex px-2 py-1 rounded-s-md">{icon}</div>
-            <div className="text-blue-700 text-sm px-4">{title}</div>
+            <div className="text-blue-700 text-sm px-4 lg:text-md">{title}</div>
         </Link>
     );
 };
