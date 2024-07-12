@@ -31,7 +31,7 @@ const HomeSplash = () => {
                 />
             </div>
 
-            <div className="z-10 w-full p-4 top-[32%] justify-center lg:top-[20%] lg:absolute">
+            <div className="z-10 w-full p-4 top-[32%] justify-center lg:top-[10%] lg:absolute">
                 <div className="flex flex-col relative w-full items-center lg:w-[400px]">
                     {/* ON MEDIUM/LARGE SCREENS */}
                     {/* <Link className="hidden lg:flex" href={"/"}>
@@ -54,19 +54,19 @@ const HomeSplash = () => {
                         <SplashBtn
                             link={NavMenuLinks.EXTERIOR_CLEANING}
                             title={NavMenuItems.EXTERIOR_CLEANING}
-                            icon={<IoWater className="w-14 h-full flex lg:w-20" />}
+                            // icon={<IoWater className="w-14 h-full flex lg:w-20" />}
                         />
                         {/* HOLIDAY LIGHTING */}
                         <SplashBtn
                             link={NavMenuLinks.HOLIDAY_LIGHTING}
                             title={NavMenuItems.HOLIDAY_LIGHTING}
-                            icon={<CiRuler className="w-14 h-full flex lg:w-20" />}
+                            // icon={<CiRuler className="w-14 h-full flex lg:w-20" />}
                         />
                         {/* COMMERCIAL SERVICES */}
                         <SplashBtn
                             link={NavMenuLinks.COMMERCIAL_SERVICES}
                             title={NavMenuItems.COMMERCIAL_SERVICES}
-                            icon={<Md1XMobiledata className="w-14 h-full flex lg:w-20" />}
+                            // icon={<Md1XMobiledata className="w-14 h-full flex lg:w-20" />}
                         />
                     </div>
                 </div>
