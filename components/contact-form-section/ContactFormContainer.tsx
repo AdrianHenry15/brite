@@ -17,6 +17,8 @@ import { AltNavMenuItems, AltNavMenuLinks, ServicesList } from "../../lib/consta
 import Input from "../inputs/Input";
 import Textarea from "../inputs/Textarea";
 import sendEmail from "../../lib/emailService";
+import Link from "next/link";
+import AuthorizationCheckbox from "./AuthorizationCheckbox";
 
 type FormValues = {
     firstName: string;
@@ -27,6 +29,7 @@ type FormValues = {
     service: string;
     frequency?: string;
     comment?: string;
+    authorization: string;
 };
 
 const ContactFormContainer = () => {
@@ -38,8 +41,6 @@ const ContactFormContainer = () => {
     const [estimateSuccess, setEstimateSuccess] = useState(false);
     const [estimateFail, setEstimateFail] = useState(false);
     const [loading, setLoading] = useState(false);
-
-    const InputClass = "border-2 border-gray-400 my-2 p-2 rounded-sm w-full shadow-md";
 
     // EMAIL JS
     const SERVICE_ID = process.env.NEXT_PUBLIC_SERVICE_ID as string;
@@ -57,6 +58,7 @@ const ContactFormContainer = () => {
     const onSubmit = (data) => {
         // open confirmation modal
         setIsOpen(true);
+        setInputClicked(true);
     };
 
     const confirmEstimate = () => {
@@ -71,6 +73,7 @@ const ContactFormContainer = () => {
             service: getValues("service"),
             frequency: getValues("frequency"),
             comment: getValues("comment"),
+            authorization: getValues("authorization"),
         };
 
         sendEmail(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY, PRIVATE_KEY).then(
@@ -87,46 +90,6 @@ const ContactFormContainer = () => {
             }
         );
     };
-
-    // const confirmEstimate = () => {
-    //     // EMAIL JS
-    //     emailjs
-    //         .send(SERVICE_ID as string, TEMPLATE_ID as string, templateParams, PUBLIC_KEY as string)
-    //         .then(
-    //             function (response) {
-    //                 toast.success("Your estimate has been submitted successfully!");
-    //                 setEstimateSuccess(true);
-    //                 setEstimateFail(false);
-    //                 console.log("SUCCESS!", response.status, response.text);
-    //             },
-    //             function (error) {
-    //                 toast.error("There was an error submitting your estimate. Please try again.");
-    //                 setEstimateSuccess(false);
-    //                 setEstimateFail(true);
-    //                 console.log("FAILED...", error);
-    //             }
-    //         );
-    //     // close modal
-    //     setIsOpen(false);
-    //     setTimeout(() => {
-    //         // open success modal
-    //         setLoading(false);
-    //     }, 1000);
-
-    //     setLoading(true);
-    // };
-
-    // //EMAIL JS
-    // const templateParams: FormValues = {
-    //     firstName: getValues("firstName"),
-    //     lastName: getValues("lastName"),
-    //     phone: getValues("phone"),
-    //     email: getValues("email"),
-    //     address: getValues("address"),
-    //     service: getValues("service"),
-    //     frequency: getValues("frequency"),
-    //     comment: getValues("comment"),
-    // };
 
     return (
         <section
@@ -288,17 +251,6 @@ const ContactFormContainer = () => {
                         options={ServicesList}
                         errorText="Service is required."
                     />
-                    {/* FREQUENCY */}
-                    {/* {watch("service") === "Exterior Cleaning" ? (
-                        <Dropdown
-                            inputName={"frequency"}
-                            inputLabel={"Choose Frequency:"}
-                            control={control}
-                            errors={errors}
-                            options={FrequencyList}
-                            errorText="Frequency is required."
-                        />
-                    ) : null} */}
                     {/* COMMENT */}
                     <Textarea
                         inputName={"comment"}
@@ -306,6 +258,8 @@ const ContactFormContainer = () => {
                         placeholder={"Comment"}
                         control={control}
                     />
+                    {/* AUTHORIZATION */}
+                    <AuthorizationCheckbox inputName={"authorization"} control={control} />
                     <div className={`${inputClicked ? "" : "animate-pulse"} my-10`}>
                         <Button
                             onClick={() => {}}

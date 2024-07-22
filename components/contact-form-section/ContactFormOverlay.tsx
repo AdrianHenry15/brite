@@ -16,6 +16,8 @@ import TextareaAlt from "../inputs/TextareaAlt";
 import InputAlt from "../inputs/InputAlt";
 import DropdownAlt from "../inputs/DropdownAlt";
 import sendEmail from "../../lib/emailService";
+import Link from "next/link";
+import AuthorizationCheckbox from "./AuthorizationCheckbox";
 
 type FormValues = {
     firstName: string;
@@ -26,6 +28,7 @@ type FormValues = {
     service: string;
     frequency?: string;
     comment?: string;
+    authorization: string;
 };
 
 const ContactFormOverlay = () => {
@@ -38,8 +41,6 @@ const ContactFormOverlay = () => {
     const [estimateFail, setEstimateFail] = useState(false);
     const [loading, setLoading] = useState(false);
 
-    const InputClass = "border-2 border-gray-400 my-2 p-2 rounded-sm w-full shadow-md";
-
     // EMAIL JS
     const SERVICE_ID = process.env.NEXT_PUBLIC_SERVICE_ID as string;
     const TEMPLATE_ID = process.env.NEXT_PUBLIC_TEMPLATE_ID as string;
@@ -49,6 +50,7 @@ const ContactFormOverlay = () => {
     const {
         handleSubmit,
         getValues,
+        register,
         control,
         formState: { errors },
     } = useForm();
@@ -56,6 +58,8 @@ const ContactFormOverlay = () => {
     const onSubmit = (data) => {
         // open confirmation modal
         setIsOpen(true);
+        // input click
+        setInputClicked(true);
     };
 
     const confirmEstimate = () => {
@@ -70,6 +74,7 @@ const ContactFormOverlay = () => {
             service: getValues("service"),
             frequency: getValues("frequency"),
             comment: getValues("comment"),
+            authorization: getValues("authorization"),
         };
 
         sendEmail(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY, PRIVATE_KEY).then(
@@ -84,18 +89,6 @@ const ContactFormOverlay = () => {
             }
         );
     };
-
-    // //EMAIL JS
-    // const templateParams: FormValues = {
-    //     firstName: getValues("firstName"),
-    //     lastName: getValues("lastName"),
-    //     phone: getValues("phone"),
-    //     email: getValues("email"),
-    //     address: getValues("address"),
-    //     service: getValues("service"),
-    //     frequency: getValues("frequency"),
-    //     comment: getValues("comment"),
-    // };
 
     return (
         <section className="flex flex-col z-20 items-center shadow-inner absolute w-full">
@@ -259,17 +252,6 @@ const ContactFormOverlay = () => {
                         options={ServicesList}
                         // errorText=""
                     />
-                    {/* FREQUENCY */}
-                    {/* {watch("service") === "Exterior Cleaning" ? (
-                        <Dropdown
-                            inputName={"frequency"}
-                            inputLabel={"Choose Frequency:"}
-                            control={control}
-                            errors={errors}
-                            options={FrequencyList}
-                            errorText="Frequency is required."
-                        />
-                    ) : null} */}
                     {/* COMMENT */}
                     <TextareaAlt
                         inputName={"comment"}
@@ -277,6 +259,8 @@ const ContactFormOverlay = () => {
                         placeholder={"Comment"}
                         control={control}
                     />
+                    {/* AUTHORIZATION */}
+                    <AuthorizationCheckbox inputName={"authorization"} control={control} />
                     <div className={`${inputClicked ? "" : "animate-pulse"} my-10`}>
                         <Button
                             submit
