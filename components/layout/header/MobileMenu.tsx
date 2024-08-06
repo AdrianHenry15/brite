@@ -9,6 +9,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Button from "../../Button";
 import { AltNavMenuItems, AltNavMenuLinks, NavMenu } from "../../../lib/constants";
 import { NavMenuType } from "../../../lib/types";
+import { FaPhone } from "react-icons/fa6";
 
 export default function MobileMenu() {
     const pathname = usePathname();
@@ -87,14 +88,17 @@ export default function MobileMenu() {
                                 <Link
                                     onClick={closeMobileMenu}
                                     className="w-full px-10 flex justify-start"
-                                    href={AltNavMenuLinks.CONTACT_US}
+                                    href="tel:7048423535"
                                 >
                                     <Button
+                                        leftChildren
                                         roundedFull
                                         className="mb-4 w-full py-4 flex justify-center sm:w-[300px]"
-                                        name={AltNavMenuItems.CONTACT_US}
+                                        name="704-842-3535"
                                         altColor
-                                    />
+                                    >
+                                        <FaPhone className="mr-2" />
+                                    </Button>
                                 </Link>
                                 <Link
                                     onClick={closeMobileMenu}

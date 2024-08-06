@@ -6,6 +6,6 @@ export const metadata: Metadata = {
     description: "Get Your Free Estimate",
 };
 
-export default function Estimate() {
+export default function EstimatePage() {
     return <section></section>;
 }

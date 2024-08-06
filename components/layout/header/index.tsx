@@ -9,6 +9,7 @@ import Logo from "../../../public/assets/icons/brite-logo.png";
 import Button from "../../Button";
 import { NavMenu } from "../../../lib/constants";
 import { NavMenuType } from "../../../lib/types";
+import { FaPhone } from "react-icons/fa6";
 
 export default function Navbar() {
     const pathname = usePathname();
@@ -47,8 +48,16 @@ export default function Navbar() {
                 </div>
                 {/* NAV BUTTONS */}
                 <ul className="hidden items-center lg:flex">
-                    <Link className="mr-4" href={"/contact-us"}>
-                        <Button roundedFull name="Contact Us" altColor />
+                    <Link className="mr-4" href="tel:7048423535">
+                        <Button
+                            leftChildren
+                            roundedFull
+                            name="704-842-3535"
+                            className="bg-white"
+                            altColor
+                        >
+                            <FaPhone className="mr-2" />
+                        </Button>
                     </Link>
                     <Link href={"/estimate"}>
                         <Button

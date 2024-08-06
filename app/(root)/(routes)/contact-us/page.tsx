@@ -6,6 +6,6 @@ export const metadata: Metadata = {
     description: "Contact Us",
 };
 
-export default function ContactUs() {
+export default function ContactUsPage() {
     return <section></section>;
 }

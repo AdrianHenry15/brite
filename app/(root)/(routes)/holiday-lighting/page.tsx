@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     description: "Holiday Lighting At Brite",
 };
 
-const ChristmasLighting = () => {
+const HolidayLightingPage = () => {
     return (
         <section>
             <ComponentSplash title={NavMenuItems.HOLIDAY_LIGHTING} img={ChristmasLightingSplash} />
@@ -41,4 +41,4 @@ const ChristmasLighting = () => {
     );
 };
 
-export default ChristmasLighting;
+export default HolidayLightingPage;

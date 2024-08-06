@@ -17,9 +17,9 @@ const ContactCard = () => {
                             <label className="text-white">Office: </label>
                             <Link
                                 className="hover:underline underline-offset-2"
-                                href="tel:7049445574"
+                                href="tel:7048423535"
                             >
-                                704-944-5574
+                                704-842-3535
                             </Link>
                         </span>
                         <span className="pb-4">
