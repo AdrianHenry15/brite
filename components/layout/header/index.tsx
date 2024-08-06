@@ -25,6 +25,13 @@ export default function Navbar() {
             </div>
             {/* TITLE & LINKS  */}
             <div className="flex w-full mt-2 justify-evenly">
+                <Link
+                    className="absolute left-4 self-center flex items-center underline underline-offset-2 text-blue-500 lg:hidden"
+                    href="tel:7048423535"
+                >
+                    <FaPhone className="mr-2" />
+                    <span>704-842-3535</span>
+                </Link>
                 <div className="flex items-center">
                     <Link href="/" className="lg:mr-10">
                         {/* TODO: LOGO */}

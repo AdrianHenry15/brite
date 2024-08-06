@@ -29,7 +29,7 @@ const CommercialServicesPage = () => {
                 icon1={<FaTrashCan size={50} />}
                 title1={"Dumpster Pad Maintenance"}
                 description1={
-                    "Our most valued service by our good service clients. Let Brite ensure you never have to worry about fines from hazardous dumpers. With monthly, quarterly or annual cleaning (depending on your business type) you can be sure you'll stay clean and compliant 24/7."
+                    "Our most valued service by our food service clients. Let Brite ensure you never have to worry about fines from hazardous dumpers. With monthly, quarterly or annual cleaning (depending on your business type) you can be sure you'll stay clean and compliant 24/7."
                 }
                 icon2={<IoWater size={50} />}
                 title2={"Pressure Washing & Soft Washing"}
