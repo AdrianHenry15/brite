@@ -48,8 +48,8 @@ const AuthorizationCheckbox = ({
                             />
                         </div>
                         <label className="text-xs text-zinc-400">
-                            By clicking here, you authorize Brite CLT, to reach out to you by call,
-                            email, or text in accordance with our
+                            By clicking here, you authorize Brite Exterior Services, to reach out to
+                            you by call, email, or text in accordance with our
                             <Link
                                 target="_blank"
                                 className="text-blue-500 ml-1 hover:underline underline-offset-2"
