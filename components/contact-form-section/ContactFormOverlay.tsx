@@ -41,6 +41,8 @@ const ContactFormOverlay = () => {
     const [estimateSuccess, setEstimateSuccess] = useState(false);
     const [estimateFail, setEstimateFail] = useState(false);
     const [loading, setLoading] = useState(false);
+    const [estimateId, setEstimateId] = useState("");
+    const [createdAt, setCreatedAt] = useState("");
 
     // EMAIL JS
     const SERVICE_ID = process.env.NEXT_PUBLIC_SERVICE_ID as string;
@@ -57,11 +59,17 @@ const ContactFormOverlay = () => {
 
     const onSubmit = (data: FormValues) => {
         // Generate unique estimateId and set current time for createdAt
-        data.estimateId = uuidv4().toString(); // Generating a random unique ID
-        data.createdAt = new Date().toISOString(); // Current timestamp in ISO format
+        setEstimateId(Math.floor(100000 + Math.random() * 900000).toString()); // Generating a random unique ID
 
-        console.log(`Id: ${data.estimateId.toString()}`); // Prints the UUID
-        console.log(`Date: ${data.createdAt.toString()}`); // Check the type, it should print 'string'
+        setCreatedAt(
+            new Date()
+                .toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                })
+                .toString()
+        );
 
         // open confirmation modal
         setIsOpen(true);
@@ -73,7 +81,7 @@ const ContactFormOverlay = () => {
         setLoading(true);
 
         const templateParams: FormValues = {
-            estimateId: getValues("estimateId"),
+            estimateId: estimateId,
             firstName: getValues("firstName"),
             lastName: getValues("lastName"),
             phone: getValues("phone"),
@@ -82,7 +90,7 @@ const ContactFormOverlay = () => {
             service: getValues("service"),
             frequency: getValues("frequency"),
             comment: getValues("comment"),
-            createdAt: getValues("createdAt"),
+            createdAt: createdAt,
         };
 
         sendEmail(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY, PRIVATE_KEY).then(
