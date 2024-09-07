@@ -4,6 +4,7 @@ import Image from "next/image";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { usePathname } from "next/navigation";
+import { v4 as uuidv4 } from "uuid"; // To generate a unique random ID
 
 import Logo from "../../public/assets/icons/brite-logo.png";
 
@@ -16,19 +17,19 @@ import TextareaAlt from "../inputs/TextareaAlt";
 import InputAlt from "../inputs/InputAlt";
 import DropdownAlt from "../inputs/DropdownAlt";
 import sendEmail from "../../lib/emailService";
-import Link from "next/link";
 import AuthorizationCheckbox from "./AuthorizationCheckbox";
 
 type FormValues = {
+    estimateId: string;
     firstName: string;
     lastName: string;
     phone: string;
     email: string;
     address: string;
     service: string;
+    createdAt: string;
     frequency?: string;
     comment?: string;
-    authorization: string;
 };
 
 const ContactFormOverlay = () => {
@@ -50,12 +51,18 @@ const ContactFormOverlay = () => {
     const {
         handleSubmit,
         getValues,
-        register,
         control,
         formState: { errors },
     } = useForm();
 
-    const onSubmit = (data) => {
+    const onSubmit = (data: FormValues) => {
+        // Generate unique estimateId and set current time for createdAt
+        data.estimateId = uuidv4().toString(); // Generating a random unique ID
+        data.createdAt = new Date().toISOString(); // Current timestamp in ISO format
+
+        console.log(`Id: ${data.estimateId.toString()}`); // Prints the UUID
+        console.log(`Date: ${data.createdAt.toString()}`); // Check the type, it should print 'string'
+
         // open confirmation modal
         setIsOpen(true);
         // input click
@@ -66,6 +73,7 @@ const ContactFormOverlay = () => {
         setLoading(true);
 
         const templateParams: FormValues = {
+            estimateId: getValues("estimateId"),
             firstName: getValues("firstName"),
             lastName: getValues("lastName"),
             phone: getValues("phone"),
@@ -74,7 +82,7 @@ const ContactFormOverlay = () => {
             service: getValues("service"),
             frequency: getValues("frequency"),
             comment: getValues("comment"),
-            authorization: getValues("authorization"),
+            createdAt: getValues("createdAt"),
         };
 
         sendEmail(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY, PRIVATE_KEY).then(

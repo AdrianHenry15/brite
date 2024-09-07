@@ -17,19 +17,19 @@ import { AltNavMenuItems, AltNavMenuLinks, ServicesList } from "../../lib/consta
 import Input from "../inputs/Input";
 import Textarea from "../inputs/Textarea";
 import sendEmail from "../../lib/emailService";
-import Link from "next/link";
 import AuthorizationCheckbox from "./AuthorizationCheckbox";
 
 type FormValues = {
+    estimateId: string;
     firstName: string;
     lastName: string;
     phone: string;
     email: string;
     address: string;
     service: string;
+    createdAt: string;
     frequency?: string;
     comment?: string;
-    authorization: string;
 };
 
 const ContactFormContainer = () => {
@@ -41,6 +41,8 @@ const ContactFormContainer = () => {
     const [estimateSuccess, setEstimateSuccess] = useState(false);
     const [estimateFail, setEstimateFail] = useState(false);
     const [loading, setLoading] = useState(false);
+    const [estimateId, setEstimateId] = useState("");
+    const [createdAt, setCreatedAt] = useState("");
 
     // EMAIL JS
     const SERVICE_ID = process.env.NEXT_PUBLIC_SERVICE_ID as string;
@@ -55,7 +57,22 @@ const ContactFormContainer = () => {
         formState: { errors },
     } = useForm();
 
-    const onSubmit = (data) => {
+    const onSubmit = (data: FormValues) => {
+        // Generate unique estimateId and set current time for createdAt
+        setEstimateId(Math.floor(100000 + Math.random() * 900000).toString()); // Generating a random unique ID
+
+        setCreatedAt(
+            new Date()
+                .toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                })
+                .toString()
+        );
+
+        console.log(`Id: ${estimateId}`); // Prints the UUID
+        console.log(`Date: ${createdAt}`); // Check the type, it should print 'string'
         // open confirmation modal
         setIsOpen(true);
         setInputClicked(true);
@@ -65,6 +82,7 @@ const ContactFormContainer = () => {
         setLoading(true);
 
         const templateParams: FormValues = {
+            estimateId: estimateId,
             firstName: getValues("firstName"),
             lastName: getValues("lastName"),
             phone: getValues("phone"),
@@ -73,7 +91,7 @@ const ContactFormContainer = () => {
             service: getValues("service"),
             frequency: getValues("frequency"),
             comment: getValues("comment"),
-            authorization: getValues("authorization"),
+            createdAt: createdAt,
         };
 
         sendEmail(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY, PRIVATE_KEY).then(
@@ -122,14 +140,14 @@ const ContactFormContainer = () => {
                 />
             )}
             {loading ? <Loader /> : null}
-            <div className="absolute hidden top-[250px] left-60 2xl:flex">
+            <div className="absolute hidden top-[250px] left-20 2xl:flex">
                 <Image loading="eager" src={HandyMan} alt="Brite Logo" />
             </div>
             <h1 className="text-3xl mb-10 font-light animate-bounce">{`${
                 pathname === "/contact-us" ? "Contact Us" : "Get Your Free Estimate!"
             }`}</h1>
             {/* FORM CONTAINER */}
-            <div className="flex flex-col w-[350px] p-6 rounded-2xl shadow-blue-600 shadow-lg border-2 md:w-[650px]">
+            <div className="flex flex-col w-full p-6 rounded-2xl shadow-blue-600 shadow-lg border-2 md:w-[850px]">
                 {/* LOGO */}
                 <div className="flex justify-center">
                     <Image loading="eager" width={100} src={Logo} alt="Brite Logo" />
@@ -262,7 +280,6 @@ const ContactFormContainer = () => {
                     <AuthorizationCheckbox inputName={"authorization"} control={control} />
                     <div className={`${inputClicked ? "" : "animate-pulse"} my-10`}>
                         <Button
-                            onClick={() => {}}
                             submit
                             name={`${
                                 pathname === AltNavMenuLinks.CONTACT_US

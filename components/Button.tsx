@@ -15,7 +15,8 @@ interface IButtonProps {
 
 const Button = (props: IButtonProps) => {
     return (
-        <div
+        <button
+            type={props.submit ? "submit" : "button"}
             className={`${props.className} ${props.roundedFull ? "rounded-full" : "rounded-lg"} ${
                 props.altColor
                     ? "text-blue-600 bg-transparent transition-all duration-300 ease-in-out hover:scale-105 hover:text-black"
@@ -23,12 +24,12 @@ const Button = (props: IButtonProps) => {
             } flex items-center py-2 px-6 shadow-lg`}
         >
             {props.leftChildren ? props.children : null}
-            <button type={props.submit ? "submit" : "button"} onClick={props.onClick}>
+            <p onClick={props.onClick}>
                 {props.name}
                 {props.icon ? props.icon : null}
-            </button>
+            </p>
             {props.rightChildren ? props.children : null}
-        </div>
+        </button>
     );
 };
 
