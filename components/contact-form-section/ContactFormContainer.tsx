@@ -70,9 +70,6 @@ const ContactFormContainer = () => {
                 })
                 .toString()
         );
-
-        console.log(`Id: ${estimateId}`); // Prints the UUID
-        console.log(`Date: ${createdAt}`); // Check the type, it should print 'string'
         // open confirmation modal
         setIsOpen(true);
         setInputClicked(true);
