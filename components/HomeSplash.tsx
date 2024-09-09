@@ -49,26 +49,23 @@ const HomeSplash = () => {
                             className="cursor-pointer w-24 lg:w-48 rounded-lg"
                         />
                     </Link> */}
-                    <div className="flex flex-col items-center w-full lg:ml-0 xl:ml-[400px]">
-                        {/* EXTERIOR CLEANING */}
+                    {/* <div className="flex flex-col items-center w-full lg:ml-0 xl:ml-[400px]">
                         <SplashBtn
                             link={NavMenuLinks.EXTERIOR_CLEANING}
                             title={NavMenuItems.EXTERIOR_CLEANING}
                             // icon={<IoWater className="w-14 h-full flex lg:w-20" />}
                         />
-                        {/* HOLIDAY LIGHTING */}
                         <SplashBtn
                             link={NavMenuLinks.HOLIDAY_LIGHTING}
                             title={NavMenuItems.HOLIDAY_LIGHTING}
                             // icon={<CiRuler className="w-14 h-full flex lg:w-20" />}
                         />
-                        {/* COMMERCIAL SERVICES */}
                         <SplashBtn
                             link={NavMenuLinks.COMMERCIAL_SERVICES}
                             title={NavMenuItems.COMMERCIAL_SERVICES}
                             // icon={<Md1XMobiledata className="w-14 h-full flex lg:w-20" />}
                         />
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>
