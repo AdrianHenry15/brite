@@ -1,6 +1,5 @@
 import Link from "next/link";
 import React from "react";
-import { NavMenuItems, NavMenuLinks } from "../lib/constants";
 
 const ButtonRow = () => {
     const LinkClass =
@@ -8,14 +7,14 @@ const ButtonRow = () => {
 
     return (
         <div className="flex py-4 sticky bg-gray-100 items-center justify-evenly w-full h-[10%] lg:px-10">
-            <Link className={LinkClass} href={NavMenuLinks.EXTERIOR_CLEANING}>
-                {NavMenuItems.EXTERIOR_CLEANING}
+            <Link className={LinkClass} href={"/exterior-cleaning"}>
+                {"Exterior Cleaning"}
             </Link>
-            <Link className={LinkClass} href={NavMenuLinks.COMMERCIAL_SERVICES}>
-                {NavMenuItems.COMMERCIAL_SERVICES}
+            <Link className={LinkClass} href={"/commercial-services"}>
+                {"Commercial Services"}
             </Link>
-            <Link className={LinkClass} href={NavMenuLinks.HOLIDAY_LIGHTING}>
-                {NavMenuItems.HOLIDAY_LIGHTING}
+            <Link className={LinkClass} href={"/holiday-lighting"}>
+                {"Holiday Lighting"}
             </Link>
         </div>
     );

@@ -8,11 +8,65 @@ import MobileHeader from "./MobileMenu";
 import Logo from "../../../public/assets/icons/brite-logo.png";
 import Button from "../../Button";
 import { NavMenu } from "../../../lib/constants";
-import { NavMenuType } from "../../../lib/types";
 import { FaPhone } from "react-icons/fa6";
+import { BiChevronDown } from "react-icons/bi";
+import ServicesMenu from "./ServicesMenu";
+import { useState } from "react";
+import { NavMenuType } from "../../../lib/types";
 
 export default function Navbar() {
+    // Constants
     const pathname = usePathname();
+
+    // State
+    const [servicesMenuOpen, setServicesMenuOpen] = useState(false);
+
+    // Functions
+    const renderNavMenu = () => {
+        return NavMenu.map((item: NavMenuType) => {
+            if (item.title === "Services") {
+                return (
+                    <div className="relative cursor-pointer" key={item.title}>
+                        <span
+                            onClick={(e) => {
+                                e.preventDefault();
+                                setServicesMenuOpen(!servicesMenuOpen);
+                            }}
+                        >
+                            <li
+                                className={` flex items-center mx-2 transition-all duration-300 ease-in-out hover:text-blue-600 hover:underline ${
+                                    pathname === item.link ? "underline" : ""
+                                }`}
+                            >
+                                {item.title}
+                                <BiChevronDown size={20} />
+                            </li>
+                        </span>
+                        {servicesMenuOpen && (
+                            <ServicesMenu setServicesMenuOpen={() => setServicesMenuOpen(false)} />
+                        )}
+                    </div>
+                );
+            } else {
+                return (
+                    <Link
+                        onClick={() => setServicesMenuOpen(false)}
+                        key={item.title}
+                        href={item.link}
+                        className="mr-2"
+                    >
+                        <li
+                            className={` flex items-center mx-2 transition-all duration-300 ease-in-out hover:text-blue-600 hover:underline ${
+                                pathname === item.link ? "underline" : ""
+                            }`}
+                        >
+                            {item.title}
+                        </li>
+                    </Link>
+                );
+            }
+        });
+    };
 
     return (
         <nav
@@ -38,20 +92,7 @@ export default function Navbar() {
                         <Image className="pb-2" src={Logo} alt="logo" width={75} />
                     </Link>
                     {/* LINKS  */}
-                    <ul className="hidden text-gray-600 items-center lg:flex">
-                        {NavMenu.map((item: NavMenuType) => (
-                            <li
-                                className={`mx-2 transition-all duration-300 ease-in-out hover:text-blue-700 hover:underline ${
-                                    pathname === item.link ? "underline" : ""
-                                }`}
-                                key={item.title}
-                            >
-                                <Link href={item.link} className="">
-                                    {item.title}
-                                </Link>
-                            </li>
-                        ))}
-                    </ul>
+                    <ul className="hidden text-gray-600 items-center lg:flex">{renderNavMenu()}</ul>
                 </div>
                 {/* NAV BUTTONS */}
                 <ul className="hidden items-center lg:flex">

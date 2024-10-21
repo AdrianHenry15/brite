@@ -12,7 +12,7 @@ import Button from "../Button";
 import ConfirmationModal from "../modals/ConfirmationModal";
 import SuccessModal from "../modals/SuccessModal";
 import { Loader } from "../Loader";
-import { AltNavMenuItems, AltNavMenuLinks, ServicesList } from "../../lib/constants";
+import { ServicesList } from "../../lib/constants";
 import TextareaAlt from "../inputs/TextareaAlt";
 import InputAlt from "../inputs/InputAlt";
 import DropdownAlt from "../inputs/DropdownAlt";
@@ -280,11 +280,7 @@ const ContactFormOverlay = () => {
                     <div className={`${inputClicked ? "" : "animate-pulse"} my-10`}>
                         <Button
                             submit
-                            name={`${
-                                pathname === AltNavMenuLinks.CONTACT_US
-                                    ? AltNavMenuItems.CONTACT_US
-                                    : AltNavMenuItems.ESTIMATE
-                            }`}
+                            name={`${pathname === "/contact-us" ? "Contact Us" : "Estimate"}`}
                             className="w-full justify-center"
                         ></Button>
                     </div>

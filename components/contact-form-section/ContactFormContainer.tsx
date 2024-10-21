@@ -13,7 +13,7 @@ import ConfirmationModal from "../modals/ConfirmationModal";
 import SuccessModal from "../modals/SuccessModal";
 import { Loader } from "../Loader";
 import Dropdown from "../inputs/Dropdown";
-import { AltNavMenuItems, AltNavMenuLinks, ServicesList } from "../../lib/constants";
+import { ServicesList } from "../../lib/constants";
 import Input from "../inputs/Input";
 import Textarea from "../inputs/Textarea";
 import sendEmail from "../../lib/emailService";
@@ -278,11 +278,7 @@ const ContactFormContainer = () => {
                     <div className={`${inputClicked ? "" : "animate-pulse"} my-10`}>
                         <Button
                             submit
-                            name={`${
-                                pathname === AltNavMenuLinks.CONTACT_US
-                                    ? AltNavMenuItems.CONTACT_US
-                                    : AltNavMenuItems.ESTIMATE
-                            }`}
+                            name={`${pathname === "/contact-us" ? "Contact Us" : "Estimate"}`}
                             className="w-full justify-center"
                         ></Button>
                     </div>

@@ -6,11 +6,20 @@ import ECImage2 from "../public/assets/imgs/ec-3.jpg";
 import ECImage3 from "../public/assets/imgs/ec-4.jpg";
 import ECImage4 from "../public/assets/imgs/ex-cleaning.png";
 import ECImage5 from "../public/assets/imgs/action-1.jpg";
-import ECImage6 from "../public/assets/imgs/action-2.jpg";
 // Holiday Lighting Images
 import HLImage from "../public/assets/imgs/xmas-1.jpg";
+import HLImage2 from "../public/assets/imgs/xmas-1.jpg";
+import HLImage3 from "../public/assets/imgs/xmas-2.jpg";
+import HLImage4 from "../public/assets/imgs/christmas-lights-home.jpg";
+import HLImage5 from "../public/assets/imgs/christmas-lights.jpg";
 // Commercial Services Images
-import CSImage from "../public/assets/imgs/action-1.jpg";
+import CSImage from "../public/assets/imgs/action-3.jpg";
+import CSImage2 from "../public/assets/imgs/action-4.jpg";
+import CSImage3 from "../public/assets/imgs/pw-3.jpg";
+import CSImage4 from "../public/assets/imgs/action-2.jpg";
+import CSImage5 from "../public/assets/imgs/pw-2.jpg";
+import CSImage6 from "../public/assets/imgs/pw.jpg";
+import CSImage7 from "../public/assets/imgs/pressure-washing.jpg";
 
 export const ExteriorCleaningProducts: ProductType[] = [
     {
@@ -48,31 +57,80 @@ export const ExteriorCleaningProducts: ProductType[] = [
         category: "Exterior Cleaning",
         image: ECImage5,
     },
-    {
-        id: "ec-6",
-        title: "Fence Cleaning",
-        description: "We Bring the Shine Back to Your Property!",
-        category: "Exterior Cleaning",
-        image: ECImage6,
-    },
 ];
 
 export const HolidayLightingProducts: ProductType[] = [
     {
         id: "hl-1",
-        title: "G660, G760, G860",
-        description: "Add Description Here",
+        title: "Custom Design and Installation",
+        description: "Lighting Up Your Holidays, One Sparkle at a Time!",
         category: "Holiday Lighting",
         image: HLImage,
+    },
+    {
+        id: "hl-2",
+        title: "Residential Holiday Lighting",
+        description: "Bringing Holiday Cheer with Every Twinkle!",
+        category: "Holiday Lighting",
+        image: HLImage3,
+    },
+    {
+        id: "hl-3",
+        title: "Tree and Shrub Lighting",
+        description: "Brightening Your Season with Dazzling Displays!",
+        category: "Holiday Lighting",
+        image: HLImage4,
+    },
+    {
+        id: "hl-4",
+        title: "Roofline Lighting",
+        description: "Make Your Holidays Shine Brighter!",
+        category: "Holiday Lighting",
+        image: HLImage5,
     },
 ];
 
 export const CommercialServicesProducts: ProductType[] = [
     {
         id: "cs-1",
-        title: "Javelin Aer-Aid 1500",
+        title: "Commercial Services Title Here...",
         description: "Add Description Here",
         category: "Commercial Services",
         image: CSImage,
+    },
+    {
+        id: "cs-2",
+        title: "Commercial Services Title Here...",
+        description: "Add Description Here",
+        category: "Commercial Services",
+        image: CSImage2,
+    },
+    {
+        id: "cs-3",
+        title: "Commercial Services Title Here...",
+        description: "Add Description Here",
+        category: "Commercial Services",
+        image: CSImage3,
+    },
+    {
+        id: "cs-4",
+        title: "Commercial Services Title Here...",
+        description: "Add Description Here",
+        category: "Commercial Services",
+        image: CSImage4,
+    },
+    {
+        id: "cs-5",
+        title: "Commercial Services Title Here...",
+        description: "Add Description Here",
+        category: "Commercial Services",
+        image: CSImage5,
+    },
+    {
+        id: "cs-6",
+        title: "Commercial Services Title Here...",
+        description: "Add Description Here",
+        category: "Commercial Services",
+        image: CSImage6,
     },
 ];

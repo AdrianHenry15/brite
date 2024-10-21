@@ -14,6 +14,14 @@ export default async function HomePage() {
                 category="Exterior Cleaning"
                 title="Revitalize Your Home's Curb Appeal – Spotless Exteriors, Every Time!"
             />
+            <PromoRow
+                category="Holiday Lighting"
+                title="Lighting Up Your Holidays with Sparkle and Cheer!"
+            />
+            <PromoRow
+                category="Commercial Services"
+                title="Your Business, Our Expertise—Excellence Delivered!"
+            />
             {/* <WelcomeMessage /> */}
             <SocialProof />
         </section>

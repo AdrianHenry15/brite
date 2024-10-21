@@ -7,9 +7,9 @@ import { Fragment, useEffect, useState } from "react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
 import Button from "../../Button";
-import { AltNavMenuItems, AltNavMenuLinks, NavMenu } from "../../../lib/constants";
 import { NavMenuType } from "../../../lib/types";
 import { FaPhone } from "react-icons/fa6";
+import { NavMenu } from "../../../lib/constants";
 
 export default function MobileMenu() {
     const pathname = usePathname();
@@ -103,12 +103,12 @@ export default function MobileMenu() {
                                 <Link
                                     onClick={closeMobileMenu}
                                     className="w-full px-10 flex justify-start"
-                                    href={AltNavMenuLinks.ESTIMATE}
+                                    href={"/estimate"}
                                 >
                                     <Button
                                         roundedFull
                                         className="mb-4 w-full py-4 flex justify-center sm:w-[300px]"
-                                        name={AltNavMenuItems.ESTIMATE}
+                                        name={"Estimate"}
                                     />
                                 </Link>
                             </ul>

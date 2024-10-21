@@ -1,118 +1,77 @@
 import { NavMenuType } from "./types";
 
-export enum FAQNav {
-    BRITE = "Brite",
-    EXTERIOR_CLEANING = "Exterior Cleaning",
-    HOLIDAY_LIGHTING = "Holiday Lighting",
-    TRASH_BIN_CLEANING = "Trash-Bin Cleaning",
-    WINDOW_CLEANING = "Window Cleaning",
-    PRESSURE_WASHING = "Pressure Washing",
-    SOFT_WASHING = "Soft Washing",
-}
-
-export enum FAQNavLinks {
-    BRITE = "#brite",
-    EXTERIOR_CLEANING = "#exterior-cleaning",
-    HOLIDAY_LIGHTING = "#holiday-lighting",
-    TRASH_BIN_CLEANING = "#trash-bin-cleaning",
-    WINDOW_CLEANING = "#window-cleaning",
-    PRESSURE_WASHING = "#pressure-washing",
-    SOFT_WASHING = "#soft-washing",
-}
-
-export enum NavMenuItems {
-    HOME = "Home",
-    EXTERIOR_CLEANING = "Exterior Cleaning",
-    HOLIDAY_LIGHTING = "Holiday Lighting",
-    COMMERCIAL_SERVICES = "Commercial Services",
-    // FAQS = "FAQs",
-    // ABOUT_US = "About Us",
-}
-
-export enum AltNavMenuItems {
-    CONTACT_US = "Contact Us",
-    ESTIMATE = "Get Your Free Estimate",
-}
-
-export enum NavMenuLinks {
-    HOME = "/",
-    EXTERIOR_CLEANING = "/exterior-cleaning",
-    HOLIDAY_LIGHTING = "/holiday-lighting",
-    COMMERCIAL_SERVICES = "/commercial-services",
-    // FAQS = "/faqs",
-    // ABOUT_US = "/about-us",
-}
-
-export enum AltNavMenuLinks {
-    CONTACT_US = "/contact-us",
-    ESTIMATE = "/estimate",
-}
+export const ServicesMenuItems: NavMenuType[] = [
+    {
+        title: "Exterior Cleaning",
+        link: "/exterior-cleaning",
+    },
+    {
+        title: "Holiday Lighting",
+        link: "/holiday-lighting",
+    },
+    {
+        title: "Commercial Services",
+        link: "/commercial-services",
+    },
+];
 
 export const FAQNavMenu: NavMenuType[] = [
     {
-        title: FAQNav.BRITE,
-        link: FAQNavLinks.BRITE,
+        title: "Brite",
+        link: "#brite",
     },
     {
-        title: FAQNav.EXTERIOR_CLEANING,
-        link: FAQNavLinks.EXTERIOR_CLEANING,
+        title: "Exterior Cleaning",
+        link: "#exterior-cleaning",
     },
     {
-        title: FAQNav.HOLIDAY_LIGHTING,
-        link: FAQNavLinks.HOLIDAY_LIGHTING,
+        title: "Holiday Lighting",
+        link: "#holiday-lighting",
     },
     {
-        title: FAQNav.PRESSURE_WASHING,
-        link: FAQNavLinks.PRESSURE_WASHING,
+        title: "Pressure Washing",
+        link: "#pressure-washing",
     },
     {
-        title: FAQNav.SOFT_WASHING,
-        link: FAQNavLinks.SOFT_WASHING,
+        title: "Soft Washing",
+        link: "#soft-washing",
     },
     {
-        title: FAQNav.TRASH_BIN_CLEANING,
-        link: FAQNavLinks.TRASH_BIN_CLEANING,
+        title: "Trash-Bin Cleaning",
+        link: "#trash-bin-cleaning",
     },
     {
-        title: FAQNav.WINDOW_CLEANING,
-        link: FAQNavLinks.WINDOW_CLEANING,
+        title: "Window Cleaning",
+        link: "#window-cleaning",
     },
 ];
 
 export const NavMenu: NavMenuType[] = [
     {
-        title: NavMenuItems.HOME,
-        link: NavMenuLinks.HOME,
+        title: "Home",
+        link: "/",
     },
     {
-        title: NavMenuItems.EXTERIOR_CLEANING,
-        link: NavMenuLinks.EXTERIOR_CLEANING,
+        title: "Services",
+        link: "",
     },
     {
-        title: NavMenuItems.HOLIDAY_LIGHTING,
-        link: NavMenuLinks.HOLIDAY_LIGHTING,
+        title: "Our Story",
+        link: "/our-story",
     },
     {
-        title: NavMenuItems.COMMERCIAL_SERVICES,
-        link: NavMenuLinks.COMMERCIAL_SERVICES,
+        title: "FAQs",
+        link: "/faqs",
     },
-    // {
-    //     title: NavMenuItems.FAQS,
-    //     link: NavMenuLinks.FAQS,
-    // },
-    // {
-    //     title: NavMenuItems.ABOUT_US,
-    //     link: NavMenuLinks.ABOUT_US,
-    // },
 ];
 export const AltNavMenu: NavMenuType[] = [
     {
-        title: AltNavMenuItems.CONTACT_US,
-        link: AltNavMenuLinks.CONTACT_US,
+        title: "Contact Us",
+        link: "/contact-us",
     },
     {
-        title: AltNavMenuItems.ESTIMATE,
-        link: AltNavMenuLinks.ESTIMATE,
+        title: "Get Your Free Estimate",
+        link: "/estimate",
     },
 ];
 
