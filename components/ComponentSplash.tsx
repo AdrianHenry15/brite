@@ -3,7 +3,7 @@ import Link from "next/link";
 import React from "react";
 
 import Logo from "../public/assets/icons/brite-logo.png";
-import { AltNavMenuLinks } from "../lib/constants";
+import { NavMenuItems } from "../lib/types";
 
 interface ISplashProps {
     title: string;
@@ -52,13 +52,13 @@ const ComponentSplash = (props: ISplashProps) => {
                         {/* BUTTONS */}
                         <div className="my-4 flex self-start items-center w-auto">
                             <Link
-                                href={AltNavMenuLinks.CONTACT_US}
+                                href={"/contact-us"}
                                 className="border bg-gray-300 text-black text-sm border-gray-300 py-2 px-5 my-2 whitespace-nowrap"
                             >
                                 Contact Us
                             </Link>
                             <Link
-                                href={AltNavMenuLinks.ESTIMATE}
+                                href={"/estimate"}
                                 className="border text-black text-sm border-gray-300 py-2 px-5 ml-4 whitespace-nowrap md:text-white md:bg-black"
                             >
                                 Get Estimate

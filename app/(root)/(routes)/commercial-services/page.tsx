@@ -8,7 +8,6 @@ import IconBanner from "../../../../components/icon-banner/IconBanner";
 
 import CommercialServicePic from "../../../../public/assets/imgs/h-b-jn.jpg";
 import ComponentSplash from "../../../../components/ComponentSplash";
-import { NavMenuItems } from "../../../../lib/constants";
 import { FaTrashCan } from "react-icons/fa6";
 
 export const metadata: Metadata = {
@@ -19,11 +18,7 @@ export const metadata: Metadata = {
 const CommercialServicesPage = () => {
     return (
         <section className="w-full justify-center items-center self-center">
-            <ComponentSplash
-                center
-                title={NavMenuItems.COMMERCIAL_SERVICES}
-                img={CommercialServicePic}
-            />
+            <ComponentSplash center title="Commercial Services" img={CommercialServicePic} />
             {/* ICON BANNER */}
             <IconBanner
                 icon1={<FaTrashCan size={50} />}

@@ -19,6 +19,7 @@ export default async function HomePage() {
                 title="Lighting Up Your Holidays with Sparkle and Cheer!"
             />
             <PromoRow
+                className="pb-24"
                 category="Commercial Services"
                 title="Your Business, Our Expertise—Excellence Delivered!"
             />

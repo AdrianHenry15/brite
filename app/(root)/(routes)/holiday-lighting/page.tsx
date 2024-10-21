@@ -9,7 +9,6 @@ import IconBanner from "../../../../components/icon-banner/IconBanner";
 
 import ChristmasLightingSplash from "../../../../public/assets/imgs/christmas-lights.jpg";
 import ComponentSplash from "../../../../components/ComponentSplash";
-import { NavMenuItems } from "../../../../lib/constants";
 
 export const metadata: Metadata = {
     title: "Brite's Holiday Lighting",
@@ -19,7 +18,7 @@ export const metadata: Metadata = {
 const HolidayLightingPage = () => {
     return (
         <section>
-            <ComponentSplash title={NavMenuItems.HOLIDAY_LIGHTING} img={ChristmasLightingSplash} />
+            <ComponentSplash title={"Holiday Lighting"} img={ChristmasLightingSplash} />
             <IconBanner
                 icon1={<CiRuler size={50} />}
                 title1={"Design"}
