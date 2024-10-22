@@ -1,18 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
+
 import React from "react";
 
-import Logo from "../public/assets/icons/brite-logo.png";
-import AltLogo from "../public/assets/icons/brite-logo-alt.png";
 import ContactFormOverlay from "./contact-form-section/ContactFormOverlay";
 import SplashPic from "../public/assets/imgs/nick-joe-pic.jpg";
-import { NavMenuItems, NavMenuLinks } from "../lib/constants";
-import SplashBtn from "./SplashBtn";
-import { Md1XMobiledata, MdBreakfastDining } from "react-icons/md";
-import { IoWater } from "react-icons/io5";
-import { CiRuler } from "react-icons/ci";
 
 const HomeSplash = () => {
     return (

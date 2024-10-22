@@ -3,7 +3,6 @@ import Link from "next/link";
 import React from "react";
 
 import Logo from "../public/assets/icons/brite-logo.png";
-import { NavMenuItems } from "../lib/types";
 
 interface ISplashProps {
     title: string;
