@@ -39,6 +39,11 @@ export type NavMenuType = {
     link: "" | NavMenuLinks | ServiceMenuLinks | FAQNavLinks | AltNavMenuLinks;
 };
 
+export type FAQItemType = {
+    question: string;
+    answer: string;
+};
+
 export type ProductType = {
     id: string;
     title: string;

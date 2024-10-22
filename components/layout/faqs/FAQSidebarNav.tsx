@@ -75,14 +75,17 @@ const FAQSidebarNav = (props: IFAQSidebarNavProps) => {
                     if (linkHash === item.link) {
                         return (
                             // <div className="flex items-center justify-between w-full" key={index}>
-                            <h5 className="text-blue-600 underline underline-offset-2 px-8 py-4">
+                            <h5
+                                key={index}
+                                className="text-blue-600 underline underline-offset-2 px-8 py-4"
+                            >
                                 {item.title}
                             </h5>
                             // </div>
                         );
                     } else {
                         return (
-                            <div>
+                            <div key={index}>
                                 {dropdownOpen && (
                                     <div
                                         className="py-4 px-8 text-blue-600 text-sm md:hidden"
