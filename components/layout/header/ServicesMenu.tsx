@@ -6,11 +6,12 @@ import { ServicesMenuItems } from "../../../lib/constants";
 
 interface IServicesMenuProps {
     setServicesMenuOpen: () => void;
+    containerClass?: string;
 }
 
 const ServicesMenu = (props: IServicesMenuProps) => {
     // Props
-    const { setServicesMenuOpen } = props;
+    const { setServicesMenuOpen, containerClass } = props;
     const menuVariants = {
         hidden: { opacity: 0, y: -10 },
         visible: { opacity: 1, y: 0 },
@@ -18,7 +19,7 @@ const ServicesMenu = (props: IServicesMenuProps) => {
 
     return (
         <motion.div
-            className="absolute top-full left-0 mt-2 w-48 bg-white shadow-lg rounded-lg py-2"
+            className={`${containerClass} absolute top-full left-0 mt-2 w-48 bg-white shadow-lg rounded-lg py-2`}
             initial="hidden"
             animate="visible"
             exit="hidden"

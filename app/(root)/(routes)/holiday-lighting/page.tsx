@@ -9,6 +9,7 @@ import IconBanner from "../../../../components/icon-banner/IconBanner";
 
 import ChristmasLightingSplash from "../../../../public/assets/imgs/christmas-lights.jpg";
 import ComponentSplash from "../../../../components/ComponentSplash";
+import PromoRow from "../../../../components/promotion/promo-row";
 
 export const metadata: Metadata = {
     title: "Brite's Holiday Lighting",
@@ -35,6 +36,11 @@ const HolidayLightingPage = () => {
                 description3={
                     "Nobody can control mother nature, but we can control how fast we solve the problems she may cause. We solve any service calls within 36 hours of notification."
                 }
+            />
+            <PromoRow
+                category="Holiday Lighting"
+                title="Lighting Up Your Holidays with Sparkle and Cheer!"
+                className="pb-24"
             />
         </section>
     );

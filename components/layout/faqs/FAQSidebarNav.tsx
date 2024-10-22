@@ -10,10 +10,10 @@ interface IFAQSidebarNavProps {
 }
 
 const FAQSidebarNav = (props: IFAQSidebarNavProps) => {
-    const [linkHash, setLinkHash] = useState("");
+    const [linkHash, setLinkHash] = useState("#brite");
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [sticky, setSticky] = useState(false);
-    const [navBarHeight, setNavBarHeight] = useState(0);
+    const [navBarHeight, setNavBarHeight] = useState(100);
 
     useEffect(() => {
         // Get the height of the navigation bar
@@ -39,27 +39,46 @@ const FAQSidebarNav = (props: IFAQSidebarNavProps) => {
         };
     }, []);
 
+    const handleScrollToSection = (event: React.MouseEvent, link: string) => {
+        event.preventDefault();
+        setLinkHash(link);
+        setDropdownOpen(false);
+
+        // Find the element by ID and apply offset scroll
+        const targetElement = document.getElementById(link.substring(1)); // Remove # from the link
+        const offsetTop = targetElement?.getBoundingClientRect().top ?? 0;
+
+        // Scroll with offset to account for sticky nav
+        window.scrollTo({
+            top: window.scrollY + offsetTop - navBarHeight, // Offset by navbar height
+            behavior: "smooth",
+        });
+    };
+
     const renderMobileDropdown = () => {
         return (
             <nav
                 className={`${
-                    sticky ? "fixed top-[71px] left-0 w-full bg-white" : ""
+                    sticky ? "fixed top-[144px] left-0 w-full bg-white" : ""
                 } flex flex-col items-start w-full justify-between border-y-[1px] shadow-md border-zinc-200 p-4 z-50 transition-transform duration-500 ease-in-out md:hidden`}
             >
+                <div className="relative flex w-full h-full">
+                    <div className="absolute top-5 right-5">
+                        {dropdownOpen ? (
+                            <FaChevronUp onClick={() => setDropdownOpen(false)} size={15} />
+                        ) : (
+                            <FaChevronDown onClick={() => setDropdownOpen(true)} size={15} />
+                        )}
+                    </div>
+                </div>
                 {props.items.map((item, index) => {
-                    if (linkHash === item.link || index === 0) {
+                    if (linkHash === item.link) {
                         return (
-                            <div className="flex items-center justify-between w-full" key={index}>
-                                <h5 className="text-blue-600 font-semibold">{item.title}</h5>
-                                {!dropdownOpen ? (
-                                    <FaChevronUp onClick={() => setDropdownOpen(true)} size={15} />
-                                ) : (
-                                    <FaChevronDown
-                                        onClick={() => setDropdownOpen(false)}
-                                        size={15}
-                                    />
-                                )}
-                            </div>
+                            // <div className="flex items-center justify-between w-full" key={index}>
+                            <h5 className="text-blue-600 underline underline-offset-2 px-8 py-4">
+                                {item.title}
+                            </h5>
+                            // </div>
                         );
                     } else {
                         return (
@@ -69,7 +88,14 @@ const FAQSidebarNav = (props: IFAQSidebarNavProps) => {
                                         className="py-4 px-8 text-blue-600 text-sm md:hidden"
                                         key={index}
                                     >
-                                        {dropdownOpen && <Link href={item.link}>{item.title}</Link>}
+                                        {dropdownOpen && (
+                                            <Link
+                                                onClick={(e) => handleScrollToSection(e, item.link)}
+                                                href={item.link}
+                                            >
+                                                {item.title}
+                                            </Link>
+                                        )}
                                     </div>
                                 )}
                             </div>
@@ -87,7 +113,7 @@ const FAQSidebarNav = (props: IFAQSidebarNavProps) => {
                     <Link
                         key={index}
                         href={item.link}
-                        onClick={() => setLinkHash(item.link)}
+                        onClick={(e) => handleScrollToSection(e, item.link)}
                         className={`pb-10 text-blue-600 hover:text-blue-950 ease-in-out duration-300 ${
                             linkHash === item.link
                                 ? "underline underline-offset-4 text-blue-950"

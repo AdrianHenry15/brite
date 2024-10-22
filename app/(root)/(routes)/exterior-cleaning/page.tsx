@@ -8,6 +8,7 @@ import IconBanner from "../../../../components/icon-banner/IconBanner";
 
 import PressureWashing from "../../../../public/assets/imgs/ex-cleaning.png";
 import ComponentSplash from "../../../../components/ComponentSplash";
+import PromoRow from "../../../../components/promotion/promo-row";
 
 export const metadata: Metadata = {
     title: "Brite's Exterior Cleaning",
@@ -35,6 +36,11 @@ const ExteriorCleaningPage = () => {
                 description3={
                     "From your roof down, Brite’s expert technicians will use the right methods to bring any surface at your home or business back to life."
                 }
+            />
+            <PromoRow
+                category="Exterior Cleaning"
+                title="Revitalize Your Home's Curb Appeal – Spotless Exteriors, Every Time!"
+                className="pb-24"
             />
         </section>
     );

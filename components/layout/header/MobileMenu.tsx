@@ -10,16 +10,69 @@ import Button from "../../Button";
 import { NavMenuType } from "../../../lib/types";
 import { FaPhone } from "react-icons/fa6";
 import { NavMenu } from "../../../lib/constants";
+import { BiChevronDown } from "react-icons/bi";
+import ServicesMenu from "./ServicesMenu";
 
 export default function MobileMenu() {
+    // Constants
     const pathname = usePathname();
+
+    // State
     const [isOpen, setIsOpen] = useState(false);
     const openMobileMenu = () => setIsOpen(true);
     const closeMobileMenu = () => setIsOpen(false);
+    const [servicesMenuOpen, setServicesMenuOpen] = useState(false);
 
     useEffect(() => {
         closeMobileMenu();
     }, [pathname]);
+
+    const renderNavMenu = () => {
+        return NavMenu.map((item) => {
+            if (item.title === "Services") {
+                return (
+                    <div key={item.title} className="relative cursor-pointer">
+                        <span
+                            key={item.title}
+                            onClick={(e) => {
+                                e.preventDefault();
+                                setServicesMenuOpen(!servicesMenuOpen);
+                            }}
+                            className={`${
+                                pathname === item.link ? "underline" : ""
+                            } flex items-center hover:text-neutral-500 ease-in-out duration-300`}
+                        >
+                            <li className={`py-4 text-xl text-black transition-colors`}>
+                                {item.title}
+                            </li>
+                            <BiChevronDown className="text-black" size={20} />
+                        </span>
+                        {servicesMenuOpen && (
+                            <ServicesMenu
+                                containerClass="p-0 mt-0"
+                                setServicesMenuOpen={() => setServicesMenuOpen(false)}
+                            />
+                        )}
+                    </div>
+                );
+            } else {
+                return (
+                    <Link
+                        key={item.title}
+                        href={item.link}
+                        onClick={closeMobileMenu}
+                        className={`${pathname === item.link ? "underline" : ""}`}
+                    >
+                        <li
+                            className={`py-4 text-xl text-black transition-colors hover:text-neutral-500`}
+                        >
+                            {item.title}
+                        </li>
+                    </Link>
+                );
+            }
+        });
+    };
 
     return (
         <div className="relative">
@@ -64,24 +117,7 @@ export default function MobileMenu() {
                                     </button>
                                 </div>
 
-                                <ul className="flex w-full flex-col h-full">
-                                    {NavMenu.map((item: NavMenuType) => (
-                                        <Link
-                                            key={item.title}
-                                            href={item.link}
-                                            onClick={closeMobileMenu}
-                                            className={`${
-                                                pathname === item.link ? "underline" : ""
-                                            }`}
-                                        >
-                                            <li
-                                                className={`py-4 text-xl text-black transition-colors hover:text-neutral-500`}
-                                            >
-                                                {item.title}
-                                            </li>
-                                        </Link>
-                                    ))}
-                                </ul>
+                                <ul className="flex w-full flex-col h-full">{renderNavMenu()}</ul>
                             </div>
                             {/* NAV BUTTONS */}
                             <ul className="bottom-0 fixed flex flex-col self-start w-full">

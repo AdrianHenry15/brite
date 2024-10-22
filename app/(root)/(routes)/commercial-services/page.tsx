@@ -9,6 +9,7 @@ import IconBanner from "../../../../components/icon-banner/IconBanner";
 import CommercialServicePic from "../../../../public/assets/imgs/h-b-jn.jpg";
 import ComponentSplash from "../../../../components/ComponentSplash";
 import { FaTrashCan } from "react-icons/fa6";
+import PromoRow from "../../../../components/promotion/promo-row";
 
 export const metadata: Metadata = {
     title: "Brite's Commercial Services",
@@ -36,6 +37,11 @@ const CommercialServicesPage = () => {
                 description3={
                     "Keep your place of work shining Brite consistently! With our pure water cleaning techniques and meticulously trained technicians, we will keep a professional streak-free finish on all your exterior windows, frames and sills."
                 }
+            />
+            <PromoRow
+                className="pb-24"
+                category="Commercial Services"
+                title="Your Business, Our Expertise—Excellence Delivered!"
             />
         </section>
     );
