@@ -9,7 +9,7 @@ import {
     SoftWashingFAQs,
     TrashBinCleaningFAQs,
     WindowCleaningFAQs,
-} from "../../../lib/FAQsItems";
+} from "../../../lib/FAQItems";
 import FAQSidebarNav from "./FAQSidebarNav";
 import { FAQNavMenu } from "../../../lib/constants";
 

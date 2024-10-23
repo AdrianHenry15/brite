@@ -6,7 +6,7 @@ import FAQItem from "../../../../components/layout/faqs/FAQItem";
 import { FAQNavMenu } from "../../../../lib/constants";
 import FAQContainer from "../../../../components/layout/faqs/FAQContainer";
 import ScrollUpBtn from "../../../../components/ScrollUpBtn";
-import { BriteFAQs, ExteriorCleaningFAQs, HolidayLightingFAQs } from "../../../../lib/FAQsItems";
+import { BriteFAQs, ExteriorCleaningFAQs, HolidayLightingFAQs } from "../../../../lib/FAQItems";
 import FAQs from "../../../../components/layout/faqs/FAQs";
 
 const DummyText =
