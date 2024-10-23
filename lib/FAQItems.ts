@@ -32,41 +32,48 @@ export const BriteFAQs: FAQItemType[] = [
             improve the appearance and longevity of surfaces while ensuring a safe and inviting environment for clients.
         `,
     },
-    {
-        id: "brite-faqs-3",
-        question: "How can I schedule a service with Brite?",
-        answer: ``,
-    },
+    // {
+    //     id: "brite-faqs-3",
+    //     question: "How can I schedule a service with Brite?",
+    //     answer: ``,
+    // },
     // {
     //     id: "brite-faqs-4",
     //     question: "Are the cleaning products used by Brite eco-friendly?",
     //     answer: ``
     // },
     // {
+    //     id: "brite-faqs-4",
     //     question: "What areas does Brite serve to?",
     //     answer: ``
-    // }
+    // },
     // {
+    //     id: "brite-faqs-4",
     //     question: "How long does a typical service take?",
     //     answer: ``
-    // }
+    // },
     // {
+    //     id: "brite-faqs-4",
     //     question: "Do I need to be home during the cleaning service?",
     //     answer: ``
-    // }
+    // },
     // {
+    //     id: "brite-faqs-4",
     //     question: "What should I do to prepare for my scheduled service?",
     //     answer: ``
-    // }
+    // },
     // {
+    //     id: "brite-faqs-4",
     //     question: "Are Brite's technicians trained and insured?",
     //     answer: ``
-    // }
+    // },
     // {
+    //     id: "brite-faqs-4",
     //     question: "What are the payment options available with Brite?",
     //     answer: ``
-    // }
+    // },
     // {
+    //     id: "brite-faqs-4",
     //     question: "Does Brite off any discounts or promotions?",
     //     answer: ``
     // }
@@ -74,6 +81,7 @@ export const BriteFAQs: FAQItemType[] = [
 
 export const ExteriorCleaningFAQs: FAQItemType[] = [
     {
+        id: "ec-faqs-4",
         question: "What is Exterior Cleaning?",
         answer: `
             Exterior Cleaning with Brite involves professional services aimed at maintaining the cleanliness and appearance of residential and commercial properties. 
@@ -87,73 +95,90 @@ export const ExteriorCleaningFAQs: FAQItemType[] = [
             providing a clean, well-maintained environment for homeowners and businesses.`,
     },
     // {
+    //     id: "brite-faqs-4",
     //     question: "What are the benefits of regular exterior cleaning?",
     //     answer: ``
-    // }
+    // },
     // {
+    //     id: "brite-faqs-4",
     //     question: "What is included in Brite's exterior cleaning services?",
     //     answer: ``
-    // }
+    // },
     // {
+    //     id: "brite-faqs-4",
     //     question: "How often should I schedule exterior cleaning for my property?",
     //     answer: ``
-    // }
+    // },
     // {
+    //     id: "brite-faqs-4",
     //     question: "Can exterior cleaning help prevent damage to my property?",
     //     answer: ``
-    // }
+    // },
     // {
+    //     id: "brite-faqs-4",
     //     question: "What types of surfaces can Brite clean?",
     //     answer: ``
-    // }
+    // },
     // {
+    //     id: "brite-faqs-4",
     //     question: "What types of surfaces can Brite clean?",
     //     answer: ``
-    // }
+    // },
     // {
+    //     id: "brite-faqs-4",
     //     question: "How do you determine the right cleaning method for my property?",
     //     answer: ``
-    // }
+    // },
     // {
+    //     id: "brite-faqs-4",
     //     question: "Will exterior cleaning remove stains and discoloration?",
     //     answer: ``
-    // }
+    // },
     // {
+    //     id: "brite-faqs-4",
     //     question: "What safety precautions does Brite take during exterior cleaning?",
     //     answer: ``
-    // }
+    // },
     // {
+    //     id: "brite-faqs-4",
     //     question: "Do I need to move furniture or decorations before a cleaning service?",
     //     answer: ``
-    // }
+    // },
     // {
+    //     id: "brite-faqs-4",
     //     question: "What is the drying time after an exterior cleaning service?",
     //     answer: ``
-    // }
+    // },
     // {
+    //     id: "brite-faqs-4",
     //     question: "Are there any weather conditions that can affect the cleaning process?",
     //     answer: ``
-    // }
+    // },
     // {
+    //     id: "brite-faqs-4",
     //     question: "Can Brite clean hard to reach areas, like second story windows?",
     //     answer: ``
-    // }
+    // },
     // {
+    //     id: "brite-faqs-4",
     //     question: "How do you handle tough stains, such as rust or oil?",
     //     answer: ``
-    // }
+    // },
     // {
+    //     id: "brite-faqs-4",
     //     question: "What if I notice issues after the cleaning service is completed?",
     //     answer: ``
-    // }
+    // },
     // {
+    //     id: "brite-faqs-4",
     //     question: "Is there a warranty or guarantee for your exterior cleaning services?",
     //     answer: ``
-    // }
+    // },
 ];
 
 export const HolidayLightingFAQs: FAQItemType[] = [
     {
+        id: "hl-faqs-4",
         question: "What is Holiday Lighting?",
         answer: `
             Holiday Lighting with Brite offers professional, custom lighting installations to decorate residential and commercial properties for the holiday season. 
@@ -164,66 +189,82 @@ export const HolidayLightingFAQs: FAQItemType[] = [
         `,
     },
     // {
+    //     id: "brite-faqs-4",
     //     question: "What types of holiday lighting services does Brite offer?",
     //     answer: ``,
     // },
     // {
+    //     id: "brite-faqs-4",
     //     question: "Can Brite create a custom lighting design for my home or business?",
     //     answer: ``,
     // },
     // {
+    //     id: "brite-faqs-4",
     //     question: "How far in advance should I schedule my holiday lighting installation?",
     //     answer: ``,
     // },
     // {
+    //     id: "brite-faqs-4",
     //     question: "What types of lights does Brite use for holiday lighting?",
     //     answer: ``,
     // },
     // {
+    //     id: "brite-faqs-4",
     //     question: "Are the holiday lights energy-efficient?",
     //     answer: ``,
     // },
     // {
+    //     id: "brite-faqs-4",
     //     question: "Does Brite provide the lights, or do I need to supply them?",
     //     answer: ``,
     // },
     // {
+    //     id: "brite-faqs-4",
     //     question: "How does Brite handle the installation and takedown of holiday lights?",
     //     answer: ``,
     // },
     // {
+    //     id: "brite-faqs-4",
     //     question: "Can Brite install holiday lighting on tall or difficult-to-reach areas?",
     //     answer: ``,
     // },
     // {
+    //     id: "brite-faqs-4",
     //     question: "What is the cost of holiday lighting installation with Brite?",
     //     answer: ``,
     // },
     // {
+    //     id: "brite-faqs-4",
     //     question: "What maintenance is included during the holiday lighting season?",
     //     answer: ``,
     // },
     // {
+    //     id: "brite-faqs-4",
     //     question: "What happens if a light goes out during the holiday season?",
     //     answer: ``,
     // },
     // {
+    //     id: "brite-faqs-4",
     //     question: "Does Brite offer any warranties for their holiday lighting services?",
     //     answer: ``,
     // },
     // {
+    //     id: "brite-faqs-4",
     //     question: "Are Brite's technicians trained in safety procedures for holiday lighting installation?",
     //     answer: ``,
     // },
     // {
+    //     id: "brite-faqs-4",
     //     question: "Can Brite help with themes or color schemes for holiday lighting?",
     //     answer: ``,
     // },
     // {
+    //     id: "brite-faqs-4",
     //     question: "How can I remove holiday lighting after the season ends?",
     //     answer: ``,
     // },
     // {
+    //     id: "brite-faqs-4",
     //     question: "?",
     //     answer: ``,
     // },
@@ -231,6 +272,7 @@ export const HolidayLightingFAQs: FAQItemType[] = [
 
 export const PressureWashingFAQs: FAQItemType[] = [
     {
+        id: "pw-faqs-4",
         question: "What is Pressure Washing?",
         answer: `
             Pressure washing with Brite is a professional cleaning service that uses high-pressure water to remove 
@@ -243,23 +285,28 @@ export const PressureWashingFAQs: FAQItemType[] = [
             Brite ensures a thorough and efficient cleaning process, leaving properties looking refreshed and well-maintained.
         `,
     },
-    {
-        question: "What is the difference between pressure washing and soft washing?",
-        answer: ``,
-    },
     // {
+    //     id: "brite-faqs-4",
+    //     question: "What is the difference between pressure washing and soft washing?",
+    //     answer: ``,
+    // },
+    // {
+    //     id: "brite-faqs-4",
     //     question: "Is pressure washing safe for all surfaces?",
     //     answer: ``
-    // }
+    // },
     // {
+    //     id: "brite-faqs-4",
     //     question: "How often should I schedule pressure washing for my property?",
     //     answer: ``
-    // }
+    // },
     // {
+    //     id: "brite-faqs-4",
     //     question: "Will pressure washing damage my paint or siding?",
     //     answer: ``
-    // }
+    // },
     // {
+    //     id: "brite-faqs-4",
     //     question: "Can pressure washing remove stubborn stains like oil or rust?",
     //     answer: ``
     // }
@@ -267,6 +314,7 @@ export const PressureWashingFAQs: FAQItemType[] = [
 
 export const SoftWashingFAQs: FAQItemType[] = [
     {
+        id: "sw-faqs-4",
         question: "What is Soft Washing?",
         answer: `
             Soft washing with Brite is a specialized cleaning method that uses low-pressure water combined with eco-friendly cleaning solutions to 
@@ -279,22 +327,27 @@ export const SoftWashingFAQs: FAQItemType[] = [
         `,
     },
     // {
+    //     id: "brite-faqs-4",
     //     question: "What is soft washing, and how is it different from pressure washing?",
     //     answer: ``
-    // }
+    // },
     // {
+    //     id: "brite-faqs-4",
     //     question: "What types of surfaces are best suited for soft washing?",
     //     answer: ``
-    // }
+    // },
     // {
+    //     id: "brite-faqs-4",
     //     question: "Is soft washing safe for my roof and siding?",
     //     answer: ``
-    // }
+    // },
     // {
+    //     id: "brite-faqs-4",
     //     question: "How long do the results of a soft washing treatment last?",
     //     answer: ``
-    // }
+    // },
     // {
+    //     id: "brite-faqs-4",
     //     question: "Does soft washing kill mold, mildew, and algae?",
     //     answer: ``
     // }
@@ -302,6 +355,7 @@ export const SoftWashingFAQs: FAQItemType[] = [
 
 export const TrashBinCleaningFAQs: FAQItemType[] = [
     {
+        id: "tb-faqs-4",
         question: "What is Trash Bin Cleaning?",
         answer: `
             Trash bin cleaning with Brite is a professional service that thoroughly cleans and sanitizes residential and commercial trash bins. 
@@ -312,29 +366,35 @@ export const TrashBinCleaningFAQs: FAQItemType[] = [
         `,
     },
     // {
+    //     id: "brite-faqs-4",
     //     question: "How often should I have my trash bins professionally cleaned?",
     //     answer: ``
-    // }
+    // },
     // {
+    //     id: "brite-faqs-4",
     //     question: "What is included in Brite's trash bin cleaning service?",
     //     answer: ``
-    // }
+    // },
     // {
+    //     id: "brite-faqs-4",
     //     question: "Will trash bin cleaning eliminate odors and bacteria?",
     //     answer: ``
-    // }
+    // },
     // {
+    //     id: "brite-faqs-4",
     //     question: "Is the cleaning process environmentally friendly?",
     //     answer: ``
-    // }
+    // },
     // {
+    //     id: "brite-faqs-4",
     //     question: "Do I need to empty my trash bins before the cleaning service?",
     //     answer: ``
-    // }
+    // },
 ];
 
 export const WindowCleaningFAQs: FAQItemType[] = [
     {
+        id: "wc-faqs-4",
         question: "What is Window Cleaning?",
         answer: `
             Window cleaning with Brite is a professional service designed to enhance the clarity and appearance of windows in residential and commercial properties. 
@@ -347,26 +407,32 @@ export const WindowCleaningFAQs: FAQItemType[] = [
         `,
     },
     // {
+    //     id: "brite-faqs-4",
     //     question: "How often should I schedule professional window cleaning?",
     //     answer: ``
-    // }
+    // },
     // {
+    //     id: "brite-faqs-4",
     //     question: "Does Brite clean both the interior and exterior of windows?",
     //     answer: ``
-    // }
+    // },
     // {
+    //     id: "brite-faqs-4",
     //     question: "What types of windows can Brite clean?",
     //     answer: ``
-    // }
+    // },
     // {
+    //     id: "brite-faqs-4",
     //     question: "Will window cleaning remove hard water stains and streaks?",
     //     answer: ``
-    // }
+    // },
     // {
+    //     id: "brite-faqs-4",
     //     question: "Do I need to prepare my home or business before the window cleaning service?",
     //     answer: ``
-    // }
+    // },
     // {
+    //     id: "brite-faqs-4",
     //     question: "",
     //     answer: ``
     // }
