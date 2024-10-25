@@ -13,12 +13,10 @@ import HLImage3 from "../public/assets/imgs/christmas-lights-home.jpg";
 import HLImage4 from "../public/assets/imgs/christmas-lights.jpg";
 // Commercial Services Images
 import CSImage from "../public/assets/imgs/action-3.jpg";
-import CSImage2 from "../public/assets/imgs/action-4.jpg";
 import CSImage3 from "../public/assets/imgs/pw-3.jpg";
 import CSImage4 from "../public/assets/imgs/action-2.jpg";
 import CSImage5 from "../public/assets/imgs/pw-2.jpg";
-import CSImage6 from "../public/assets/imgs/pw.jpg";
-import CSImage7 from "../public/assets/imgs/pressure-washing.jpg";
+import CSImage7 from "../public/assets/imgs/garb-1.jpg";
 
 export const ExteriorCleaningProducts: ProductType[] = [
     {
@@ -97,32 +95,25 @@ export const CommercialServicesProducts: ProductType[] = [
         category: "Commercial Services",
         image: CSImage,
     },
-    // {
-    //     id: "cs-2",
-    //     title: "Pressure Washing",
-    //     description: "High-powered cleaning for exterior surfaces",
-    //     category: "Commercial Services",
-    //     image: CSImage2,
-    // },
     {
-        id: "cs-3",
-        title: "Window Cleaning",
-        description: "Professional window washing for a streak-free shine",
+        id: "cs-2",
+        title: "Pressure Washing",
+        description: "Revive Your Surfaces, Refresh Your Space!",
         category: "Commercial Services",
         image: CSImage3,
     },
     {
-        id: "cs-4",
+        id: "cs-3",
         title: "Sanitation & Disinfection",
         description: "Deep cleaning for health and safety compliance",
         category: "Commercial Services",
         image: CSImage4,
     },
-    // {
-    //     id: "cs-5",
-    //     title: "Floor Care",
-    //     description: "Specialized services like polishing, waxing, and carpet cleaning",
-    //     category: "Commercial Services",
-    //     image: CSImage5,
-    // },
+    {
+        id: "cs-4",
+        title: "Trash Bin Cleaning",
+        description: "Clean Bins, Clean Homes—Say Goodbye to Odors!",
+        category: "Commercial Services",
+        image: CSImage7,
+    },
 ];
