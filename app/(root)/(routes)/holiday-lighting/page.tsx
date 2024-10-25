@@ -9,7 +9,7 @@ import IconBanner from "../../../../components/icon-banner/IconBanner";
 
 import ChristmasLightingSplash from "../../../../public/assets/imgs/christmas-lights.jpg";
 import ComponentSplash from "../../../../components/ComponentSplash";
-import PromoRow from "../../../../components/promotion/promo-row";
+import PromoRow from "../../../../components/products/product-row";
 
 export const metadata: Metadata = {
     title: "Brite's Holiday Lighting",

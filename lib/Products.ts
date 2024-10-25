@@ -8,10 +8,9 @@ import ECImage4 from "../public/assets/imgs/ex-cleaning.png";
 import ECImage5 from "../public/assets/imgs/action-1.jpg";
 // Holiday Lighting Images
 import HLImage from "../public/assets/imgs/xmas-1.jpg";
-import HLImage2 from "../public/assets/imgs/xmas-1.jpg";
-import HLImage3 from "../public/assets/imgs/xmas-2.jpg";
-import HLImage4 from "../public/assets/imgs/christmas-lights-home.jpg";
-import HLImage5 from "../public/assets/imgs/christmas-lights.jpg";
+import HLImage2 from "../public/assets/imgs/xmas-2.jpg";
+import HLImage3 from "../public/assets/imgs/christmas-lights-home.jpg";
+import HLImage4 from "../public/assets/imgs/christmas-lights.jpg";
 // Commercial Services Images
 import CSImage from "../public/assets/imgs/action-3.jpg";
 import CSImage2 from "../public/assets/imgs/action-4.jpg";
@@ -62,75 +61,68 @@ export const ExteriorCleaningProducts: ProductType[] = [
 export const HolidayLightingProducts: ProductType[] = [
     {
         id: "hl-1",
-        title: "Custom Design and Installation",
-        description: "Lighting Up Your Holidays, One Sparkle at a Time!",
+        title: "Holiday Lighting",
+        description: "Festive holiday lighting by Brite for homes and businesses",
         category: "Holiday Lighting",
         image: HLImage,
     },
     {
         id: "hl-2",
-        title: "Residential Holiday Lighting",
-        description: "Bringing Holiday Cheer with Every Twinkle!",
+        title: "Custom Design and Installation",
+        description: "Lighting Up Your Holidays, One Sparkle at a Time!",
+        category: "Holiday Lighting",
+        image: HLImage2,
+    },
+    {
+        id: "hl-4",
+        title: "Tree and Shrub Lighting",
+        description: "Brightening Your Season with Dazzling Displays!",
         category: "Holiday Lighting",
         image: HLImage3,
     },
     {
-        id: "hl-3",
-        title: "Tree and Shrub Lighting",
-        description: "Brightening Your Season with Dazzling Displays!",
-        category: "Holiday Lighting",
-        image: HLImage4,
-    },
-    {
-        id: "hl-4",
+        id: "hl-5",
         title: "Roofline Lighting",
         description: "Make Your Holidays Shine Brighter!",
         category: "Holiday Lighting",
-        image: HLImage5,
+        image: HLImage4,
     },
 ];
 
 export const CommercialServicesProducts: ProductType[] = [
     {
         id: "cs-1",
-        title: "Commercial Services Title Here...",
-        description: "Add Description Here",
+        title: "Commercial Services",
+        description: "Keep your business space clean, professional and welcoming",
         category: "Commercial Services",
         image: CSImage,
     },
-    {
-        id: "cs-2",
-        title: "Commercial Services Title Here...",
-        description: "Add Description Here",
-        category: "Commercial Services",
-        image: CSImage2,
-    },
+    // {
+    //     id: "cs-2",
+    //     title: "Pressure Washing",
+    //     description: "High-powered cleaning for exterior surfaces",
+    //     category: "Commercial Services",
+    //     image: CSImage2,
+    // },
     {
         id: "cs-3",
-        title: "Commercial Services Title Here...",
-        description: "Add Description Here",
+        title: "Window Cleaning",
+        description: "Professional window washing for a streak-free shine",
         category: "Commercial Services",
         image: CSImage3,
     },
     {
         id: "cs-4",
-        title: "Commercial Services Title Here...",
-        description: "Add Description Here",
+        title: "Sanitation & Disinfection",
+        description: "Deep cleaning for health and safety compliance",
         category: "Commercial Services",
         image: CSImage4,
     },
-    {
-        id: "cs-5",
-        title: "Commercial Services Title Here...",
-        description: "Add Description Here",
-        category: "Commercial Services",
-        image: CSImage5,
-    },
-    {
-        id: "cs-6",
-        title: "Commercial Services Title Here...",
-        description: "Add Description Here",
-        category: "Commercial Services",
-        image: CSImage6,
-    },
+    // {
+    //     id: "cs-5",
+    //     title: "Floor Care",
+    //     description: "Specialized services like polishing, waxing, and carpet cleaning",
+    //     category: "Commercial Services",
+    //     image: CSImage5,
+    // },
 ];

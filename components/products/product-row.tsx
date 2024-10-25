@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 import logoImage from "../../public/assets/icons/brite-logo.png";
 import { Category, ProductType } from "../../lib/types";
-import ProductItem from "./promo-item";
+import ProductItem from "./product-item";
 import {
     CommercialServicesProducts,
     ExteriorCleaningProducts,
@@ -18,13 +18,13 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-interface IPromoRowProps {
+interface IProductRowProps {
     category: Category;
     title: string;
     className?: string;
 }
 
-const PromoRow = (props: IPromoRowProps) => {
+const ProductRow = (props: IProductRowProps) => {
     // Constants
     const products = [
         ...ExteriorCleaningProducts,
@@ -120,4 +120,4 @@ const PromoRow = (props: IPromoRowProps) => {
     );
 };
 
-export default PromoRow;
+export default ProductRow;
