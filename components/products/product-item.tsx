@@ -17,11 +17,11 @@ const ProductItem = (props: ProductItemProps) => {
     return (
         <Link
             href={`/${product.category.toLowerCase().replace(/\s+/g, "-")}`}
-            className="relative items-center justify-center flex flex-col px-12 flex-shrink-0 w-[400px] h-[280px] rounded-md border-white"
+            className="hover:scale-105 transition-transform duration-300 ease-in-out relative items-center justify-center flex flex-col px-12 flex-shrink-0 w-[400px] h-[280px] rounded-md border-white"
         >
             <div className="flex w-[300px] h-[170px] relative">
                 <Image
-                    className="object-cover opacity-75 flex rounded-md hover:scale-105 transition-transform duration-300 ease-in-out w-full h-full"
+                    className="object-cover opacity-75 flex rounded-md w-full h-full"
                     width={400}
                     height={400}
                     src={product.image}

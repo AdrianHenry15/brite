@@ -94,26 +94,42 @@ export const ExteriorCleaningFAQs: FAQItemType[] = [
             These services not only enhance curb appeal but also protect and prolong the life of exterior surfaces, 
             providing a clean, well-maintained environment for homeowners and businesses.`,
     },
+    {
+        id: "ec-faqs-5",
+        question: "What are the benefits of regular exterior cleaning?",
+        answer: `Regular exterior cleaning boosts curb appeal, 
+            prevents damage from mold and algae, 
+            and extends material lifespan, 
+            saving on repair costs. 
+            It also enhances energy efficiency by allowing more natural light and reduces allergens around your home, 
+            protecting health and maintaining property value.`,
+    },
     // {
-    //     id: "brite-faqs-4",
-    //     question: "What are the benefits of regular exterior cleaning?",
-    //     answer: ``
-    // },
-    // {
-    //     id: "brite-faqs-4",
+    //     id: "ec-faqs-6",
     //     question: "What is included in Brite's exterior cleaning services?",
     //     answer: ``
     // },
-    // {
-    //     id: "brite-faqs-4",
-    //     question: "How often should I schedule exterior cleaning for my property?",
-    //     answer: ``
-    // },
-    // {
-    //     id: "brite-faqs-4",
-    //     question: "Can exterior cleaning help prevent damage to my property?",
-    //     answer: ``
-    // },
+    {
+        id: "ec-faqs-7",
+        question: "How often should I schedule exterior cleaning for my property?",
+        answer: `For most properties, 
+            scheduling exterior cleaning once or twice a year is ideal. 
+            Homes in areas with high humidity, 
+            heavy rainfall, 
+            or near trees may benefit from more frequent cleaning to prevent mold and mildew buildup. 
+            High-traffic areas or regions with harsh weather may also require more regular cleaning to maintain the property’s appearance and structural integrity.`,
+    },
+    {
+        id: "ec-faqs-8",
+        question: "Can exterior cleaning help prevent damage to my property?",
+        answer: `Yes, regular exterior cleaning can significantly help prevent property damage. 
+            By removing mold, mildew, algae, and dirt buildup, 
+            you protect surfaces like siding, roofing, and wood from deterioration. 
+            These contaminants can lead to structural issues if left unchecked, 
+            especially in damp or shaded areas where they thrive. 
+            Routine cleaning extends the lifespan of materials, 
+            reducing the likelihood of costly repairs and maintaining the property’s condition over time.`,
+    },
     // {
     //     id: "brite-faqs-4",
     //     question: "What types of surfaces can Brite clean?",
@@ -129,11 +145,15 @@ export const ExteriorCleaningFAQs: FAQItemType[] = [
     //     question: "How do you determine the right cleaning method for my property?",
     //     answer: ``
     // },
-    // {
-    //     id: "brite-faqs-4",
-    //     question: "Will exterior cleaning remove stains and discoloration?",
-    //     answer: ``
-    // },
+    {
+        id: "ec-faqs-9",
+        question: "Will exterior cleaning remove stains and discoloration?",
+        answer: `Yes, exterior cleaning can effectively remove many types of stains and discoloration caused by dirt, algae, mold, mildew, and pollution. 
+            Professional cleaning methods, like pressure washing or soft washing, 
+            are especially effective at targeting these blemishes on surfaces such as siding, concrete, and roofing. 
+            However, some deeper stains, like rust or older, set-in stains, may require specialized treatments for full removal. 
+            Regular cleaning can also help prevent stains from setting in, keeping your property looking fresh and well-maintained.`,
+    },
     // {
     //     id: "brite-faqs-4",
     //     question: "What safety precautions does Brite take during exterior cleaning?",
@@ -149,11 +169,18 @@ export const ExteriorCleaningFAQs: FAQItemType[] = [
     //     question: "What is the drying time after an exterior cleaning service?",
     //     answer: ``
     // },
-    // {
-    //     id: "brite-faqs-4",
-    //     question: "Are there any weather conditions that can affect the cleaning process?",
-    //     answer: ``
-    // },
+    {
+        id: "ec-faqs-10",
+        question: "Are there any weather conditions that can affect the cleaning process?",
+        answer: `Yes, certain weather conditions can impact the effectiveness and safety of exterior cleaning. 
+        Rain can dilute cleaning solutions and reduce visibility, 
+        making it difficult to achieve thorough results. 
+        High winds can interfere with cleaning equipment, 
+        especially pressure washers, making it harder to control the spray and increasing the risk of damage. 
+        Extremely hot weather can cause cleaning agents to dry too quickly, 
+        reducing their effectiveness and potentially leaving residue. 
+        Ideally, exterior cleaning should be done in mild, dry weather with low wind to ensure the best results and safest conditions.`,
+    },
     // {
     //     id: "brite-faqs-4",
     //     question: "Can Brite clean hard to reach areas, like second story windows?",
