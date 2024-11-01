@@ -15,7 +15,7 @@ export type FAQNavLinks =
     | "#window-cleaning"
     | "#pressure-washing"
     | "#soft-washing";
-export type NavMenuItems = "Home" | "Services" | "Our Story" | "FAQs";
+export type NavMenuItems = "Home" | "Services" | "Our Story" | "FAQs" | "Newsletter";
 export type ServiceMenuItems = "Exterior Cleaning" | "Holiday Lighting" | "Commercial Services";
 export type ServiceMenuLinks = "/exterior-cleaning" | "/holiday-lighting" | "/commercial-services";
 export type AltNavMenuItems = "Contact Us" | "Get Your Free Estimate";
@@ -25,7 +25,8 @@ export type NavMenuLinks =
     | "/holiday-lighting"
     | "/commercial-services"
     | "/faqs"
-    | "/our-story";
+    | "/our-story"
+    | "/newsletter";
 export type AltNavMenuLinks = "/contact-us" | "/estimate";
 export type Category =
     | "All Products"
