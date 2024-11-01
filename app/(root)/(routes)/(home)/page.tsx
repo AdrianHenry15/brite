@@ -10,6 +10,7 @@ export default async function HomePage() {
         <section>
             <ButtonRow />
             <HomeSplash />
+            <SocialProof />
             <PromoRow
                 category="Exterior Cleaning"
                 title="Revitalize Your Home's Curb Appeal – Spotless Exteriors, Every Time!"
@@ -24,7 +25,6 @@ export default async function HomePage() {
                 title="Your Business, Our Expertise—Excellence Delivered!"
             />
             {/* <WelcomeMessage /> */}
-            <SocialProof />
         </section>
     );
 }

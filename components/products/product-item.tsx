@@ -36,7 +36,9 @@ const ProductItem = (props: ProductItemProps) => {
             {/* PRODUCT TAB */}
             <div className="flex flex-col bottom-0 items-start p-1 text-xs w-full rounded-full whitespace-nowrap">
                 <p className="flex text-black font-semibold mr-2 ml-1">{product.title}</p>
-                <p className="flex text-zinc-400 font-semibold mr-2 ml-1">{product.description}</p>
+                <p className="flex text-zinc-400 font-semibold mr-2 ml-1 w-[300px] text-wrap">
+                    {product.description}
+                </p>
             </div>
         </Link>
     );
