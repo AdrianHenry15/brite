@@ -4,12 +4,14 @@ import SocialProof from "../../../../components/layout/home/SocialProof";
 import HomeSplash from "../../../../components/HomeSplash";
 import ButtonRow from "../../../../components/ButtonRow";
 import PromoRow from "../../../../components/products/product-row";
+import PromotionalBanner from "../../../../components/promotional-banner";
 
 export default async function HomePage() {
     return (
         <section>
             <ButtonRow />
             <HomeSplash />
+            <PromotionalBanner />
             <SocialProof />
             <PromoRow
                 category="Exterior Cleaning"
