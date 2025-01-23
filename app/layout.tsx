@@ -28,12 +28,12 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             <html lang="en">
                 <link rel="icon" href="/assets/icons/brite-logo.png" />
                 <body className={inter.className}>
-                    {/* {(await draftMode()).isEnabled && (
+                    {(await draftMode()).isEnabled && (
                         <>
                             <DisableDraftMode />
                             <VisualEditing />
                         </>
-                    )} */}
+                    )}
                     <Analytics />
                     <SpeedInsights />
                     <Toaster />
