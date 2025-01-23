@@ -56,14 +56,6 @@ export const NavMenu: NavMenuType[] = [
         link: "",
     },
     {
-        title: "Newsletter",
-        link: "/newsletter",
-    },
-    // {
-    //     title: "Our Story",
-    //     link: "/our-story",
-    // },
-    {
         title: "FAQs",
         link: "/faqs",
     },
