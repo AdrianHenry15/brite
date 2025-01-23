@@ -14,7 +14,7 @@ const JobOpenings = () => {
                 ].map((job) => (
                     <div key={job.id} className="bg-white shadow-lg rounded-lg p-6">
                         <h3 className="text-xl font-semibold">{job.title}</h3>
-                        <p className="text-gray-600 mt-2">{job.location}</p>
+                        <p className="text-gray-600 my-2">{job.location}</p>
                         <Link href={`/careers/applications/${job.id}`}>
                             <Button
                                 variant="outlined"

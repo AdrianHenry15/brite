@@ -60,3 +60,9 @@ export type JobOpeningsType = {
     location: string;
     description: string;
 };
+
+export type TestimonialsType = {
+    name: string;
+    role: string;
+    testimonial: string;
+};
