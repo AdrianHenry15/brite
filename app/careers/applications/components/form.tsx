@@ -8,7 +8,8 @@ import toast from "react-hot-toast";
 const ApplicationsForm = () => {
     const router = useRouter();
     const [formData, setFormData] = useState({
-        name: "",
+        firstName: "",
+        lastName: "",
         email: "",
         phone: "",
         resume: null as File | null,
@@ -33,12 +34,21 @@ const ApplicationsForm = () => {
     return (
         <form onSubmit={handleSubmit} className="space-y-6">
             <TextField
-                label="Full Name"
+                label="First Name"
                 name="name"
                 fullWidth
                 variant="outlined"
                 required
-                value={formData.name}
+                value={formData.firstName}
+                onChange={handleInputChange}
+            />
+            <TextField
+                label="Last Name"
+                name="name"
+                fullWidth
+                variant="outlined"
+                required
+                value={formData.lastName}
                 onChange={handleInputChange}
             />
             <TextField

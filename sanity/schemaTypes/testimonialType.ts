@@ -1,29 +1,29 @@
-import { DocumentsIcon } from "@sanity/icons";
+import { InfoOutlineIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 
-export const jobType = defineType({
-    name: "job",
-    title: "Job Openings",
+export const testimonialType = defineType({
+    name: "testimonial",
+    title: "Testimonies",
     type: "document",
-    icon: DocumentsIcon,
+    icon: InfoOutlineIcon,
     fields: [
         defineField({
-            name: "title",
+            name: "name",
             type: "string",
         }),
         defineField({
             name: "slug",
             type: "slug",
             options: {
-                source: "title",
+                source: "name",
             },
         }),
         defineField({
-            name: "location",
+            name: "role",
             type: "string",
         }),
         defineField({
-            name: "description",
+            name: "testimonial",
             type: "text",
         }),
         defineField({

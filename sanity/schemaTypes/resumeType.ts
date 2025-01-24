@@ -1,30 +1,30 @@
-import { DocumentsIcon } from "@sanity/icons";
+import { ClipboardIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 
-export const jobType = defineType({
-    name: "job",
-    title: "Job Openings",
+export const resumeType = defineType({
+    name: "resume",
+    title: "Resumes",
     type: "document",
-    icon: DocumentsIcon,
+    icon: ClipboardIcon,
     fields: [
         defineField({
-            name: "title",
+            name: "userId",
+            type: "string",
+        }),
+        defineField({
+            name: "name",
             type: "string",
         }),
         defineField({
             name: "slug",
             type: "slug",
             options: {
-                source: "title",
+                source: "name",
             },
         }),
         defineField({
-            name: "location",
-            type: "string",
-        }),
-        defineField({
-            name: "description",
-            type: "text",
+            name: "resume",
+            type: "file",
         }),
         defineField({
             name: "publishedAt",

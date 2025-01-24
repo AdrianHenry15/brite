@@ -2,9 +2,9 @@ import React from "react";
 import { Jobs } from "../../../../lib/jobs";
 import ApplicationsForm from "../components/form";
 
-async function ApplicationPage({ params }: { params: Promise<{ id: string }> }) {
-    const { id } = await params;
-    const job = Jobs.find((job) => job.id === parseInt(id as string));
+async function ApplicationPage({ params }: { params: Promise<{ slug: string }> }) {
+    const { slug } = await params;
+    const job = Jobs.find((job) => job.id === parseInt(slug as string));
 
     if (!job) {
         return <p>Loading job details...</p>;
