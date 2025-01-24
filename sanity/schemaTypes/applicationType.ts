@@ -16,10 +16,16 @@ export const applicationType = defineType({
             type: "string",
         }),
         defineField({
+            name: "job",
+            title: "Job Opening",
+            type: "reference",
+            to: [{ type: "job" }], // Ref the "resume" type here
+        }),
+        defineField({
             name: "slug",
             type: "slug",
             options: {
-                source: "title",
+                source: ["title", "job"],
             },
         }),
         defineField({
