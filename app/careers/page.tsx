@@ -4,7 +4,7 @@ import Testimonials from "./components/testimonials";
 import About from "./components/about";
 import Hero from "./components/hero";
 
-const Careers = () => {
+const Careers = async () => {
     return (
         <div className="bg-gray-50 min-h-screen">
             {/* Hero Section */}
@@ -14,7 +14,7 @@ const Careers = () => {
             <About />
 
             {/* Job Openings Section */}
-            <JobOpenings />
+            <JobOpenings jobs={[]} />
             {/* Employee Testimonials Section */}
             <Testimonials />
         </div>

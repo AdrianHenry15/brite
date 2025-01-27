@@ -55,28 +55,6 @@ export type SanityImageCrop = {
     right?: number;
 };
 
-export type SanityFileAsset = {
-    _id: string;
-    _type: "sanity.fileAsset";
-    _createdAt: string;
-    _updatedAt: string;
-    _rev: string;
-    originalFilename?: string;
-    label?: string;
-    title?: string;
-    description?: string;
-    altText?: string;
-    sha1hash?: string;
-    extension?: string;
-    mimeType?: string;
-    size?: number;
-    assetId?: string;
-    uploadId?: string;
-    path?: string;
-    url?: string;
-    source?: SanityAssetSourceData;
-};
-
 export type SanityImageAsset = {
     _id: string;
     _type: "sanity.imageAsset";
@@ -118,11 +96,95 @@ export type Geopoint = {
     alt?: number;
 };
 
+export type Application = {
+    _id: string;
+    _type: "application";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    userId?: string;
+    title?: string;
+    job?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "job";
+    };
+    slug?: Slug;
+    firstName?: string;
+    lastName?: string;
+    email?: string;
+    phone?: string;
+    resume?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "resume";
+    };
+    publishedAt?: string;
+};
+
+export type Resume = {
+    _id: string;
+    _type: "resume";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    userId?: string;
+    name?: string;
+    slug?: Slug;
+    resume?: {
+        asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
+        };
+        _type: "file";
+    };
+    publishedAt?: string;
+};
+
+export type SanityFileAsset = {
+    _id: string;
+    _type: "sanity.fileAsset";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    originalFilename?: string;
+    label?: string;
+    title?: string;
+    description?: string;
+    altText?: string;
+    sha1hash?: string;
+    extension?: string;
+    mimeType?: string;
+    size?: number;
+    assetId?: string;
+    uploadId?: string;
+    path?: string;
+    url?: string;
+    source?: SanityAssetSourceData;
+};
+
 export type SanityAssetSourceData = {
     _type: "sanity.assetSourceData";
     name?: string;
     id?: string;
     url?: string;
+};
+
+export type Testimonial = {
+    _id: string;
+    _type: "testimonial";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    name?: string;
+    slug?: Slug;
+    role?: string;
+    testimonial?: string;
+    publishedAt?: string;
 };
 
 export type Job = {
@@ -150,11 +212,185 @@ export type AllSanitySchemaTypes =
     | SanityImageDimensions
     | SanityImageHotspot
     | SanityImageCrop
-    | SanityFileAsset
     | SanityImageAsset
     | SanityImageMetadata
     | Geopoint
+    | Application
+    | Resume
+    | SanityFileAsset
     | SanityAssetSourceData
+    | Testimonial
     | Job
     | Slug;
 export declare const internalGroqTypeReferenceTo: unique symbol;
+// Source: ./sanity/lib/applications/getAllApplications.ts
+// Variable: ALL_APPLICATIONS_QUERY
+// Query: *[_type == "application"] | order(name asc)
+export type ALL_APPLICATIONS_QUERYResult = Array<{
+    _id: string;
+    _type: "application";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    userId?: string;
+    title?: string;
+    job?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "job";
+    };
+    slug?: Slug;
+    firstName?: string;
+    lastName?: string;
+    email?: string;
+    phone?: string;
+    resume?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "resume";
+    };
+    publishedAt?: string;
+}>;
+
+// Source: ./sanity/lib/applications/getApplicationBySlug.ts
+// Variable: APPLICATION_BY_ID_QUERY
+// Query: *[_type == "application" && slug.current == $slug] | order(name asc) [0]
+export type APPLICATION_BY_ID_QUERYResult = {
+    _id: string;
+    _type: "application";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    userId?: string;
+    title?: string;
+    job?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "job";
+    };
+    slug?: Slug;
+    firstName?: string;
+    lastName?: string;
+    email?: string;
+    phone?: string;
+    resume?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "resume";
+    };
+    publishedAt?: string;
+} | null;
+
+// Source: ./sanity/lib/job-openings/getAllJobOpenings.ts
+// Variable: ALL_JOB_OPENINGS_QUERY
+// Query: *[_type == "job"] | order(name asc)
+export type ALL_JOB_OPENINGS_QUERYResult = Array<{
+    _id: string;
+    _type: "job";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    title?: string;
+    slug?: Slug;
+    location?: string;
+    description?: string;
+    publishedAt?: string;
+}>;
+
+// Source: ./sanity/lib/job-openings/getJobOpeningBySlug.ts
+// Variable: JOB_BY_ID_QUERY
+// Query: *[_type == "job" && slug.current == $slug] | order(name asc) [0]
+export type JOB_BY_ID_QUERYResult = {
+    _id: string;
+    _type: "job";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    title?: string;
+    slug?: Slug;
+    location?: string;
+    description?: string;
+    publishedAt?: string;
+} | null;
+
+// Source: ./sanity/lib/resumes/getAllResumes.ts
+// Variable: ALL_RESUMES_QUERY
+// Query: *[_type == "resume"] | order(name asc)
+export type ALL_RESUMES_QUERYResult = Array<{
+    _id: string;
+    _type: "resume";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    userId?: string;
+    name?: string;
+    slug?: Slug;
+    resume?: {
+        asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
+        };
+        _type: "file";
+    };
+    publishedAt?: string;
+}>;
+
+// Source: ./sanity/lib/resumes/getUserResumeBySlug.ts
+// Variable: RESUME_BY_ID_QUERY
+// Query: *[_type == "resume" && slug.current == $slug] | order(name asc) [0]
+export type RESUME_BY_ID_QUERYResult = {
+    _id: string;
+    _type: "resume";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    userId?: string;
+    name?: string;
+    slug?: Slug;
+    resume?: {
+        asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
+        };
+        _type: "file";
+    };
+    publishedAt?: string;
+} | null;
+
+// Source: ./sanity/lib/testimonials/getAllTestimonials.ts
+// Variable: ALL_TESTIMONIALS_QUERY
+// Query: *[_type == "testimonial"] | order(name asc)
+export type ALL_TESTIMONIALS_QUERYResult = Array<{
+    _id: string;
+    _type: "testimonial";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    name?: string;
+    slug?: Slug;
+    role?: string;
+    testimonial?: string;
+    publishedAt?: string;
+}>;
+
+// Query TypeMap
+import "@sanity/client";
+declare module "@sanity/client" {
+    interface SanityQueries {
+        '*[_type == "application"] | order(name asc)\n': ALL_APPLICATIONS_QUERYResult;
+        '*[_type == "application" && slug.current == $slug] | order(name asc) [0]\n': APPLICATION_BY_ID_QUERYResult;
+        '*[_type == "job"] | order(name asc)\n': ALL_JOB_OPENINGS_QUERYResult;
+        '*[_type == "job" && slug.current == $slug] | order(name asc) [0]\n': JOB_BY_ID_QUERYResult;
+        '*[_type == "resume"] | order(name asc)\n': ALL_RESUMES_QUERYResult;
+        '*[_type == "resume" && slug.current == $slug] | order(name asc) [0]\n': RESUME_BY_ID_QUERYResult;
+        '*[_type == "testimonial"] | order(name asc)\n': ALL_TESTIMONIALS_QUERYResult;
+    }
+}
