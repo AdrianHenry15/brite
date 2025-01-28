@@ -12,6 +12,7 @@ import { FaPhone } from "react-icons/fa6";
 import { NavMenu } from "../../../lib/constants";
 import { BiChevronDown } from "react-icons/bi";
 import ServicesMenu from "./ServicesMenu";
+import UserIcon from "./user-icon";
 
 export default function MobileMenu() {
     // Constants
@@ -83,6 +84,7 @@ export default function MobileMenu() {
             >
                 <Bars3Icon className="h-6 text-black" />
             </button>
+
             <Transition show={isOpen}>
                 <Dialog onClose={closeMobileMenu} className="relative z-50">
                     <Transition.Child

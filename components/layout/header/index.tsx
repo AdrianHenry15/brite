@@ -13,6 +13,7 @@ import { BiChevronDown } from "react-icons/bi";
 import ServicesMenu from "./ServicesMenu";
 import { useState } from "react";
 import { NavMenuType } from "../../../lib/types";
+import UserIcon from "./user-icon";
 
 export default function Navbar() {
     // Constants
@@ -76,6 +77,10 @@ export default function Navbar() {
             {/* MOBILE CONTAINER */}
             <div className="absolute self-center right-0 top-12 lg:top-0 lg:hidden">
                 <MobileHeader />
+            </div>
+
+            <div className="absolute self-center ml-4 left-0 top-16 lg:top-0 lg:hidden">
+                <UserIcon />
             </div>
             {/* TITLE & LINKS  */}
             <div className="flex w-full mt-2 justify-evenly">
