@@ -1,20 +1,41 @@
 "use client";
 
 import React, { useState } from "react";
-import { ClerkLoaded, SignIn, UserButton, useUser } from "@clerk/nextjs";
-import Link from "next/link";
-import { PackageIcon } from "@sanity/icons";
-import SignInModal from "@/components/sign-in-modal";
+import { ClerkLoaded, UserButton, useUser } from "@clerk/nextjs";
+import { CubeIcon } from "@sanity/icons";
+import SignInModal from "@/components/user/sign-in-modal";
+import { useRouter } from "next/navigation";
 
 const UserIcon = () => {
     const { user } = useUser();
     const [showSignIn, setShowSignIn] = useState(false);
+    const userEmail = user?.emailAddresses[0].emailAddress;
+    const isAdminEmail =
+        userEmail === "adrianhenry2115@gmail.com" ||
+        userEmail === "joey.mckenna@britellc.com" ||
+        userEmail === "nick.walker@britellc.com";
+    const router = useRouter();
 
     return (
         <ClerkLoaded>
             {user ? (
                 <div className="flex items-center space-x-2">
-                    <UserButton />
+                    <UserButton>
+                        <UserButton.MenuItems>
+                            {isAdminEmail && (
+                                <UserButton.Action
+                                    label="Brite Studio"
+                                    labelIcon={<CubeIcon />}
+                                    onClick={() => router.push("/studio")}
+                                />
+                            )}
+                            {/* <UserButton.Action
+                                label="Applications"
+                                labelIcon={<BlockContentIcon />}
+                                onClick={() => router.push("/careers/applications")}
+                            /> */}
+                        </UserButton.MenuItems>
+                    </UserButton>
                     <div className="hidden sm:block text-xs">
                         <p className="text-gray-400">Welcome Back</p>
                         <p className="font-bold">{user.fullName}!</p>
