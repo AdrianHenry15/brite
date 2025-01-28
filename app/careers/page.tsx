@@ -6,7 +6,7 @@ import Hero from "./components/hero";
 import { getAllTestimonials } from "@/sanity/lib/testimonials/getAllTestimonials";
 import { getAllJobOpenings } from "@/sanity/lib/job-openings/getAllJobOpenings";
 
-const Careers = async () => {
+const CareersPage = async () => {
     // Fetch job openings and testimonials
     const jobs = await getAllJobOpenings();
     const testimonials = await getAllTestimonials();
@@ -27,4 +27,4 @@ const Careers = async () => {
     );
 };
 
-export default Careers;
+export default CareersPage;

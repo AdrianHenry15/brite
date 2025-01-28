@@ -1,11 +1,11 @@
 import { Button } from "@mui/material";
 import React from "react";
-import JobOpeningsCard from "./components/card";
-import { Jobs } from "../../../lib/jobs";
-import { ChevronLeftIcon } from "@heroicons/react/24/outline";
-import Link from "next/link";
+import JobOpeningsCard from "../components/job-openings/card";
+import { getAllJobOpenings } from "@/sanity/lib/job-openings/getAllJobOpenings";
 
-const JobOpenings = () => {
+const JobOpeningsPage = async () => {
+    const jobs = await getAllJobOpenings();
+
     return (
         <div className="bg-gray-50 min-h-screen py-16 px-6">
             {/* Page Header */}
@@ -18,11 +18,17 @@ const JobOpenings = () => {
             </div>
 
             {/* Job Listings */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {Jobs.map((job) => (
-                    <JobOpeningsCard key={job.id} job={job} />
-                ))}
-            </div>
+            {Array.isArray(jobs) && jobs.length > 0 ? (
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {jobs.map((job) => (
+                        <JobOpeningsCard key={job._id} job={job} />
+                    ))}
+                </div>
+            ) : (
+                <p className="text-center text-gray-500 pb-48">
+                    We currently have no job openings available. Please check back later!
+                </p>
+            )}
 
             {/* Call-to-Action */}
             <div className="mt-16 text-center">
@@ -46,4 +52,4 @@ const JobOpenings = () => {
     );
 };
 
-export default JobOpenings;
+export default JobOpeningsPage;

@@ -1,20 +1,24 @@
-import { Job } from "@/sanity.types";
+import React from "react";
 import { Button } from "@mui/material";
 import Link from "next/link";
-import React from "react";
+import { Job } from "@/sanity.types";
 
-interface IJobOpeningsCard {
+interface IJobOpeningsCardProps {
     job: Job;
 }
 
-const JobOpeningsCard = (props: IJobOpeningsCard) => {
+const JobOpeningsCard = (props: IJobOpeningsCardProps) => {
     const { job } = props;
     return (
-        <div key={job._id} className="bg-white shadow-lg rounded-lg p-6">
-            <h3 className="text-xl font-semibold">{job.title}</h3>
-            <p className="text-gray-600 my-2">{job.location}</p>
-            <Link href={`/careers/applications/${job._id}`}>
-                <Button variant="outlined" color="primary" size="small" className="mt-4">
+        <div
+            key={job._id}
+            className="bg-white shadow-md rounded-lg p-6 border hover:shadow-lg transition-shadow duration-300"
+        >
+            <h2 className="text-xl font-semibold text-gray-800">{job.title}</h2>
+            <p className="text-gray-500 text-sm mt-1">{job.location}</p>
+            <p className="text-gray-600 my-4">{job.description}</p>
+            <Link href={`careers/applications/${job._id}`}>
+                <Button variant="contained" size="medium" className="mt-6 bg-blue-500">
                     Apply Now
                 </Button>
             </Link>
