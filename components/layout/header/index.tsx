@@ -119,6 +119,9 @@ export default function Navbar() {
                             name="Get Your Free Estimate"
                         />
                     </Link>
+                    <div className="ml-4">
+                        <UserIcon />
+                    </div>
                 </ul>
             </div>
         </nav>

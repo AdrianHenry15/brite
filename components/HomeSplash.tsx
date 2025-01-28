@@ -30,13 +30,13 @@ const HomeSplash = () => {
                     <div className="w-full z-10 flex items-center whitespace-nowrap">
                         <Link
                             href="/contact-us"
-                            className="w-[200px] flex mx-1 items-center justify-center text-sm bg-white text-black z-10 rounded-lg py-1"
+                            className="w-[200px] transition-transform ease-in-out hover:scale-105 duration-300 flex mx-1 items-center justify-center text-sm bg-white text-black z-10 rounded-lg py-1"
                         >
                             Contact Us
                         </Link>
                         <Link
                             href="/estimate"
-                            className="w-[200px] mx-1 flex items-center justify-center text-sm bg-black text-white z-10 rounded-lg py-1"
+                            className="w-[200px] transition-transform ease-in-out hover:scale-105 duration-300 mx-1 flex items-center justify-center text-sm bg-blue-500 text-white z-10 rounded-lg py-1"
                         >
                             Get Your Estimate
                         </Link>

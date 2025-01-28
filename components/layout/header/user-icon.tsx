@@ -1,24 +1,17 @@
 "use client";
 
-import React from "react";
-import { ClerkLoaded, SignInButton, UserButton, useUser } from "@clerk/nextjs";
+import React, { useState } from "react";
+import { ClerkLoaded, SignIn, UserButton, useUser } from "@clerk/nextjs";
 import Link from "next/link";
 import { PackageIcon } from "@sanity/icons";
+import SignInModal from "@/components/sign-in-modal";
 
 const UserIcon = () => {
     const { user } = useUser();
+    const [showSignIn, setShowSignIn] = useState(false);
 
     return (
         <ClerkLoaded>
-            {user && (
-                <Link
-                    href={"/orders"}
-                    className="flex-1 relative flex justify-center sm:justify-start sm:flex-none items-center space-x-2 bg-black hover:bg-zinc-800 text-white font-bold py-2 px-4 rounded"
-                >
-                    <PackageIcon className="w-6 h-6" />
-                    <span>My Orders</span>
-                </Link>
-            )}
             {user ? (
                 <div className="flex items-center space-x-2">
                     <UserButton />
@@ -28,7 +21,15 @@ const UserIcon = () => {
                     </div>
                 </div>
             ) : (
-                <SignInButton mode="modal" />
+                <>
+                    <button
+                        onClick={() => setShowSignIn(true)}
+                        className="bg-blue-500 hover:bg-blue-600 transition-all ease-in-out hover:scale-105 duration-300 text-white font-bold py-2 px-4 rounded-full"
+                    >
+                        Sign In
+                    </button>
+                    {showSignIn && <SignInModal setShowSignIn={setShowSignIn} />}
+                </>
             )}
         </ClerkLoaded>
     );
