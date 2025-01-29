@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { TextField, Button } from "@mui/material";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import emailjs from "@emailjs/browser";
 
 const ApplicationsForm = () => {
     const router = useRouter();
@@ -15,6 +16,8 @@ const ApplicationsForm = () => {
         resume: null as File | null,
     });
 
+    const [loading, setLoading] = useState(false);
+
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setFormData((prev) => ({ ...prev, [name]: value }));
@@ -25,17 +28,69 @@ const ApplicationsForm = () => {
         setFormData((prev) => ({ ...prev, resume: file }));
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        console.log("Application Submitted", formData);
-        toast.success("Your application has been submitted successfully!");
-        router.push("/careers/job-openings");
+    const sendEmail = async (applicationData: any) => {
+        const emailParams = {
+            applicant_name: `${applicationData.firstName} ${applicationData.lastName}`,
+            applicant_email: applicationData.email,
+            applicant_phone: applicationData.phone,
+            job_title: "Job Reference ID", // Replace with actual job title if available
+        };
+
+        try {
+            await emailjs.send(
+                process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+                process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+                emailParams,
+                process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!,
+            );
+            toast.success("Email notification sent successfully!");
+        } catch (error) {
+            console.error("Error sending email:", error);
+            toast.error("Failed to send email notification.");
+        }
     };
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setLoading(true);
+
+        const formDataToSend = new FormData();
+        formDataToSend.append("firstName", formData.firstName);
+        formDataToSend.append("lastName", formData.lastName);
+        formDataToSend.append("email", formData.email);
+        formDataToSend.append("phone", formData.phone);
+        formDataToSend.append("job", "job-reference-id"); // Replace with actual job ID
+        formDataToSend.append("userId", "user-id"); // Replace with actual user ID
+        if (formData.resume) formDataToSend.append("resume", formData.resume);
+
+        try {
+            const response = await fetch("/api/applications", {
+                method: "POST",
+                body: formDataToSend,
+            });
+
+            if (!response.ok) throw new Error("Failed to submit application");
+
+            const applicationData = await response.json();
+
+            // Send email notification after successful submission
+            await sendEmail(applicationData);
+
+            toast.success("Application submitted successfully!");
+            router.push("/careers/job-openings");
+        } catch (error) {
+            toast.error("Error submitting application");
+            console.error(error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
     return (
         <form onSubmit={handleSubmit} className="space-y-6">
             <TextField
                 label="First Name"
-                name="name"
+                name="firstName"
                 fullWidth
                 variant="outlined"
                 required
@@ -44,7 +99,7 @@ const ApplicationsForm = () => {
             />
             <TextField
                 label="Last Name"
-                name="name"
+                name="lastName"
                 fullWidth
                 variant="outlined"
                 required
@@ -83,8 +138,15 @@ const ApplicationsForm = () => {
                     className="block w-full text-gray-700 border border-gray-300 rounded-lg p-2"
                 />
             </div>
-            <Button variant="contained" color="primary" size="large" type="submit" fullWidth>
-                Submit Application
+            <Button
+                variant="contained"
+                color="primary"
+                size="large"
+                type="submit"
+                fullWidth
+                disabled={loading}
+            >
+                {loading ? "Submitting..." : "Submit Application"}
             </Button>
         </form>
     );
