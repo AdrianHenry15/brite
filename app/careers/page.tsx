@@ -1,5 +1,5 @@
-import JobOpenings from "./components/job-openings";
-import Testimonials from "./components/testimonials";
+import JobOpenings from "./job-openings/components/job-opening-section";
+import TestimonialSection from "./components/testimonials/testimonial-section";
 import About from "./components/about";
 import Hero from "./components/hero";
 
@@ -22,7 +22,7 @@ const CareersPage = async () => {
             {/* Job Openings Section */}
             <JobOpenings jobs={jobs} />
             {/* Employee Testimonials Section */}
-            <Testimonials testimonials={testimonials} />
+            <TestimonialSection testimonials={testimonials} />
         </div>
     );
 };

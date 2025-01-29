@@ -6,7 +6,7 @@ interface ITestimonials {
     testimonials: Testimonial[];
 }
 
-const Testimonials = (props: ITestimonials) => {
+const TestimonialSection = (props: ITestimonials) => {
     const { testimonials } = props;
 
     // If no testimonials, don't render the component
@@ -26,4 +26,4 @@ const Testimonials = (props: ITestimonials) => {
     );
 };
 
-export default Testimonials;
+export default TestimonialSection;

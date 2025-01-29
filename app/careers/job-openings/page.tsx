@@ -1,6 +1,6 @@
 import { Button } from "@mui/material";
 import React from "react";
-import JobOpeningsCard from "../components/job-openings/card";
+import JobOpeningsCard from "./components/card";
 import { getAllJobOpenings } from "@/sanity/lib/job-openings/getAllJobOpenings";
 
 const JobOpeningsPage = async () => {

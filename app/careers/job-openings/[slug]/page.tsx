@@ -1,13 +1,13 @@
 import React from "react";
 import { getJobBySlug } from "@/sanity/lib/job-openings/getJobOpeningBySlug";
-import ApplicationsForm from "../../applications/application-form";
+import ApplicationsForm from "../../components/application-form";
 
 async function JobOpeningBySlugPage({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
     const jobs = await getJobBySlug(slug);
 
     if (!jobs) {
-        return <p>Loading job details...</p>;
+        return <p className="text-center text-gray-500 py-16 px-8">Error fetching job listing</p>;
     }
 
     return (

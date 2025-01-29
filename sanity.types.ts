@@ -285,38 +285,6 @@ export type APPLICATION_BY_ID_QUERYResult = {
     publishedAt?: string;
 } | null;
 
-// Source: ./sanity/lib/job-openings/getAllJobOpenings.ts
-// Variable: ALL_JOB_OPENINGS_QUERY
-// Query: *[_type == "job"] | order(name asc)
-export type ALL_JOB_OPENINGS_QUERYResult = Array<{
-    _id: string;
-    _type: "job";
-    _createdAt: string;
-    _updatedAt: string;
-    _rev: string;
-    title?: string;
-    slug?: Slug;
-    location?: string;
-    description?: string;
-    publishedAt?: string;
-}>;
-
-// Source: ./sanity/lib/job-openings/getJobOpeningBySlug.ts
-// Variable: JOB_BY_ID_QUERY
-// Query: *[_type == "job" && slug.current == $slug] | order(name asc) [0]
-export type JOB_BY_ID_QUERYResult = {
-    _id: string;
-    _type: "job";
-    _createdAt: string;
-    _updatedAt: string;
-    _rev: string;
-    title?: string;
-    slug?: Slug;
-    location?: string;
-    description?: string;
-    publishedAt?: string;
-} | null;
-
 // Source: ./sanity/lib/resumes/getAllResumes.ts
 // Variable: ALL_RESUMES_QUERY
 // Query: *[_type == "resume"] | order(name asc)
@@ -365,6 +333,38 @@ export type RESUME_BY_ID_QUERYResult = {
     publishedAt?: string;
 } | null;
 
+// Source: ./sanity/lib/job-openings/getAllJobOpenings.ts
+// Variable: ALL_JOB_OPENINGS_QUERY
+// Query: *[_type == "job"] | order(name asc)
+export type ALL_JOB_OPENINGS_QUERYResult = Array<{
+    _id: string;
+    _type: "job";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    title?: string;
+    slug?: Slug;
+    location?: string;
+    description?: string;
+    publishedAt?: string;
+}>;
+
+// Source: ./sanity/lib/job-openings/getJobOpeningBySlug.ts
+// Variable: JOB_BY_ID_QUERY
+// Query: *[_type == "job" && slug.current == $slug] | order(name asc) [0]
+export type JOB_BY_ID_QUERYResult = {
+    _id: string;
+    _type: "job";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    title?: string;
+    slug?: Slug;
+    location?: string;
+    description?: string;
+    publishedAt?: string;
+} | null;
+
 // Source: ./sanity/lib/testimonials/getAllTestimonials.ts
 // Variable: ALL_TESTIMONIALS_QUERY
 // Query: *[_type == "testimonial"] | order(name asc)
@@ -387,10 +387,10 @@ declare module "@sanity/client" {
     interface SanityQueries {
         '*[_type == "application"] | order(name asc)\n': ALL_APPLICATIONS_QUERYResult;
         '*[_type == "application" && slug.current == $slug] | order(name asc) [0]\n': APPLICATION_BY_ID_QUERYResult;
-        '*[_type == "job"] | order(name asc)\n': ALL_JOB_OPENINGS_QUERYResult;
-        '*[_type == "job" && slug.current == $slug] | order(name asc) [0]\n': JOB_BY_ID_QUERYResult;
         '*[_type == "resume"] | order(name asc)\n': ALL_RESUMES_QUERYResult;
         '*[_type == "resume" && slug.current == $slug] | order(name asc) [0]\n': RESUME_BY_ID_QUERYResult;
+        '*[_type == "job"] | order(name asc)\n': ALL_JOB_OPENINGS_QUERYResult;
+        '*[_type == "job" && slug.current == $slug] | order(name asc) [0]\n': JOB_BY_ID_QUERYResult;
         '*[_type == "testimonial"] | order(name asc)\n': ALL_TESTIMONIALS_QUERYResult;
     }
 }

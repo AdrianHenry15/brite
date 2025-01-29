@@ -17,7 +17,7 @@ interface IJobOpeningsProps {
     jobs: Job[];
 }
 
-const JobOpenings = (props: IJobOpeningsProps) => {
+const JobOpeningSection = (props: IJobOpeningsProps) => {
     const { jobs } = props;
     return (
         <section className="py-16 px-8">
@@ -37,4 +37,4 @@ const JobOpenings = (props: IJobOpeningsProps) => {
     );
 };
 
-export default JobOpenings;
+export default JobOpeningSection;
