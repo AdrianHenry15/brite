@@ -1,5 +1,7 @@
+"use client";
+
 import React, { useState } from "react";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { Button, TextField } from "@mui/material";
 import toast from "react-hot-toast";
 import { Resume } from "@/sanity.types";
@@ -10,21 +12,36 @@ type ApplicationFormData = {
     email: string;
     phone: string;
     job: string;
-    resumeFile: Resume | null;
+    resumeFile: Resume | File | null;
 };
 
 const ApplicationForm = ({ job_title }: { job_title: string }) => {
-    const { register, handleSubmit } = useForm<ApplicationFormData>();
+    const { register, handleSubmit, setValue, control } = useForm<ApplicationFormData>();
     const [resumeFile, setResumeFile] = useState<File | null>(null);
     const [loading, setLoading] = useState(false);
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        e.preventDefault();
         const file = e.target.files?.[0] || null;
         if (file) {
             setResumeFile(file);
+            setValue("resumeFile", file);
         }
     };
 
+    const formatPhoneNumber = (value: string) => {
+        // Remove all non-numeric characters
+        const cleaned = value.replace(/\D/g, "");
+
+        // Format the phone number as (XXX) XXX-XXXX
+        if (cleaned.length <= 3) {
+            return `(${cleaned}`;
+        } else if (cleaned.length <= 6) {
+            return `(${cleaned.slice(0, 3)}) ${cleaned.slice(3)}`;
+        } else {
+            return `(${cleaned.slice(0, 3)}) ${cleaned.slice(3, 6)}-${cleaned.slice(6, 10)}`;
+        }
+    };
     const onSubmit = async (data: ApplicationFormData) => {
         setLoading(true);
 
@@ -79,21 +96,43 @@ const ApplicationForm = ({ job_title }: { job_title: string }) => {
                 type="email"
                 {...register("email", { required: true })}
             />
-            <TextField
-                label="Phone"
-                fullWidth
-                variant="outlined"
-                {...register("phone", { required: true })}
+
+            {/* Phone Number Input with Formatting */}
+            <Controller
+                name="phone"
+                control={control}
+                defaultValue=""
+                render={({ field }) => (
+                    <TextField
+                        {...field}
+                        label="Phone"
+                        fullWidth
+                        variant="outlined"
+                        value={field.value}
+                        onChange={(e) => {
+                            const formattedPhone = formatPhoneNumber(e.target.value);
+                            field.onChange(formattedPhone);
+                        }}
+                        placeholder="(321) 444-4444"
+                    />
+                )}
             />
 
             <input
                 type="file"
                 accept=".pdf,.doc,.docx"
                 onChange={handleFileChange}
-                className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50"
+                className="block w-full text-sm p-4 text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50"
             />
 
-            <Button variant="contained" color="primary" type="submit" disabled={loading} fullWidth>
+            <Button
+                className="bg-blue-500"
+                variant="contained"
+                color="primary"
+                type="submit"
+                disabled={loading}
+                fullWidth
+            >
                 {loading ? "Submitting..." : "Submit Application"}
             </Button>
         </form>

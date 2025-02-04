@@ -1,4 +1,3 @@
-import { Application, internalGroqTypeReferenceTo } from "@/sanity.types";
 import { getAllApplications } from "@/sanity/lib/applications/getAllApplications";
 
 const AdminApplicationsPage = async () => {
@@ -28,7 +27,20 @@ const AdminApplicationsPage = async () => {
                                 </td>
                                 <td className="border px-4 py-2">{app.email}</td>
                                 <td className="border px-4 py-2">{app.phone}</td>
-                                <td className="border px-4 py-2">{app.resumeFile}</td>
+                                <td className="border px-4 py-2">
+                                    {app.resumeFile ? (
+                                        <a
+                                            href={app.resumeFile}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="text-blue-500"
+                                        >
+                                            View Resume
+                                        </a>
+                                    ) : (
+                                        "No Resume"
+                                    )}
+                                </td>
                                 <td className="border px-4 py-2">
                                     {new Date(app.publishedAt!).toLocaleDateString()}
                                 </td>
