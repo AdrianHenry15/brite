@@ -1,132 +1,103 @@
-"use client";
-
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { TextField, Button } from "@mui/material";
-import { useRouter } from "next/navigation";
+import { Button, TextField } from "@mui/material";
 import toast from "react-hot-toast";
-
-interface IApplicationsFormProps {
-    job_title: string;
-}
-
-// Define Zod schema for manual validation
-const applicationSchema = z.object({
-    firstName: z.string().min(2, "First name must be at least 2 characters"),
-    lastName: z.string().min(2, "Last name must be at least 2 characters"),
-    email: z.string().email("Invalid email address"),
-    phone: z.string().min(10, "Phone number must be at least 10 digits"),
-});
+import { Resume } from "@/sanity.types";
 
 type ApplicationFormData = {
     firstName: string;
     lastName: string;
     email: string;
     phone: string;
+    job: string;
+    resumeFile: Resume | null;
 };
 
-const ApplicationsForm = ({ job_title }: IApplicationsFormProps) => {
-    const router = useRouter();
+const ApplicationForm = ({ job_title }: { job_title: string }) => {
+    const { register, handleSubmit } = useForm<ApplicationFormData>();
+    const [resumeFile, setResumeFile] = useState<File | null>(null);
     const [loading, setLoading] = useState(false);
-    const [errors, setErrors] = useState<Partial<ApplicationFormData>>({});
 
-    // react-hook-form setup
-    const { register, handleSubmit, getValues } = useForm<ApplicationFormData>();
-
-    const onSubmit = async () => {
-        setLoading(true);
-        setErrors({}); // Clear previous errors
-
-        // Validate form manually using Zod
-        const formValues = getValues();
-        const validationResult = applicationSchema.safeParse(formValues);
-
-        if (!validationResult.success) {
-            const formattedErrors: Partial<ApplicationFormData> = {};
-            validationResult.error.errors.forEach((err) => {
-                const field = err.path[0] as keyof ApplicationFormData;
-                formattedErrors[field] = err.message;
-            });
-
-            setErrors(formattedErrors);
-            setLoading(false);
-            return;
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0] || null;
+        if (file) {
+            setResumeFile(file);
         }
+    };
 
-        // Prepare FormData for submission
-        const formDataToSend = new FormData();
-        formDataToSend.append("firstName", formValues.firstName);
-        formDataToSend.append("lastName", formValues.lastName);
-        formDataToSend.append("email", formValues.email);
-        formDataToSend.append("phone", formValues.phone);
-        formDataToSend.append("job", job_title);
+    const onSubmit = async (data: ApplicationFormData) => {
+        setLoading(true);
+
+        const formData = new FormData();
+        formData.append("firstName", data.firstName);
+        formData.append("lastName", data.lastName);
+        formData.append("email", data.email);
+        formData.append("phone", data.phone);
+        formData.append("job", job_title);
+
+        if (resumeFile) {
+            formData.append("resumeFile", resumeFile); // Add resume file
+        }
 
         try {
             const response = await fetch("/api/applications", {
                 method: "POST",
-                body: formDataToSend,
+                body: formData,
             });
 
-            if (!response.ok) throw new Error("Failed to submit application");
-
-            toast.success("Application submitted successfully!");
-            router.push("/careers/job-openings/success");
+            if (response.ok) {
+                toast.success("Application submitted successfully!");
+            } else {
+                const errorData = await response.json();
+                toast.error(errorData.error || "Failed to submit application");
+            }
         } catch (error) {
-            toast.error("Error submitting application");
-            console.error(error);
+            toast.error("Failed to submit application");
         } finally {
             setLoading(false);
         }
     };
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <TextField
                 label="First Name"
                 fullWidth
                 variant="outlined"
-                {...register("firstName")}
-                error={!!errors.firstName}
-                helperText={errors.firstName}
+                {...register("firstName", { required: true })}
             />
             <TextField
                 label="Last Name"
                 fullWidth
                 variant="outlined"
-                {...register("lastName")}
-                error={!!errors.lastName}
-                helperText={errors.lastName}
+                {...register("lastName", { required: true })}
             />
             <TextField
-                label="Email Address"
+                label="Email"
                 fullWidth
                 variant="outlined"
-                {...register("email")}
-                error={!!errors.email}
-                helperText={errors.email}
+                type="email"
+                {...register("email", { required: true })}
             />
             <TextField
-                label="Phone Number"
+                label="Phone"
                 fullWidth
                 variant="outlined"
-                {...register("phone")}
-                error={!!errors.phone}
-                helperText={errors.phone}
+                {...register("phone", { required: true })}
             />
 
-            <Button
-                variant="contained"
-                color="primary"
-                size="large"
-                type="submit"
-                fullWidth
-                disabled={loading}
-            >
+            <input
+                type="file"
+                accept=".pdf,.doc,.docx"
+                onChange={handleFileChange}
+                className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50"
+            />
+
+            <Button variant="contained" color="primary" type="submit" disabled={loading} fullWidth>
                 {loading ? "Submitting..." : "Submit Application"}
             </Button>
         </form>
     );
 };
 
-export default ApplicationsForm;
+export default ApplicationForm;

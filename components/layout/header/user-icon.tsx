@@ -26,17 +26,12 @@ const UserIcon = () => {
                                 <UserButton.Action
                                     label="Brite Studio"
                                     onClick={() => router.push("/studio")}
-                                    labelIcon={<CubeIcon fontSize={18} />}
+                                    labelIcon={<CubeIcon color="blue" fontSize={18} />}
                                 />
                                 <UserButton.Action
                                     label="All Applications"
                                     onClick={() => router.push("/careers/admin/applications")}
                                     labelIcon={<BillIcon fontSize={18} />}
-                                />
-                                <UserButton.Action
-                                    label="All Resumes"
-                                    onClick={() => router.push("/careers/admin/resumes")}
-                                    labelIcon={<ClipboardIcon fontSize={18} />}
                                 />
                             </UserButton.MenuItems>
                         ) : (
@@ -46,11 +41,6 @@ const UserIcon = () => {
                                     onClick={() => router.push("/careers/my-applications")}
                                     labelIcon={<BillIcon />}
                                 />
-                                {/* <UserButton.Action
-                                    label="My Resume"
-                                    onClick={() => router.push("/careers/my-resume")}
-                                    labelIcon={<ClipboardIcon />}
-                                /> */}
                             </UserButton.MenuItems>
                         )}
                     </UserButton>

@@ -34,16 +34,33 @@ export default function SuccessPage() {
                     Thank you for completing your application. We will review your details and get
                     back to you soon!
                 </p>
-
-                {/* CTA Button */}
-                <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="mt-6 px-5 sm:px-6 py-3 bg-blue-600 text-white text-lg font-semibold rounded-lg shadow-lg hover:bg-blue-700 transition"
-                    onClick={() => router.push("/")}
-                >
-                    Return to Home
-                </motion.button>
+                <div>
+                    {/* CTA Home Button */}
+                    <motion.button
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="mt-6 px-5 sm:px-6 py-3 bg-blue-600 text-white text-lg font-semibold rounded-lg shadow-lg hover:bg-blue-700 transition"
+                        onClick={() => router.push("/")}
+                    >
+                        Return to Home
+                    </motion.button>
+                    <motion.button
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="mt-6 px-5 sm:px-6 py-3 bg-blue-600 text-white text-lg font-semibold rounded-lg shadow-lg hover:bg-blue-700 transition"
+                        onClick={() => router.push("/careers/my-applications")}
+                    >
+                        See Your Applications
+                    </motion.button>
+                    <motion.button
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="mt-6 px-5 sm:px-6 py-3 bg-blue-600 text-white text-lg font-semibold rounded-lg shadow-lg hover:bg-blue-700 transition"
+                        onClick={() => router.push("/careers/my-applications")}
+                    >
+                        See Your Resume
+                    </motion.button>
+                </div>
             </motion.div>
         </div>
     );

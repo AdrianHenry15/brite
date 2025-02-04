@@ -15,7 +15,21 @@ export async function POST(req: Request) {
             return NextResponse.json({ error: "Job not found" }, { status: 400 });
         }
 
-        // Step 2: Use the job's actual document ID
+        // Step 2: Handle resume file upload
+        const resumeFile = formData.get("resumeFile") as File;
+
+        let resumeFileReference = null;
+        if (resumeFile) {
+            const uploadedFile = await client.assets.upload("file", resumeFile);
+            resumeFileReference = {
+                _type: "file",
+                asset: {
+                    _ref: uploadedFile._id,
+                },
+            };
+        }
+
+        // Step 3: Prepare application data
         const application = {
             _type: "application",
             firstName: formData.get("firstName"),
@@ -24,8 +38,9 @@ export async function POST(req: Request) {
             phone: formData.get("phone"),
             job: {
                 _type: "reference",
-                _ref: job._id, // ✅ Now using a valid document ID
+                _ref: job._id, // Using valid job document ID
             },
+            resumeFile: resumeFileReference,
             publishedAt: new Date().toISOString(),
         };
 
