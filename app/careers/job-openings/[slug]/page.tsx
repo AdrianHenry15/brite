@@ -17,7 +17,7 @@ async function JobOpeningBySlugPage({ params }: { params: Promise<{ slug: string
                 <p className="text-gray-600 mb-6">
                     Location: <span className="font-semibold">{jobs.location}</span>
                 </p>
-                <ApplicationsForm />
+                <ApplicationsForm job_title={jobs.title as string} />
             </div>
         </div>
     );

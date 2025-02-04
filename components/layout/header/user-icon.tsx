@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { ClerkLoaded, UserButton, useUser } from "@clerk/nextjs";
-import { BillIcon, BlockContentIcon, ClipboardIcon, CubeIcon } from "@sanity/icons";
+import { BillIcon, ClipboardIcon, CubeIcon } from "@sanity/icons";
 import SignInModal from "@/components/user/sign-in-modal";
 import { useRouter } from "next/navigation";
 
@@ -42,15 +42,15 @@ const UserIcon = () => {
                         ) : (
                             <UserButton.MenuItems>
                                 <UserButton.Action
-                                    label="My Applications"
+                                    label={`My Applications`}
                                     onClick={() => router.push("/careers/my-applications")}
                                     labelIcon={<BillIcon />}
                                 />
-                                <UserButton.Action
+                                {/* <UserButton.Action
                                     label="My Resume"
                                     onClick={() => router.push("/careers/my-resume")}
                                     labelIcon={<ClipboardIcon />}
-                                />
+                                /> */}
                             </UserButton.MenuItems>
                         )}
                     </UserButton>

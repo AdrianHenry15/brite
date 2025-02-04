@@ -26,16 +26,6 @@ const AdminApplicationsPage = async () => {
                                 <td className="border px-4 py-2">{app.email}</td>
                                 <td className="border px-4 py-2">{app.phone}</td>
                                 <td className="border px-4 py-2">
-                                    <a
-                                        href={`https://cdn.sanity.io/files/YOUR_PROJECT_ID/YOUR_DATASET/${app.resume?._ref}`}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="text-blue-500 underline"
-                                    >
-                                        View Resume
-                                    </a>
-                                </td>
-                                <td className="border px-4 py-2">
                                     {new Date(app.publishedAt!).toLocaleDateString()}
                                 </td>
                             </tr>

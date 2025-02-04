@@ -2,7 +2,6 @@ import { v4 as uuidv4 } from "uuid";
 import { client } from "../client";
 
 interface Application {
-    userId: string;
     title: string;
     job: string;
     slug: { current: string };
@@ -10,7 +9,6 @@ interface Application {
     lastName: string;
     email: string;
     phone: string;
-    resume: string;
     publishedAt?: string;
 }
 
@@ -19,7 +17,6 @@ export const createApplication = async (application: Application) => {
         const newApplication = {
             _type: "application",
             _id: uuidv4(), // Generate a unique ID
-            userId: application.userId,
             title: application.title,
             job: {
                 _type: "reference",
@@ -30,10 +27,6 @@ export const createApplication = async (application: Application) => {
             lastName: application.lastName,
             email: application.email,
             phone: application.phone,
-            resume: {
-                _type: "reference",
-                _ref: application.resume,
-            },
             publishedAt: application.publishedAt || new Date().toISOString(),
         };
 

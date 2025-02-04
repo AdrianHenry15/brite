@@ -8,10 +8,6 @@ export const applicationType = defineType({
     icon: ClipboardImageIcon,
     fields: [
         defineField({
-            name: "userId",
-            type: "string",
-        }),
-        defineField({
             name: "title",
             type: "string",
         }),
@@ -43,12 +39,6 @@ export const applicationType = defineType({
         defineField({
             name: "phone",
             type: "string",
-        }),
-        defineField({
-            name: "resume",
-            title: "Resume",
-            type: "reference",
-            to: [{ type: "resume" }], // Ref the "resume" type here
         }),
         defineField({
             name: "publishedAt",

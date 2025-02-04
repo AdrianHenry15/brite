@@ -9,7 +9,6 @@ interface UpdateApplicationInput {
         lastName?: string;
         email?: string;
         phone?: string;
-        resume?: string;
         [key: string]: any; // For additional optional fields
     };
 }
@@ -30,7 +29,6 @@ export const updateApplication = async ({ slug, updates }: UpdateApplicationInpu
         const preparedUpdates = {
             ...updates,
             ...(updates.job && { job: { _type: "reference", _ref: updates.job } }),
-            ...(updates.resume && { resume: { _type: "reference", _ref: updates.resume } }),
         };
 
         // Patch the document

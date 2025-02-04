@@ -1,67 +1,66 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 import { TextField, Button } from "@mui/material";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import emailjs from "@emailjs/browser";
 
-const ApplicationsForm = () => {
+interface IApplicationsFormProps {
+    job_title: string;
+}
+
+// Define Zod schema for manual validation
+const applicationSchema = z.object({
+    firstName: z.string().min(2, "First name must be at least 2 characters"),
+    lastName: z.string().min(2, "Last name must be at least 2 characters"),
+    email: z.string().email("Invalid email address"),
+    phone: z.string().min(10, "Phone number must be at least 10 digits"),
+});
+
+type ApplicationFormData = {
+    firstName: string;
+    lastName: string;
+    email: string;
+    phone: string;
+};
+
+const ApplicationsForm = ({ job_title }: IApplicationsFormProps) => {
     const router = useRouter();
-    const [formData, setFormData] = useState({
-        firstName: "",
-        lastName: "",
-        email: "",
-        phone: "",
-        resume: null as File | null,
-    });
-
     const [loading, setLoading] = useState(false);
+    const [errors, setErrors] = useState<Partial<ApplicationFormData>>({});
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
-        setFormData((prev) => ({ ...prev, [name]: value }));
-    };
+    // react-hook-form setup
+    const { register, handleSubmit, getValues } = useForm<ApplicationFormData>();
 
-    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files?.[0] || null;
-        setFormData((prev) => ({ ...prev, resume: file }));
-    };
-
-    const sendEmail = async (applicationData: any) => {
-        const emailParams = {
-            applicant_name: `${applicationData.firstName} ${applicationData.lastName}`,
-            applicant_email: applicationData.email,
-            applicant_phone: applicationData.phone,
-            job_title: "Job Reference ID", // Replace with actual job title if available
-        };
-
-        try {
-            await emailjs.send(
-                process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
-                process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
-                emailParams,
-                process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!,
-            );
-            toast.success("Email notification sent successfully!");
-        } catch (error) {
-            console.error("Error sending email:", error);
-            toast.error("Failed to send email notification.");
-        }
-    };
-
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
+    const onSubmit = async () => {
         setLoading(true);
+        setErrors({}); // Clear previous errors
 
+        // Validate form manually using Zod
+        const formValues = getValues();
+        const validationResult = applicationSchema.safeParse(formValues);
+
+        if (!validationResult.success) {
+            const formattedErrors: Partial<ApplicationFormData> = {};
+            validationResult.error.errors.forEach((err) => {
+                const field = err.path[0] as keyof ApplicationFormData;
+                formattedErrors[field] = err.message;
+            });
+
+            setErrors(formattedErrors);
+            setLoading(false);
+            return;
+        }
+
+        // Prepare FormData for submission
         const formDataToSend = new FormData();
-        formDataToSend.append("firstName", formData.firstName);
-        formDataToSend.append("lastName", formData.lastName);
-        formDataToSend.append("email", formData.email);
-        formDataToSend.append("phone", formData.phone);
-        formDataToSend.append("job", "job-reference-id"); // Replace with actual job ID
-        formDataToSend.append("userId", "user-id"); // Replace with actual user ID
-        if (formData.resume) formDataToSend.append("resume", formData.resume);
+        formDataToSend.append("firstName", formValues.firstName);
+        formDataToSend.append("lastName", formValues.lastName);
+        formDataToSend.append("email", formValues.email);
+        formDataToSend.append("phone", formValues.phone);
+        formDataToSend.append("job", job_title);
 
         try {
             const response = await fetch("/api/applications", {
@@ -71,13 +70,8 @@ const ApplicationsForm = () => {
 
             if (!response.ok) throw new Error("Failed to submit application");
 
-            const applicationData = await response.json();
-
-            // Send email notification after successful submission
-            await sendEmail(applicationData);
-
             toast.success("Application submitted successfully!");
-            router.push("/careers/job-openings");
+            router.push("/careers/job-openings/success");
         } catch (error) {
             toast.error("Error submitting application");
             console.error(error);
@@ -87,57 +81,40 @@ const ApplicationsForm = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
             <TextField
                 label="First Name"
-                name="firstName"
                 fullWidth
                 variant="outlined"
-                required
-                value={formData.firstName}
-                onChange={handleInputChange}
+                {...register("firstName")}
+                error={!!errors.firstName}
+                helperText={errors.firstName}
             />
             <TextField
                 label="Last Name"
-                name="lastName"
                 fullWidth
                 variant="outlined"
-                required
-                value={formData.lastName}
-                onChange={handleInputChange}
+                {...register("lastName")}
+                error={!!errors.lastName}
+                helperText={errors.lastName}
             />
             <TextField
                 label="Email Address"
-                name="email"
-                type="email"
                 fullWidth
                 variant="outlined"
-                required
-                value={formData.email}
-                onChange={handleInputChange}
+                {...register("email")}
+                error={!!errors.email}
+                helperText={errors.email}
             />
             <TextField
                 label="Phone Number"
-                name="phone"
-                type="tel"
                 fullWidth
                 variant="outlined"
-                required
-                value={formData.phone}
-                onChange={handleInputChange}
+                {...register("phone")}
+                error={!!errors.phone}
+                helperText={errors.phone}
             />
-            <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Upload Resume
-                </label>
-                <input
-                    type="file"
-                    accept=".pdf,.doc,.docx"
-                    required
-                    onChange={handleFileChange}
-                    className="block w-full text-gray-700 border border-gray-300 rounded-lg p-2"
-                />
-            </div>
+
             <Button
                 variant="contained"
                 color="primary"
