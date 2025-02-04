@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ClerkLoaded, UserButton, useUser } from "@clerk/nextjs";
 import { BillIcon, ClipboardIcon, CubeIcon } from "@sanity/icons";
 import SignInModal from "@/components/user/sign-in-modal";
@@ -15,6 +15,13 @@ const UserIcon = () => {
         userEmail === "joey.mckenna@britellc.com" ||
         userEmail === "nick.walker@britellc.com";
     const router = useRouter();
+
+    // Automatically redirect admin users to the admin dashboard
+    useEffect(() => {
+        if (isAdminEmail && user) {
+            router.push("/admin/dashboard"); // Replace with the correct path to your admin dashboard
+        }
+    }, [isAdminEmail, user, router]);
 
     return (
         <ClerkLoaded>

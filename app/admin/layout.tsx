@@ -32,6 +32,12 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
                     <nav className="space-y-4">
                         <Link
+                            href="/"
+                            className="block text-gray-700 dark:text-gray-200 hover:text-blue-500"
+                        >
+                            🌐 Go To Website
+                        </Link>
+                        <Link
                             href="/admin/dashboard"
                             className="block text-gray-700 dark:text-gray-200 hover:text-blue-500"
                         >
@@ -47,7 +53,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                             href="/admin/applications"
                             className="block text-gray-700 dark:text-gray-200 hover:text-blue-500"
                         >
-                            📦 Applications
+                            📱 Applications
                         </Link>
                         <Link
                             href="/admin/settings"
