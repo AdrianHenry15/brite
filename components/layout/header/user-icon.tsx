@@ -30,7 +30,7 @@ const UserIcon = () => {
                                 />
                                 <UserButton.Action
                                     label="All Applications"
-                                    onClick={() => router.push("/careers/admin/applications")}
+                                    onClick={() => router.push("/admin/applications")}
                                     labelIcon={<BillIcon fontSize={18} />}
                                 />
                             </UserButton.MenuItems>

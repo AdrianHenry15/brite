@@ -7,12 +7,10 @@ import { Fragment, useEffect, useState } from "react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
 import Button from "../../Button";
-import { NavMenuType } from "../../../lib/types";
 import { FaPhone } from "react-icons/fa6";
 import { NavMenu } from "../../../lib/constants";
 import { BiChevronDown } from "react-icons/bi";
 import ServicesMenu from "./ServicesMenu";
-import UserIcon from "./user-icon";
 
 export default function MobileMenu() {
     // Constants
