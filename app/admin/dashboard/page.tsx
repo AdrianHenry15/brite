@@ -42,7 +42,7 @@ export default function AdminDashboard() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
                 {/* Stat Card 1 */}
                 <StatCard
-                    link="admin/users"
+                    link="/admin/users"
                     color_gradient="blue"
                     icon={<UsersIcon />}
                     title="Total Users"
@@ -51,7 +51,7 @@ export default function AdminDashboard() {
 
                 {/* Stat Card 2 */}
                 <StatCard
-                    link="admin/applications"
+                    link="/admin/applications"
                     color_gradient="green"
                     icon={<UsersIcon />}
                     title="Applications"
@@ -60,7 +60,7 @@ export default function AdminDashboard() {
 
                 {/* Stat Card 3 */}
                 <StatCard
-                    link="admin/estimates"
+                    link="/admin/estimates"
                     color_gradient="purple"
                     icon={<UsersIcon />}
                     title="Estimates"
