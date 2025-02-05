@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { ClerkLoaded, UserButton, useUser } from "@clerk/nextjs";
-import { BillIcon, CubeIcon } from "@sanity/icons";
+import { BillIcon, CubeIcon, DashboardIcon } from "@sanity/icons";
 import SignInModal from "@/components/user/sign-in-modal";
 import { useRouter } from "next/navigation";
 
@@ -17,16 +17,6 @@ const UserIcon = () => {
         userEmail === "joey.mckenna@britellc.com" ||
         userEmail === "nick.walker@britellc.com";
 
-    // Use session storage to prevent infinite redirects
-    useEffect(() => {
-        const hasRedirected = sessionStorage.getItem("adminRedirected");
-
-        if (isAdminEmail && user && !hasRedirected) {
-            sessionStorage.setItem("adminRedirected", "true");
-            router.push("/admin/dashboard");
-        }
-    }, [isAdminEmail, user, router]);
-
     return (
         <ClerkLoaded>
             {user ? (
@@ -35,6 +25,11 @@ const UserIcon = () => {
                         {isAdminEmail ? (
                             <UserButton.MenuItems>
                                 <UserButton.Action
+                                    label="Admin Dashboard"
+                                    onClick={() => router.push("/admin/dashboard")}
+                                    labelIcon={<DashboardIcon color="red" fontSize={18} />}
+                                />
+                                <UserButton.Action
                                     label="Brite Studio"
                                     onClick={() => router.push("/studio")}
                                     labelIcon={<CubeIcon color="blue" fontSize={18} />}
@@ -42,7 +37,7 @@ const UserIcon = () => {
                                 <UserButton.Action
                                     label="All Applications"
                                     onClick={() => router.push("/admin/applications")}
-                                    labelIcon={<BillIcon fontSize={18} />}
+                                    labelIcon={<BillIcon color="green" fontSize={18} />}
                                 />
                             </UserButton.MenuItems>
                         ) : (
