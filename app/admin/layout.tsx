@@ -9,6 +9,17 @@ import { MenuIcon, XIcon } from "lucide-react";
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
+    const renderSidebarItem = (link: string, title: string) => {
+        return (
+            <Link
+                href={link}
+                className="block text-gray-700 dark:text-gray-200 hover:text-blue-500"
+            >
+                {title}
+            </Link>
+        );
+    };
+
     return (
         <RequireAdmin>
             <div className="flex min-h-screen bg-gray-100 dark:bg-gray-900">
@@ -31,41 +42,21 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                     </div>
 
                     <nav className="space-y-4">
-                        <Link
-                            href="/"
-                            className="block text-gray-700 dark:text-gray-200 hover:text-blue-500"
-                        >
-                            🌐 Go To Website
-                        </Link>
-                        <Link
-                            href="/admin/dashboard"
-                            className="block text-gray-700 dark:text-gray-200 hover:text-blue-500"
-                        >
-                            📊 Dashboard
-                        </Link>
-                        <Link
-                            href="/admin/users"
-                            className="block text-gray-700 dark:text-gray-200 hover:text-blue-500"
-                        >
-                            👤 Manage Users
-                        </Link>
-                        <Link
-                            href="/admin/applications"
-                            className="block text-gray-700 dark:text-gray-200 hover:text-blue-500"
-                        >
-                            📱 Applications
-                        </Link>
-                        <Link
+                        {renderSidebarItem("/", "🌐 Go To Website")}
+                        {renderSidebarItem("/admin/dashboard", "📊 Dashboard")}
+                        {renderSidebarItem("/admin/users", "👤 Manage Users")}
+                        {renderSidebarItem("/admin/applications", "📱 Applications")}
+                        {/* <Link
                             href="/admin/settings"
                             className="block text-gray-700 dark:text-gray-200 hover:text-blue-500"
                         >
                             ⚙️ Settings
-                        </Link>
+                        </Link> */}
                     </nav>
                 </aside>
 
                 {/* Main Content */}
-                <div className="flex-1 min-w-0 md:ml-64 p-6">
+                <div className="flex-1 min-w-0 xl:ml-64 p-6">
                     {/* Header */}
                     <header className="flex justify-between items-center bg-white dark:bg-gray-800 shadow-md rounded-lg p-4 mb-6">
                         {/* Menu Button for Mobile */}
@@ -79,7 +70,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                         <h1 className="text-2xl font-bold text-gray-800 dark:text-white">
                             Admin Dashboard
                         </h1>
-                        <UserButton afterSignOutUrl="/" />
+                        <UserButton fallback="/" />
                     </header>
 
                     {/* Content Wrapper */}

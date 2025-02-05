@@ -2,24 +2,28 @@
 
 import React, { useEffect, useState } from "react";
 import { ClerkLoaded, UserButton, useUser } from "@clerk/nextjs";
-import { BillIcon, ClipboardIcon, CubeIcon } from "@sanity/icons";
+import { BillIcon, CubeIcon } from "@sanity/icons";
 import SignInModal from "@/components/user/sign-in-modal";
 import { useRouter } from "next/navigation";
 
 const UserIcon = () => {
     const { user } = useUser();
     const [showSignIn, setShowSignIn] = useState(false);
-    const userEmail = user?.emailAddresses[0].emailAddress;
+    const router = useRouter();
+
+    const userEmail = user?.emailAddresses[0]?.emailAddress;
     const isAdminEmail =
         userEmail === "adrianhenry2115@gmail.com" ||
         userEmail === "joey.mckenna@britellc.com" ||
         userEmail === "nick.walker@britellc.com";
-    const router = useRouter();
 
-    // Automatically redirect admin users to the admin dashboard
+    // Use session storage to prevent infinite redirects
     useEffect(() => {
-        if (isAdminEmail && user) {
-            router.push("/admin/dashboard"); // Replace with the correct path to your admin dashboard
+        const hasRedirected = sessionStorage.getItem("adminRedirected");
+
+        if (isAdminEmail && user && !hasRedirected) {
+            sessionStorage.setItem("adminRedirected", "true");
+            router.push("/admin/dashboard");
         }
     }, [isAdminEmail, user, router]);
 
@@ -44,7 +48,7 @@ const UserIcon = () => {
                         ) : (
                             <UserButton.MenuItems>
                                 <UserButton.Action
-                                    label={`My Applications`}
+                                    label="My Applications"
                                     onClick={() => router.push("/careers/my-applications")}
                                     labelIcon={<BillIcon />}
                                 />

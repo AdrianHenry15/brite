@@ -4,6 +4,7 @@ import { useUser, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import { ClipboardListIcon, UsersIcon, CurrencyIcon } from "lucide-react";
 import { useEffect, useState } from "react";
+import StatCard from "./components/stat-card";
 
 export default function AdminDashboard() {
     const { user } = useUser();
@@ -35,37 +36,33 @@ export default function AdminDashboard() {
                 <h1 className="text-4xl font-semibold text-gray-800 dark:text-white">
                     Welcome back, {user?.fullName}!
                 </h1>
-                <UserButton fallback="/" />
             </header>
 
             {/* Stats Section - Grid Layout */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
                 {/* Stat Card 1 */}
-                <div className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white p-6 rounded-xl shadow-lg transform hover:scale-105 transition-all duration-300">
-                    <div className="flex items-center mb-4">
-                        <UsersIcon size={32} />
-                        <h3 className="ml-3 text-xl font-semibold">Total Users</h3>
-                    </div>
-                    <p className="text-4xl font-bold">1,245</p>
-                </div>
+                <StatCard
+                    color_gradient="blue"
+                    icon={<UsersIcon />}
+                    title="Total Users"
+                    content="0"
+                />
 
                 {/* Stat Card 2 */}
-                <div className="bg-gradient-to-r from-green-500 to-teal-600 text-white p-6 rounded-xl shadow-lg transform hover:scale-105 transition-all duration-300">
-                    <div className="flex items-center mb-4">
-                        <ClipboardListIcon size={32} />
-                        <h3 className="ml-3 text-xl font-semibold">Applications</h3>
-                    </div>
-                    <p className="text-4xl font-bold">345</p>
-                </div>
+                <StatCard
+                    color_gradient="green"
+                    icon={<UsersIcon />}
+                    title="Applications"
+                    content="0"
+                />
 
                 {/* Stat Card 3 */}
-                <div className="bg-gradient-to-r from-purple-500 to-pink-600 text-white p-6 rounded-xl shadow-lg transform hover:scale-105 transition-all duration-300">
-                    <div className="flex items-center mb-4">
-                        <CurrencyIcon size={32} />
-                        <h3 className="ml-3 text-xl font-semibold">Revenue</h3>
-                    </div>
-                    <p className="text-4xl font-bold">$23,980</p>
-                </div>
+                <StatCard
+                    color_gradient="purple"
+                    icon={<UsersIcon />}
+                    title="Estimates"
+                    content="0"
+                />
             </div>
 
             {/* Users List Section */}
