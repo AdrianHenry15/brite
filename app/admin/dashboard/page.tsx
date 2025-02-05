@@ -1,14 +1,24 @@
 "use client";
 
-import { useUser, UserButton } from "@clerk/nextjs";
+import { useUser } from "@clerk/nextjs";
 import Link from "next/link";
-import { ClipboardListIcon, UsersIcon, CurrencyIcon } from "lucide-react";
+import { ClipboardListIcon, UsersIcon, WebcamIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import StatCard from "./components/stat-card";
+import { User } from "@clerk/clerk-sdk-node";
+import { useApplicationStore } from "@/store/application-store";
+import UsersList from "./components/users-list";
 
 export default function AdminDashboard() {
+    // Users
     const { user } = useUser();
-    const [users, setUsers] = useState<any[]>([]);
+    const [users, setUsers] = useState<User[]>([]);
+    const [totalUserCount, setTotalUserCount] = useState(0);
+
+    // Applications
+    const applicationStore = useApplicationStore();
+
+    // Loading & Error States
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
@@ -18,10 +28,11 @@ export default function AdminDashboard() {
             try {
                 const response = await fetch("/api/users");
                 const data = await response.json();
-                setUsers(data);
-                setIsLoading(false);
+                setTotalUserCount(data.totalCount);
+                setUsers(data.data);
             } catch (err) {
                 setError("Failed to fetch users");
+            } finally {
                 setIsLoading(false);
             }
         };
@@ -38,27 +49,22 @@ export default function AdminDashboard() {
                 </h1>
             </header>
 
-            {/* Stats Section - Grid Layout */}
+            {/* Stats Section */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
-                {/* Stat Card 1 */}
                 <StatCard
                     link="/admin/users"
                     color_gradient="blue"
                     icon={<UsersIcon />}
                     title="Total Users"
-                    content="0"
+                    content={totalUserCount.toString()}
                 />
-
-                {/* Stat Card 2 */}
                 <StatCard
                     link="/admin/applications"
                     color_gradient="green"
                     icon={<UsersIcon />}
                     title="Applications"
-                    content="0"
+                    content={applicationStore.applications.length.toString()}
                 />
-
-                {/* Stat Card 3 */}
                 <StatCard
                     link="/admin/estimates"
                     color_gradient="purple"
@@ -69,60 +75,7 @@ export default function AdminDashboard() {
             </div>
 
             {/* Users List Section */}
-            <div className="bg-white dark:bg-gray-800 shadow-lg rounded-xl p-6 mb-8">
-                <h3 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4">
-                    All Users
-                </h3>
-                {isLoading ? (
-                    <p>Loading users...</p>
-                ) : error ? (
-                    <p className="text-red-500">{error}</p>
-                ) : (
-                    <div className="overflow-x-auto">
-                        <table className="min-w-full table-auto">
-                            <thead className="bg-gray-200 dark:bg-gray-700">
-                                <tr>
-                                    <th className="py-3 px-4 text-left text-sm font-semibold text-gray-600 dark:text-gray-300">
-                                        Name
-                                    </th>
-                                    <th className="py-3 px-4 text-left text-sm font-semibold text-gray-600 dark:text-gray-300">
-                                        Email
-                                    </th>
-                                    <th className="py-3 px-4 text-left text-sm font-semibold text-gray-600 dark:text-gray-300">
-                                        Role
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {Array.isArray(users) && users.length > 0 ? (
-                                    users.map((user) => (
-                                        <tr key={user.id} className="border-b dark:border-gray-600">
-                                            <td className="py-3 px-4 text-sm text-gray-800 dark:text-gray-100">
-                                                {user.fullName}
-                                            </td>
-                                            <td className="py-3 px-4 text-sm text-gray-800 dark:text-gray-100">
-                                                {user.emailAddresses[0]?.emailAddress}
-                                            </td>
-                                            <td className="py-3 px-4 text-sm text-gray-800 dark:text-gray-100">
-                                                {user.publicMetadata?.role || "User"}
-                                            </td>
-                                        </tr>
-                                    ))
-                                ) : (
-                                    <tr>
-                                        <td
-                                            colSpan={3}
-                                            className="py-3 px-4 text-sm text-center text-gray-800 dark:text-gray-100"
-                                        >
-                                            No users found
-                                        </td>
-                                    </tr>
-                                )}
-                            </tbody>
-                        </table>
-                    </div>
-                )}
-            </div>
+            <UsersList isLoading={isLoading} error={error} users={users} />
 
             {/* Quick Links Section */}
             <div className="bg-white dark:bg-gray-800 shadow-lg rounded-xl p-6">
@@ -145,11 +98,11 @@ export default function AdminDashboard() {
                         <span className="text-xl font-semibold">Manage Applications</span>
                     </Link>
                     <Link
-                        href="/admin/settings"
+                        href="/"
                         className="bg-purple-500 text-white p-6 rounded-xl shadow-lg text-center hover:bg-purple-600 transform hover:scale-105 transition-all duration-300"
                     >
-                        <CurrencyIcon size={32} className="mx-auto mb-3" />
-                        <span className="text-xl font-semibold">Settings</span>
+                        <WebcamIcon size={32} className="mx-auto mb-3" />
+                        <span className="text-xl font-semibold">Go To Website</span>
                     </Link>
                 </div>
             </div>
