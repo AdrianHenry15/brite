@@ -2,7 +2,7 @@
 
 import { useUser } from "@clerk/nextjs";
 import Link from "next/link";
-import { ClipboardListIcon, UsersIcon, WebcamIcon } from "lucide-react";
+import { ClipboardListIcon, UsersIcon, WebcamIcon, Laptop2Icon } from "lucide-react";
 import { useEffect, useState } from "react";
 import StatCard from "./components/stat-card";
 import { User } from "@clerk/clerk-sdk-node";
@@ -103,6 +103,13 @@ export default function AdminDashboard() {
                     >
                         <WebcamIcon size={32} className="mx-auto mb-3" />
                         <span className="text-xl font-semibold">Go To Website</span>
+                    </Link>
+                    <Link
+                        href="/studio"
+                        className="bg-red-600 text-white p-6 rounded-xl shadow-lg text-center hover:bg-purple-600 transform hover:scale-105 transition-all duration-300"
+                    >
+                        <Laptop2Icon size={32} className="mx-auto mb-3" />
+                        <span className="text-xl font-semibold">Brite Studio</span>
                     </Link>
                 </div>
             </div>

@@ -1,15 +1,15 @@
 import React from "react";
 import { Metadata } from "next";
 
-import { GiWindow, GiWindowBars } from "react-icons/gi";
-import { IoWater, IoWaterOutline } from "react-icons/io5";
+import { GiWindowBars } from "react-icons/gi";
+import { IoWater } from "react-icons/io5";
 
-import IconBanner from "../../../../components/icon-banner/IconBanner";
+import IconBanner from "@/components/icon-banner/IconBanner";
 
-import CommercialServicePic from "../../../../public/assets/imgs/h-b-jn.jpg";
-import ComponentSplash from "../../../../components/ComponentSplash";
+import CommercialServicePic from "@/public/assets/imgs/h-b-jn.jpg";
+import ComponentSplash from "@/components/ComponentSplash";
 import { FaTrashCan } from "react-icons/fa6";
-import PromoRow from "../../../../components/products/product-row";
+import PromoRow from "@/components/products/product-row";
 
 export const metadata: Metadata = {
     title: "Brite's Commercial Services",

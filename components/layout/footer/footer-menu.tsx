@@ -18,7 +18,9 @@ const FooterMenu = () => {
                             key={item.title}
                             className={`${pathname === item.link ? "underline" : ""} my-4`}
                         >
-                            <Link href={item.link}>{item.title}</Link>
+                            <Link href={item.title === "Services" ? "/services" : item.link}>
+                                {item.title}
+                            </Link>
                         </li>
                     );
                 })}
@@ -28,7 +30,9 @@ const FooterMenu = () => {
                             className={`${pathname === item.link ? "underline" : ""} my-4`}
                             key={item.title}
                         >
-                            <Link href={item.link}>{item.title}</Link>
+                            <Link href={item.title === "Services" ? "/services" : item.link}>
+                                {item.title}
+                            </Link>
                         </li>
                     );
                 })}

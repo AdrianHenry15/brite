@@ -17,7 +17,10 @@ export type FAQNavLinks =
     | "#soft-washing";
 export type NavMenuItems = "Home" | "Services" | "Our Story" | "FAQs" | "Careers";
 export type ServiceMenuItems = "Exterior Cleaning" | "Holiday Lighting" | "Commercial Services";
-export type ServiceMenuLinks = "/exterior-cleaning" | "/holiday-lighting" | "/commercial-services";
+export type ServiceMenuLinks =
+    | "/services/exterior-cleaning"
+    | "/services/holiday-lighting"
+    | "/services/commercial-services";
 export type AltNavMenuItems = "Contact Us" | "Get Your Free Estimate";
 export type NavMenuLinks =
     | "/"

@@ -3,15 +3,15 @@ import { NavMenuType } from "./types";
 export const ServicesMenuItems: NavMenuType[] = [
     {
         title: "Exterior Cleaning",
-        link: "/exterior-cleaning",
+        link: "/services/exterior-cleaning",
     },
     {
         title: "Holiday Lighting",
-        link: "/holiday-lighting",
+        link: "/services/holiday-lighting",
     },
     {
         title: "Commercial Services",
-        link: "/commercial-services",
+        link: "/services/commercial-services",
     },
 ];
 
