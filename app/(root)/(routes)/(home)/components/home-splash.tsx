@@ -4,8 +4,8 @@ import Image from "next/image";
 
 import React from "react";
 
-import ContactFormOverlay from "./contact-form-section/ContactFormOverlay";
-import SplashPic from "../public/assets/imgs/nick-joe-pic.jpg";
+import SplashPic from "../../../../../public/assets/imgs/nick-joe-pic.jpg";
+import ContactFormOverlay from "../../../components/forms/contact-form-overlay";
 
 const HomeSplash = () => {
     return (

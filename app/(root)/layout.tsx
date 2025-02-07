@@ -1,10 +1,10 @@
 import React from "react";
 
-import Navbar from "../../components/layout/header";
-import Footer from "../../components/layout/footer";
+import Navbar from "./components/header";
+import Footer from "./components/footer";
 
 import "../globals.css";
-import ContactFormContainer from "../../components/contact-form-section/ContactFormContainer";
+import ContactFormContainer from "./components/forms/contact-form-container";
 
 export default async function SetupLayout({ children }: { children: React.ReactNode }) {
     return (

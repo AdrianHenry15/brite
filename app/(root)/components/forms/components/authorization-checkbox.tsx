@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import { Controller, FieldErrors } from "react-hook-form";
+import { Controller } from "react-hook-form";
 
 interface IAuthorizationCheckboxProps {
     inputName: string;
@@ -18,7 +18,7 @@ const AuthorizationCheckbox = ({
     const [error, setError] = useState(false);
 
     useEffect(() => {
-        let timer;
+        let timer: any;
         if (error) {
             timer = setTimeout(() => {
                 setError(false);

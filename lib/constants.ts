@@ -80,14 +80,16 @@ export const AltNavMenu: NavMenuType[] = [
 ];
 
 export const ServicesList = [
-    { name: "None" },
-    { name: "Window Cleaning" },
-    { name: "Pressure Washing" },
-    { name: "House Wash" },
-    { name: "Roof Wash" },
-    { name: "Holiday Lighting" },
-    { name: "Other" },
+    "None",
+    "Window Cleaning",
+    "Pressure Washing",
+    "House Wash",
+    "Roof Wash",
+    "Holiday Lighting",
+    "Other",
 ];
+
+export const ReferralSources = ["Google", "Facebook", "Word of Mouth", "Other"];
 
 export const FrequencyList = [
     { name: "Once A Year" },

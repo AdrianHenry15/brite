@@ -2,7 +2,7 @@
 
 import Script from "next/script";
 import React, { useEffect, useRef } from "react";
-import Button from "../../Button";
+import Button from "../../../../../components/Button";
 
 const SocialProof = () => {
     const containerRef = useRef<HTMLDivElement>(null);

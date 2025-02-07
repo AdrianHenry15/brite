@@ -10,7 +10,7 @@ import "swiper/css"; // Import Swiper styles
 import Logo from "../public/assets/icons/brite-logo.png";
 import AltLogo from "../public/assets/icons/brite-logo-alt.png";
 import { HomePageImages } from "../lib/Images";
-import ContactFormOverlay from "./contact-form-section/ContactFormOverlay";
+import ContactFormOverlay from "./forms/ContactFormOverlay";
 
 const SplashSlideShow = () => {
     return (

@@ -3,16 +3,16 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
-
-import MobileHeader from "./MobileMenu";
-import Logo from "../../../public/assets/icons/brite-logo.png";
-import Button from "../../Button";
-import { NavMenu } from "../../../lib/constants";
+import { useState } from "react";
 import { FaPhone } from "react-icons/fa6";
 import { BiChevronDown } from "react-icons/bi";
+
+import MobileHeader from "./MobileMenu";
+import Logo from "../../../../public/assets/icons/brite-logo.png";
+import Button from "../../../../components/Button";
+import { NavMenu } from "../../../../lib/constants";
 import ServicesMenu from "./ServicesMenu";
-import { useState } from "react";
-import { NavMenuType } from "../../../lib/types";
+import { NavMenuType } from "../../../../lib/types";
 
 export default function Navbar() {
     // Constants

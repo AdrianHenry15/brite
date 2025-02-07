@@ -2,7 +2,7 @@ import Image from "next/image";
 import React from "react";
 import { FaRegCopyright } from "react-icons/fa6";
 
-import Logo from "../../../public/assets/icons/brite-logo.png";
+import Logo from "../../../../public/assets/icons/brite-logo.png";
 
 const LogoCard = () => {
     return (
@@ -13,7 +13,7 @@ const LogoCard = () => {
                 </span>
                 <span className="flex items-center text-xs text-zinc-500">
                     <FaRegCopyright className="mx-2" />
-                    2023 Brite Lighting, LLC
+                    2025 Brite Exterior Cleaning
                 </span>
             </div>
         </span>

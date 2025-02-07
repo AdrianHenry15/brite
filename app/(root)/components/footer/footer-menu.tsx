@@ -4,7 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { AltNavMenu, NavMenu } from "../../../lib/constants";
+import { AltNavMenu, NavMenu } from "../../../../lib/constants";
 
 const FooterMenu = () => {
     const pathname = usePathname();

@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { BiChevronRight } from "react-icons/bi";
-import { ServicesMenuItems } from "../../../lib/constants";
+import { ServicesMenuItems } from "../../../../lib/constants";
 
 interface IServicesMenuProps {
     setServicesMenuOpen: () => void;

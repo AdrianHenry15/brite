@@ -2,10 +2,10 @@
 const nextConfig = {
   /* config options here */
   env: {
-    NEXT_PUBLIC_SERVICE_ID: process.env.NEXT_PUBLIC_SERVICE_ID,
-    NEXT_PUBLIC_TEMPLATE_ID: process.env.NEXT_PUBLIC_TEMPLATE_ID,
-    NEXT_PUBLIC_KEY: process.env.NEXT_PUBLIC_KEY,
-    NEXT_PRIVATE_KEY: process.env.NEXT_PRIVATE_KEY
+    CLERK_SECRET_KEY: process.env.CLERK_SECRET_KEY,
+    SANITY_API_TOKEN: process.env.SANITY_API_TOKEN,
+    SANITY_API_READ_TOKEN: process.env.SANITY_API_READ_TOKEN,
+    RECAPTCHA_SECRET_KEY: process.env.RECAPTCHA_SECRET_KEY
   },
 }
 

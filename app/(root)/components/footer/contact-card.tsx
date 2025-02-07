@@ -28,7 +28,7 @@ const ContactCard = () => {
                                 className="hover:underline underline-offset-2"
                                 href="email:joey.mckenna@britellc.com"
                             >
-                                joey.mckenna@britellc.com
+                                nick.walker@briteclt.com
                             </Link>
                         </span>
                         <span className="pb-4">
@@ -37,7 +37,7 @@ const ContactCard = () => {
                                 className="hover:underline underline-offset-2"
                                 href="email:nick.walker@britellc.com"
                             >
-                                nick.walker@britellc.com
+                                joey.mckenna@briteclt.com
                             </Link>
                         </span>
                     </div>
