@@ -45,7 +45,7 @@ export default function AdminDashboard() {
             {/* Header */}
             <header className="flex items-center justify-between mb-8">
                 <h1 className="text-4xl font-semibold text-gray-800 dark:text-white">
-                    Welcome back, {user?.fullName}!
+                    Welcome, {user?.fullName}!
                 </h1>
             </header>
 
