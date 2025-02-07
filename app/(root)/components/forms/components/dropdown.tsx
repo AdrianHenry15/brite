@@ -7,12 +7,26 @@ interface DropdownProps {
     control: any;
     errors: any;
     options: string[];
+    textColor: "light" | "dark";
 }
 
-const Dropdown: React.FC<DropdownProps> = ({ inputName, inputLabel, control, errors, options }) => {
+const Dropdown: React.FC<DropdownProps> = ({
+    inputName,
+    textColor,
+    inputLabel,
+    control,
+    errors,
+    options,
+}) => {
     return (
         <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700">{inputLabel}</label>
+            <label
+                className={`${
+                    textColor === "light" ? "text-white" : "text-gray-700"
+                } block text-sm font-medium`}
+            >
+                {inputLabel}
+            </label>
             <Controller
                 name={inputName}
                 control={control}
@@ -20,11 +34,11 @@ const Dropdown: React.FC<DropdownProps> = ({ inputName, inputLabel, control, err
                 render={({ field }) => (
                     <select
                         {...field}
-                        className="mt-1 block w-full px-3 py-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                        className="mt-1 block w-full px-3 py-2  text-gray-700 border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                     >
                         <option value="">Select an option</option>
                         {options.map((option, index) => (
-                            <option key={index} value={option}>
+                            <option className="text-gray-700" key={index} value={option}>
                                 {option}
                             </option>
                         ))}

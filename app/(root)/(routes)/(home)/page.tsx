@@ -1,9 +1,9 @@
 import React from "react";
 
-import SocialProof from "./components/social-proof";
 import ButtonRow from "./components/button-row";
 import PromoRow from "../../../../components/products/product-row";
 import HomeSplash from "./components/home-splash";
+import SocialProof from "./components/social-proof";
 
 export default async function HomePage() {
     return (

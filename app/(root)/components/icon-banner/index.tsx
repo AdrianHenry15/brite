@@ -1,8 +1,7 @@
 "use client";
 
 import React from "react";
-
-import IconItem from "./IconItem";
+import IconItem from "./icon-item";
 
 interface IIconBannerProps {
     icon1: React.ReactNode;
@@ -26,7 +25,6 @@ interface IIconBannerProps {
 const IconBanner = (props: IIconBannerProps) => {
     return (
         <section
-            // ref={containerRef}
             className={`${
                 props.dark ? "bg-black text-white" : "bg-white text-black"
             } w-full justify-evenly text-center py-24 px-4 flex flex-1 flex-col md:flex-row`}

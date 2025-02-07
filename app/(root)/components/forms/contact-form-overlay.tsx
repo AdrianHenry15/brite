@@ -5,19 +5,17 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { usePathname } from "next/navigation";
 import ReCAPTCHA from "react-google-recaptcha";
+import { Button } from "@mui/material";
 
 import Logo from "../../../../public/assets/icons/brite-logo.png";
-
 import AuthorizationCheckbox from "./components/authorization-checkbox";
 import sendEmail from "../../../../lib/email-service";
 import ConfirmationModal from "../../../../components/modals/ConfirmationModal";
 import SuccessModal from "../../../../components/modals/SuccessModal";
-import { Loader } from "../../../../components/Loader";
-import InputAlt from "../../../../components/inputs/InputAlt";
-import DropdownAlt from "../../../../components/inputs/DropdownAlt";
-import TextareaAlt from "../../../../components/inputs/TextareaAlt";
-import { ServicesList } from "../../../../lib/constants";
-import Button from "../../../../components/Button";
+import { Loader } from "../loader";
+import InputAlt from "../inputs/InputAlt";
+import TextareaAlt from "../inputs/TextareaAlt";
+import { ReferralSources, ServicesList } from "../../../../lib/constants";
 import Dropdown from "./components/dropdown";
 
 type FormValues = {
@@ -28,6 +26,7 @@ type FormValues = {
     email: string;
     address: string;
     service: string;
+    referralSource?: string;
     createdAt: string;
     frequency?: string;
     comment?: string;
@@ -83,6 +82,7 @@ const ContactFormOverlay = () => {
             email: getValues("email"),
             address: getValues("address"),
             service: getValues("service"),
+            referralSource: getValues("referralSource"), // Adding howHeard value
             frequency: getValues("frequency"),
             comment: getValues("comment"),
             createdAt: createdAt,
@@ -189,6 +189,15 @@ const ContactFormOverlay = () => {
                         control={control}
                         errors={errors}
                         options={ServicesList}
+                        textColor="light"
+                    />
+                    <Dropdown
+                        inputName="referralSource"
+                        inputLabel="How did you hear about us?"
+                        control={control}
+                        errors={errors}
+                        options={ReferralSources}
+                        textColor="light"
                     />
                     <TextareaAlt
                         inputName="comment"
@@ -200,10 +209,13 @@ const ContactFormOverlay = () => {
                     <ReCAPTCHA sitekey={RECAPTCHA_SITE_KEY} onChange={setRecaptchaToken} />
                     <div className={`${inputClicked ? "" : "animate-pulse"} my-10`}>
                         <Button
-                            submit
-                            name={pathname === "/contact-us" ? "Contact Us" : "Estimate"}
-                            className="w-full justify-center"
-                        />
+                            type="submit"
+                            variant="contained"
+                            color="primary"
+                            className="w-full justify-center bg-blue-500"
+                        >
+                            {pathname === "/contact-us" ? "Contact Us" : "Estimate"}
+                        </Button>
                     </div>
                 </form>
             </div>

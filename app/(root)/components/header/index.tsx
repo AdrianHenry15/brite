@@ -9,10 +9,10 @@ import { BiChevronDown } from "react-icons/bi";
 
 import MobileHeader from "./MobileMenu";
 import Logo from "../../../../public/assets/icons/brite-logo.png";
-import Button from "../../../../components/Button";
 import { NavMenu } from "../../../../lib/constants";
 import ServicesMenu from "./ServicesMenu";
 import { NavMenuType } from "../../../../lib/types";
+import Button from "../../../../components/button";
 
 export default function Navbar() {
     // Constants

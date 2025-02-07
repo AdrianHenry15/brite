@@ -4,10 +4,10 @@ import { Metadata } from "next";
 import { GiWindow, GiWindowBars } from "react-icons/gi";
 import { IoWater, IoWaterOutline } from "react-icons/io5";
 
-import IconBanner from "../../../../components/icon-banner/IconBanner";
+import IconBanner from "../../components/icon-banner";
 
 import CommercialServicePic from "../../../../public/assets/imgs/h-b-jn.jpg";
-import ComponentSplash from "../../../../components/ComponentSplash";
+import ComponentSplash from "../../components/component-splash";
 import { FaTrashCan } from "react-icons/fa6";
 import PromoRow from "../../../../components/products/product-row";
 

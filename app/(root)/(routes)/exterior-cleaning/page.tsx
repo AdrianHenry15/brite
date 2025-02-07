@@ -4,10 +4,10 @@ import { Metadata } from "next";
 import { GiWindow } from "react-icons/gi";
 import { IoWater, IoWaterOutline } from "react-icons/io5";
 
-import IconBanner from "../../../../components/icon-banner/IconBanner";
+import IconBanner from "../../components/icon-banner";
 
 import PressureWashing from "../../../../public/assets/imgs/ex-cleaning.png";
-import ComponentSplash from "../../../../components/ComponentSplash";
+import ComponentSplash from "../../components/component-splash";
 import PromoRow from "../../../../components/products/product-row";
 
 export const metadata: Metadata = {

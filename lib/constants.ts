@@ -80,7 +80,6 @@ export const AltNavMenu: NavMenuType[] = [
 ];
 
 export const ServicesList = [
-    "None",
     "Window Cleaning",
     "Pressure Washing",
     "House Wash",
@@ -89,7 +88,14 @@ export const ServicesList = [
     "Other",
 ];
 
-export const ReferralSources = ["Google", "Facebook", "Word of Mouth", "Other"];
+export const ReferralSources = [
+    "Card From Brite",
+    "Magazine",
+    "Google",
+    "Facebook",
+    "Word of Mouth",
+    "Other",
+];
 
 export const FrequencyList = [
     { name: "Once A Year" },

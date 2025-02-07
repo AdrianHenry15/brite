@@ -14,9 +14,9 @@ import AuthorizationCheckbox from "./components/authorization-checkbox";
 import sendEmail from "../../../../lib/email-service";
 import ConfirmationModal from "../../../../components/modals/ConfirmationModal";
 import SuccessModal from "../../../../components/modals/SuccessModal";
-import { Loader } from "../../../../components/Loader";
-import Input from "../../../../components/inputs/Input";
-import Textarea from "../../../../components/inputs/Textarea";
+import { Loader } from "../loader";
+import Input from "../inputs/Input";
+import Textarea from "../inputs/Textarea";
 import { ServicesList, ReferralSources } from "../../../../lib/constants";
 import Dropdown from "./components/dropdown";
 
@@ -34,10 +34,9 @@ type FormValues = {
     referralSource?: string;
 };
 
-const ContactFormContainer = () => {
+const ContactFormOverlay = () => {
     const pathname = usePathname();
 
-    const [inputClicked, setInputClicked] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
     const [estimateSuccess, setEstimateSuccess] = useState(false);
     const [estimateFail, setEstimateFail] = useState(false);
@@ -45,7 +44,7 @@ const ContactFormContainer = () => {
     const [estimateId, setEstimateId] = useState("");
     const [createdAt, setCreatedAt] = useState("");
     const [captchaValue, setCaptchaValue] = useState<string | null>(null);
-    const [isSubmitDisabled, setIsSubmitDisabled] = useState(true); // Added submit button disable state
+    const [isSubmitDisabled, setIsSubmitDisabled] = useState(true); // Submit button state
 
     const SERVICE_ID = process.env.NEXT_PUBLIC_SERVICE_ID as string;
     const TEMPLATE_ID = process.env.NEXT_PUBLIC_TEMPLATE_ID as string;
@@ -60,7 +59,7 @@ const ContactFormContainer = () => {
     } = useForm();
 
     useEffect(() => {
-        setIsSubmitDisabled(!captchaValue); // Enable button only when CAPTCHA is completed
+        setIsSubmitDisabled(!captchaValue); // Enable submit button only when CAPTCHA is completed
     }, [captchaValue]);
 
     const onSubmit = (data: FormValues) => {
@@ -75,8 +74,7 @@ const ContactFormContainer = () => {
                 .toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })
                 .toString()
         );
-        setIsOpen(true);
-        setInputClicked(true);
+        setIsOpen(true); // Show confirmation modal
     };
 
     const confirmEstimate = () => {
@@ -105,7 +103,7 @@ const ContactFormContainer = () => {
                     setEstimateSuccess(false);
                     setEstimateFail(true);
                 }
-                setIsOpen(false);
+                setIsOpen(false); // Close confirmation modal
                 setLoading(false);
             }
         );
@@ -113,7 +111,7 @@ const ContactFormContainer = () => {
 
     return (
         <section
-            id="contact-form"
+            id="contact-form-overlay"
             className="flex flex-col items-center px-4 py-20 shadow-inner relative w-full"
         >
             {isOpen && (
@@ -125,7 +123,7 @@ const ContactFormContainer = () => {
             )}
             {estimateSuccess && (
                 <SuccessModal
-                    title="Estimate Request successful"
+                    title="Estimate Request Successful"
                     description="Your Estimate Request has been successfully submitted."
                     isOpen={estimateSuccess}
                     closeModal={() => setEstimateSuccess(false)}
@@ -133,7 +131,7 @@ const ContactFormContainer = () => {
             )}
             {estimateFail && (
                 <SuccessModal
-                    title="Estimate Request failed"
+                    title="Estimate Request Failed"
                     description="Your Estimate Request submission failed. Please try again."
                     isOpen={estimateFail}
                     closeModal={() => setEstimateFail(false)}
@@ -192,6 +190,7 @@ const ContactFormContainer = () => {
                         inputLabel="Choose Service:"
                         control={control}
                         options={ServicesList}
+                        textColor="dark"
                     />
                     <Dropdown
                         inputName="referralSource"
@@ -199,6 +198,7 @@ const ContactFormContainer = () => {
                         control={control}
                         errors={errors}
                         options={ReferralSources}
+                        textColor="dark"
                     />
                     <Textarea
                         inputName="comment"
@@ -215,7 +215,8 @@ const ContactFormContainer = () => {
                         type="submit"
                         variant="contained"
                         color="primary"
-                        disabled={!isSubmitDisabled} // Disable until CAPTCHA is verified
+                        className="bg-blue-500"
+                        disabled={!isSubmitDisabled} // Disable submit until CAPTCHA is completed
                         fullWidth
                         sx={{ mt: 2 }}
                     >
@@ -227,4 +228,4 @@ const ContactFormContainer = () => {
     );
 };
 
-export default ContactFormContainer;
+export default ContactFormOverlay;

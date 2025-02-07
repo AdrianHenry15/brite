@@ -1,17 +1,17 @@
 // import { ClerkProvider } from "@clerk/nextjs";
 import React, { Suspense } from "react";
-import { Inter } from "next/font/google";
+import { Nunito } from "next/font/google";
 import { Toaster } from "react-hot-toast";
 import Script from "next/script";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
-import { Loader } from "../components/Loader";
+import { Loader } from "./(root)/components/loader";
 
 import "./globals.css";
 import { Metadata } from "next";
 
-const inter = Inter({ subsets: ["latin"] });
+const nunito = Nunito({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
     title: "Brite",
@@ -23,7 +23,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         // <ClerkProvider>
         <html lang="en">
             <link rel="icon" href="/assets/icons/brite-logo.png" />
-            <body className={inter.className}>
+            <body className={nunito.className}>
                 <Analytics />
                 <SpeedInsights />
                 <Toaster />

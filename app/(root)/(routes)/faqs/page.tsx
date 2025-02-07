@@ -1,16 +1,8 @@
 import { Metadata } from "next";
 import React from "react";
 
-import FAQSidebarNav from "../../../../components/layout/faqs/FAQSidebarNav";
-import FAQItem from "../../../../components/layout/faqs/FAQItem";
-import { FAQNavMenu } from "../../../../lib/constants";
-import FAQContainer from "../../../../components/layout/faqs/FAQContainer";
-import ScrollUpBtn from "../../../../components/ScrollUpBtn";
-import { BriteFAQs, ExteriorCleaningFAQs, HolidayLightingFAQs } from "../../../../lib/FAQItems";
-import FAQs from "../../../../components/layout/faqs/FAQs";
-
-const DummyText =
-    "Duis eget mi nec risus condimentum blandit. Integer non lacinia leo. Phasellus auctor dapibus nibh, vel ultrices odio tincidunt eu. Sed id est purus. Sed in neque a ligula fermentum fermentum. Etiam rhoncus tincidunt lectus, sit amet convallis justo fermentum vel. Sed gravida libero vel eros accumsan, a commodo felis aliquam.";
+import ScrollUpBtn from "../../components/scroll-up-btn";
+import FAQs from "../../components/faqs";
 
 export const metadata: Metadata = {
     title: "Brite FAQs",

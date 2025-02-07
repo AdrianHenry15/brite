@@ -20,7 +20,7 @@ const Dropdown = ({
     control,
     errors,
 }: IDropdownProps) => {
-    const InputClass = "border-2 border-gray-400 my-2 p-2 rounded-sm w-full shadow-md";
+    const InputClass = "my-2 p-2 rounded-sm w-full shadow-md";
 
     return (
         <div className="py-2 w-full text-black">
@@ -31,7 +31,12 @@ const Dropdown = ({
                 defaultValue={options[0].name}
                 render={({ field }) => (
                     <>
-                        <select required className={`${InputClass} py-4`} {...field}>
+                        <select
+                            style={{ border: "1px black solid" }}
+                            required
+                            className={`${InputClass} py-4`}
+                            {...field}
+                        >
                             {options.map((service) => (
                                 <option key={service.name} value={service.name}>
                                     {service.name}
