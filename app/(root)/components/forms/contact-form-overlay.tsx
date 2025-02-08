@@ -10,8 +10,8 @@ import { Button } from "@mui/material";
 import Logo from "../../../../public/assets/icons/brite-logo.png";
 import AuthorizationCheckbox from "./components/authorization-checkbox";
 import sendEmail from "../../../../lib/email-service";
-import ConfirmationModal from "../../../../components/modals/ConfirmationModal";
-import SuccessModal from "../../../../components/modals/SuccessModal";
+import ConfirmationModal from "../modals/ConfirmationModal";
+import SuccessModal from "../modals/SuccessModal";
 import { Loader } from "../loader";
 import InputAlt from "../inputs/InputAlt";
 import TextareaAlt from "../inputs/TextareaAlt";
@@ -66,7 +66,7 @@ const ContactFormOverlay = () => {
         setCreatedAt(
             new Date()
                 .toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })
-                .toString()
+                .toString(),
         );
         setIsOpen(true);
         setInputClicked(true);
@@ -97,7 +97,7 @@ const ContactFormOverlay = () => {
                 }
                 setIsOpen(false);
                 setLoading(false);
-            }
+            },
         );
     };
 

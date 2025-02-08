@@ -11,8 +11,9 @@ import MobileHeader from "./MobileMenu";
 import Logo from "../../../../public/assets/icons/brite-logo.png";
 import { NavMenu } from "../../../../lib/constants";
 import ServicesMenu from "./ServicesMenu";
-import { NavMenuType } from "../../../../lib/types";
-import Button from "../../../../components/button";
+import { NavMenuType } from "@/lib/types";
+import UserIcon from "./user-icon";
+import Button from "@/app/(root)/components/button";
 
 export default function Navbar() {
     // Constants
@@ -77,6 +78,10 @@ export default function Navbar() {
             <div className="absolute self-center right-0 top-12 lg:top-0 lg:hidden">
                 <MobileHeader />
             </div>
+
+            <div className="absolute self-center ml-4 left-0 top-16 lg:top-0 lg:hidden">
+                <UserIcon />
+            </div>
             {/* TITLE & LINKS  */}
             <div className="flex w-full mt-2 justify-evenly">
                 <Link
@@ -114,6 +119,9 @@ export default function Navbar() {
                             name="Get Your Free Estimate"
                         />
                     </Link>
+                    <div className="ml-4">
+                        <UserIcon />
+                    </div>
                 </ul>
             </div>
         </nav>

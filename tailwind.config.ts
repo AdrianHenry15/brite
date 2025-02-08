@@ -34,7 +34,9 @@ const config: Config = {
                     "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
                 "jumbotron-text": "url('/public/assets/imgs/green-mountains.jpg')",
             },
-            fontFamily: {},
+            fontFamily: {
+                robotoFlex: ["Roboto Flex", "sans-serif"], // Custom Font
+            },
         },
     },
     plugins: [],

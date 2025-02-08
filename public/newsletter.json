@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "title": "Issue #1 - Getting Started",
+        "date": "2024-01-01",
+        "description": "Kickstart the year with the basics of modern web development."
+    },
+    {
+        "id": 2,
+        "title": "Issue #2 - Advanced Techniques",
+        "date": "2024-02-01",
+        "description": "Explore advanced topics in JavaScript and TypeScript."
+    },
+    {
+        "id": 3,
+        "title": "Issue #3 - Best Practices",
+        "date": "2024-03-01",
+        "description": "Dive into the best practices for scalable web applications."
+    }
+]

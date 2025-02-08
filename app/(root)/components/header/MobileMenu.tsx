@@ -6,12 +6,11 @@ import { usePathname } from "next/navigation";
 import { Fragment, useEffect, useState } from "react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
-import Button from "../../../../components/button";
-import { NavMenuType } from "../../../../lib/types";
 import { FaPhone } from "react-icons/fa6";
 import { NavMenu } from "../../../../lib/constants";
 import { BiChevronDown } from "react-icons/bi";
 import ServicesMenu from "./ServicesMenu";
+import Button from "@/app/(root)/components/button";
 
 export default function MobileMenu() {
     // Constants
@@ -83,6 +82,7 @@ export default function MobileMenu() {
             >
                 <Bars3Icon className="h-6 text-black" />
             </button>
+
             <Transition show={isOpen}>
                 <Dialog onClose={closeMobileMenu} className="relative z-50">
                     <Transition.Child

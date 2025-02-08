@@ -12,8 +12,8 @@ import HandyMan from "../../../../public/assets/imgs/handyman.webp";
 
 import AuthorizationCheckbox from "./components/authorization-checkbox";
 import sendEmail from "../../../../lib/email-service";
-import ConfirmationModal from "../../../../components/modals/ConfirmationModal";
-import SuccessModal from "../../../../components/modals/SuccessModal";
+import ConfirmationModal from "../modals/ConfirmationModal";
+import SuccessModal from "../modals/SuccessModal";
 import { Loader } from "../loader";
 import Input from "../inputs/Input";
 import Textarea from "../inputs/Textarea";
@@ -21,15 +21,12 @@ import { ServicesList, ReferralSources } from "../../../../lib/constants";
 import Dropdown from "./components/dropdown";
 
 type FormValues = {
-    estimateId: string;
     firstName: string;
     lastName: string;
     phone: string;
     email: string;
     address: string;
     service: string;
-    createdAt: string;
-    frequency?: string;
     comment?: string;
     referralSource?: string;
 };
@@ -41,15 +38,13 @@ const ContactFormOverlay = () => {
     const [estimateSuccess, setEstimateSuccess] = useState(false);
     const [estimateFail, setEstimateFail] = useState(false);
     const [loading, setLoading] = useState(false);
-    const [estimateId, setEstimateId] = useState("");
-    const [createdAt, setCreatedAt] = useState("");
     const [captchaValue, setCaptchaValue] = useState<string | null>(null);
     const [isSubmitDisabled, setIsSubmitDisabled] = useState(true); // Submit button state
 
-    const SERVICE_ID = process.env.NEXT_PUBLIC_SERVICE_ID as string;
-    const TEMPLATE_ID = process.env.NEXT_PUBLIC_TEMPLATE_ID as string;
-    const PUBLIC_KEY = process.env.NEXT_PUBLIC_KEY as string;
-    const PRIVATE_KEY = process.env.NEXT_PRIVATE_KEY as string;
+    const SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID as string;
+    const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID as string;
+    const PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_KEY as string;
+    const PRIVATE_KEY = process.env.NEXT_PRIVATE_EMAILJS_KEY as string;
 
     const {
         handleSubmit,
@@ -62,18 +57,11 @@ const ContactFormOverlay = () => {
         setIsSubmitDisabled(!captchaValue); // Enable submit button only when CAPTCHA is completed
     }, [captchaValue]);
 
-    const onSubmit = (data: FormValues) => {
+    const onSubmit = () => {
         if (!captchaValue) {
             alert("Please complete the CAPTCHA verification.");
             return;
         }
-
-        setEstimateId(Math.floor(100000 + Math.random() * 900000).toString());
-        setCreatedAt(
-            new Date()
-                .toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })
-                .toString()
-        );
         setIsOpen(true); // Show confirmation modal
     };
 
@@ -81,17 +69,14 @@ const ContactFormOverlay = () => {
         setLoading(true);
 
         const templateParams: FormValues = {
-            estimateId,
             firstName: getValues("firstName"),
             lastName: getValues("lastName"),
             phone: getValues("phone"),
             email: getValues("email"),
             address: getValues("address"),
             service: getValues("service"),
-            frequency: getValues("frequency"),
             comment: getValues("comment"),
             referralSource: getValues("referralSource"),
-            createdAt,
         };
 
         sendEmail(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY, PRIVATE_KEY).then(
@@ -105,7 +90,7 @@ const ContactFormOverlay = () => {
                 }
                 setIsOpen(false); // Close confirmation modal
                 setLoading(false);
-            }
+            },
         );
     };
 

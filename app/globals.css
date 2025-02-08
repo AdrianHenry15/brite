@@ -1,6 +1,5 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap");
 
 #base {
     background: rgb(0, 50, 92);
@@ -26,12 +25,16 @@
 .fade-in-from-top {
     opacity: 0;
     transform: translateY(-20px);
-    transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+    transition:
+        opacity 0.8s ease-in-out,
+        transform 0.8s ease-in-out;
 }
 .fade-in {
     opacity: 0;
     /* transform: translateY(-20px); */
-    transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+    transition:
+        opacity 0.8s ease-in-out,
+        transform 0.8s ease-in-out;
 }
 /* Add the following to create a stagger effect based on index */
 .fade-in:nth-child(1) {

@@ -26,10 +26,10 @@ const ComponentSplash = (props: ISplashProps) => {
         }
     };
     return (
-        <div className="w-[100%] self-center text-white md:h-screen">
+        <div className="w-[100%] self-center text-white h-screen">
             <div className="w-full h-full">
                 {/* SHADOW */}
-                <div className="w-full bg-gradient-to-r from-black absolute h-screen hidden md:flex"></div>
+                <div className="w-full bg-gradient-to-r from-black absolute h-screen flex"></div>
                 <div className="w-full h-full flex justify-center items-center">
                     <Image
                         loading="eager"
@@ -38,18 +38,18 @@ const ComponentSplash = (props: ISplashProps) => {
                         alt={props.title}
                     />
                 </div>
-                <div className="flex w-full p-4 top-[38%] md:absolute">
+                <div className="flex w-full p-4 top-[50%] absolute md:top-[38%]">
                     <div className="flex flex-col relative w-full justify-center items-center md:w-min">
                         {/* LOGO */}
-                        <Link className="flex justify-start self-start" href={"/"}>
+                        <Link className="justify-start self-start flex" href={"/"}>
                             <Image src={Logo} alt="logo" className="w-24 rounded-lg  md:w-48" />
                         </Link>
                         {/* TITLE */}
-                        <h5 className="items-center py-2 justify-center text-7xl whitespace-nowrap hidden lg:flex">
+                        <h5 className="items-center w-full py-2 justify-start text-3xl whitespace-nowrap flex md:text-7xl">
                             {props.title}
                         </h5>
                         {/* BUTTONS */}
-                        <div className="my-4 flex self-start items-center w-auto">
+                        <div className="flex self-start items-center w-auto">
                             <Link
                                 href={"/contact-us"}
                                 className="border bg-gray-300 text-black text-sm border-gray-300 py-2 px-5 my-2 whitespace-nowrap"
@@ -58,7 +58,7 @@ const ComponentSplash = (props: ISplashProps) => {
                             </Link>
                             <Link
                                 href={"/estimate"}
-                                className="border text-black text-sm border-gray-300 py-2 px-5 ml-4 whitespace-nowrap md:text-white md:bg-black"
+                                className="border text-sm border-gray-300 py-2 px-5 ml-4 whitespace-nowrap text-white bg-black"
                             >
                                 Get Estimate
                             </Link>
