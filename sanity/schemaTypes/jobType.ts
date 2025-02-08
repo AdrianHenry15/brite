@@ -1,11 +1,11 @@
-import { DocumentsIcon } from "@sanity/icons";
+import { JsonIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 
 export const jobType = defineType({
     name: "job",
     title: "Job Openings",
     type: "document",
-    icon: DocumentsIcon,
+    icon: JsonIcon,
     fields: [
         defineField({
             name: "title",

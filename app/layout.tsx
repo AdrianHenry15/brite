@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
     return (
-        <ClerkProvider>
+        <ClerkProvider dynamic>
             <html lang="en">
                 <link rel="icon" href="/assets/icons/brite-logo.png" />
                 <body className={nunito.className}>

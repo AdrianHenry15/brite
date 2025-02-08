@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-import Logo from "../public/assets/icons/brite-logo.png";
+import Logo from "@/public/assets/icons/brite-logo.png";
 
 interface ISplashProps {
     title: string;
