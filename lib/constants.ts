@@ -59,10 +59,10 @@ export const NavMenu: NavMenuType[] = [
         title: "Careers",
         link: "/careers",
     },
-    {
-        title: "Newsletter",
-        link: "/newsletter",
-    },
+    // {
+    //     title: "Newsletter",
+    //     link: "/newsletter",
+    // },
     {
         title: "Blog",
         link: "/blog",

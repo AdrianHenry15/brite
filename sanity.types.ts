@@ -39,12 +39,127 @@ export type SanityImageDimensions = {
     aspectRatio?: number;
 };
 
-export type SanityImageHotspot = {
-    _type: "sanity.imageHotspot";
-    x?: number;
-    y?: number;
-    height?: number;
-    width?: number;
+export type Geopoint = {
+    _type: "geopoint";
+    lat?: number;
+    lng?: number;
+    alt?: number;
+};
+
+export type Promotion = {
+    _id: string;
+    _type: "promotion";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    title?: string;
+    slug?: Slug;
+    description?: string;
+    discountPercentage?: number;
+    startDate?: string;
+    endDate?: string;
+    icon?: "sparkle" | "star" | "discount" | "gift";
+    status?: "upcoming" | "active" | "expired";
+};
+
+export type Blog = {
+    _id: string;
+    _type: "blog";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    title?: string;
+    slug?: Slug;
+    publishedAt?: string;
+    mainImage?: {
+        asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+    };
+    excerpt?: string;
+    body?: Array<
+        | {
+              children?: Array<{
+                  marks?: Array<string>;
+                  text?: string;
+                  _type: "span";
+                  _key: string;
+              }>;
+              style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+              listItem?: "bullet" | "number";
+              markDefs?: Array<{
+                  href?: string;
+                  _type: "link";
+                  _key: string;
+              }>;
+              level?: number;
+              _type: "block";
+              _key: string;
+          }
+        | {
+              asset?: {
+                  _ref: string;
+                  _type: "reference";
+                  _weak?: boolean;
+                  [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+              };
+              hotspot?: SanityImageHotspot;
+              crop?: SanityImageCrop;
+              _type: "image";
+              _key: string;
+          }
+    >;
+};
+
+export type Newsletter = {
+    _id: string;
+    _type: "newsletter";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    title?: string;
+    slug?: Slug;
+    publishedAt?: string;
+    content?: Array<
+        | {
+              children?: Array<{
+                  marks?: Array<string>;
+                  text?: string;
+                  _type: "span";
+                  _key: string;
+              }>;
+              style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+              listItem?: "bullet" | "number";
+              markDefs?: Array<{
+                  href?: string;
+                  _type: "link";
+                  _key: string;
+              }>;
+              level?: number;
+              _type: "block";
+              _key: string;
+          }
+        | {
+              asset?: {
+                  _ref: string;
+                  _type: "reference";
+                  _weak?: boolean;
+                  [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+              };
+              hotspot?: SanityImageHotspot;
+              crop?: SanityImageCrop;
+              _type: "image";
+              _key: string;
+          }
+    >;
+    subscribers?: Array<string>;
+    status?: "draft" | "published" | "archived";
 };
 
 export type SanityImageCrop = {
@@ -53,6 +168,14 @@ export type SanityImageCrop = {
     bottom?: number;
     left?: number;
     right?: number;
+};
+
+export type SanityImageHotspot = {
+    _type: "sanity.imageHotspot";
+    x?: number;
+    y?: number;
+    height?: number;
+    width?: number;
 };
 
 export type SanityImageAsset = {
@@ -87,13 +210,6 @@ export type SanityImageMetadata = {
     blurHash?: string;
     hasAlpha?: boolean;
     isOpaque?: boolean;
-};
-
-export type Geopoint = {
-    _type: "geopoint";
-    lat?: number;
-    lng?: number;
-    alt?: number;
 };
 
 export type Application = {
@@ -169,19 +285,6 @@ export type SanityAssetSourceData = {
     url?: string;
 };
 
-export type Testimonial = {
-    _id: string;
-    _type: "testimonial";
-    _createdAt: string;
-    _updatedAt: string;
-    _rev: string;
-    name?: string;
-    slug?: Slug;
-    role?: string;
-    testimonial?: string;
-    publishedAt?: string;
-};
-
 export type Job = {
     _id: string;
     _type: "job";
@@ -205,16 +308,18 @@ export type AllSanitySchemaTypes =
     | SanityImagePaletteSwatch
     | SanityImagePalette
     | SanityImageDimensions
-    | SanityImageHotspot
+    | Geopoint
+    | Promotion
+    | Blog
+    | Newsletter
     | SanityImageCrop
+    | SanityImageHotspot
     | SanityImageAsset
     | SanityImageMetadata
-    | Geopoint
     | Application
     | Resume
     | SanityFileAsset
     | SanityAssetSourceData
-    | Testimonial
     | Job
     | Slug;
 export declare const internalGroqTypeReferenceTo: unique symbol;
@@ -248,6 +353,122 @@ export type APPLICATION_BY_SLUG_QUERYResult = {
         title: string | null;
     } | null;
     resumeFile: null;
+} | null;
+
+// Source: ./sanity/lib/blogs/getAllBlogs.ts
+// Variable: ALL_BLOGS
+// Query: *[_type == "blog"] | order(name asc)
+export type ALL_BLOGSResult = Array<{
+    _id: string;
+    _type: "blog";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    title?: string;
+    slug?: Slug;
+    publishedAt?: string;
+    mainImage?: {
+        asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+    };
+    excerpt?: string;
+    body?: Array<
+        | {
+              children?: Array<{
+                  marks?: Array<string>;
+                  text?: string;
+                  _type: "span";
+                  _key: string;
+              }>;
+              style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+              listItem?: "bullet" | "number";
+              markDefs?: Array<{
+                  href?: string;
+                  _type: "link";
+                  _key: string;
+              }>;
+              level?: number;
+              _type: "block";
+              _key: string;
+          }
+        | {
+              asset?: {
+                  _ref: string;
+                  _type: "reference";
+                  _weak?: boolean;
+                  [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+              };
+              hotspot?: SanityImageHotspot;
+              crop?: SanityImageCrop;
+              _type: "image";
+              _key: string;
+          }
+    >;
+}>;
+
+// Source: ./sanity/lib/blogs/getBlogBySlug.ts
+// Variable: BLOG_BY_ID_QUERY
+// Query: *[_type == "blog" && slug.current == $slug] | order(name asc) [0]
+export type BLOG_BY_ID_QUERYResult = {
+    _id: string;
+    _type: "blog";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    title?: string;
+    slug?: Slug;
+    publishedAt?: string;
+    mainImage?: {
+        asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+    };
+    excerpt?: string;
+    body?: Array<
+        | {
+              children?: Array<{
+                  marks?: Array<string>;
+                  text?: string;
+                  _type: "span";
+                  _key: string;
+              }>;
+              style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+              listItem?: "bullet" | "number";
+              markDefs?: Array<{
+                  href?: string;
+                  _type: "link";
+                  _key: string;
+              }>;
+              level?: number;
+              _type: "block";
+              _key: string;
+          }
+        | {
+              asset?: {
+                  _ref: string;
+                  _type: "reference";
+                  _weak?: boolean;
+                  [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+              };
+              hotspot?: SanityImageHotspot;
+              crop?: SanityImageCrop;
+              _type: "image";
+              _key: string;
+          }
+    >;
 } | null;
 
 // Source: ./sanity/lib/job-openings/getAllJobOpenings.ts
@@ -324,32 +545,17 @@ export type RESUME_BY_ID_QUERYResult = {
     slug?: Slug;
 } | null;
 
-// Source: ./sanity/lib/testimonials/getAllTestimonials.ts
-// Variable: ALL_TESTIMONIALS_QUERY
-// Query: *[_type == "testimonial"] | order(name asc)
-export type ALL_TESTIMONIALS_QUERYResult = Array<{
-    _id: string;
-    _type: "testimonial";
-    _createdAt: string;
-    _updatedAt: string;
-    _rev: string;
-    name?: string;
-    slug?: Slug;
-    role?: string;
-    testimonial?: string;
-    publishedAt?: string;
-}>;
-
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
     interface SanityQueries {
         '*[_type == "application"]{\n        _id,\n        firstName,\n        lastName,\n        email,\n        phone,\n        publishedAt,\n        job->{\n            title\n        },\n        resumeFile{\n            asset->{\n                _ref\n            }\n        }\n    }': ALL_APPLICATIONS_QUERYResult;
         '*[_type == "application" && slug.current == $slug][0]{\n        _id,\n        firstName,\n        lastName,\n        email,\n        phone,\n        publishedAt,\n        job->{\n            title\n        },\n        resumeFile{\n            asset->{\n                _ref\n            }\n        }\n    }': APPLICATION_BY_SLUG_QUERYResult;
+        '*[_type == "blog"] | order(name asc)\n': ALL_BLOGSResult;
+        '*[_type == "blog" && slug.current == $slug] | order(name asc) [0]\n': BLOG_BY_ID_QUERYResult;
         '*[_type == "job"] | order(name asc)\n': ALL_JOB_OPENINGS_QUERYResult;
         '*[_type == "job" && slug.current == $slug] | order(name asc) [0]\n': JOB_BY_ID_QUERYResult;
         '*[_type == "resume"] | order(name asc)\n': ALL_RESUMES_QUERYResult;
         '*[_type == "resume" && slug.current == $slug] | order(name asc) [0]\n': RESUME_BY_ID_QUERYResult;
-        '*[_type == "testimonial"] | order(name asc)\n': ALL_TESTIMONIALS_QUERYResult;
     }
 }

@@ -1,24 +1,75 @@
-import Link from "next/link";
-import React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { getActivePromotions } from "@/sanity/lib/promotions/getActivePromotions";
+import { useRouter } from "next/navigation";
+
+interface Promotion {
+    title: string;
+    description: string;
+    discountPercentage: number;
+    icon?: string;
+}
 
 const PromotionalBanner = () => {
+    const router = useRouter();
+    const [promotions, setPromotions] = useState<Promotion[]>([]);
+    const [currentPromotion, setCurrentPromotion] = useState<Promotion | null>(null);
+
+    useEffect(() => {
+        async function fetchPromotions() {
+            const data = await getActivePromotions();
+            if (data.length > 0) {
+                setPromotions(data);
+                setCurrentPromotion(data[0]); // Set initial promotion
+            }
+        }
+        fetchPromotions();
+    }, []);
+
+    useEffect(() => {
+        if (promotions.length < 2) return;
+
+        let currentIndex = 0;
+
+        const interval = setInterval(() => {
+            currentIndex = (currentIndex + 1) % promotions.length;
+            setCurrentPromotion(promotions[currentIndex]);
+        }, 5000); // Change promotion every 5 seconds
+
+        return () => clearInterval(interval);
+    }, [promotions]);
+
+    const renderIcon = (icon?: string) => {
+        switch (icon) {
+            case "sparkle":
+                return "✨";
+            case "star":
+                return "⭐";
+            case "discount":
+                return "💰";
+            case "gift":
+                return "🎁";
+            default:
+                return "🔥";
+        }
+    };
+
+    if (!currentPromotion) return null;
+
     return (
-        <div className="bg-gradient-to-r from-blue-600 via-blue-400 to-blue-600 text-white px-8 py-12 mx-4 mt-4 rounded-xl shadow-2xl transform hover:scale-105 transition duration-500">
-            <Link
-                href={"/estimate"}
-                className="container mx-auto flex flex-col items-center text-center"
-            >
-                <h2 className="text-2xl sm:text-3xl font-extrabold uppercase tracking-wide mb-6">
-                    Brite Holiday Lighting
-                </h2>
-                <p className="text-md sm:text-xl font-semibold mb-8 max-w-2xl">
-                    Let Your Home Shine Brite This Holiday Season! ✨
-                </p>
-                <span className="bg-white text-blue-800 py-3 px-8 rounded-full shadow-lg font-bold text-sm transform hover:scale-110 transition duration-300">
-                    Get An Estimate!
-                </span>
-            </Link>
-        </div>
+        <motion.div
+            onClick={() => router.push("/promotions")}
+            key={currentPromotion.title} // Animate when promotion changes
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="w-full bg-gradient-to-r from-blue-500 to-pink-500 text-white text-center p-4 font-semibold text-lg"
+        >
+            {renderIcon(currentPromotion.icon)} {currentPromotion.title} -{" "}
+            {currentPromotion.discountPercentage}% Off! {currentPromotion.description}
+        </motion.div>
     );
 };
 
