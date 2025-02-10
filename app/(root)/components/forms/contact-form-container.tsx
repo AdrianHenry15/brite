@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { Button } from "@mui/material";
 import React, { useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { usePathname } from "next/navigation";
 import ReCAPTCHA from "react-google-recaptcha";
 
@@ -11,7 +11,6 @@ import Logo from "../../../../public/assets/icons/brite-logo.png";
 import HandyMan from "../../../../public/assets/imgs/handyman.webp";
 
 import AuthorizationCheckbox from "./components/authorization-checkbox";
-import sendEmail from "../../../../lib/email-service";
 import ConfirmationModal from "../modals/ConfirmationModal";
 import SuccessModal from "../modals/SuccessModal";
 import { Loader } from "../loader";
@@ -19,6 +18,7 @@ import Input from "../inputs/Input";
 import Textarea from "../inputs/Textarea";
 import { ServicesList, ReferralSources } from "../../../../lib/constants";
 import Dropdown from "./components/dropdown";
+import sendEmail from "@/lib/email-service";
 
 type FormValues = {
     firstName: string;
@@ -27,8 +27,8 @@ type FormValues = {
     email: string;
     address: string;
     service: string;
-    comment?: string;
-    referralSource?: string;
+    comment: string;
+    referralSource: string;
 };
 
 const ContactFormOverlay = () => {
@@ -51,24 +51,47 @@ const ContactFormOverlay = () => {
         getValues,
         control,
         formState: { errors },
-    } = useForm();
+        register,
+    } = useForm<FormValues>();
 
     useEffect(() => {
         setIsSubmitDisabled(!captchaValue); // Enable submit button only when CAPTCHA is completed
     }, [captchaValue]);
 
-    const onSubmit = () => {
+    const onSubmit: SubmitHandler<FormValues> = async (data) => {
         if (!captchaValue) {
             alert("Please complete the CAPTCHA verification.");
             return;
         }
-        setIsOpen(true); // Show confirmation modal
+
+        setLoading(true);
+
+        try {
+            const response = await fetch("/api/verify-recaptcha", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ token: captchaValue }),
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                setIsOpen(true); // Show confirmation modal
+            } else {
+                alert("reCAPTCHA verification failed. Please try again.");
+            }
+        } catch (error) {
+            console.error("Error verifying reCAPTCHA:", error);
+            alert("An error occurred while verifying reCAPTCHA.");
+        }
+
+        setLoading(false);
     };
 
     const confirmEstimate = () => {
         setLoading(true);
 
-        const templateParams: FormValues = {
+        const templateParams = {
             firstName: getValues("firstName"),
             lastName: getValues("lastName"),
             phone: getValues("phone"),
@@ -79,19 +102,14 @@ const ContactFormOverlay = () => {
             referralSource: getValues("referralSource"),
         };
 
-        sendEmail(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY, PRIVATE_KEY).then(
-            ({ success }) => {
-                if (success) {
-                    setEstimateSuccess(true);
-                    setEstimateFail(false);
-                } else {
-                    setEstimateSuccess(false);
-                    setEstimateFail(true);
-                }
+        sendEmail(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY, PRIVATE_KEY)
+            .then(({ success }) => {
+                setEstimateSuccess(success);
+                setEstimateFail(!success);
                 setIsOpen(false); // Close confirmation modal
-                setLoading(false);
-            },
-        );
+            })
+            .catch(() => setEstimateFail(true))
+            .finally(() => setLoading(false));
     };
 
     return (
@@ -194,14 +212,14 @@ const ContactFormOverlay = () => {
                     <AuthorizationCheckbox inputName="authorization" control={control} />
                     <ReCAPTCHA
                         sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY as string}
-                        onChange={setCaptchaValue}
+                        onChange={(value) => setCaptchaValue(value)}
                     />
                     <Button
                         type="submit"
                         variant="contained"
                         color="primary"
                         className="bg-blue-500"
-                        disabled={!isSubmitDisabled} // Disable submit until CAPTCHA is completed
+                        disabled={isSubmitDisabled} // Fix logic
                         fullWidth
                         sx={{ mt: 2 }}
                     >

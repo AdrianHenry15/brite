@@ -4,7 +4,7 @@ import { Toaster } from "react-hot-toast";
 import Script from "next/script";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { ClerkProvider } from "@clerk/nextjs";
+import { ClerkLoading, ClerkProvider } from "@clerk/nextjs";
 
 import { Loader } from "./(root)/components/loader";
 
@@ -43,7 +43,12 @@ export default async function RootLayout({ children }: { children: React.ReactNo
                         type="text/javascript"
                         src={`https://maps.googleapis.com/maps/api/js?key=${process.env.GOOGLE_API_KEY}&libraries=places`}
                     />
-                    <Suspense fallback={<Loader />}>{children}</Suspense>
+                    <Suspense fallback={<Loader />}>
+                        <ClerkLoading>
+                            <Loader />
+                        </ClerkLoading>
+                        {children}
+                    </Suspense>
                     {/* Higher order component for live settings when product is published */}
                     <SanityLive />
                 </body>

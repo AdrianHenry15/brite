@@ -56,7 +56,7 @@ const UserIcon = () => {
                     </div>
                 </div>
             ) : (
-                <>
+                <ClerkLoaded>
                     <button
                         onClick={() => setShowSignIn(true)}
                         className="bg-blue-500 hover:bg-blue-600 transition-all ease-in-out hover:scale-105 duration-300 text-white font-bold py-2 px-4 rounded-full"
@@ -64,7 +64,7 @@ const UserIcon = () => {
                         Sign In
                     </button>
                     {showSignIn && <SignInModal setShowSignIn={setShowSignIn} />}
-                </>
+                </ClerkLoaded>
             )}
         </ClerkLoaded>
     );
