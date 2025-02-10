@@ -45,6 +45,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                         {renderSidebarItem("/", "🌐 Go To Website")}
                         {renderSidebarItem("/admin/dashboard", "📊 Dashboard")}
                         {renderSidebarItem("/admin/users", "👤 Manage Users")}
+                        {renderSidebarItem("/admin/promotions", "🚀 Promotions")}
+                        {renderSidebarItem("/admin/blog", "📝 Blog")}
                         {renderSidebarItem("/admin/applications", "📱 Applications")}
                         {renderSidebarItem("/studio", "💻 Brite Studio")}
                         {/* <Link
