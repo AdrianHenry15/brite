@@ -1,9 +1,8 @@
 import React from "react";
 
-import Navbar from "../../components/layout/header";
-import Footer from "../../components/layout/footer";
-
 import "../globals.css";
+import Navbar from "../(root)/components/header";
+import Footer from "../(root)/components/footer";
 
 export default async function CareersLayout({ children }: { children: React.ReactNode }) {
     return (

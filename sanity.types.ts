@@ -115,6 +115,33 @@ export type Blog = {
               _key: string;
           }
     >;
+    author?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "author";
+    };
+};
+
+export type Author = {
+    _id: string;
+    _type: "author";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    name?: string;
+    image?: {
+        asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+    };
+    bio?: string;
 };
 
 export type Newsletter = {
@@ -311,6 +338,7 @@ export type AllSanitySchemaTypes =
     | Geopoint
     | Promotion
     | Blog
+    | Author
     | Newsletter
     | SanityImageCrop
     | SanityImageHotspot
@@ -357,75 +385,42 @@ export type APPLICATION_BY_SLUG_QUERYResult = {
 
 // Source: ./sanity/lib/blogs/getAllBlogs.ts
 // Variable: ALL_BLOGS
-// Query: *[_type == "blog"] | order(name asc)
+// Query: *[_type == "blog"] | order(publishedAt desc) {            _id,            title,            slug,            publishedAt,            mainImage {                asset->{                    _id,                    url                }            },            excerpt,            author->{                _id,                name,                image {                    asset->{                        _id,                        url                    }                }            }        }
 export type ALL_BLOGSResult = Array<{
     _id: string;
-    _type: "blog";
-    _createdAt: string;
-    _updatedAt: string;
-    _rev: string;
-    title?: string;
-    slug?: Slug;
-    publishedAt?: string;
-    mainImage?: {
-        asset?: {
-            _ref: string;
-            _type: "reference";
-            _weak?: boolean;
-            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-        };
-        hotspot?: SanityImageHotspot;
-        crop?: SanityImageCrop;
-        _type: "image";
-    };
-    excerpt?: string;
-    body?: Array<
-        | {
-              children?: Array<{
-                  marks?: Array<string>;
-                  text?: string;
-                  _type: "span";
-                  _key: string;
-              }>;
-              style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
-              markDefs?: Array<{
-                  href?: string;
-                  _type: "link";
-                  _key: string;
-              }>;
-              level?: number;
-              _type: "block";
-              _key: string;
-          }
-        | {
-              asset?: {
-                  _ref: string;
-                  _type: "reference";
-                  _weak?: boolean;
-                  [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-              };
-              hotspot?: SanityImageHotspot;
-              crop?: SanityImageCrop;
-              _type: "image";
-              _key: string;
-          }
-    >;
+    title: string | null;
+    slug: Slug | null;
+    publishedAt: string | null;
+    mainImage: {
+        asset: {
+            _id: string;
+            url: string | null;
+        } | null;
+    } | null;
+    excerpt: string | null;
+    author: {
+        _id: string;
+        name: string | null;
+        image: {
+            asset: {
+                _id: string;
+                url: string | null;
+            } | null;
+        } | null;
+    } | null;
 }>;
 
-// Source: ./sanity/lib/blogs/getBlogBySlug.ts
-// Variable: BLOG_BY_ID_QUERY
-// Query: *[_type == "blog" && slug.current == $slug] | order(name asc) [0]
-export type BLOG_BY_ID_QUERYResult = {
+// Source: ./sanity/lib/authors/getAllAuthors.ts
+// Variable: ALL_AUTHORS
+// Query: *[_type == "author"] | order(name asc)
+export type ALL_AUTHORSResult = Array<{
     _id: string;
-    _type: "blog";
+    _type: "author";
     _createdAt: string;
     _updatedAt: string;
     _rev: string;
-    title?: string;
-    slug?: Slug;
-    publishedAt?: string;
-    mainImage?: {
+    name?: string;
+    image?: {
         asset?: {
             _ref: string;
             _type: "reference";
@@ -436,39 +431,31 @@ export type BLOG_BY_ID_QUERYResult = {
         crop?: SanityImageCrop;
         _type: "image";
     };
-    excerpt?: string;
-    body?: Array<
-        | {
-              children?: Array<{
-                  marks?: Array<string>;
-                  text?: string;
-                  _type: "span";
-                  _key: string;
-              }>;
-              style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-              listItem?: "bullet" | "number";
-              markDefs?: Array<{
-                  href?: string;
-                  _type: "link";
-                  _key: string;
-              }>;
-              level?: number;
-              _type: "block";
-              _key: string;
-          }
-        | {
-              asset?: {
-                  _ref: string;
-                  _type: "reference";
-                  _weak?: boolean;
-                  [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-              };
-              hotspot?: SanityImageHotspot;
-              crop?: SanityImageCrop;
-              _type: "image";
-              _key: string;
-          }
-    >;
+    bio?: string;
+}>;
+
+// Source: ./sanity/lib/authors/getAuthorBySlug.ts
+// Variable: AUTHOR_BY_ID_QUERY
+// Query: *[_type == "author" && slug.current == $slug] | order(name asc) [0]
+export type AUTHOR_BY_ID_QUERYResult = {
+    _id: string;
+    _type: "author";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    name?: string;
+    image?: {
+        asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+    };
+    bio?: string;
 } | null;
 
 // Source: ./sanity/lib/job-openings/getAllJobOpenings.ts
@@ -551,8 +538,9 @@ declare module "@sanity/client" {
     interface SanityQueries {
         '*[_type == "application"]{\n        _id,\n        firstName,\n        lastName,\n        email,\n        phone,\n        publishedAt,\n        job->{\n            title\n        },\n        resumeFile{\n            asset->{\n                _ref\n            }\n        }\n    }': ALL_APPLICATIONS_QUERYResult;
         '*[_type == "application" && slug.current == $slug][0]{\n        _id,\n        firstName,\n        lastName,\n        email,\n        phone,\n        publishedAt,\n        job->{\n            title\n        },\n        resumeFile{\n            asset->{\n                _ref\n            }\n        }\n    }': APPLICATION_BY_SLUG_QUERYResult;
-        '*[_type == "blog"] | order(name asc)\n': ALL_BLOGSResult;
-        '*[_type == "blog" && slug.current == $slug] | order(name asc) [0]\n': BLOG_BY_ID_QUERYResult;
+        '\n        *[_type == "blog"] | order(publishedAt desc) {\n            _id,\n            title,\n            slug,\n            publishedAt,\n            mainImage {\n                asset->{\n                    _id,\n                    url\n                }\n            },\n            excerpt,\n            author->{\n                _id,\n                name,\n                image {\n                    asset->{\n                        _id,\n                        url\n                    }\n                }\n            }\n        }\n    ': ALL_BLOGSResult;
+        '*[_type == "author"] | order(name asc)\n': ALL_AUTHORSResult;
+        '*[_type == "author" && slug.current == $slug] | order(name asc) [0]\n': AUTHOR_BY_ID_QUERYResult;
         '*[_type == "job"] | order(name asc)\n': ALL_JOB_OPENINGS_QUERYResult;
         '*[_type == "job" && slug.current == $slug] | order(name asc) [0]\n': JOB_BY_ID_QUERYResult;
         '*[_type == "resume"] | order(name asc)\n': ALL_RESUMES_QUERYResult;

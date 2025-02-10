@@ -2,8 +2,33 @@ import { defineQuery } from "next-sanity";
 import { sanityFetch } from "../live";
 
 export const getAllBlogs = async () => {
-    const ALL_BLOGS = defineQuery(`*[_type == "blog"] | order(name asc)
-`);
+    // Updated query to resolve the author reference and include the author's name and image
+    const ALL_BLOGS = defineQuery(`
+        *[_type == "blog"] | order(publishedAt desc) {
+            _id,
+            title,
+            slug,
+            publishedAt,
+            mainImage {
+                asset->{
+                    _id,
+                    url
+                }
+            },
+            excerpt,
+            author->{
+                _id,
+                name,
+                image {
+                    asset->{
+                        _id,
+                        url
+                    }
+                },
+            bio
+            }
+        }
+    `);
 
     try {
         // Use sanityFetch to send the query

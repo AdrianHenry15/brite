@@ -56,5 +56,12 @@ export const blogType = defineType({
                 },
             ],
         }),
+        defineField({
+            name: "author",
+            title: "Author",
+            type: "reference",
+            to: [{ type: "author" }],
+            validation: (Rule) => Rule.required(),
+        }),
     ],
 });
