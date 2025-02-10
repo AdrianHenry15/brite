@@ -19,7 +19,7 @@ export type NavMenuItems =
     | "Home"
     | "Services"
     | "Our Story"
-    | "FAQs"
+    | "Faqs"
     | "Careers"
     | "Newsletter"
     | "Blog";

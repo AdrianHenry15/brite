@@ -68,7 +68,7 @@ export const NavMenu: NavMenuType[] = [
         link: "/blog",
     },
     {
-        title: "FAQs",
+        title: "Faqs",
         link: "/faqs",
     },
 ];

@@ -1,43 +1,27 @@
-"use client";
-
+import { Promotion } from "@/sanity.types";
 import { getAllPromotions } from "@/sanity/lib/promotions/getAllPromotions";
-import { useEffect, useState } from "react";
+import PromotionList from "./components/promotion-list";
 
-interface Promotion {
-    title: string;
-    description: string;
-    discountPercentage: number;
-    icon?: string;
-    status: string;
-    startDate: string;
-    endDate: string;
-}
+export default async function PromotionsPage() {
+    const promotions = await getAllPromotions();
 
-export default function PromotionsPage() {
-    const [promotions, setPromotions] = useState<Promotion[]>([]);
-    const [loading, setLoading] = useState(true);
+    const sortByDate = (a: Promotion, b: Promotion) =>
+        new Date(a.startDate!).getTime() - new Date(b.startDate!).getTime();
 
-    useEffect(() => {
-        async function fetchPromotions() {
-            const data = await getAllPromotions();
-            setPromotions(data);
-            setLoading(false);
-        }
-        fetchPromotions();
-    }, []);
+    const activePromotions = promotions
+        .filter((p: Promotion) => p.status === "active")
+        .sort(sortByDate);
 
-    if (loading) {
-        return (
-            <div className="h-screen flex items-center justify-center">Loading promotions...</div>
-        );
-    }
+    const upcomingPromotions = promotions
+        .filter((p: Promotion) => p.status === "upcoming")
+        .sort(sortByDate);
 
-    const activePromotions = promotions.filter((p) => p.status === "active");
-    const upcomingPromotions = promotions.filter((p) => p.status === "upcoming");
-    const expiredPromotions = promotions.filter((p) => p.status === "expired");
+    const expiredPromotions = promotions
+        .filter((p: Promotion) => p.status === "expired")
+        .sort(sortByDate);
 
     return (
-        <div className="max-w-5xl mx-auto p-6">
+        <div className="max-w-5xl mx-auto p-6 bg-gradient-to-b from-blue-500 to-black">
             <h1 className="text-3xl font-bold text-center mb-6">All Promotions</h1>
 
             <section className="mb-8">
@@ -59,27 +43,3 @@ export default function PromotionsPage() {
         </div>
     );
 }
-
-const PromotionList = ({ promotions }: { promotions: Promotion[] }) => {
-    if (promotions.length === 0) {
-        return <p className="text-gray-400">No promotions available.</p>;
-    }
-
-    return (
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {promotions.map((promo) => (
-                <div key={promo.title} className="p-4 bg-white shadow-md rounded-lg border">
-                    <h3 className="text-xl font-semibold">{promo.title}</h3>
-                    <p className="text-gray-600">{promo.description}</p>
-                    <p className="text-blue-500 font-bold mt-2">
-                        💰 {promo.discountPercentage}% Off
-                    </p>
-                    <p className="text-sm text-gray-400">
-                        📅 {new Date(promo.startDate).toLocaleDateString()} -{" "}
-                        {new Date(promo.endDate).toLocaleDateString()}
-                    </p>
-                </div>
-            ))}
-        </div>
-    );
-};

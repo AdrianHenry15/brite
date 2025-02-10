@@ -14,16 +14,16 @@ export default async function HomePage() {
             <SocialProof />
             <ProductRow
                 category="Exterior Cleaning"
-                title="Revitalize Your Home's Curb Appeal – Spotless Exteriors, Every Time!"
+                title="Transform Your Estate’s Curb Appeal – Premium Exterior Cleaning for the Finest Homes!"
             />
             <ProductRow
                 category="Holiday Lighting"
-                title="Lighting Up Your Holidays with Sparkle and Cheer!"
+                title="Illuminate Your Luxury Home – Exquisite Holiday Lighting for a Spectacular Display!"
             />
             <ProductRow
                 className="pb-24"
                 category="Commercial Services"
-                title="Your Business, Our Expertise—Excellence Delivered!"
+                title="Enhance Your Business’s Image – Professional Commercial Exterior Cleaning & Holiday Lighting Services!"
             />
             {/* <WelcomeMessage /> */}
         </section>
