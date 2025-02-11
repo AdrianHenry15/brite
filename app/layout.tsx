@@ -18,8 +18,23 @@ import DisableDraftMode from "./(root)/components/disable-draft-mode";
 const nunito = Nunito({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-    title: "Brite",
-    description: "Residential/Commercial Maintenance Services",
+    title: "Brite Exterior Cleaning Services",
+    description:
+        "Professional residential and commercial exterior cleaning services in Charlotte, NC. Trust Brite for your maintenance and cleaning needs.",
+    openGraph: {
+        title: "Brite Exterior Cleaning Services",
+        description:
+            "Residential and commercial exterior cleaning services provided by Brite in Charlotte, NC. Discover our maintenance services for a spotless home or business.",
+        url: "https://briteclt.com", // Make sure this is the homepage URL
+        siteName: "Brite Exterior Cleaning",
+        type: "website",
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "Brite Exterior Cleaning Services",
+        description:
+            "Explore Brite's residential and commercial exterior cleaning services in Charlotte, NC. Get your property looking its best with our professional services.",
+    },
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {

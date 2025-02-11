@@ -1,11 +1,10 @@
 "use client";
 
-import Image from "next/image";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { usePathname } from "next/navigation";
-import ReCAPTCHA from "react-google-recaptcha";
 import { Button } from "@mui/material";
+import { ReCAPTCHA } from "react-google-recaptcha"; // Import v2 component
 
 import Logo from "../../../../public/assets/icons/brite-logo.png";
 import AuthorizationCheckbox from "./components/authorization-checkbox";
@@ -17,6 +16,7 @@ import InputAlt from "../inputs/InputAlt";
 import TextareaAlt from "../inputs/TextareaAlt";
 import { ReferralSources, ServicesList } from "../../../../lib/constants";
 import Dropdown from "./components/dropdown";
+import Image from "next/image";
 
 type FormValues = {
     estimateId: string;
@@ -56,7 +56,7 @@ const ContactFormOverlay = () => {
         formState: { errors },
     } = useForm();
 
-    const onSubmit = (data: FormValues) => {
+    const onSubmit = () => {
         if (!recaptchaToken) {
             alert("Please complete the reCAPTCHA verification.");
             return;
@@ -82,7 +82,7 @@ const ContactFormOverlay = () => {
             email: getValues("email"),
             address: getValues("address"),
             service: getValues("service"),
-            referralSource: getValues("referralSource"), // Adding howHeard value
+            referralSource: getValues("referralSource"),
             frequency: getValues("frequency"),
             comment: getValues("comment"),
             createdAt: createdAt,
@@ -99,6 +99,10 @@ const ContactFormOverlay = () => {
                 setLoading(false);
             },
         );
+    };
+
+    const handleRecaptcha = (value: string | null) => {
+        setRecaptchaToken(value);
     };
 
     return (
@@ -206,7 +210,6 @@ const ContactFormOverlay = () => {
                         control={control}
                     />
                     <AuthorizationCheckbox inputName="authorization" control={control} />
-                    <ReCAPTCHA sitekey={RECAPTCHA_SITE_KEY} onChange={setRecaptchaToken} />
                     <div className={`${inputClicked ? "" : "animate-pulse"} my-10`}>
                         <Button
                             type="submit"
@@ -216,6 +219,10 @@ const ContactFormOverlay = () => {
                         >
                             {pathname === "/contact-us" ? "Contact Us" : "Estimate"}
                         </Button>
+                    </div>
+                    {/* reCAPTCHA v2 */}
+                    <div className="mt-4">
+                        <ReCAPTCHA sitekey={RECAPTCHA_SITE_KEY} onChange={handleRecaptcha} />
                     </div>
                 </form>
             </div>
