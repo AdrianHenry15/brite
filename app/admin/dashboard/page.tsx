@@ -2,7 +2,15 @@
 
 import { useUser } from "@clerk/nextjs";
 import Link from "next/link";
-import { ClipboardListIcon, UsersIcon, WebcamIcon, Laptop2Icon } from "lucide-react";
+import {
+    ClipboardListIcon,
+    UsersIcon,
+    WebcamIcon,
+    Laptop2Icon,
+    FileIcon,
+    PenBoxIcon,
+    CoinsIcon,
+} from "lucide-react";
 import { useEffect, useState } from "react";
 import StatCard from "./components/stat-card";
 import { User } from "@clerk/clerk-sdk-node";
@@ -61,15 +69,22 @@ export default function AdminDashboard() {
                 <StatCard
                     link="/admin/applications"
                     color_gradient="green"
-                    icon={<UsersIcon />}
+                    icon={<FileIcon />}
                     title="Applications"
                     content={applicationStore.applications.length.toString()}
                 />
                 <StatCard
-                    link="/admin/estimates"
+                    link="/admin/blogs"
                     color_gradient="purple"
-                    icon={<UsersIcon />}
-                    title="Estimates"
+                    icon={<PenBoxIcon />}
+                    title="Blogs"
+                    content="0"
+                />
+                <StatCard
+                    link="/admin/promotions"
+                    color_gradient="yellow"
+                    icon={<CoinsIcon />}
+                    title="Promotions"
                     content="0"
                 />
             </div>

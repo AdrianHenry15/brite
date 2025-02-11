@@ -34,11 +34,11 @@ const UserIcon = () => {
                                     onClick={() => router.push("/studio")}
                                     labelIcon={<CubeIcon color="blue" fontSize={18} />}
                                 />
-                                <UserButton.Action
+                                {/* <UserButton.Action
                                     label="All Applications"
                                     onClick={() => router.push("/admin/applications")}
                                     labelIcon={<BillIcon color="green" fontSize={18} />}
-                                />
+                                /> */}
                                 {/* <UserButton.Action
                                     label="All Resumes"
                                     onClick={() => router.push("/admin/resumes")}
