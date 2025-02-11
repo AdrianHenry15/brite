@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { BillIcon, CubeIcon, DashboardIcon } from "@sanity/icons";
+import { BillIcon, CubeIcon, DashboardIcon, PresentationIcon } from "@sanity/icons";
 import SignInModal from "@/app/(root)/components/user/sign-in-modal";
 import { useRouter } from "next/navigation";
 import { ClerkLoaded, UserButton, useUser } from "@clerk/nextjs";
@@ -39,6 +39,11 @@ const UserIcon = () => {
                                     onClick={() => router.push("/admin/applications")}
                                     labelIcon={<BillIcon color="green" fontSize={18} />}
                                 />
+                                {/* <UserButton.Action
+                                    label="All Resumes"
+                                    onClick={() => router.push("/admin/resumes")}
+                                    labelIcon={<PresentationIcon color="orange" fontSize={18} />}
+                                /> */}
                             </UserButton.MenuItems>
                         ) : (
                             <UserButton.MenuItems>

@@ -1,7 +1,26 @@
-import { Button } from "@mui/material";
 import React from "react";
 import JobOpeningsCard from "./components/card";
 import { getAllJobOpenings } from "@/sanity/lib/job-openings/getAllJobOpenings";
+
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Current Job Openings | Brite Exterior Cleaning Services",
+    description:
+        "Browse the latest job openings at Brite Exterior Cleaning. Join our team and work in exterior cleaning, pressure washing, holiday lighting installation, and more in Charlotte, NC and surrounding areas.",
+    openGraph: {
+        title: "Current Job Openings | Brite Exterior Cleaning Services",
+        description:
+            "Looking for a new job? Explore the latest career opportunities at Brite Exterior Cleaning in Charlotte, NC, including positions in pressure washing, gutter cleaning, and holiday lighting installation.",
+        url: "https://briteclt.com/careers/job-openings",
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "Current Job Openings | Brite Exterior Cleaning Services",
+        description:
+            "Find your next job with Brite Exterior Cleaning. We're hiring for various positions, including exterior cleaning, pressure washing, and holiday lighting installation in Charlotte, NC.",
+    },
+};
 
 const JobOpeningsPage = async () => {
     const jobs = await getAllJobOpenings();
@@ -31,7 +50,7 @@ const JobOpeningsPage = async () => {
             )}
 
             {/* Call-to-Action */}
-            <div className="mt-16 text-center">
+            {/* <div className="mt-16 text-center">
                 <h2 className="text-2xl font-semibold text-gray-800">
                     Don't see a role that fits you?
                 </h2>
@@ -47,7 +66,7 @@ const JobOpeningsPage = async () => {
                 >
                     Submit Your Resume
                 </Button>
-            </div>
+            </div> */}
         </div>
     );
 };

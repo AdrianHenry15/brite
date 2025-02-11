@@ -7,6 +7,14 @@ import "../globals.css";
 import ContactFormContainer from "./components/forms/contact-form-container";
 import PromotionalBanner from "./components/promotional-banner";
 import { getActivePromotions } from "@/sanity/lib/promotions/getActivePromotions";
+import { Metadata } from "next";
+
+// Define metadata for the layout
+export const metadata: Metadata = {
+    title: "Brite | Professional Exterior Cleaning Services",
+    description:
+        "Explore our high-quality exterior cleaning services. Get in touch with Brite for all your cleaning needs.",
+};
 
 export default async function SetupLayout({ children }: { children: React.ReactNode }) {
     const promotions = await getActivePromotions();

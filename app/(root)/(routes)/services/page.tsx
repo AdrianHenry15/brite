@@ -4,6 +4,26 @@ import PressureWashing from "@/public/assets/imgs/ex-cleaning.png";
 import ChristmasLightingSplash from "@/public/assets/imgs/christmas-lights.jpg";
 import CommercialServicePic from "@/public/assets/imgs/h-b-jn.jpg";
 
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Our Services | Brite Exterior Cleaning Services",
+    description:
+        "Discover the range of exterior cleaning services offered by Brite Exterior Cleaning, including pressure washing, window cleaning, and more. Serving Charlotte, NC, and surrounding areas.",
+    openGraph: {
+        title: "Our Services | Brite Exterior Cleaning Services",
+        description:
+            "Explore the variety of professional exterior cleaning services provided by Brite Exterior Cleaning. We specialize in pressure washing, window cleaning, and other residential and commercial services.",
+        url: "https://briteclt.com/services",
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "Our Services | Brite Exterior Cleaning Services",
+        description:
+            "Learn about the exterior cleaning services offered by Brite Exterior Cleaning. From pressure washing to window cleaning, we have you covered!",
+    },
+};
+
 const choices = [
     {
         title: "Exterior Cleaning",

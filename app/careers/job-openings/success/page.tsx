@@ -3,6 +3,26 @@
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Thank You for Applying | Brite Exterior Cleaning Services",
+    description:
+        "Thank you for applying to Brite Exterior Cleaning! We’ve received your application and will review it soon. We appreciate your interest in joining our team.",
+    openGraph: {
+        title: "Thank You for Applying | Brite Exterior Cleaning Services",
+        description:
+            "Your application has been successfully submitted. Thank you for your interest in joining Brite Exterior Cleaning. We’ll be in touch soon!",
+        url: "https://briteclt.com/careers/job-openings/success",
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "Thank You for Applying | Brite Exterior Cleaning Services",
+        description:
+            "Thank you for applying! Your application has been received by Brite Exterior Cleaning. We’ll review it and reach out to you soon.",
+    },
+};
+
 export default function SuccessPage() {
     const router = useRouter();
 

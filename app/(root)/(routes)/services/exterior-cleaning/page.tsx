@@ -10,8 +10,21 @@ import ComponentSplash from "@/app/(root)/components/component-splash";
 import ProductRow from "@/app/(root)/components/products/product-row";
 
 export const metadata: Metadata = {
-    title: "Brite's Exterior Cleaning",
-    description: "Exterior Cleaning At Brite",
+    title: "Exterior Cleaning Services | Brite Exterior Cleaning Services",
+    description:
+        "Brite Exterior Cleaning offers professional exterior cleaning services, including pressure washing, gutter cleaning, and more for homes and businesses in Charlotte, NC and surrounding areas.",
+    openGraph: {
+        title: "Exterior Cleaning Services | Brite Exterior Cleaning Services",
+        description:
+            "Get top-notch exterior cleaning services from Brite Exterior Cleaning, specializing in pressure washing, gutter cleaning, and more for residential and commercial properties in Charlotte, NC.",
+        url: "https://briteclt.com/services/exterior-cleaning",
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "Exterior Cleaning Services | Brite Exterior Cleaning Services",
+        description:
+            "Brite Exterior Cleaning provides expert exterior cleaning services, including pressure washing and gutter cleaning, for homes and businesses in Charlotte, NC.",
+    },
 };
 
 const ExteriorCleaningPage = () => {

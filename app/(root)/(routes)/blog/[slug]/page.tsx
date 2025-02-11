@@ -5,6 +5,33 @@ import { imageUrl } from "@/sanity/lib/image-url";
 import { PortableText, PortableTextComponents } from "@portabletext/react";
 import UserDefaultImage from "@/public/assets/icons/user (1).png";
 import BackButton from "@/app/(root)/components/back-button";
+import { Metadata } from "next";
+
+// Fetching the blog post data by slug
+export async function generateMetadata({
+    params,
+}: {
+    params: { slug: string };
+}): Promise<Metadata> {
+    const blogPost = await getBlogBySlug(params.slug);
+
+    return {
+        title: blogPost.title, // Use the actual title of the blog post
+        description:
+            blogPost.excerpt || "Read our detailed post on exterior cleaning services and tips.",
+        // Optionally, you can add Open Graph or Twitter metadata here
+        openGraph: {
+            title: blogPost.title,
+            description: blogPost.excerpt,
+            url: `https://briteclt.com/blog/${params.slug}`,
+        },
+        twitter: {
+            card: "summary_large_image",
+            title: blogPost.title,
+            description: blogPost.excerpt,
+        },
+    };
+}
 
 export default async function BlogPostPage({ params }: { params: { slug: string } }) {
     const { slug } = await params;

@@ -383,33 +383,6 @@ export type APPLICATION_BY_SLUG_QUERYResult = {
     resumeFile: null;
 } | null;
 
-// Source: ./sanity/lib/blogs/getAllBlogs.ts
-// Variable: ALL_BLOGS
-// Query: *[_type == "blog"] | order(publishedAt desc) {            _id,            title,            slug,            publishedAt,            mainImage {                asset->{                    _id,                    url                }            },            excerpt,            author->{                _id,                name,                image {                    asset->{                        _id,                        url                    }                }            }        }
-export type ALL_BLOGSResult = Array<{
-    _id: string;
-    title: string | null;
-    slug: Slug | null;
-    publishedAt: string | null;
-    mainImage: {
-        asset: {
-            _id: string;
-            url: string | null;
-        } | null;
-    } | null;
-    excerpt: string | null;
-    author: {
-        _id: string;
-        name: string | null;
-        image: {
-            asset: {
-                _id: string;
-                url: string | null;
-            } | null;
-        } | null;
-    } | null;
-}>;
-
 // Source: ./sanity/lib/authors/getAllAuthors.ts
 // Variable: ALL_AUTHORS
 // Query: *[_type == "author"] | order(name asc)
@@ -458,6 +431,34 @@ export type AUTHOR_BY_ID_QUERYResult = {
     bio?: string;
 } | null;
 
+// Source: ./sanity/lib/blogs/getAllBlogs.ts
+// Variable: ALL_BLOGS
+// Query: *[_type == "blog"] | order(publishedAt desc) {            _id,            title,            slug,            publishedAt,            mainImage {                asset->{                    _id,                    url                }            },            excerpt,            author->{                _id,                name,                image {                    asset->{                        _id,                        url                    }                },            bio            }        }
+export type ALL_BLOGSResult = Array<{
+    _id: string;
+    title: string | null;
+    slug: Slug | null;
+    publishedAt: string | null;
+    mainImage: {
+        asset: {
+            _id: string;
+            url: string | null;
+        } | null;
+    } | null;
+    excerpt: string | null;
+    author: {
+        _id: string;
+        name: string | null;
+        image: {
+            asset: {
+                _id: string;
+                url: string | null;
+            } | null;
+        } | null;
+        bio: string | null;
+    } | null;
+}>;
+
 // Source: ./sanity/lib/job-openings/getAllJobOpenings.ts
 // Variable: ALL_JOB_OPENINGS_QUERY
 // Query: *[_type == "job"] | order(name asc)
@@ -490,28 +491,19 @@ export type JOB_BY_ID_QUERYResult = {
     publishedAt?: string;
 } | null;
 
-// Source: ./sanity/lib/resume/getAllResumes.ts
+// Source: ./sanity/lib/resumes/getAllResumes.ts
 // Variable: ALL_RESUMES_QUERY
-// Query: *[_type == "resume"] | order(name asc)
+// Query: *[_type == "resume"]{    _id,    user-> { name },    "resumeFile": resumeFile.asset-> { url },    uploadedAt  } | order(uploadedAt desc)
 export type ALL_RESUMES_QUERYResult = Array<{
     _id: string;
-    _type: "resume";
-    _createdAt: string;
-    _updatedAt: string;
-    _rev: string;
-    resumeFile?: {
-        asset?: {
-            _ref: string;
-            _type: "reference";
-            _weak?: boolean;
-            [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
-        };
-        _type: "file";
-    };
-    slug?: Slug;
+    user: null;
+    resumeFile: {
+        url: string | null;
+    } | null;
+    uploadedAt: null;
 }>;
 
-// Source: ./sanity/lib/resume/getResumeBySlug.ts
+// Source: ./sanity/lib/resumes/getResumeBySlug.ts
 // Variable: RESUME_BY_ID_QUERY
 // Query: *[_type == "resume" && slug.current == $slug] | order(name asc) [0]
 export type RESUME_BY_ID_QUERYResult = {
@@ -538,12 +530,12 @@ declare module "@sanity/client" {
     interface SanityQueries {
         '*[_type == "application"]{\n        _id,\n        firstName,\n        lastName,\n        email,\n        phone,\n        publishedAt,\n        job->{\n            title\n        },\n        resumeFile{\n            asset->{\n                _ref\n            }\n        }\n    }': ALL_APPLICATIONS_QUERYResult;
         '*[_type == "application" && slug.current == $slug][0]{\n        _id,\n        firstName,\n        lastName,\n        email,\n        phone,\n        publishedAt,\n        job->{\n            title\n        },\n        resumeFile{\n            asset->{\n                _ref\n            }\n        }\n    }': APPLICATION_BY_SLUG_QUERYResult;
-        '\n        *[_type == "blog"] | order(publishedAt desc) {\n            _id,\n            title,\n            slug,\n            publishedAt,\n            mainImage {\n                asset->{\n                    _id,\n                    url\n                }\n            },\n            excerpt,\n            author->{\n                _id,\n                name,\n                image {\n                    asset->{\n                        _id,\n                        url\n                    }\n                }\n            }\n        }\n    ': ALL_BLOGSResult;
         '*[_type == "author"] | order(name asc)\n': ALL_AUTHORSResult;
         '*[_type == "author" && slug.current == $slug] | order(name asc) [0]\n': AUTHOR_BY_ID_QUERYResult;
+        '\n        *[_type == "blog"] | order(publishedAt desc) {\n            _id,\n            title,\n            slug,\n            publishedAt,\n            mainImage {\n                asset->{\n                    _id,\n                    url\n                }\n            },\n            excerpt,\n            author->{\n                _id,\n                name,\n                image {\n                    asset->{\n                        _id,\n                        url\n                    }\n                },\n            bio\n            }\n        }\n    ': ALL_BLOGSResult;
         '*[_type == "job"] | order(name asc)\n': ALL_JOB_OPENINGS_QUERYResult;
         '*[_type == "job" && slug.current == $slug] | order(name asc) [0]\n': JOB_BY_ID_QUERYResult;
-        '*[_type == "resume"] | order(name asc)\n': ALL_RESUMES_QUERYResult;
+        '*[_type == "resume"]{\n    _id,\n    user-> { name },\n    "resumeFile": resumeFile.asset-> { url },\n    uploadedAt\n  } | order(uploadedAt desc)': ALL_RESUMES_QUERYResult;
         '*[_type == "resume" && slug.current == $slug] | order(name asc) [0]\n': RESUME_BY_ID_QUERYResult;
     }
 }
