@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { FaChevronLeft } from "react-icons/fa6";
 
 interface IBackButtonProps {
     title: string;
@@ -13,9 +14,10 @@ export default function BackButton(props: IBackButtonProps) {
     return (
         <Link
             href={link}
-            className="mt-6 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition"
+            className="mt-6 py-2 flex items-center text-gray-700 rounded-md hover:text-blue-600 transition"
         >
-            {title}
+            <FaChevronLeft size={12} className="mr-4" />
+            <p>{title}</p>
         </Link>
     );
 }
