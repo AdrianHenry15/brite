@@ -7,10 +7,10 @@ import { useState } from "react";
 import { FaPhone } from "react-icons/fa6";
 import { BiChevronDown } from "react-icons/bi";
 
-import MobileHeader from "./MobileMenu";
+import MobileHeader from "./mobile-menu";
 import Logo from "../../../../public/assets/icons/brite-logo.png";
 import { NavMenu } from "../../../../lib/constants";
-import ServicesMenu from "./ServicesMenu";
+import ServicesMenu from "./services-menu";
 import { NavMenuType } from "@/lib/types";
 import UserIcon from "./user-icon";
 import Button from "@/app/(root)/components/button";

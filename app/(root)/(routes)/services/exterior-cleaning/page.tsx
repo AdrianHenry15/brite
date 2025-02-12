@@ -1,6 +1,6 @@
 import React from "react";
 import { Metadata } from "next";
-import PromoSection from "@/app/(root)/components/icon-banner";
+import PromoSection from "@/app/(root)/components/promo-stuff/promo-section";
 import ExteriorCleaningImg from "@/public/assets/imgs/ec-1.jpg";
 import BlogPromo from "@/app/(root)/components/promo-stuff/blog-promo";
 import FAQPromo from "@/app/(root)/components/promo-stuff/faqs-promo";

@@ -2,7 +2,7 @@ import React from "react";
 import { Metadata } from "next";
 import CommercialServicesImg from "@/public/assets/imgs/action-3.jpg";
 import FAQPromo from "@/app/(root)/components/promo-stuff/faqs-promo";
-import PromoSection from "@/app/(root)/components/icon-banner";
+import PromoSection from "@/app/(root)/components/promo-stuff/promo-section";
 
 export const metadata: Metadata = {
     title: "Commercial Services | Brite Exterior Cleaning Services",

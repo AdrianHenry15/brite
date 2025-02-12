@@ -4,7 +4,7 @@ import Navbar from "./components/header";
 import Footer from "./components/footer";
 
 import "../globals.css";
-import ContactFormContainer from "./components/forms/contact-form-container";
+import ContactFormContainer from "./components/forms/contact-form";
 import PromotionalBanner from "./components/promo-stuff/promotional-banner";
 import { getActivePromotions } from "@/sanity/lib/promotions/getActivePromotions";
 import { Metadata } from "next";

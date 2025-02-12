@@ -13,7 +13,8 @@ export async function generateMetadata({
 }: {
     params: { slug: string };
 }): Promise<Metadata> {
-    const blogPost = await getBlogBySlug(params.slug);
+    const { slug } = await params;
+    const blogPost = await getBlogBySlug(slug);
 
     return {
         title: blogPost.title, // Use the actual title of the blog post
@@ -23,7 +24,7 @@ export async function generateMetadata({
         openGraph: {
             title: blogPost.title,
             description: blogPost.excerpt,
-            url: `https://briteclt.com/blog/${params.slug}`,
+            url: `https://briteclt.com/blog/${slug}`,
         },
         twitter: {
             card: "summary_large_image",

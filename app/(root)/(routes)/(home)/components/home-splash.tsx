@@ -7,12 +7,12 @@ import React from "react";
 import SplashPic from "@/public/assets/imgs/nick-joe-pic.jpg";
 import Logo from "@/public/assets/icons/brite-logo.png";
 import Link from "next/link";
-import ContactFormOverlay from "@/app/(root)/components/forms/contact-form-container";
+import ContactFormOverlay from "@/app/(root)/components/forms/overlay";
 
 const HomeSplash = () => {
     return (
         <div className="relative w-full text-white h-screen">
-            <div className="absolute hidden right-[250px] top-[20%] lg:flex lg:top-[15%] lg:right-[350px] xl:right-[450px]">
+            <div className="absolute hidden right-[250px] top-[20%] lg:flex lg:top-[1%] lg:right-[350px] xl:right-[450px]">
                 <ContactFormOverlay />
             </div>
             {/* SHADOW */}

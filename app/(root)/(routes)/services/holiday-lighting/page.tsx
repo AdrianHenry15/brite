@@ -2,7 +2,7 @@ import React from "react";
 import { Metadata } from "next";
 
 import HolidayLightingImg from "@/public/assets/imgs/christmas-lights.jpg";
-import PromoSection from "@/app/(root)/components/icon-banner";
+import PromoSection from "@/app/(root)/components/promo-stuff/promo-section";
 import CareersPromo from "@/app/(root)/components/promo-stuff/careers-promo";
 
 export const metadata: Metadata = {

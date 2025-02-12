@@ -9,7 +9,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { FaPhone } from "react-icons/fa6";
 import { NavMenu } from "../../../../lib/constants";
 import { BiChevronDown } from "react-icons/bi";
-import ServicesMenu from "./ServicesMenu";
+import ServicesMenu from "./services-menu";
 import Button from "@/app/(root)/components/button";
 
 export default function MobileMenu() {

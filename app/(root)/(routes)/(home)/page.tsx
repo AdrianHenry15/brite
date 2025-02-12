@@ -29,7 +29,6 @@ export default async function HomePage() {
         <section>
             <ButtonRow />
             <HomeSplash />
-            {/* <PromotionalBanner /> */}
             <SocialProof />
             <ProductRow
                 category="Exterior Cleaning"

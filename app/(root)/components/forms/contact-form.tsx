@@ -11,14 +11,14 @@ import Logo from "../../../../public/assets/icons/brite-logo.png";
 import HandyMan from "../../../../public/assets/imgs/handyman.webp";
 
 import AuthorizationCheckbox from "./components/authorization-checkbox";
-import ConfirmationModal from "../modals/ConfirmationModal";
-import SuccessModal from "../modals/SuccessModal";
+import ConfirmationModal from "../modals/confirmation-modal";
+import SuccessModal from "../modals/success-modal";
 import { Loader } from "../loader";
-import Input from "../inputs/Input";
-import Textarea from "../inputs/Textarea";
 import { ServicesList, ReferralSources } from "../../../../lib/constants";
 import Dropdown from "./components/dropdown";
 import sendEmail from "@/lib/email-service";
+import Input from "./components/input";
+import Textarea from "../inputs/textarea";
 
 type FormValues = {
     firstName: string;

@@ -4,19 +4,20 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { usePathname } from "next/navigation";
 import { Button } from "@mui/material";
-import { ReCAPTCHA } from "react-google-recaptcha"; // Import v2 component
+import ReCAPTCHA from "react-google-recaptcha";
+import Image from "next/image";
 
 import Logo from "../../../../public/assets/icons/brite-logo.png";
 import AuthorizationCheckbox from "./components/authorization-checkbox";
 import sendEmail from "../../../../lib/email-service";
-import ConfirmationModal from "../modals/ConfirmationModal";
-import SuccessModal from "../modals/SuccessModal";
+import ConfirmationModal from "../modals/confirmation-modal";
+import SuccessModal from "../modals/success-modal";
 import { Loader } from "../loader";
-import InputAlt from "../inputs/InputAlt";
-import TextareaAlt from "../inputs/TextareaAlt";
+import InputAlt from "../inputs/input-alt";
+import TextareaAlt from "../inputs/textarea-alt";
 import { ReferralSources, ServicesList } from "../../../../lib/constants";
 import Dropdown from "./components/dropdown";
-import Image from "next/image";
+import Input from "./components/input";
 
 type FormValues = {
     estimateId: string;
@@ -43,10 +44,13 @@ const ContactFormOverlay = () => {
     const [createdAt, setCreatedAt] = useState("");
     const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
 
-    const SERVICE_ID = process.env.NEXT_PUBLIC_SERVICE_ID as string;
-    const TEMPLATE_ID = process.env.NEXT_PUBLIC_TEMPLATE_ID as string;
-    const PUBLIC_KEY = process.env.NEXT_PUBLIC_KEY as string;
-    const PRIVATE_KEY = process.env.NEXT_PRIVATE_KEY as string;
+    const [customService, setCustomService] = useState(false);
+    const [customReferral, setCustomReferral] = useState(false);
+
+    const SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID as string;
+    const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID as string;
+    const PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_KEY as string;
+    const PRIVATE_KEY = process.env.NEXT_PRIVATE_EMAILJS_KEY as string;
     const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY as string;
 
     const {
@@ -64,9 +68,11 @@ const ContactFormOverlay = () => {
 
         setEstimateId(Math.floor(100000 + Math.random() * 900000).toString());
         setCreatedAt(
-            new Date()
-                .toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })
-                .toString(),
+            new Date().toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+            }),
         );
         setIsOpen(true);
         setInputClicked(true);
@@ -131,7 +137,7 @@ const ContactFormOverlay = () => {
                 />
             )}
             {loading && <Loader />}
-            <div className="flex flex-col w-[400px] bg-zinc-900/80 py-6 rounded-2xl shadow-blue-600 shadow-lg border-2">
+            <div className="flex flex-col w-[400px] bg-gradient-to-b from-gray-900 to-gray-700 py-6 rounded-2xl shadow-blue-600 shadow-lg border-2">
                 <div className="flex justify-center">
                     <Image className="w-20" src={Logo} alt="Brite Logo" />
                 </div>
@@ -142,67 +148,77 @@ const ContactFormOverlay = () => {
                     <h5 className="font-semibold text-lg text-white mb-2 underline">
                         Contact Info
                     </h5>
-                    <div className="flex items-center justify-between">
-                        <span className="flex mr-2">
-                            <InputAlt
-                                inputName="firstName"
-                                inputLabel="First Name"
-                                placeholder="First Name*"
-                                control={control}
-                                errors={errors}
-                                validationRules={{
-                                    required: "Invalid",
-                                    minLength: {
-                                        value: 2,
-                                        message: "Must be at least 2 characters long",
-                                    },
-                                    maxLength: {
-                                        value: 100,
-                                        message: "Cannot exceed 100 characters",
-                                    },
-                                    pattern: {
-                                        value: /^[^\s]+(\s+[^\s]+)*$/,
-                                        message: "Cannot contain spaces",
-                                    },
-                                }}
-                            />
-                        </span>
-                        <InputAlt
-                            inputName="lastName"
-                            inputLabel="Last Name"
-                            placeholder="Last Name*"
+                    <Input
+                        inputName="firstName"
+                        inputLabel="First Name"
+                        placeholder="First Name*"
+                        control={control}
+                        errors={errors}
+                        validationRules={{ required: "Required" }}
+                    />
+                    <Input
+                        inputName="lastName"
+                        inputLabel="Last Name"
+                        placeholder="Last Name*"
+                        control={control}
+                        errors={errors}
+                        validationRules={{ required: "Required" }}
+                    />
+                    <Input
+                        inputName="phone"
+                        inputLabel="Phone Number"
+                        placeholder="Phone Number*"
+                        control={control}
+                        errors={errors}
+                        validationRules={{ required: "Required" }}
+                    />
+                    <Input
+                        inputName="email"
+                        inputLabel="Email"
+                        placeholder="Email*"
+                        control={control}
+                        errors={errors}
+                        validationRules={{ required: "Required" }}
+                    />
+
+                    {customService ? (
+                        <Input
+                            inputName="customService"
+                            inputLabel="Enter Service"
+                            placeholder="Enter Service"
+                            control={control}
+                        />
+                    ) : (
+                        <Dropdown
+                            inputName="service"
+                            inputLabel="Choose Service:"
                             control={control}
                             errors={errors}
-                            validationRules={{
-                                required: "Invalid",
-                                minLength: {
-                                    value: 2,
-                                    message: "Must be at least 2 characters long",
-                                },
-                                maxLength: { value: 100, message: "Cannot exceed 100 characters" },
-                                pattern: {
-                                    value: /^[^\s]+(\s+[^\s]+)*$/,
-                                    message: "Cannot contain spaces",
-                                },
-                            }}
+                            options={ServicesList}
+                            textColor="light"
+                            onChange={(value) => setCustomService(value === "Other")}
                         />
-                    </div>
-                    <Dropdown
-                        inputName="service"
-                        inputLabel="Choose Service:"
-                        control={control}
-                        errors={errors}
-                        options={ServicesList}
-                        textColor="light"
-                    />
-                    <Dropdown
-                        inputName="referralSource"
-                        inputLabel="How did you hear about us?"
-                        control={control}
-                        errors={errors}
-                        options={ReferralSources}
-                        textColor="light"
-                    />
+                    )}
+
+                    {customReferral ? (
+                        <Input
+                            inputName="customReferral"
+                            inputLabel="Enter Referral Source"
+                            placeholder="Enter Referral Source"
+                            control={control}
+                        />
+                    ) : (
+                        <Dropdown
+                            inputName="referralSource"
+                            inputLabel="How did you hear about us?"
+                            control={control}
+                            errors={errors}
+                            options={ReferralSources}
+                            textColor="light"
+                            onChange={(value) => setCustomReferral(value === "Other")}
+                        />
+                    )}
+
                     <TextareaAlt
                         inputName="comment"
                         inputLabel="Comment"
@@ -210,6 +226,10 @@ const ContactFormOverlay = () => {
                         control={control}
                     />
                     <AuthorizationCheckbox inputName="authorization" control={control} />
+
+                    <div className="mt-4">
+                        <ReCAPTCHA sitekey={RECAPTCHA_SITE_KEY} onChange={handleRecaptcha} />
+                    </div>
                     <div className={`${inputClicked ? "" : "animate-pulse"} my-10`}>
                         <Button
                             type="submit"
@@ -219,10 +239,6 @@ const ContactFormOverlay = () => {
                         >
                             {pathname === "/contact-us" ? "Contact Us" : "Estimate"}
                         </Button>
-                    </div>
-                    {/* reCAPTCHA v2 */}
-                    <div className="mt-4">
-                        <ReCAPTCHA sitekey={RECAPTCHA_SITE_KEY} onChange={handleRecaptcha} />
                     </div>
                 </form>
             </div>

@@ -10,8 +10,8 @@ interface IInputAltProps {
     validationRules?: any;
 }
 
-const Input = ({ inputName, control, errors, validationRules, placeholder }: IInputAltProps) => {
-    const InputClass = "border-2 border-gray-400 my-2 p-2 rounded-sm w-full shadow-md";
+const InputAlt = ({ inputName, control, errors, placeholder, validationRules }: IInputAltProps) => {
+    const InputClass = `border-2 border-gray-400 text-black flex w-full my-2 p-2 rounded-sm h-8 shadow-md`;
 
     return (
         <Controller
@@ -27,12 +27,13 @@ const Input = ({ inputName, control, errors, validationRules, placeholder }: IIn
                         type="text"
                         placeholder={placeholder}
                     />
-                    {/* {errors && errors[inputName] && (
-                        <p className="text-sm text-red-600 ml-4">{errorRequiredText}</p>
-                    )} */}
                     {errors && errors[inputName] && (
-                        <p className="text-sm text-red-600 ml-4">
-                            {errors[inputName].message.toString()}
+                        <p
+                            className={`${
+                                errors && errors[inputName] ? "text-red-600" : "text-transparent"
+                            } text-[10px]`}
+                        >
+                            {errors[inputName].message!.toString()}
                         </p>
                     )}
                 </div>
@@ -41,4 +42,4 @@ const Input = ({ inputName, control, errors, validationRules, placeholder }: IIn
     );
 };
 
-export default Input;
+export default InputAlt;
