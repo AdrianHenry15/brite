@@ -36,16 +36,16 @@ export default async function HomePage() {
                 <div className="flex justify-center w-full">
                     <div className="absolute h-[1000px] w-full bg-gradient-to-b from-black via-blue-500 to-white"></div>
                     {/* Logo */}
-                    <div className="absolute z-10 top-[1300px] left-32 hidden xl:flex">
+                    {/* <div className="absolute z-10 top-[1300px] left-32 hidden xl:flex">
                         <Image src={Logo} alt="brite-logo" className="w-48" />
-                    </div>
+                    </div> */}
                     <div className="absolute flex items-center justify-center top-[700px] w-[95%] md:w-[80%] lg:w-[70%] xl:w-[45%]">
                         <ContactFormOverlay />
                     </div>
                     {/* Logo */}
-                    <div className="absolute z-10 top-[1300px] right-32 hidden xl:flex">
+                    {/* <div className="absolute z-10 top-[1300px] right-32 hidden xl:flex">
                         <Image src={Logo} alt="brite-logo" className="w-48" />
-                    </div>
+                    </div> */}
                 </div>
             </div>
             <div className="pt-[1000px]">

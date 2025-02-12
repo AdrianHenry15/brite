@@ -28,7 +28,7 @@ export default async function BlogPage() {
     }
 
     return (
-        <div className="max-w-5xl mx-auto p-6">
+        <div className="mx-auto p-6 h-full lg:h-screen w-full bg-gradient-to-b from-blue-500 bg-white">
             <h1 className="text-3xl font-bold text-center mb-6">Latest Blog Posts</h1>
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {blogs.map((blog: any) => (

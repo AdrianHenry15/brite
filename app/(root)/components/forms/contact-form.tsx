@@ -18,7 +18,7 @@ import { ServicesList, ReferralSources } from "../../../../lib/constants";
 import Dropdown from "./components/dropdown";
 import sendEmail from "@/lib/email-service";
 import Input from "./components/input";
-import Textarea from "../inputs/textarea";
+import Textarea from "../inputs/Textarea";
 
 type FormValues = {
     firstName: string;
@@ -51,7 +51,6 @@ const ContactFormOverlay = () => {
         getValues,
         control,
         formState: { errors },
-        register,
     } = useForm<FormValues>();
 
     useEffect(() => {
@@ -115,7 +114,7 @@ const ContactFormOverlay = () => {
     return (
         <section
             id="contact-form-overlay"
-            className="flex flex-col items-center px-4 py-20 shadow-inner relative w-full"
+            className="flex flex-col items-center px-4 py-20 relative w-full"
         >
             {isOpen && (
                 <ConfirmationModal
