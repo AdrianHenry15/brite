@@ -112,7 +112,7 @@ const ContactFormOverlay = () => {
     };
 
     return (
-        <section className="flex flex-col z-20 items-center shadow-inner absolute w-full">
+        <section className="flex flex-col z-20 shadow-inner w-full">
             {isOpen && (
                 <ConfirmationModal
                     confirmEstimate={confirmEstimate}
@@ -137,108 +137,110 @@ const ContactFormOverlay = () => {
                 />
             )}
             {loading && <Loader />}
-            <div className="flex flex-col w-[400px] bg-gradient-to-b from-gray-900 to-gray-700 py-6 rounded-2xl shadow-blue-600 shadow-lg border-2">
-                <div className="flex justify-center">
+            <div className="flex px-6 sm:px-12 lg:px-24 flex-col w-full bg-gradient-to-b from-gray-900 to-gray-700 py-6 rounded-2xl shadow-blue-600 shadow-lg border-2">
+                <div className="flex justify-center mb-6">
                     <Image className="w-20" src={Logo} alt="Brite Logo" />
                 </div>
                 <form
-                    className="self-center text-sm w-full md:w-2/3 z-50"
+                    className="self-center text-sm w-full max-w-lg mx-auto"
                     onSubmit={handleSubmit(onSubmit)}
                 >
-                    <h5 className="font-semibold text-lg text-white mb-2 underline">
+                    <h5 className="font-semibold text-lg text-white mb-2 text-center underline">
                         Contact Info
                     </h5>
-                    <Input
-                        inputName="firstName"
-                        inputLabel="First Name"
-                        placeholder="First Name*"
-                        control={control}
-                        errors={errors}
-                        validationRules={{ required: "Required" }}
-                    />
-                    <Input
-                        inputName="lastName"
-                        inputLabel="Last Name"
-                        placeholder="Last Name*"
-                        control={control}
-                        errors={errors}
-                        validationRules={{ required: "Required" }}
-                    />
-                    <Input
-                        inputName="phone"
-                        inputLabel="Phone Number"
-                        placeholder="Phone Number*"
-                        control={control}
-                        errors={errors}
-                        validationRules={{ required: "Required" }}
-                    />
-                    <Input
-                        inputName="email"
-                        inputLabel="Email"
-                        placeholder="Email*"
-                        control={control}
-                        errors={errors}
-                        validationRules={{ required: "Required" }}
-                    />
-
-                    {customService ? (
+                    <div className="grid gap-4">
                         <Input
-                            inputName="customService"
-                            inputLabel="Enter Service"
-                            placeholder="Enter Service"
-                            control={control}
-                        />
-                    ) : (
-                        <Dropdown
-                            inputName="service"
-                            inputLabel="Choose Service:"
+                            inputName="firstName"
+                            inputLabel="First Name"
+                            placeholder="First Name*"
                             control={control}
                             errors={errors}
-                            options={ServicesList}
-                            textColor="light"
-                            onChange={(value) => setCustomService(value === "Other")}
+                            validationRules={{ required: "Required" }}
                         />
-                    )}
-
-                    {customReferral ? (
                         <Input
-                            inputName="customReferral"
-                            inputLabel="Enter Referral Source"
-                            placeholder="Enter Referral Source"
-                            control={control}
-                        />
-                    ) : (
-                        <Dropdown
-                            inputName="referralSource"
-                            inputLabel="How did you hear about us?"
+                            inputName="lastName"
+                            inputLabel="Last Name"
+                            placeholder="Last Name*"
                             control={control}
                             errors={errors}
-                            options={ReferralSources}
-                            textColor="light"
-                            onChange={(value) => setCustomReferral(value === "Other")}
+                            validationRules={{ required: "Required" }}
                         />
-                    )}
+                        <Input
+                            inputName="phone"
+                            inputLabel="Phone Number"
+                            placeholder="Phone Number*"
+                            control={control}
+                            errors={errors}
+                            validationRules={{ required: "Required" }}
+                        />
+                        <Input
+                            inputName="email"
+                            inputLabel="Email"
+                            placeholder="Email*"
+                            control={control}
+                            errors={errors}
+                            validationRules={{ required: "Required" }}
+                        />
 
-                    <TextareaAlt
-                        inputName="comment"
-                        inputLabel="Comment"
-                        placeholder="Comment"
-                        control={control}
-                    />
-                    <AuthorizationCheckbox inputName="authorization" control={control} />
+                        {customService ? (
+                            <Input
+                                inputName="customService"
+                                inputLabel="Enter Service"
+                                placeholder="Enter Service"
+                                control={control}
+                            />
+                        ) : (
+                            <Dropdown
+                                inputName="service"
+                                inputLabel="Choose Service:"
+                                control={control}
+                                errors={errors}
+                                options={ServicesList}
+                                textColor="light"
+                                onChange={(value) => setCustomService(value === "Other")}
+                            />
+                        )}
 
-                    <div className="mt-4">
-                        <ReCAPTCHA sitekey={RECAPTCHA_SITE_KEY} onChange={handleRecaptcha} />
-                    </div>
-                    <div className={`${inputClicked ? "" : "animate-pulse"} my-10`}>
-                        <Button
-                            type="submit"
-                            variant="contained"
-                            color="primary"
-                            className="w-full justify-center bg-blue-500"
-                        >
-                            {pathname === "/contact-us" ? "Contact Us" : "Estimate"}
-                        </Button>
+                        {customReferral ? (
+                            <Input
+                                inputName="customReferral"
+                                inputLabel="Enter Referral Source"
+                                placeholder="Enter Referral Source"
+                                control={control}
+                            />
+                        ) : (
+                            <Dropdown
+                                inputName="referralSource"
+                                inputLabel="How did you hear about us?"
+                                control={control}
+                                errors={errors}
+                                options={ReferralSources}
+                                textColor="light"
+                                onChange={(value) => setCustomReferral(value === "Other")}
+                            />
+                        )}
+
+                        <TextareaAlt
+                            inputName="comment"
+                            inputLabel="Comment"
+                            placeholder="Comment"
+                            control={control}
+                        />
+                        <AuthorizationCheckbox inputName="authorization" control={control} />
+
+                        <div className="mt-4">
+                            <ReCAPTCHA sitekey={RECAPTCHA_SITE_KEY} onChange={handleRecaptcha} />
+                        </div>
+                        <div className={`${inputClicked ? "" : "animate-pulse"} my-10`}>
+                            <Button
+                                type="submit"
+                                variant="contained"
+                                color="primary"
+                                className="w-full justify-center bg-blue-500"
+                            >
+                                {pathname === "/contact-us" ? "Contact Us" : "Estimate"}
+                            </Button>
+                        </div>
                     </div>
                 </form>
             </div>
