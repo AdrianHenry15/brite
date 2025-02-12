@@ -12,7 +12,7 @@ const SocialProof = () => {
     return (
         // TODO: UPGRADE TO BASIC PLAN FOR ELFSIGHT TO TAKE OFF ELFSIGHT BRANDING
         <motion.section
-            className="bg-white w-full flex flex-col items-center py-24 px-10 justify-center relative overflow-hidden shadow-inner border-y-[1px]"
+            className="bg-white w-full flex flex-col items-center py-24 px-10 justify-center relative overflow-hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1 }}
