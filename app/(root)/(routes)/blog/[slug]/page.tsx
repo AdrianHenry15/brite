@@ -5,46 +5,13 @@ import { imageUrl } from "@/sanity/lib/image-url";
 import { PortableText, PortableTextComponents } from "@portabletext/react";
 import UserDefaultImage from "@/public/assets/icons/user (1).png";
 import BackButton from "@/app/(root)/components/back-button";
-import { Metadata } from "next";
 
-// Fetching the blog post data by slug
-export async function generateMetadata({
-    params,
-}: {
-    params: { slug: string };
-}): Promise<Metadata> {
-    const { slug } = await params;
-    const blogPost = await getBlogBySlug(slug);
-
-    return {
-        title: blogPost.title, // Use the actual title of the blog post
-        description:
-            blogPost.excerpt || "Read our detailed post on exterior cleaning services and tips.",
-        // Optionally, you can add Open Graph or Twitter metadata here
-        openGraph: {
-            title: blogPost.title,
-            description: blogPost.excerpt,
-            url: `https://briteclt.com/blog/${slug}`,
-        },
-        twitter: {
-            card: "summary_large_image",
-            title: blogPost.title,
-            description: blogPost.excerpt,
-        },
-    };
-}
-
-export default async function BlogPostPage({ params }: { params: { slug: string } }): Promise<any> {
-    const { slug } = await params;
-    if (!slug) {
-        return notFound();
-    }
+export default async function BlogPageBySlug({ params }: { params: Promise<{ slug: string }> }) {
+    const slug = (await params).slug;
+    if (!slug) return notFound();
 
     const blog = await getBlogBySlug(slug);
-
-    if (!blog) {
-        return notFound();
-    }
+    if (!blog) return notFound();
 
     const portableTextComponents: PortableTextComponents = {
         types: {
@@ -77,7 +44,12 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
             strong: ({ children }) => <strong className="font-bold">{children}</strong>,
             em: ({ children }) => <em className="italic">{children}</em>,
             link: ({ value, children }) => (
-                <a href={value?.href} className="text-blue-500 underline">
+                <a
+                    href={value?.href}
+                    className="text-blue-500 underline"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
                     {children}
                 </a>
             ),
@@ -88,11 +60,13 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
         ? imageUrl(blog.author.image).url()
         : UserDefaultImage;
     const authorName = blog.author?.name || "Unknown Author";
-    const publishedDate = new Intl.DateTimeFormat("en-US", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-    }).format(new Date(blog.publishedAt!));
+    const publishedDate = blog.publishedAt
+        ? new Intl.DateTimeFormat("en-US", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+          }).format(new Date(blog.publishedAt))
+        : "Unknown Date";
 
     return (
         <div className="max-w-3xl mx-auto p-6">
@@ -111,6 +85,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
                     By <span className="font-semibold">{authorName}</span> • {publishedDate}
                 </p>
             </div>
+
             {blog.mainImage?.asset && (
                 <Image
                     src={imageUrl(blog.mainImage.asset).url()}
@@ -120,11 +95,11 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
                     className="w-full my-6 rounded-lg"
                 />
             )}
+
             <div className="prose prose-lg max-w-none text-gray-700 pb-10">
-                <PortableText value={blog.body!} components={portableTextComponents} />
+                <PortableText value={blog.body || []} components={portableTextComponents} />
             </div>
 
-            {/* Back to Blog Button */}
             <BackButton title="Back to Blog" link="/blog" />
         </div>
     );

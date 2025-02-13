@@ -38,6 +38,8 @@ export const metadata: Metadata = {
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
+    const googleMapsUrl = `https://maps.googleapis.com/maps/api/js?key=${process.env.GOOGLE_API_KEY}&libraries=places`;
+
     return (
         <ClerkProvider dynamic>
             <html lang="en">
@@ -56,7 +58,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
                         strategy="beforeInteractive"
                         id="googlemaps"
                         type="text/javascript"
-                        src={`https://maps.googleapis.com/maps/api/js?key=${process.env.GOOGLE_API_KEY}&libraries=places`}
+                        src={googleMapsUrl}
                     />
                     <Suspense fallback={<Loader />}>
                         <ClerkLoading>
