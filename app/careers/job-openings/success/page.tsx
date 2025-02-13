@@ -3,26 +3,6 @@
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 
-import { Metadata } from "next";
-
-export const metadata: Metadata = {
-    title: "Thank You for Applying | Brite Exterior Cleaning Services",
-    description:
-        "Thank you for applying to Brite Exterior Cleaning! We’ve received your application and will review it soon. We appreciate your interest in joining our team.",
-    openGraph: {
-        title: "Thank You for Applying | Brite Exterior Cleaning Services",
-        description:
-            "Your application has been successfully submitted. Thank you for your interest in joining Brite Exterior Cleaning. We’ll be in touch soon!",
-        url: "https://briteclt.com/careers/job-openings/success",
-    },
-    twitter: {
-        card: "summary_large_image",
-        title: "Thank You for Applying | Brite Exterior Cleaning Services",
-        description:
-            "Thank you for applying! Your application has been received by Brite Exterior Cleaning. We’ll review it and reach out to you soon.",
-    },
-};
-
 export default function SuccessPage() {
     const router = useRouter();
 
@@ -50,7 +30,7 @@ export default function SuccessPage() {
                 </h1>
 
                 {/* Message */}
-                <p className="text-base sm:text-lg text-gray-600 mt-3">
+                <p className="text-base sm text-gray-600 mt-3">
                     Thank you for completing your application. We will review your details and get
                     back to you soon!
                 </p>
@@ -59,7 +39,7 @@ export default function SuccessPage() {
                     <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="mt-6 px-5 sm:px-6 py-3 bg-blue-600 text-white text-lg font-semibold rounded-lg shadow-lg hover:bg-blue-700 transition"
+                        className="mt-6 px-5 sm:px-6 py-2 bg-blue-600 mx-2 text-white font-semibold rounded-lg shadow-lg hover:bg-blue-700 transition"
                         onClick={() => router.push("/")}
                     >
                         Return to Home
@@ -67,7 +47,7 @@ export default function SuccessPage() {
                     <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="mt-6 px-5 sm:px-6 py-3 bg-blue-600 text-white text-lg font-semibold rounded-lg shadow-lg hover:bg-blue-700 transition"
+                        className="mt-6 px-5 sm:px-6 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-lg hover:bg-blue-700 transition"
                         onClick={() => router.push("/careers/my-applications")}
                     >
                         See Your Applications
@@ -75,7 +55,7 @@ export default function SuccessPage() {
                     <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="mt-6 px-5 sm:px-6 py-3 bg-blue-600 text-white text-lg font-semibold rounded-lg shadow-lg hover:bg-blue-700 transition"
+                        className="mt-6 px-5 sm:px-6 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-lg hover:bg-blue-700 transition"
                         onClick={() => router.push("/careers/my-applications")}
                     >
                         See Your Resume
