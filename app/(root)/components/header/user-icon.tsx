@@ -1,10 +1,11 @@
 "use client";
 
 import React, { useState } from "react";
-import { BillIcon, CubeIcon, DashboardIcon, PresentationIcon } from "@sanity/icons";
+import { BillIcon, CubeIcon, DashboardIcon } from "@sanity/icons";
 import SignInModal from "@/app/(root)/components/user/sign-in-modal";
 import { useRouter } from "next/navigation";
 import { ClerkLoaded, UserButton, useUser } from "@clerk/nextjs";
+import { isAdmin } from "@/lib/check-admin";
 
 const UserIcon = () => {
     const { user } = useUser();
@@ -12,17 +13,13 @@ const UserIcon = () => {
     const router = useRouter();
 
     const userEmail = user?.emailAddresses[0]?.emailAddress;
-    const isAdminEmail =
-        userEmail === "adrianhenry2115@gmail.com" ||
-        userEmail === "joey.mckenna@briteclt.com" ||
-        userEmail === "nick.walker@briteclt.com";
 
     return (
         <ClerkLoaded>
             {user ? (
                 <div className="flex items-center space-x-2">
                     <UserButton>
-                        {isAdminEmail ? (
+                        {isAdmin(userEmail as string) ? (
                             <UserButton.MenuItems>
                                 <UserButton.Action
                                     label="Admin Dashboard"
