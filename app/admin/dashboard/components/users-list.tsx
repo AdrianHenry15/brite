@@ -1,4 +1,3 @@
-import { User } from "@clerk/clerk-sdk-node";
 import React from "react";
 import UsersListCard from "./users-list-card";
 

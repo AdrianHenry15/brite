@@ -1,11 +1,10 @@
 import { isAdmin } from "@/lib/check-admin";
-import { User } from "@clerk/clerk-sdk-node";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
 interface IUsersListCardProps {
-    user: User;
+    user: any;
 }
 
 const UsersListCard = ({ user }: IUsersListCardProps) => {

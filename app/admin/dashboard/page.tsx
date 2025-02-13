@@ -13,14 +13,13 @@ import {
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import StatCard from "./components/stat-card";
-import { User } from "@clerk/clerk-sdk-node";
 import { useApplicationStore } from "@/store/application-store";
 import UsersList from "./components/users-list";
 
 export default function AdminDashboard() {
     // Users
     const { user } = useUser();
-    const [users, setUsers] = useState<User[]>([]);
+    const [users, setUsers] = useState<any[]>([]);
     const [totalUserCount, setTotalUserCount] = useState(0);
 
     // Applications

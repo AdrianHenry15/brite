@@ -2,11 +2,9 @@
 
 import { isAdmin } from "@/lib/check-admin";
 import { useUser } from "@clerk/nextjs";
-import Image from "next/image";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
 import UserProfileCard from "./components/user-profile-card";
-import { User } from "@clerk/clerk-sdk-node";
 
 export default async function AdminUserPage({ params }: { params: { id: string } }) {
     const userId = params.id;
