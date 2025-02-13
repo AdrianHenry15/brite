@@ -1,5 +1,5 @@
 // stores/userStore.ts
-import create from "zustand";
+import { create } from "zustand";
 
 interface User {
     id: string;

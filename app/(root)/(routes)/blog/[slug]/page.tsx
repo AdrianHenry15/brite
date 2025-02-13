@@ -34,7 +34,7 @@ export async function generateMetadata({
     };
 }
 
-export default async function BlogPostPage({ params }: { params: { slug: string } }) {
+export default async function BlogPostPage({ params }: { params: { slug: string } }): Promise<any> {
     const { slug } = await params;
     if (!slug) {
         return notFound();
