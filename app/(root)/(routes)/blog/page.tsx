@@ -23,6 +23,10 @@ export const metadata: Metadata = {
 export default async function BlogPage() {
     const blogs = await getAllBlogs();
 
+    if (!blogs) {
+        return;
+    }
+
     if (blogs.length < 1) {
         return <div className="py-48 flex items-center justify-center">No blogs posted.</div>;
     }
