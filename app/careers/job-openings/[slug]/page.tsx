@@ -2,31 +2,6 @@ import React from "react";
 import { getJobBySlug } from "@/sanity/lib/job-openings/getJobOpeningBySlug";
 import ApplicationsForm from "../../components/application-form";
 
-import { Metadata } from "next";
-
-export async function generateMetadata({
-    params,
-}: {
-    params: { slug: string };
-}): Promise<Metadata> {
-    const jobDetails = await getJobBySlug(params.slug); // Fetch job details by slug
-
-    return {
-        title: `${jobDetails?.title} | Brite Exterior Cleaning Services`,
-        description: `${jobDetails?.title} position at Brite Exterior Cleaning. Learn more about the responsibilities, qualifications, and how to apply for this role in Charlotte, NC.`,
-        openGraph: {
-            title: `${jobDetails?.title} | Brite Exterior Cleaning Services`,
-            description: `Explore the ${jobDetails?.title} position. Discover the role's responsibilities, requirements, and how to apply for this exciting opportunity in Charlotte, NC.`,
-            url: `https://briteclt.com/careers/job-openings/${params.slug}`,
-        },
-        twitter: {
-            card: "summary_large_image",
-            title: `${jobDetails?.title} | Brite Exterior Cleaning Services`,
-            description: `Apply for the ${jobDetails?.title} position at Brite Exterior Cleaning. Find out more about the job responsibilities and how to apply in Charlotte, NC.`,
-        },
-    };
-}
-
 async function JobOpeningBySlugPage({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
     const jobs = await getJobBySlug(slug);
