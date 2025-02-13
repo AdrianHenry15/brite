@@ -137,15 +137,15 @@ const ContactFormOverlay = () => {
                 />
             )}
             {loading && <Loader />}
-            <div className="flex px-6 sm:px-12 lg:px-24 flex-col w-full bg-gradient-to-b from-gray-900 to-gray-700 py-6 rounded-2xl shadow-blue-600 shadow-lg border-2">
-                <div className="flex justify-center mb-6">
+            <div className="flex px-6 sm:px-12 lg:px-24 flex-col w-full bg-gradient-to-b from-gray-900 to-gray-700 pt-20 pb-6 rounded-2xl shadow-blue-600 shadow-lg border-2">
+                {/* <div className="flex justify-center mb-6">
                     <Image className="w-20" src={Logo} alt="Brite Logo" />
-                </div>
+                </div> */}
                 <form
                     className="self-center text-sm w-full max-w-lg mx-auto"
                     onSubmit={handleSubmit(onSubmit)}
                 >
-                    <h5 className="font-semibold text-lg text-white mb-2 text-center underline">
+                    <h5 className="font-semibold text-2xl text-white mb-2 text-left underline">
                         Contact Info
                     </h5>
                     <div className="grid gap-4">
