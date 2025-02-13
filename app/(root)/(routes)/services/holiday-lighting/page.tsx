@@ -2,7 +2,7 @@ import React from "react";
 import { Metadata } from "next";
 
 import HolidayLightingImg from "@/public/assets/imgs/christmas-lights.jpg";
-import PromoSection from "@/app/(root)/components/promo-stuff/promo-section";
+import Splash from "@/app/(root)/components/splash";
 import CareersPromo from "@/app/(root)/components/promo-stuff/careers-promo";
 
 export const metadata: Metadata = {
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 const HolidayLightingPage = () => {
     return (
         <section>
-            <PromoSection
+            <Splash
                 img={HolidayLightingImg}
                 title="Holiday Lighting"
                 description="Transform your property into a festive wonderland with our professional holiday lighting services. From custom displays to hassle-free installation and maintenance, we create a dazzling, worry-free holiday experience that will light up your season."

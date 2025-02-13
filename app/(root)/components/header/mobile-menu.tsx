@@ -1,6 +1,6 @@
 "use client";
 
-import { Dialog, Transition } from "@headlessui/react";
+import { Dialog, DialogPanel, Transition, TransitionChild } from "@headlessui/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Fragment, useEffect, useState } from "react";
@@ -8,8 +8,6 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
 import { FaPhone } from "react-icons/fa6";
 import { NavMenu } from "../../../../lib/constants";
-import { BiChevronDown } from "react-icons/bi";
-import ServicesMenu from "./services-menu";
 import Button from "@/app/(root)/components/button";
 
 export default function MobileMenu() {
@@ -20,7 +18,7 @@ export default function MobileMenu() {
     const [isOpen, setIsOpen] = useState(false);
     const openMobileMenu = () => setIsOpen(true);
     const closeMobileMenu = () => setIsOpen(false);
-    const [servicesMenuOpen, setServicesMenuOpen] = useState(false);
+    // const [servicesMenuOpen, setServicesMenuOpen] = useState(false);
 
     useEffect(() => {
         closeMobileMenu();
@@ -28,48 +26,20 @@ export default function MobileMenu() {
 
     const renderNavMenu = () => {
         return NavMenu.map((item) => {
-            if (item.title === "Services") {
-                return (
-                    <div key={item.title} className="relative cursor-pointer">
-                        <span
-                            key={item.title}
-                            onClick={(e) => {
-                                e.preventDefault();
-                                setServicesMenuOpen(!servicesMenuOpen);
-                            }}
-                            className={`${
-                                pathname === item.link ? "underline" : ""
-                            } flex items-center hover:text-neutral-500 ease-in-out duration-300`}
-                        >
-                            <li className={`py-4 text-xl text-black transition-colors`}>
-                                {item.title}
-                            </li>
-                            <BiChevronDown className="text-black" size={20} />
-                        </span>
-                        {servicesMenuOpen && (
-                            <ServicesMenu
-                                containerClass="p-0 mt-0"
-                                setServicesMenuOpen={() => setServicesMenuOpen(false)}
-                            />
-                        )}
-                    </div>
-                );
-            } else {
-                return (
-                    <Link
-                        key={item.title}
-                        href={item.link}
-                        onClick={closeMobileMenu}
-                        className={`${pathname === item.link ? "underline" : ""}`}
+            return (
+                <Link
+                    key={item.title}
+                    href={item.link}
+                    onClick={closeMobileMenu}
+                    className={`${pathname === item.link ? "underline" : ""}`}
+                >
+                    <li
+                        className={`py-4 text-xl text-black transition-colors hover:text-neutral-500`}
                     >
-                        <li
-                            className={`py-4 text-xl text-black transition-colors hover:text-neutral-500`}
-                        >
-                            {item.title}
-                        </li>
-                    </Link>
-                );
-            }
+                        {item.title}
+                    </li>
+                </Link>
+            );
         });
     };
 
@@ -85,7 +55,7 @@ export default function MobileMenu() {
 
             <Transition show={isOpen}>
                 <Dialog onClose={closeMobileMenu} className="relative z-50">
-                    <Transition.Child
+                    <TransitionChild
                         as={Fragment}
                         enter="transition-all ease-in-out duration-100"
                         enterFrom="opacity-0 backdrop-blur-none"
@@ -95,8 +65,8 @@ export default function MobileMenu() {
                         leaveTo="opacity-0 backdrop-blur-none"
                     >
                         <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
-                    </Transition.Child>
-                    <Transition.Child
+                    </TransitionChild>
+                    <TransitionChild
                         as={Fragment}
                         enter="transition-all ease-in-out duration-100"
                         enterFrom="translate-x-[100%]"
@@ -105,7 +75,7 @@ export default function MobileMenu() {
                         leaveFrom="translate-x-0"
                         leaveTo="translate-x-[100%]"
                     >
-                        <Dialog.Panel className="fixed bottom-0 right-0 top-0 flex h-full flex-col bg-white pb-6 w-full sm:w-[375px]">
+                        <DialogPanel className="fixed bottom-0 right-0 top-0 flex h-full flex-col bg-white pb-6 w-full sm:w-[375px]">
                             <div className="p-4">
                                 <div className="flex items-center justify-between">
                                     <button
@@ -148,8 +118,8 @@ export default function MobileMenu() {
                                     />
                                 </Link>
                             </ul>
-                        </Dialog.Panel>
-                    </Transition.Child>
+                        </DialogPanel>
+                    </TransitionChild>
                 </Dialog>
             </Transition>
         </div>

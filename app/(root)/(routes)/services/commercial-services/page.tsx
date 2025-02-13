@@ -2,7 +2,7 @@ import React from "react";
 import { Metadata } from "next";
 import CommercialServicesImg from "@/public/assets/imgs/action-3.jpg";
 import FAQPromo from "@/app/(root)/components/promo-stuff/faqs-promo";
-import PromoSection from "@/app/(root)/components/promo-stuff/promo-section";
+import Splash from "@/app/(root)/components/splash";
 
 export const metadata: Metadata = {
     title: "Commercial Services | Brite Exterior Cleaning Services",
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 const CommercialServicesPage = () => {
     return (
         <section className="w-full justify-center items-center self-center">
-            <PromoSection
+            <Splash
                 img={CommercialServicesImg}
                 title="Commercial Services"
                 description="Boost your business’s professional appearance with our tailored commercial cleaning solutions. From pressure washing to detailed window cleaning and soft washing, we ensure your commercial property maintains a pristine, impressive look for clients and visitors alike."

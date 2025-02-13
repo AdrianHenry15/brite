@@ -2,12 +2,11 @@ import React from "react";
 
 import ButtonRow from "./components/button-row";
 import SocialProof from "./components/social-proof";
-import HomeSplash from "./components/home-splash";
 import ProductRow from "../../components/products/product-row";
 import { Metadata } from "next";
 import ContactFormOverlay from "../../components/forms/overlay";
-import Image from "next/image";
-import Logo from "@/public/assets/icons/brite-logo.png";
+import SplashPic from "@/public/assets/imgs/action-2.jpg";
+import Splash from "../../components/splash";
 
 export const metadata: Metadata = {
     title: "Brite Exterior Cleaning Services | Clean Your Property with Experts",
@@ -32,7 +31,16 @@ export default async function HomePage() {
         <section>
             <ButtonRow />
             <div className="relative flex w-full flex-col">
-                <HomeSplash />
+                <Splash
+                    img={SplashPic}
+                    title="Brite Exterior Services"
+                    description="Your home deserves the best—Brite 
+                    provides elite maintenance services that keep your 
+                    space pristine, efficient, and worry-free. 
+                    From luxury estates to modern residences, 
+                    we handle every detail with precision and care. 
+                    Experience effortless homeownership with Brite. ✨🏡"
+                />
                 <div className="flex justify-center w-full">
                     <div className="absolute h-[1000px] w-full bg-gradient-to-b from-black via-blue-500 to-white"></div>
                     {/* Logo */}

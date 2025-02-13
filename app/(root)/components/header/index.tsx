@@ -20,52 +20,27 @@ export default function Navbar() {
     const pathname = usePathname();
 
     // State
-    const [servicesMenuOpen, setServicesMenuOpen] = useState(false);
+    // const [servicesMenuOpen, setServicesMenuOpen] = useState(false);
 
     // Functions
     const renderNavMenu = () => {
         return NavMenu.map((item: NavMenuType) => {
-            if (item.title === "Services") {
-                return (
-                    <div className="relative cursor-pointer" key={item.title}>
-                        <span
-                            onClick={(e) => {
-                                e.preventDefault();
-                                setServicesMenuOpen(!servicesMenuOpen);
-                            }}
-                        >
-                            <li
-                                className={` flex items-center mx-2 transition-all duration-300 ease-in-out hover:text-blue-600 hover:underline ${
-                                    pathname === item.link ? "underline" : ""
-                                }`}
-                            >
-                                {item.title}
-                                <BiChevronDown size={20} />
-                            </li>
-                        </span>
-                        {servicesMenuOpen && (
-                            <ServicesMenu setServicesMenuOpen={() => setServicesMenuOpen(false)} />
-                        )}
-                    </div>
-                );
-            } else {
-                return (
-                    <Link
-                        onClick={() => setServicesMenuOpen(false)}
-                        key={item.title}
-                        href={item.link}
-                        className="mr-2"
+            return (
+                <Link
+                    // onClick={() => setServicesMenuOpen(false)}
+                    key={item.title}
+                    href={item.link}
+                    className="mr-2"
+                >
+                    <li
+                        className={` flex items-center mx-2 transition-all duration-300 ease-in-out hover:text-blue-600 hover:underline ${
+                            pathname === item.link ? "underline" : ""
+                        }`}
                     >
-                        <li
-                            className={` flex items-center mx-2 transition-all duration-300 ease-in-out hover:text-blue-600 hover:underline ${
-                                pathname === item.link ? "underline" : ""
-                            }`}
-                        >
-                            {item.title}
-                        </li>
-                    </Link>
-                );
-            }
+                        {item.title}
+                    </li>
+                </Link>
+            );
         });
     };
 

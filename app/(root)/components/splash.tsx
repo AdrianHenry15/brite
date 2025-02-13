@@ -5,13 +5,13 @@ import { motion } from "framer-motion";
 import Logo from "@/public/assets/icons/brite-logo.png";
 import Image, { StaticImageData } from "next/image";
 
-interface IPromoSectionProps {
+interface ISplashProps {
     img: string | StaticImageData;
     title: string;
     description: string;
 }
 
-const PromoSection = (props: IPromoSectionProps) => {
+const Splash = (props: ISplashProps) => {
     const { img, title, description } = props;
 
     // Function to wrap highlighted words in a span
@@ -21,7 +21,7 @@ const PromoSection = (props: IPromoSectionProps) => {
                 word.toLowerCase(),
             ) ? (
                 <span key={index} className="text-blue-400 font-semibold">
-                    {word}{" "}
+                    {word}
                 </span>
             ) : (
                 word + " "
@@ -36,7 +36,7 @@ const PromoSection = (props: IPromoSectionProps) => {
                 <Image
                     src={img}
                     alt="Luxury Home Exterior"
-                    className="absolute inset-0 w-full h-full object-cover opacity-30"
+                    className="absolute inset-0 w-full h-full object-cover object-top opacity-30"
                 />
             </div>
 
@@ -79,4 +79,4 @@ const PromoSection = (props: IPromoSectionProps) => {
     );
 };
 
-export default PromoSection;
+export default Splash;

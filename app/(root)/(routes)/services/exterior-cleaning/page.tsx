@@ -1,6 +1,6 @@
 import React from "react";
 import { Metadata } from "next";
-import PromoSection from "@/app/(root)/components/promo-stuff/promo-section";
+import Splash from "@/app/(root)/components/splash";
 import ExteriorCleaningImg from "@/public/assets/imgs/ec-1.jpg";
 import BlogPromo from "@/app/(root)/components/promo-stuff/blog-promo";
 import FAQPromo from "@/app/(root)/components/promo-stuff/faqs-promo";
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 const ExteriorCleaningPage = () => {
     return (
         <section className="w-full flex flex-col items-center">
-            <PromoSection
+            <Splash
                 img={ExteriorCleaningImg}
                 title="Exterior Cleaning"
                 description="Elevate your property’s curb appeal with expert exterior cleaning. Our specialized pressure washing, window detailing, and soft washing services ensure a flawless, lasting finish for luxury homes and high-end businesses."

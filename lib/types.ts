@@ -31,6 +31,7 @@ export type ServiceMenuLinks =
 export type AltNavMenuItems = "Contact Us" | "Get Your Free Estimate";
 export type NavMenuLinks =
     | "/"
+    | "/services"
     | "/exterior-cleaning"
     | "/holiday-lighting"
     | "/commercial-services"
