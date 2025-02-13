@@ -59,7 +59,7 @@ export default function AdminDashboard() {
             {/* Stats Section */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
                 <StatCard
-                    link="/admin/users"
+                    link=""
                     color_gradient="blue"
                     icon={<UsersIcon />}
                     title="Total Users"
@@ -73,7 +73,7 @@ export default function AdminDashboard() {
                     content={applicationStore.applications.length.toString()}
                 />
                 <StatCard
-                    link="/admin/blogs"
+                    link=""
                     color_gradient="purple"
                     icon={<PenBoxIcon />}
                     title="Blogs"
