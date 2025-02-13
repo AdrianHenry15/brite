@@ -3,7 +3,7 @@ import { getJobBySlug } from "@/sanity/lib/job-openings/getJobOpeningBySlug";
 import ApplicationsForm from "../../components/application-form";
 
 async function JobOpeningBySlugPage({ params }: { params: Promise<{ slug: string }> }) {
-    const { slug } = await params;
+    const slug = (await params).slug;
     const jobs = await getJobBySlug(slug);
 
     if (!jobs) {
