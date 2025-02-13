@@ -6,8 +6,8 @@ import { useEffect } from "react";
 import toast from "react-hot-toast";
 import UserProfileCard from "./components/user-profile-card";
 
-export default async function AdminUserPage({ params }: { params: { id: string } }) {
-    const userId = params.id;
+export default async function AdminUserPage({ params }: { params: { id: string } }): Promise<any> {
+    const userId = (await params).id;
     const { user } = useUser();
     const userEmail = user?.emailAddresses[0].emailAddress as string;
 
