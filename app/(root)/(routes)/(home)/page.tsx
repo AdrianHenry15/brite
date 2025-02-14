@@ -34,12 +34,12 @@ export default async function HomePage() {
                 <Splash
                     img={SplashPic}
                     title="Brite Exterior Services"
-                    description="Your home deserves the best—Brite 
+                    description="Your home deserves the best — Brite 
                     provides elite maintenance services that keep your 
                     space pristine, efficient, and worry-free. 
                     From luxury estates to modern residences, 
                     we handle every detail with precision and care. 
-                    Experience effortless homeownership with Brite. ✨🏡"
+                    Experience effortless homeownership with Brite."
                 />
                 <div className="flex justify-center w-full">
                     <div className="absolute h-[1000px] w-full bg-gradient-to-b from-black via-blue-500 to-white"></div>

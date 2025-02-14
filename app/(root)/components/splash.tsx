@@ -16,17 +16,31 @@ const Splash = (props: ISplashProps) => {
 
     // Function to wrap highlighted words in a span
     const highlightText = (text: string) => {
-        return text.split(" ").map((word, index) =>
-            ["elevate", "expert", "specialized", "flawless", "luxury"].includes(
-                word.toLowerCase(),
-            ) ? (
+        const highlightWords = new Set([
+            "brite",
+            "elevate",
+            "expert",
+            "specialized",
+            "flawless",
+            "luxury",
+            "pristine",
+            "precision",
+        ]);
+
+        return text.split(" ").map((word, index, array) => {
+            const cleanedWord = word.replace(/[^\w]/g, ""); // Remove punctuation for matching
+            const lowerWord = cleanedWord.toLowerCase();
+            const highlighted = highlightWords.has(lowerWord) ? (
                 <span key={index} className="text-blue-400 font-semibold">
                     {word}
                 </span>
             ) : (
-                word + " "
-            ),
-        );
+                word
+            );
+
+            // Add space unless it's the last word
+            return index < array.length - 1 ? [highlighted, " "] : highlighted;
+        });
     };
 
     return (

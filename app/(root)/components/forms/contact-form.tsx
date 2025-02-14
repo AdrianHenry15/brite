@@ -2,10 +2,9 @@
 
 import Image from "next/image";
 import { Button } from "@mui/material";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { usePathname } from "next/navigation";
-import ReCAPTCHA from "react-google-recaptcha";
 
 import Logo from "../../../../public/assets/icons/brite-logo.png";
 import HandyMan from "../../../../public/assets/imgs/handyman.webp";
@@ -38,8 +37,6 @@ const ContactFormOverlay = () => {
     const [estimateSuccess, setEstimateSuccess] = useState(false);
     const [estimateFail, setEstimateFail] = useState(false);
     const [loading, setLoading] = useState(false);
-    const [captchaValue, setCaptchaValue] = useState<string | null>(null);
-    const [isSubmitDisabled, setIsSubmitDisabled] = useState(true); // Submit button state
 
     const SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID as string;
     const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID as string;
@@ -53,36 +50,10 @@ const ContactFormOverlay = () => {
         formState: { errors },
     } = useForm<FormValues>();
 
-    useEffect(() => {
-        setIsSubmitDisabled(!captchaValue); // Enable submit button only when CAPTCHA is completed
-    }, [captchaValue]);
-
     const onSubmit: SubmitHandler<FormValues> = async (data) => {
-        if (!captchaValue) {
-            alert("Please complete the CAPTCHA verification.");
-            return;
-        }
-
         setLoading(true);
 
-        try {
-            const response = await fetch("/api/verify-recaptcha", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ token: captchaValue }),
-            });
-
-            const result = await response.json();
-
-            if (result.success) {
-                setIsOpen(true); // Show confirmation modal
-            } else {
-                alert("reCAPTCHA verification failed. Please try again.");
-            }
-        } catch (error) {
-            console.error("Error verifying reCAPTCHA:", error);
-            alert("An error occurred while verifying reCAPTCHA.");
-        }
+        setIsOpen(true); // Show confirmation modal
 
         setLoading(false);
     };
@@ -186,6 +157,14 @@ const ContactFormOverlay = () => {
                         errors={errors}
                         validationRules={{ required: "Email is required" }}
                     />
+                    <Input
+                        inputName="address"
+                        inputLabel="Address"
+                        placeholder="Address*"
+                        control={control}
+                        errors={errors}
+                        validationRules={{ required: "Address is required" }}
+                    />
                     <Dropdown
                         errors={errors}
                         inputName="service"
@@ -209,16 +188,11 @@ const ContactFormOverlay = () => {
                         control={control}
                     />
                     <AuthorizationCheckbox inputName="authorization" control={control} />
-                    <ReCAPTCHA
-                        sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY as string}
-                        onChange={(value) => setCaptchaValue(value)}
-                    />
                     <Button
                         type="submit"
                         variant="contained"
                         color="primary"
                         className="bg-blue-500"
-                        disabled={isSubmitDisabled} // Fix logic
                         fullWidth
                         sx={{ mt: 2 }}
                     >

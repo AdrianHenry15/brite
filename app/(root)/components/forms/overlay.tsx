@@ -4,16 +4,12 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { usePathname } from "next/navigation";
 import { Button } from "@mui/material";
-import ReCAPTCHA from "react-google-recaptcha";
-import Image from "next/image";
 
-import Logo from "../../../../public/assets/icons/brite-logo.png";
 import AuthorizationCheckbox from "./components/authorization-checkbox";
 import sendEmail from "../../../../lib/email-service";
 import ConfirmationModal from "../modals/confirmation-modal";
 import SuccessModal from "../modals/success-modal";
 import { Loader } from "../loader";
-import InputAlt from "../inputs/input-alt";
 import TextareaAlt from "../inputs/textarea-alt";
 import { ReferralSources, ServicesList } from "../../../../lib/constants";
 import Dropdown from "./components/dropdown";
@@ -42,7 +38,6 @@ const ContactFormOverlay = () => {
     const [loading, setLoading] = useState(false);
     const [estimateId, setEstimateId] = useState("");
     const [createdAt, setCreatedAt] = useState("");
-    const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
 
     const [customService, setCustomService] = useState(false);
     const [customReferral, setCustomReferral] = useState(false);
@@ -51,7 +46,6 @@ const ContactFormOverlay = () => {
     const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID as string;
     const PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_KEY as string;
     const PRIVATE_KEY = process.env.NEXT_PRIVATE_EMAILJS_KEY as string;
-    const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY as string;
 
     const {
         handleSubmit,
@@ -61,11 +55,6 @@ const ContactFormOverlay = () => {
     } = useForm();
 
     const onSubmit = () => {
-        if (!recaptchaToken) {
-            alert("Please complete the reCAPTCHA verification.");
-            return;
-        }
-
         setEstimateId(Math.floor(100000 + Math.random() * 900000).toString());
         setCreatedAt(
             new Date().toLocaleDateString("en-US", {
@@ -107,10 +96,6 @@ const ContactFormOverlay = () => {
         );
     };
 
-    const handleRecaptcha = (value: string | null) => {
-        setRecaptchaToken(value);
-    };
-
     return (
         <section className="flex flex-col z-20 shadow-inner w-full">
             {isOpen && (
@@ -138,9 +123,6 @@ const ContactFormOverlay = () => {
             )}
             {loading && <Loader />}
             <div className="flex px-6 sm:px-12 lg:px-24 flex-col w-full bg-gradient-to-b from-gray-900 to-gray-700 pt-20 pb-6 rounded-2xl shadow-blue-600 shadow-lg border-2">
-                {/* <div className="flex justify-center mb-6">
-                    <Image className="w-20" src={Logo} alt="Brite Logo" />
-                </div> */}
                 <form
                     className="self-center text-sm w-full max-w-lg mx-auto"
                     onSubmit={handleSubmit(onSubmit)}
@@ -177,6 +159,14 @@ const ContactFormOverlay = () => {
                             inputName="email"
                             inputLabel="Email"
                             placeholder="Email*"
+                            control={control}
+                            errors={errors}
+                            validationRules={{ required: "Required" }}
+                        />
+                        <Input
+                            inputName="address"
+                            inputLabel="Address"
+                            placeholder="Address*"
                             control={control}
                             errors={errors}
                             validationRules={{ required: "Required" }}
@@ -228,9 +218,6 @@ const ContactFormOverlay = () => {
                         />
                         <AuthorizationCheckbox inputName="authorization" control={control} />
 
-                        <div className="mt-4">
-                            <ReCAPTCHA sitekey={RECAPTCHA_SITE_KEY} onChange={handleRecaptcha} />
-                        </div>
                         <div className={`${inputClicked ? "" : "animate-pulse"} my-10`}>
                             <Button
                                 type="submit"
