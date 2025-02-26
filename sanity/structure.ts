@@ -21,7 +21,6 @@ export const structure: StructureResolver = (S) =>
                         "newsletter",
                         "blog",
                         "job",
-                        "testimonial",
                         "application",
                         "author",
                         "resume",

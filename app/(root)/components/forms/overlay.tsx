@@ -16,7 +16,6 @@ import Dropdown from "./components/dropdown";
 import Input from "./components/input";
 
 type FormValues = {
-    estimateId: string;
     firstName: string;
     lastName: string;
     phone: string;
@@ -24,7 +23,6 @@ type FormValues = {
     address: string;
     service: string;
     referralSource?: string;
-    createdAt: string;
     frequency?: string;
     comment?: string;
 };
@@ -70,7 +68,6 @@ const ContactFormOverlay = () => {
     const confirmEstimate = () => {
         setLoading(true);
         const templateParams: FormValues = {
-            estimateId: estimateId,
             firstName: getValues("firstName"),
             lastName: getValues("lastName"),
             phone: getValues("phone"),
@@ -80,7 +77,6 @@ const ContactFormOverlay = () => {
             referralSource: getValues("referralSource"),
             frequency: getValues("frequency"),
             comment: getValues("comment"),
-            createdAt: createdAt,
         };
 
         sendEmail(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY, PRIVATE_KEY).then(

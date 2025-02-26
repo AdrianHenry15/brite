@@ -26,7 +26,6 @@
         "zustand": "^5.0.3"
     },
     "dependencies": {
-        "@clerk/clerk-sdk-node": "^5.1.6",
         "@clerk/nextjs": "^6.11.1",
         "@emailjs/browser": "^4.4.1",
         "@emotion/react": "^11.14.0",
