@@ -4,19 +4,20 @@ import Image from "next/image";
 import React from "react";
 import { motion } from "framer-motion";
 
-import logoImage from "../../public/assets/icons/brite-logo.png";
-import { Category, ProductType } from "../../lib/types";
+import logoImage from "@/public/assets/icons/brite-logo.png";
 import ProductItem from "./product-item";
-import {
-    CommercialServicesProducts,
-    ExteriorCleaningProducts,
-    HolidayLightingProducts,
-} from "../../lib/Products";
+
 // Swiper
 import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Category, ProductType } from "@/lib/types";
+import {
+    CommercialServicesProducts,
+    ExteriorCleaningProducts,
+    HolidayLightingProducts,
+} from "@/lib/Products";
 
 interface IProductRowProps {
     category: Category;
@@ -45,7 +46,7 @@ const ProductRow = (props: IProductRowProps) => {
         category === "All Products"
             ? products
             : products.filter(
-                  (product) => product.category.toLowerCase() === category.toLowerCase()
+                  (product) => product.category.toLowerCase() === category.toLowerCase(),
               );
 
     return (

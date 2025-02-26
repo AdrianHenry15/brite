@@ -3,15 +3,15 @@ import { NavMenuType } from "./types";
 export const ServicesMenuItems: NavMenuType[] = [
     {
         title: "Exterior Cleaning",
-        link: "/exterior-cleaning",
+        link: "/services/exterior-cleaning",
     },
     {
         title: "Holiday Lighting",
-        link: "/holiday-lighting",
+        link: "/services/holiday-lighting",
     },
     {
         title: "Commercial Services",
-        link: "/commercial-services",
+        link: "/services/commercial-services",
     },
 ];
 
@@ -53,10 +53,22 @@ export const NavMenu: NavMenuType[] = [
     },
     {
         title: "Services",
-        link: "",
+        link: "/services",
     },
     {
-        title: "FAQs",
+        title: "Careers",
+        link: "/careers",
+    },
+    // {
+    //     title: "Newsletter",
+    //     link: "/newsletter",
+    // },
+    {
+        title: "Blog",
+        link: "/blog",
+    },
+    {
+        title: "Faqs",
         link: "/faqs",
     },
 ];
@@ -72,13 +84,21 @@ export const AltNavMenu: NavMenuType[] = [
 ];
 
 export const ServicesList = [
-    { name: "None" },
-    { name: "Window Cleaning" },
-    { name: "Pressure Washing" },
-    { name: "House Wash" },
-    { name: "Roof Wash" },
-    { name: "Holiday Lighting" },
-    { name: "Other" },
+    "Window Cleaning",
+    "Pressure Washing",
+    "House Wash",
+    "Roof Wash",
+    "Holiday Lighting",
+    "Other",
+];
+
+export const ReferralSources = [
+    "Card From Brite",
+    "Magazine",
+    "Google",
+    "Facebook",
+    "Word of Mouth",
+    "Other",
 ];
 
 export const FrequencyList = [

@@ -2,9 +2,9 @@ import Image from "next/image";
 import React from "react";
 import Link from "next/link";
 
-import { ProductType } from "../../lib/types";
+import { ProductType } from "@/lib/types";
 
-import Logo from "../../public/assets/icons/brite-logo-alt.png";
+import Logo from "@/public/assets/icons/brite-logo-alt.png";
 
 interface ProductItemProps {
     product: ProductType;

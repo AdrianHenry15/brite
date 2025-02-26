@@ -3,8 +3,21 @@ import { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-    title: "Brite's Privacy Policy",
-    description: "Information on Brite's Company Policy",
+    title: "Privacy Policy | Brite Exterior Cleaning Services",
+    description:
+        "Read Brite Exterior Cleaning's privacy policy to learn how we collect, use, and protect your personal information when using our services.",
+    openGraph: {
+        title: "Privacy Policy | Brite Exterior Cleaning Services",
+        description:
+            "Learn about how Brite Exterior Cleaning collects, uses, and protects your personal information in accordance with our privacy policy.",
+        url: "https://briteclt.com/privacy-policy",
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "Privacy Policy | Brite Exterior Cleaning Services",
+        description:
+            "Learn about how Brite Exterior Cleaning collects, uses, and protects your personal information in our privacy policy.",
+    },
 };
 
 const PrivacyPolicyPage = () => {
