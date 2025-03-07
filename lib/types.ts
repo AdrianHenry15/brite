@@ -22,6 +22,7 @@ export type NavMenuItems =
     | "Faqs"
     | "Careers"
     | "Newsletter"
+    | "Promotions"
     | "Blog";
 export type ServiceMenuItems = "Exterior Cleaning" | "Holiday Lighting" | "Commercial Services";
 export type ServiceMenuLinks =
@@ -39,6 +40,7 @@ export type NavMenuLinks =
     | "/our-story"
     | "/careers"
     | "/newsletter"
+    | "/promotions"
     | "/blog";
 export type AltNavMenuLinks = "/contact-us" | "/estimate";
 export type Category =

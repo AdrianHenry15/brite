@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Promotion } from "@/sanity.types";
 import { XMarkIcon } from "@heroicons/react/24/solid";
+import Link from "next/link";
 
 interface IPromotionProps {
     promotions: Promotion[];
@@ -55,18 +56,23 @@ const PromotionalBanner = ({ promotions }: IPromotionProps) => {
                 className=" sticky top-[145px] lg:top-[90px] z-20 w-full bg-gradient-to-r from-blue-500 to-pink-500 text-gray-100 text-center p-2 text-sm cursor-pointer flex flex-col md:flex-row items-center justify-center"
                 onClick={(e) => e.stopPropagation()} // Prevent navigation on click
             >
-                {renderIcon(currentPromotion.icon)}
-                <span className="font-bold tracking-wider mx-2">{currentPromotion.title}</span> -
-                <span className="font-bold text-white mx-2">
-                    {currentPromotion.discountPercentage}% Off
-                </span>{" "}
-                - {currentPromotion.description}
-                <button
-                    className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white"
-                    onClick={(e) => handleClose(e, currentPromotion.title!)}
-                >
-                    <XMarkIcon className="h-5 w-5" />
-                </button>
+                <Link href={"/promotions"}>
+                    {renderIcon(currentPromotion.icon)}
+                    <span className="font-bold tracking-wider mx-2">
+                        {currentPromotion.title}
+                    </span>{" "}
+                    -
+                    <span className="font-bold text-white mx-2">
+                        {currentPromotion.discountPercentage}% Off
+                    </span>{" "}
+                    - {currentPromotion.description}
+                    <button
+                        className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white"
+                        onClick={(e) => handleClose(e, currentPromotion.title!)}
+                    >
+                        <XMarkIcon className="h-5 w-5" />
+                    </button>
+                </Link>
             </motion.div>
         </AnimatePresence>
     );

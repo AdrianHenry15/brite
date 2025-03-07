@@ -56,6 +56,10 @@ export const NavMenu: NavMenuType[] = [
         link: "/services",
     },
     {
+        title: "Promotions",
+        link: "/promotions",
+    },
+    {
         title: "Careers",
         link: "/careers",
     },
