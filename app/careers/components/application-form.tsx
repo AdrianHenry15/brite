@@ -42,6 +42,7 @@ const ApplicationForm = ({ job_title }: { job_title: string }) => {
             return `(${cleaned.slice(0, 3)}) ${cleaned.slice(3, 6)}-${cleaned.slice(6, 10)}`;
         }
     };
+    // toast, sends email, updates sanity
     const onSubmit = async (data: ApplicationFormData) => {
         setLoading(true);
 
@@ -53,17 +54,31 @@ const ApplicationForm = ({ job_title }: { job_title: string }) => {
         formData.append("job", job_title);
 
         if (resumeFile) {
-            formData.append("resumeFile", resumeFile); // Add resume file
+            formData.append("resumeFile", resumeFile);
         }
 
+        // updates sanity
         try {
             const response = await fetch("/api/applications", {
                 method: "POST",
                 body: formData,
             });
 
+            // sends emails
             if (response.ok) {
                 toast.success("Application submitted successfully!");
+
+                // Send email to client and applicant
+                await fetch("/api/send-emails", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        applicantName: `${data.firstName} ${data.lastName}`,
+                        applicantEmail: data.email,
+                        applicantPhoneNumber: data.phone,
+                        job: job_title,
+                    }),
+                });
             } else {
                 const errorData = await response.json();
                 toast.error(errorData.error || "Failed to submit application");

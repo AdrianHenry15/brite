@@ -16,7 +16,7 @@ import Link from "next/link";
 interface IJobApplicationEmailTemplateProps {
     applicantName: string;
     applicantEmail: string;
-    phoneNumber: string;
+    applicantPhoneNumber: string;
     job: string;
     message?: string;
 }
@@ -24,7 +24,7 @@ interface IJobApplicationEmailTemplateProps {
 export const JobApplicationEmailTemplate = ({
     applicantName,
     applicantEmail,
-    phoneNumber,
+    applicantPhoneNumber,
     job,
     message,
 }: IJobApplicationEmailTemplateProps) => {
@@ -76,7 +76,7 @@ export const JobApplicationEmailTemplate = ({
                         <Text style={{ color: "#333", fontSize: "16px" }}>
                             <strong>Name:</strong> {applicantName} <br />
                             <strong>Email:</strong> {applicantEmail} <br />
-                            <strong>Phone:</strong> {phoneNumber} <br />
+                            <strong>Phone:</strong> {applicantPhoneNumber} <br />
                             <strong>Job Opening:</strong> {job}
                         </Text>
 
