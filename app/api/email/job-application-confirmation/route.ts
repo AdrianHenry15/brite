@@ -1,4 +1,5 @@
-import ApplicationEmailTemplate from "@/components/email-template";
+import JobApplicationConfirmationEmailTemplate from "@/components/email-templates/job-application/job-application-confirmation-email-template";
+import JobApplicationEmailTemplate from "@/components/email-templates/job-application/job-application-email-template";
 import { auth } from "@clerk/nextjs/server";
 import { Resend } from "resend";
 
@@ -12,22 +13,22 @@ export async function POST(req: Request) {
         }
 
         // Parse request body to get applicant details
-        const { applicantName, applicantEmail, phoneNumber, job } = await req.json();
+        const { applicantName, applicantEmail, applicantPhoneNumber, job } = await req.json();
 
         // Ensure all fields are provided
-        if (!applicantName || !applicantEmail || !phoneNumber || !job) {
+        if (!applicantName || !applicantEmail || !applicantPhoneNumber || !job) {
             return Response.json({ error: "Missing required fields" }, { status: 400 });
         }
 
         // Send email using Resend
         const { data, error } = await resend.emails.send({
             from: "Brite Hiring <noreply@britecleaning.com>",
-            to: ["hiring@britecleaning.com"], // Update with the actual recipient email
-            subject: `New Job Application - ${job}`,
-            react: ApplicationEmailTemplate({
+            to: [applicantEmail], // Update with the actual recipient email
+            subject: `Job Application Confirmation - ${job}`,
+            react: JobApplicationConfirmationEmailTemplate({
                 applicantName,
                 applicantEmail,
-                phoneNumber,
+                applicantPhoneNumber,
                 job,
             }),
         });
