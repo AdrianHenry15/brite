@@ -35,9 +35,9 @@ const JobOpeningsCard = (props: IJobOpeningsCardProps) => {
             <div className="flex items-center">
                 <Button
                     onClick={() => router.push(`/careers/job-openings/${job.slug?.current}`)}
-                    variant="contained"
+                    variant="outlined"
                     size="medium"
-                    className="mt-6 mr-2 bg-white text-blue-500"
+                    className="mt-6 bg-white text-blue-500"
                 >
                     See Job Opening
                 </Button>
@@ -47,7 +47,7 @@ const JobOpeningsCard = (props: IJobOpeningsCardProps) => {
                     }
                     variant="contained"
                     size="medium"
-                    className="mt-6 bg-blue-500"
+                    className="mt-6 mx-1 bg-blue-500"
                 >
                     Apply Now
                 </Button>
