@@ -1,12 +1,12 @@
 import React from "react";
 
-import ButtonRow from "./components/button-row";
 import SocialProof from "./components/social-proof";
 import ProductRow from "../../../../components/products/product-row";
 import { Metadata } from "next";
 import ContactFormOverlay from "../../../../components/forms/overlay";
 import SplashPic from "@/public/assets/imgs/action-2.jpg";
 import Splash from "../../../../components/splash";
+import ButtonRow from "./components/button-row";
 
 export const metadata: Metadata = {
     title: "Brite Exterior Cleaning Services | Clean Your Property with Experts",
