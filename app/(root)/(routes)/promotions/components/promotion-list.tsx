@@ -9,7 +9,7 @@ const PromotionList = ({ promotions }: { promotions: Promotion[] }) => {
     return (
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {promotions.map((promotion) => (
-                <PromotionCard promotion={promotion} />
+                <PromotionCard key={promotion._id} promotion={promotion} />
             ))}
         </div>
     );

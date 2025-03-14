@@ -40,7 +40,7 @@ export default async function PromotionsPage() {
         .sort(sortByDate);
 
     return (
-        <div className="max-w-5xl mx-auto p-6 bg-gradient-to-b from-blue-500 to-black">
+        <div className="max-w-5xl mx-auto px-12 py-16 bg-gradient-to-b from-blue-500 via-pink-400 to-white">
             <h1 className="text-3xl font-bold text-center mb-6">All Promotions</h1>
 
             <section className="mb-8">

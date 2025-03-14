@@ -6,7 +6,6 @@ import Footer from "../../components/footer";
 import "../globals.css";
 import ContactFormContainer from "../../components/forms/contact-form";
 import PromotionalBanner from "../../components/promo-stuff/promotional-banner";
-import { getActivePromotions } from "@/sanity/lib/promotions/getActivePromotions";
 import { Metadata } from "next";
 
 // Define metadata for the layout
@@ -17,11 +16,10 @@ export const metadata: Metadata = {
 };
 
 export default async function SetupLayout({ children }: { children: React.ReactNode }) {
-    const promotions = await getActivePromotions();
     return (
         <div className="w-full flex flex-col items-center h-full">
             <Navbar />
-            <PromotionalBanner promotions={promotions} />
+            <PromotionalBanner />
             <div className="w-full flex flex-col bg-white">{children}</div>
             <ContactFormContainer />
             <Footer />
