@@ -23,8 +23,24 @@ export const jobType = defineType({
             type: "string",
         }),
         defineField({
-            name: "description",
+            name: "excerpt",
+            title: "Excerpt",
             type: "text",
+            description: "A short summary of the blog post.",
+        }),
+        defineField({
+            name: "body",
+            title: "Body",
+            type: "array",
+            of: [
+                {
+                    type: "block",
+                },
+                {
+                    type: "image",
+                    options: { hotspot: true },
+                },
+            ],
         }),
         defineField({
             name: "publishedAt",
