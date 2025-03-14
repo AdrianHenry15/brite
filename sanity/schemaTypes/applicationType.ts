@@ -14,29 +14,6 @@ export const applicationType = defineType({
             to: [{ type: "job" }], // Ref the "resume" type here
         }),
         defineField({
-            name: "resume",
-            title: "Resume",
-            type: "reference",
-            to: [{ type: "resume" }], // Ref the "resume" type here
-        }),
-        defineField({
-            name: "slug",
-            title: "Slug",
-            type: "slug",
-            options: {
-                source: (doc) => {
-                    const jobId = (doc.job as { _ref?: string })?._ref || "no-job";
-                    return `${doc.firstName}-${doc.lastName}-${jobId}`;
-                },
-                slugify: (input) =>
-                    input
-                        .toLowerCase()
-                        .replace(/\s+/g, "-")
-                        .replace(/[^a-z0-9-]/g, "")
-                        .slice(0, 200),
-            },
-        }),
-        defineField({
             name: "firstName",
             title: "First Name",
             type: "string",
@@ -65,4 +42,18 @@ export const applicationType = defineType({
             type: "datetime",
         }),
     ],
+    preview: {
+        select: {
+            title: "firstName",
+            subtitle: "lastName",
+            jobTitle: "job.title",
+        },
+        prepare({ title, subtitle, jobTitle }) {
+            return {
+                title: `${title} ${subtitle}`,
+                subtitle: jobTitle ? `Applied for: ${jobTitle}` : "No job selected",
+                media: ClipboardImageIcon,
+            };
+        },
+    },
 });

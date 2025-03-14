@@ -13,11 +13,6 @@ export const getApplicationBySlug = async (slug: string) => {
         job->{
             title
         },
-        resumeFile{
-            asset->{
-                _ref
-            }
-        }
     }`);
 
     try {

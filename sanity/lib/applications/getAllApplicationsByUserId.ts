@@ -13,7 +13,6 @@ export const getApplicationsByUserId = async (userId: string) => {
             firstName,
             lastName,
             email,
-            resume,
             phone,
             publishedAt,
             job->{

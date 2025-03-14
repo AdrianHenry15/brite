@@ -12,11 +12,6 @@ export const getAllApplications = async () => {
         job->{
             title
         },
-        resumeFile{
-            asset->{
-                _ref
-            }
-        }
     }`);
 
     try {

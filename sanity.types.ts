@@ -189,82 +189,6 @@ export type Newsletter = {
     status?: "draft" | "published" | "archived";
 };
 
-export type SanityImageCrop = {
-    _type: "sanity.imageCrop";
-    top?: number;
-    bottom?: number;
-    left?: number;
-    right?: number;
-};
-
-export type SanityImageHotspot = {
-    _type: "sanity.imageHotspot";
-    x?: number;
-    y?: number;
-    height?: number;
-    width?: number;
-};
-
-export type SanityImageAsset = {
-    _id: string;
-    _type: "sanity.imageAsset";
-    _createdAt: string;
-    _updatedAt: string;
-    _rev: string;
-    originalFilename?: string;
-    label?: string;
-    title?: string;
-    description?: string;
-    altText?: string;
-    sha1hash?: string;
-    extension?: string;
-    mimeType?: string;
-    size?: number;
-    assetId?: string;
-    uploadId?: string;
-    path?: string;
-    url?: string;
-    metadata?: SanityImageMetadata;
-    source?: SanityAssetSourceData;
-};
-
-export type SanityImageMetadata = {
-    _type: "sanity.imageMetadata";
-    location?: Geopoint;
-    dimensions?: SanityImageDimensions;
-    palette?: SanityImagePalette;
-    lqip?: string;
-    blurHash?: string;
-    hasAlpha?: boolean;
-    isOpaque?: boolean;
-};
-
-export type Application = {
-    _id: string;
-    _type: "application";
-    _createdAt: string;
-    _updatedAt: string;
-    _rev: string;
-    job?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "job";
-    };
-    resume?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "resume";
-    };
-    slug?: Slug;
-    firstName?: string;
-    lastName?: string;
-    email?: string;
-    phone?: string;
-    publishedAt?: string;
-};
-
 export type Resume = {
     _id: string;
     _type: "resume";
@@ -305,11 +229,23 @@ export type SanityFileAsset = {
     source?: SanityAssetSourceData;
 };
 
-export type SanityAssetSourceData = {
-    _type: "sanity.assetSourceData";
-    name?: string;
-    id?: string;
-    url?: string;
+export type Application = {
+    _id: string;
+    _type: "application";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    job?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "job";
+    };
+    firstName?: string;
+    lastName?: string;
+    email?: string;
+    phone?: string;
+    publishedAt?: string;
 };
 
 export type Job = {
@@ -321,8 +257,97 @@ export type Job = {
     title?: string;
     slug?: Slug;
     location?: string;
-    description?: string;
+    excerpt?: string;
+    body?: Array<
+        | {
+              children?: Array<{
+                  marks?: Array<string>;
+                  text?: string;
+                  _type: "span";
+                  _key: string;
+              }>;
+              style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+              listItem?: "bullet" | "number";
+              markDefs?: Array<{
+                  href?: string;
+                  _type: "link";
+                  _key: string;
+              }>;
+              level?: number;
+              _type: "block";
+              _key: string;
+          }
+        | {
+              asset?: {
+                  _ref: string;
+                  _type: "reference";
+                  _weak?: boolean;
+                  [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+              };
+              hotspot?: SanityImageHotspot;
+              crop?: SanityImageCrop;
+              _type: "image";
+              _key: string;
+          }
+    >;
     publishedAt?: string;
+};
+
+export type SanityImageCrop = {
+    _type: "sanity.imageCrop";
+    top?: number;
+    bottom?: number;
+    left?: number;
+    right?: number;
+};
+
+export type SanityImageHotspot = {
+    _type: "sanity.imageHotspot";
+    x?: number;
+    y?: number;
+    height?: number;
+    width?: number;
+};
+
+export type SanityImageAsset = {
+    _id: string;
+    _type: "sanity.imageAsset";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    originalFilename?: string;
+    label?: string;
+    title?: string;
+    description?: string;
+    altText?: string;
+    sha1hash?: string;
+    extension?: string;
+    mimeType?: string;
+    size?: number;
+    assetId?: string;
+    uploadId?: string;
+    path?: string;
+    url?: string;
+    metadata?: SanityImageMetadata;
+    source?: SanityAssetSourceData;
+};
+
+export type SanityAssetSourceData = {
+    _type: "sanity.assetSourceData";
+    name?: string;
+    id?: string;
+    url?: string;
+};
+
+export type SanityImageMetadata = {
+    _type: "sanity.imageMetadata";
+    location?: Geopoint;
+    dimensions?: SanityImageDimensions;
+    palette?: SanityImagePalette;
+    lqip?: string;
+    blurHash?: string;
+    hasAlpha?: boolean;
+    isOpaque?: boolean;
 };
 
 export type Slug = {
@@ -340,20 +365,20 @@ export type AllSanitySchemaTypes =
     | Blog
     | Author
     | Newsletter
+    | Resume
+    | SanityFileAsset
+    | Application
+    | Job
     | SanityImageCrop
     | SanityImageHotspot
     | SanityImageAsset
-    | SanityImageMetadata
-    | Application
-    | Resume
-    | SanityFileAsset
     | SanityAssetSourceData
-    | Job
+    | SanityImageMetadata
     | Slug;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./sanity/lib/applications/getAllApplications.ts
 // Variable: ALL_APPLICATIONS_QUERY
-// Query: *[_type == "application"]{        _id,        firstName,        lastName,        email,        phone,        publishedAt,        job->{            title        },        resumeFile{            asset->{                _ref            }        }    }
+// Query: *[_type == "application"]{        _id,        firstName,        lastName,        email,        phone,        publishedAt,        job->{            title        },    }
 export type ALL_APPLICATIONS_QUERYResult = Array<{
     _id: string;
     firstName: string | null;
@@ -364,12 +389,26 @@ export type ALL_APPLICATIONS_QUERYResult = Array<{
     job: {
         title: string | null;
     } | null;
-    resumeFile: null;
+}>;
+
+// Source: ./sanity/lib/applications/getAllApplicationsByUserId.ts
+// Variable: APPLICATIONS_BY_USER_QUERY
+// Query: *[_type == "application" && userId == $userId]{            _id,            firstName,            lastName,            email,            phone,            publishedAt,            job->{                title            }        }
+export type APPLICATIONS_BY_USER_QUERYResult = Array<{
+    _id: string;
+    firstName: string | null;
+    lastName: string | null;
+    email: string | null;
+    phone: string | null;
+    publishedAt: string | null;
+    job: {
+        title: string | null;
+    } | null;
 }>;
 
 // Source: ./sanity/lib/applications/getApplicationBySlug.ts
 // Variable: APPLICATION_BY_SLUG_QUERY
-// Query: *[_type == "application" && slug.current == $slug][0]{        _id,        firstName,        lastName,        email,        phone,        publishedAt,        job->{            title        },        resumeFile{            asset->{                _ref            }        }    }
+// Query: *[_type == "application" && slug.current == $slug][0]{        _id,        firstName,        lastName,        email,        phone,        publishedAt,        job->{            title        },    }
 export type APPLICATION_BY_SLUG_QUERYResult = {
     _id: string;
     firstName: string | null;
@@ -380,7 +419,6 @@ export type APPLICATION_BY_SLUG_QUERYResult = {
     job: {
         title: string | null;
     } | null;
-    resumeFile: null;
 } | null;
 
 // Source: ./sanity/lib/authors/getAllAuthors.ts
@@ -471,7 +509,39 @@ export type ALL_JOB_OPENINGS_QUERYResult = Array<{
     title?: string;
     slug?: Slug;
     location?: string;
-    description?: string;
+    excerpt?: string;
+    body?: Array<
+        | {
+              children?: Array<{
+                  marks?: Array<string>;
+                  text?: string;
+                  _type: "span";
+                  _key: string;
+              }>;
+              style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+              listItem?: "bullet" | "number";
+              markDefs?: Array<{
+                  href?: string;
+                  _type: "link";
+                  _key: string;
+              }>;
+              level?: number;
+              _type: "block";
+              _key: string;
+          }
+        | {
+              asset?: {
+                  _ref: string;
+                  _type: "reference";
+                  _weak?: boolean;
+                  [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+              };
+              hotspot?: SanityImageHotspot;
+              crop?: SanityImageCrop;
+              _type: "image";
+              _key: string;
+          }
+    >;
     publishedAt?: string;
 }>;
 
@@ -487,7 +557,39 @@ export type JOB_BY_ID_QUERYResult = {
     title?: string;
     slug?: Slug;
     location?: string;
-    description?: string;
+    excerpt?: string;
+    body?: Array<
+        | {
+              children?: Array<{
+                  marks?: Array<string>;
+                  text?: string;
+                  _type: "span";
+                  _key: string;
+              }>;
+              style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+              listItem?: "bullet" | "number";
+              markDefs?: Array<{
+                  href?: string;
+                  _type: "link";
+                  _key: string;
+              }>;
+              level?: number;
+              _type: "block";
+              _key: string;
+          }
+        | {
+              asset?: {
+                  _ref: string;
+                  _type: "reference";
+                  _weak?: boolean;
+                  [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+              };
+              hotspot?: SanityImageHotspot;
+              crop?: SanityImageCrop;
+              _type: "image";
+              _key: string;
+          }
+    >;
     publishedAt?: string;
 } | null;
 
@@ -528,8 +630,9 @@ export type RESUME_BY_ID_QUERYResult = {
 import "@sanity/client";
 declare module "@sanity/client" {
     interface SanityQueries {
-        '*[_type == "application"]{\n        _id,\n        firstName,\n        lastName,\n        email,\n        phone,\n        publishedAt,\n        job->{\n            title\n        },\n        resumeFile{\n            asset->{\n                _ref\n            }\n        }\n    }': ALL_APPLICATIONS_QUERYResult;
-        '*[_type == "application" && slug.current == $slug][0]{\n        _id,\n        firstName,\n        lastName,\n        email,\n        phone,\n        publishedAt,\n        job->{\n            title\n        },\n        resumeFile{\n            asset->{\n                _ref\n            }\n        }\n    }': APPLICATION_BY_SLUG_QUERYResult;
+        '*[_type == "application"]{\n        _id,\n        firstName,\n        lastName,\n        email,\n        phone,\n        publishedAt,\n        job->{\n            title\n        },\n    }': ALL_APPLICATIONS_QUERYResult;
+        '\n        *[_type == "application" && userId == $userId]{\n            _id,\n            firstName,\n            lastName,\n            email,\n            phone,\n            publishedAt,\n            job->{\n                title\n            }\n        }\n    ': APPLICATIONS_BY_USER_QUERYResult;
+        '*[_type == "application" && slug.current == $slug][0]{\n        _id,\n        firstName,\n        lastName,\n        email,\n        phone,\n        publishedAt,\n        job->{\n            title\n        },\n    }': APPLICATION_BY_SLUG_QUERYResult;
         '*[_type == "author"] | order(name asc)\n': ALL_AUTHORSResult;
         '*[_type == "author" && slug.current == $slug] | order(name asc) [0]\n': AUTHOR_BY_ID_QUERYResult;
         '\n        *[_type == "blog"] | order(publishedAt desc) {\n            _id,\n            title,\n            slug,\n            publishedAt,\n            mainImage {\n                asset->{\n                    _id,\n                    url\n                }\n            },\n            excerpt,\n            author->{\n                _id,\n                name,\n                image {\n                    asset->{\n                        _id,\n                        url\n                    }\n                },\n            bio\n            }\n        }\n    ': ALL_BLOGSResult;

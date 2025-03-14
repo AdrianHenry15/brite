@@ -15,18 +15,21 @@ export async function POST(req: Request) {
             return NextResponse.json({ error: "Job not found" }, { status: 400 });
         }
 
-        // Step 2: Handle resume file upload
-        const resumeFile = formData.get("resumeFile") as File;
+        // Step 2: Check for duplicate applications
+        const email = formData.get("email");
+        const duplicateApplication = await client.fetch(
+            `*[_type == "application" && job.title == $jobTitle && email == $email][0]`,
+            {
+                jobTitle,
+                email,
+            },
+        );
 
-        let resumeFileReference = null;
-        if (resumeFile) {
-            const uploadedFile = await client.assets.upload("file", resumeFile);
-            resumeFileReference = {
-                _type: "file",
-                asset: {
-                    _ref: uploadedFile._id,
-                },
-            };
+        if (duplicateApplication) {
+            return NextResponse.json(
+                { error: "You have already applied for this job with this email." },
+                { status: 400 },
+            );
         }
 
         // Step 3: Prepare application data
@@ -40,7 +43,6 @@ export async function POST(req: Request) {
                 _type: "reference",
                 _ref: job._id, // Using valid job document ID
             },
-            resumeFile: resumeFileReference,
             publishedAt: new Date().toISOString(),
         };
 

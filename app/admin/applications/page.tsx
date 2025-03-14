@@ -24,7 +24,7 @@ const AdminApplicationsPage = async () => {
                             {new Date(app.publishedAt!).toLocaleDateString()}
                         </p>
 
-                        <div className="mt-4">
+                        {/* <div className="mt-4">
                             {app.resumeFile ? (
                                 <a
                                     href={`/careers/admin/resume/${app.resumeFile}`}
@@ -37,7 +37,7 @@ const AdminApplicationsPage = async () => {
                             ) : (
                                 <span className="text-gray-400">No Resume</span>
                             )}
-                        </div>
+                        </div> */}
                     </div>
                 ))}
             </div>
