@@ -189,32 +189,6 @@ export type Newsletter = {
     status?: "draft" | "published" | "archived";
 };
 
-export type Application = {
-    _id: string;
-    _type: "application";
-    _createdAt: string;
-    _updatedAt: string;
-    _rev: string;
-    job?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "job";
-    };
-    resume?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "resume";
-    };
-    slug?: Slug;
-    firstName?: string;
-    lastName?: string;
-    email?: string;
-    phone?: string;
-    publishedAt?: string;
-};
-
 export type Resume = {
     _id: string;
     _type: "resume";
@@ -253,6 +227,27 @@ export type SanityFileAsset = {
     path?: string;
     url?: string;
     source?: SanityAssetSourceData;
+};
+
+export type Application = {
+    _id: string;
+    _type: "application";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    userId?: string;
+    job?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "job";
+    };
+    slug?: Slug;
+    firstName?: string;
+    lastName?: string;
+    email?: string;
+    phone?: string;
+    publishedAt?: string;
 };
 
 export type Job = {
@@ -372,9 +367,9 @@ export type AllSanitySchemaTypes =
     | Blog
     | Author
     | Newsletter
-    | Application
     | Resume
     | SanityFileAsset
+    | Application
     | Job
     | SanityImageCrop
     | SanityImageHotspot
@@ -385,9 +380,10 @@ export type AllSanitySchemaTypes =
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./sanity/lib/applications/getAllApplications.ts
 // Variable: ALL_APPLICATIONS_QUERY
-// Query: *[_type == "application"]{        _id,        firstName,        lastName,        email,        phone,        publishedAt,        job->{            title        },        resumeFile{            asset->{                _ref            }        }    }
+// Query: *[_type == "application"]{        _id,        userId,        firstName,        lastName,        email,        phone,        publishedAt,        job->{            title        },    }
 export type ALL_APPLICATIONS_QUERYResult = Array<{
     _id: string;
+    userId: string | null;
     firstName: string | null;
     lastName: string | null;
     email: string | null;
@@ -396,23 +392,16 @@ export type ALL_APPLICATIONS_QUERYResult = Array<{
     job: {
         title: string | null;
     } | null;
-    resumeFile: null;
 }>;
 
 // Source: ./sanity/lib/applications/getAllApplicationsByUserId.ts
 // Variable: APPLICATIONS_BY_USER_QUERY
-// Query: *[_type == "application" && userId == $userId]{            _id,            firstName,            lastName,            email,            resume,            phone,            publishedAt,            job->{                title            }        }
+// Query: *[_type == "application" && userId == $userId]{            _id,            firstName,            lastName,            email,            phone,            publishedAt,            job->{                title            }        }
 export type APPLICATIONS_BY_USER_QUERYResult = Array<{
     _id: string;
     firstName: string | null;
     lastName: string | null;
     email: string | null;
-    resume: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "resume";
-    } | null;
     phone: string | null;
     publishedAt: string | null;
     job: {
@@ -422,9 +411,10 @@ export type APPLICATIONS_BY_USER_QUERYResult = Array<{
 
 // Source: ./sanity/lib/applications/getApplicationBySlug.ts
 // Variable: APPLICATION_BY_SLUG_QUERY
-// Query: *[_type == "application" && slug.current == $slug][0]{        _id,        firstName,        lastName,        email,        phone,        publishedAt,        job->{            title        },        resumeFile{            asset->{                _ref            }        }    }
+// Query: *[_type == "application" && slug.current == $slug][0]{        _id,        userId,        firstName,        lastName,        email,        phone,        publishedAt,        job->{            title        },    }
 export type APPLICATION_BY_SLUG_QUERYResult = {
     _id: string;
+    userId: string | null;
     firstName: string | null;
     lastName: string | null;
     email: string | null;
@@ -433,7 +423,6 @@ export type APPLICATION_BY_SLUG_QUERYResult = {
     job: {
         title: string | null;
     } | null;
-    resumeFile: null;
 } | null;
 
 // Source: ./sanity/lib/authors/getAllAuthors.ts
@@ -645,9 +634,9 @@ export type RESUME_BY_ID_QUERYResult = {
 import "@sanity/client";
 declare module "@sanity/client" {
     interface SanityQueries {
-        '*[_type == "application"]{\n        _id,\n        firstName,\n        lastName,\n        email,\n        phone,\n        publishedAt,\n        job->{\n            title\n        },\n        resumeFile{\n            asset->{\n                _ref\n            }\n        }\n    }': ALL_APPLICATIONS_QUERYResult;
-        '\n        *[_type == "application" && userId == $userId]{\n            _id,\n            firstName,\n            lastName,\n            email,\n            resume,\n            phone,\n            publishedAt,\n            job->{\n                title\n            }\n        }\n    ': APPLICATIONS_BY_USER_QUERYResult;
-        '*[_type == "application" && slug.current == $slug][0]{\n        _id,\n        firstName,\n        lastName,\n        email,\n        phone,\n        publishedAt,\n        job->{\n            title\n        },\n        resumeFile{\n            asset->{\n                _ref\n            }\n        }\n    }': APPLICATION_BY_SLUG_QUERYResult;
+        '*[_type == "application"]{\n        _id,\n        userId,\n        firstName,\n        lastName,\n        email,\n        phone,\n        publishedAt,\n        job->{\n            title\n        },\n    }': ALL_APPLICATIONS_QUERYResult;
+        '\n        *[_type == "application" && userId == $userId]{\n            _id,\n            firstName,\n            lastName,\n            email,\n            phone,\n            publishedAt,\n            job->{\n                title\n            }\n        }\n    ': APPLICATIONS_BY_USER_QUERYResult;
+        '*[_type == "application" && slug.current == $slug][0]{\n        _id,\n        userId,\n        firstName,\n        lastName,\n        email,\n        phone,\n        publishedAt,\n        job->{\n            title\n        },\n    }': APPLICATION_BY_SLUG_QUERYResult;
         '*[_type == "author"] | order(name asc)\n': ALL_AUTHORSResult;
         '*[_type == "author" && slug.current == $slug] | order(name asc) [0]\n': AUTHOR_BY_ID_QUERYResult;
         '\n        *[_type == "blog"] | order(publishedAt desc) {\n            _id,\n            title,\n            slug,\n            publishedAt,\n            mainImage {\n                asset->{\n                    _id,\n                    url\n                }\n            },\n            excerpt,\n            author->{\n                _id,\n                name,\n                image {\n                    asset->{\n                        _id,\n                        url\n                    }\n                },\n            bio\n            }\n        }\n    ': ALL_BLOGSResult;

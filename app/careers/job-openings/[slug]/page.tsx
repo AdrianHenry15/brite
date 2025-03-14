@@ -1,11 +1,12 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
-import { getBlogBySlug } from "@/sanity/lib/blogs/getBlogBySlug";
 import { imageUrl } from "@/sanity/lib/image-url";
 import { PortableText, PortableTextComponents } from "@portabletext/react";
-import UserDefaultImage from "@/public/assets/icons/user (1).png";
 import BackButton from "@/components/back-button";
 import { getJobBySlug } from "@/sanity/lib/job-openings/getJobOpeningBySlug";
+import { Button } from "@mui/material";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default async function JobOpeningsPageBySlug({
     params,
@@ -23,7 +24,7 @@ export default async function JobOpeningsPageBySlug({
             image: ({ value }) => (
                 <Image
                     src={imageUrl(value.asset).url()}
-                    alt="Blog Image"
+                    alt="job-openings-image"
                     width={800}
                     height={500}
                     className="w-full rounded-lg my-4"
@@ -71,15 +72,23 @@ export default async function JobOpeningsPageBySlug({
 
     return (
         <div className="max-w-3xl mx-auto p-6">
-            <BackButton title="Back to Blog" link="/blog" />
+            <BackButton title="Back to Careers" link="/careers" />
 
-            <h1 className="text-3xl font-bold mb-4">{job.title}</h1>
+            <h1 className="text-3xl font-bold">{job.title}</h1>
+
+            <p className="text-gray-500 text-sm mt-1 mb-6">{publishedDate}</p>
 
             <div className="prose prose-lg max-w-none text-gray-700 pb-10">
                 <PortableText value={job.body || []} components={portableTextComponents} />
             </div>
 
-            <BackButton title="Back to Blog" link="/blog" />
+            <Link href={`/careers/job-openings/application/${job.slug?.current}`}>
+                <Button variant="contained" size="medium" className="mt-6 bg-blue-500">
+                    Apply Now
+                </Button>
+            </Link>
+
+            <BackButton title="Back to Careers" link="/careers" />
         </div>
     );
 }

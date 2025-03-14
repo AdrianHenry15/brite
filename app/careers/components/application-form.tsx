@@ -16,18 +16,8 @@ type ApplicationFormData = {
 };
 
 const ApplicationForm = ({ job_title }: { job_title: string }) => {
-    const { register, handleSubmit, setValue, control } = useForm<ApplicationFormData>();
-    const [resumeFile, setResumeFile] = useState<File | null>(null);
+    const { register, handleSubmit, control } = useForm<ApplicationFormData>();
     const [loading, setLoading] = useState(false);
-
-    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        e.preventDefault();
-        const file = e.target.files?.[0] || null;
-        if (file) {
-            setResumeFile(file);
-            setValue("resumeFile", file);
-        }
-    };
 
     const formatPhoneNumber = (value: string) => {
         // Remove all non-numeric characters
@@ -42,6 +32,7 @@ const ApplicationForm = ({ job_title }: { job_title: string }) => {
             return `(${cleaned.slice(0, 3)}) ${cleaned.slice(3, 6)}-${cleaned.slice(6, 10)}`;
         }
     };
+
     // toast, sends email, updates sanity
     const onSubmit = async (data: ApplicationFormData) => {
         setLoading(true);
@@ -53,18 +44,12 @@ const ApplicationForm = ({ job_title }: { job_title: string }) => {
         formData.append("phone", data.phone);
         formData.append("job", job_title);
 
-        if (resumeFile) {
-            formData.append("resumeFile", resumeFile);
-        }
-
-        // updates sanity
         try {
             const response = await fetch("/api/applications", {
                 method: "POST",
-                body: formData,
+                body: formData, // Send FormData instead of JSON
             });
 
-            // sends emails
             if (response.ok) {
                 toast.success("Application submitted successfully!");
 
@@ -133,12 +118,12 @@ const ApplicationForm = ({ job_title }: { job_title: string }) => {
                 )}
             />
 
-            <input
+            {/* <input
                 type="file"
                 accept=".pdf,.doc,.docx"
                 onChange={handleFileChange}
                 className="block w-full text-sm p-4 text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50"
-            />
+            /> */}
 
             <Button
                 className="bg-blue-500"

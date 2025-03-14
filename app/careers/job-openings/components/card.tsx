@@ -32,14 +32,26 @@ const JobOpeningsCard = (props: IJobOpeningsCardProps) => {
             <p className="text-gray-500 text-sm mt-1">{job.location}</p>
             <p className="text-gray-500 text-sm mt-1">{publishedDate}</p>
             <p className="text-gray-600 my-4">{truncatedExcerpt}</p>
-            <Button
-                onClick={() => router.push(`/careers/job-openings/${job.slug?.current}`)}
-                variant="contained"
-                size="medium"
-                className="mt-6 bg-blue-500"
-            >
-                Apply Now
-            </Button>
+            <div className="flex items-center">
+                <Button
+                    onClick={() => router.push(`/careers/job-openings/${job.slug?.current}`)}
+                    variant="contained"
+                    size="medium"
+                    className="mt-6 mr-2 bg-white text-blue-500"
+                >
+                    See Job Opening
+                </Button>
+                <Button
+                    onClick={() =>
+                        router.push(`/careers/job-openings/application/${job.slug?.current}`)
+                    }
+                    variant="contained"
+                    size="medium"
+                    className="mt-6 bg-blue-500"
+                >
+                    Apply Now
+                </Button>
+            </div>
         </div>
     );
 };

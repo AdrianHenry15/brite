@@ -3,6 +3,7 @@ import { client } from "../client";
 interface UpdateApplicationInput {
     slug: string;
     updates: {
+        userId?: string;
         title?: string;
         job?: string;
         firstName?: string;

@@ -8,16 +8,17 @@ export const applicationType = defineType({
     icon: ClipboardImageIcon,
     fields: [
         defineField({
+            name: "userId",
+            title: "User ID",
+            type: "string",
+            description: "The ID of the user submitting the application.",
+            validation: (Rule) => Rule.required(),
+        }),
+        defineField({
             name: "job",
             title: "Job Opening",
             type: "reference",
             to: [{ type: "job" }], // Ref the "resume" type here
-        }),
-        defineField({
-            name: "resume",
-            title: "Resume",
-            type: "reference",
-            to: [{ type: "resume" }], // Ref the "resume" type here
         }),
         defineField({
             name: "slug",
@@ -65,4 +66,18 @@ export const applicationType = defineType({
             type: "datetime",
         }),
     ],
+    preview: {
+        select: {
+            title: "firstName",
+            subtitle: "lastName",
+            jobTitle: "job.title",
+        },
+        prepare({ title, subtitle, jobTitle }) {
+            return {
+                title: `${title} ${subtitle}`,
+                subtitle: jobTitle ? `Applied for: ${jobTitle}` : "No job selected",
+                media: ClipboardImageIcon,
+            };
+        },
+    },
 });
