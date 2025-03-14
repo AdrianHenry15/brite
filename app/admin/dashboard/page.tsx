@@ -70,7 +70,7 @@ export default function AdminDashboard() {
                     color_gradient="green"
                     icon={<FileIcon />}
                     title="Applications"
-                    content={applicationStore.applications.length.toString()}
+                    content={""}
                 />
                 <StatCard
                     link=""
