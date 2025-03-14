@@ -11,17 +11,17 @@ const sendEmail = (
     templateId: string,
     templateParams: TemplateParams,
     publicKey: string,
-    privateKey: string
+    privateKey: string,
 ): Promise<{ success: boolean; response?: EmailJSResponseStatus; error?: any }> => {
     return emailjs.send(serviceId, templateId, templateParams, publicKey).then(
         (response) => {
-            toast.success("Your estimate has been submitted successfully!");
+            toast.success("Your request has been submitted successfully!");
             return { success: true, response };
         },
         (error) => {
-            toast.error("There was an error submitting your estimate. Please try again.");
+            toast.error("There was an error submitting your request. Please try again.");
             return { success: false, error };
-        }
+        },
     );
 };
 
