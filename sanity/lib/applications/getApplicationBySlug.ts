@@ -5,7 +5,6 @@ export const getApplicationBySlug = async (slug: string) => {
     const APPLICATION_BY_SLUG_QUERY =
         defineQuery(`*[_type == "application" && slug.current == $slug][0]{
         _id,
-        userId,
         firstName,
         lastName,
         email,

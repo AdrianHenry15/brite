@@ -8,34 +8,10 @@ export const applicationType = defineType({
     icon: ClipboardImageIcon,
     fields: [
         defineField({
-            name: "userId",
-            title: "User ID",
-            type: "string",
-            description: "The ID of the user submitting the application.",
-            validation: (Rule) => Rule.required(),
-        }),
-        defineField({
             name: "job",
             title: "Job Opening",
             type: "reference",
             to: [{ type: "job" }], // Ref the "resume" type here
-        }),
-        defineField({
-            name: "slug",
-            title: "Slug",
-            type: "slug",
-            options: {
-                source: (doc) => {
-                    const jobId = (doc.job as { _ref?: string })?._ref || "no-job";
-                    return `${doc.firstName}-${doc.lastName}-${jobId}`;
-                },
-                slugify: (input) =>
-                    input
-                        .toLowerCase()
-                        .replace(/\s+/g, "-")
-                        .replace(/[^a-z0-9-]/g, "")
-                        .slice(0, 200),
-            },
         }),
         defineField({
             name: "firstName",

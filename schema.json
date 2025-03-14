@@ -1444,13 +1444,6 @@
           "type": "string"
         }
       },
-      "userId": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string"
-        },
-        "optional": true
-      },
       "job": {
         "type": "objectAttribute",
         "value": {
@@ -1478,14 +1471,6 @@
             }
           },
           "dereferencesTo": "job"
-        },
-        "optional": true
-      },
-      "slug": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "inline",
-          "name": "slug"
         },
         "optional": true
       },

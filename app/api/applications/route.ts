@@ -15,6 +15,23 @@ export async function POST(req: Request) {
             return NextResponse.json({ error: "Job not found" }, { status: 400 });
         }
 
+        // Step 2: Check for duplicate applications
+        const email = formData.get("email");
+        const duplicateApplication = await client.fetch(
+            `*[_type == "application" && job.title == $jobTitle && email == $email][0]`,
+            {
+                jobTitle,
+                email,
+            },
+        );
+
+        if (duplicateApplication) {
+            return NextResponse.json(
+                { error: "You have already applied for this job with this email." },
+                { status: 400 },
+            );
+        }
+
         // Step 3: Prepare application data
         const application = {
             _type: "application",

@@ -4,7 +4,6 @@ import { sanityFetch } from "../live"; // Assuming you have a custom function fo
 export const getAllApplications = async () => {
     const ALL_APPLICATIONS_QUERY = defineQuery(`*[_type == "application"]{
         _id,
-        userId,
         firstName,
         lastName,
         email,
