@@ -2,10 +2,10 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { ApplicationType } from "@/lib/types";
+import { Application } from "@/sanity.types";
 
 const UserApplications = () => {
-    const [applications, setApplications] = useState<ApplicationType[]>([]);
+    const [applications, setApplications] = useState<Application[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
 
@@ -39,12 +39,12 @@ const UserApplications = () => {
                 <ul className="space-y-4">
                     {applications.map((app) => (
                         <li key={app._id} className="p-4 border rounded-lg shadow">
-                            <h3 className="text-lg font-semibold">{app.job.title}</h3>
+                            <h3 className="text-lg font-semibold">{app.job?._ref}</h3>
                             <p>
                                 {app.firstName} {app.lastName}
                             </p>
                             <p>{app.email}</p>
-                            {app.resumeFile && (
+                            {/* {app.resumeFile && (
                                 <Link
                                     href={app.resumeFile}
                                     target="_blank"
@@ -53,7 +53,7 @@ const UserApplications = () => {
                                 >
                                     View Resume
                                 </Link>
-                            )}
+                            )} */}
                         </li>
                     ))}
                 </ul>
