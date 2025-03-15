@@ -47,7 +47,7 @@ export default async function HomePage() {
                     {/* <div className="absolute z-10 top-[1300px] left-32 hidden xl:flex">
                         <Image src={Logo} alt="brite-logo" className="w-48" />
                     </div> */}
-                    <div className="absolute flex items-center justify-center top-[650px] w-[95%] md:w-[80%] lg:w-[70%] xl:w-[45%]">
+                    <div className="absolute flex items-center justify-center top-[820px] w-[95%] md:w-[80%] lg:w-[70%] xl:w-[45%]">
                         <ContactFormOverlay />
                     </div>
                     {/* Logo */}

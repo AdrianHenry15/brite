@@ -44,7 +44,7 @@ const Splash = (props: ISplashProps) => {
     };
 
     return (
-        <section className="relative w-full h-[80vh] bg-black text-white flex items-center justify-center overflow-hidden">
+        <section className="relative w-full py-12 h-[100vh] bg-black text-white flex items-center justify-center overflow-hidden">
             {/* Background Image / Gradient Overlay */}
             <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/30">
                 <Image

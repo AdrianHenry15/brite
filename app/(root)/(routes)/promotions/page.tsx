@@ -44,7 +44,7 @@ export default async function PromotionsPage() {
             <h1 className="text-3xl font-bold text-center mb-6">All Promotions</h1>
 
             <section className="mb-8">
-                <h2 className="text-2xl font-semibold text-green-600 mb-4">🔥 Active Promotions</h2>
+                <h2 className="text-2xl font-semibold text-green-400 mb-4">🔥 Active Promotions</h2>
                 <PromotionList promotions={activePromotions} />
             </section>
 
