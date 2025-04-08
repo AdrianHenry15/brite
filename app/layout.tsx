@@ -14,6 +14,9 @@ import { draftMode } from "next/headers";
 import { SanityLive } from "../sanity/lib/live";
 import { VisualEditing } from "next-sanity";
 import DisableDraftMode from "../components/disable-draft-mode";
+import Head from "next/head";
+import GoogleTagManagerScript from "@/lib/google-tag-manager/script";
+import GoogleTagManagerNoScript from "@/lib/google-tag-manager/no-script";
 
 const nunito = Nunito({ subsets: ["latin"] });
 
@@ -43,8 +46,14 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     return (
         <ClerkProvider dynamic>
             <html lang="en">
+                {/* GTM Head Script For Marketing */}
+                <Head>
+                    <GoogleTagManagerScript />
+                </Head>
                 <link rel="icon" href="/assets/icons/brite-logo.png" />
                 <body className={nunito.className}>
+                    {/* GTM Noscript For Marketing */}
+                    <GoogleTagManagerNoScript />
                     {(await draftMode()).isEnabled && (
                         <>
                             <DisableDraftMode />
