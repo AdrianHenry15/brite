@@ -36,4 +36,8 @@ yarn-error.log*
 next-env.d.ts
 # DevGlobalStateStore.ts
 
+# webpack cache
+.next/cache/
+.next/webpack-cache/
+
 .vercel
