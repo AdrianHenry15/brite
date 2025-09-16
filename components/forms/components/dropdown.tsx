@@ -37,9 +37,11 @@ const Dropdown: React.FC<DropdownProps> = ({
                     <select
                         {...field}
                         onChange={(e) => {
-                            // Call onChange from props when the dropdown value changes
-                            field.onChange(e); // Ensure the form control value is updated
-                            onChange!(e.target.value); // Trigger the external onChange handler
+                            field.onChange(e); // Update form control value
+                            if (onChange) {
+                                // Check if onChange exists before calling
+                                onChange(e.target.value);
+                            }
                         }}
                         className="mt-1 block w-full px-3 py-2  text-gray-700 border-gray-700 border-[1px] bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                     >
