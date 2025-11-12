@@ -10,7 +10,7 @@ const ButtonRow = () => {
         visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
         hover: { scale: 1.1, transition: { duration: 0.2, ease: "easeInOut" } },
         tap: { scale: 0.95 },
-    };
+    } as const;
 
     return (
         <div className="flex py-3 sticky top-0 z-10 bg-gradient-to-b from-zinc-100 to-gray-500 items-center justify-center w-full gap-3 px-4 md:px-8 lg:px-12">

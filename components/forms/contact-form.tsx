@@ -59,6 +59,7 @@ const ContactFormOverlay = () => {
     };
 
     const confirmEstimate = () => {
+        if (loading) return;
         setLoading(true);
 
         const templateParams = {
@@ -192,11 +193,12 @@ const ContactFormOverlay = () => {
                         type="submit"
                         variant="contained"
                         color="primary"
+                        disabled={loading}
                         className="bg-blue-500"
                         fullWidth
                         sx={{ mt: 2 }}
                     >
-                        Submit
+                        {loading ? "Submitting..." : "Submit"}
                     </Button>
                 </form>
             </div>
