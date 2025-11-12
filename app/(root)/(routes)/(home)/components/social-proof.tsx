@@ -27,14 +27,16 @@ const SocialProof = () => {
                 data-elfsight-app-lazy
             ></div>
 
-            <Button
-                variant="contained"
-                color="primary"
-                className="mt-10 w-[300px] bg-blue-500"
-                onClick={() => router.push("/estimate")} // Redirect to /estimate page on click
-            >
-                Get Your Free Estimate!
-            </Button>
+            <div className="mt-8">
+                <Button
+                    variant="contained"
+                    color="primary"
+                    className="w-[300px] bg-blue-500"
+                    onClick={() => router.push("/estimate")} // Redirect to /estimate page on click
+                >
+                    Get Your Free Estimate!
+                </Button>
+            </div>
         </motion.section>
     );
 };

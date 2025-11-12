@@ -1,17 +1,24 @@
 "use client";
 
-import { CSSProperties } from "react";
 import { ClimbingBoxLoader } from "react-spinners";
 
-const override: CSSProperties = {
-    display: "flex",
-    margin: "0 auto",
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-};
-
 export const Loader = () => {
-    return <ClimbingBoxLoader color="#1770e4" size={20} cssOverride={override} />;
+    return (
+        <div
+            style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                height: "100vh", // full viewport height
+                width: "100vw", // full viewport width
+                position: "fixed", // stays centered even if page scrolls
+                top: 0,
+                left: 0,
+                backgroundColor: "white", // optional: add background for overlay look
+                zIndex: 9999, // optional: appear above all content
+            }}
+        >
+            <ClimbingBoxLoader color="#1770e4" size={20} />
+        </div>
+    );
 };
