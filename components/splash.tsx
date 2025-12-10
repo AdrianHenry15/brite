@@ -59,7 +59,7 @@ const Splash = (props: ISplashProps) => {
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                className="relative z-10 text-center px-6 max-w-3xl"
+                className="relative z-10 flex flex-col text-center px-6 max-w-3xl"
             >
                 {/* Logo */}
                 <motion.div
@@ -79,15 +79,52 @@ const Splash = (props: ISplashProps) => {
                     {highlightText(description)}
                 </p>
 
-                {/* Call to Action Button */}
-                <motion.a
-                    href="/contact"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="mt-6 inline-block bg-blue-500 px-8 py-4 text-lg font-semibold text-white rounded-full shadow-lg hover:bg-opacity-75 duration-300 transition"
-                >
-                    Get a Free Estimate
-                </motion.a>
+                <div className="flex items-center justify-center sm:flex-row flex-col">
+                    {/* Call to Action Button */}
+                    <motion.a
+                        href="/contact"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="inline-block w-56 whitespace-nowrap mx-2 my-2 px-8 py-4 text-lg font-semibold text-white bg-blue-500 rounded-full shadow-lg hover:bg-opacity-75 transition duration-300 text-center"
+                    >
+                        Get a Free Estimate
+                    </motion.a>
+
+                    <motion.a
+                        href="tel:7048423535"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="inline-block underline underline-offset-2 w-56 mx-2 px-8 py-4 text-lg my-2 font-semibold text-blue-500 bg-white rounded-full shadow-lg hover:bg-opacity-75 transition duration-300 text-center"
+                    >
+                        704-842-3535
+                    </motion.a>
+                </div>
+                <div className="flex items-center justify-center sm:flex-row flex-col">
+                    <motion.a
+                        href="/services/exterior-cleaning"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="inline-block w-56 whitespace-nowrap mx-2 my-2 px-8 py-4 text-md font-semibold text-white bg-gradient-to-tr from-blue-500  to-purple-500 rounded-full shadow-lg hover:bg-opacity-75 transition duration-300 text-center"
+                    >
+                        Exterior Cleaning
+                    </motion.a>
+                    <motion.a
+                        href="/services/holiday-lighting"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="inline-block w-56 whitespace-nowrap mx-2 my-2 px-8 py-4 text-md font-semibold text-white bg-gradient-to-tr from-blue-500  to-purple-500 rounded-full shadow-lg hover:bg-opacity-75 transition duration-300 text-center"
+                    >
+                        Holiday Lighting
+                    </motion.a>
+                    <motion.a
+                        href="/services/commercial-services"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="inline-block w-56 whitespace-nowrap mx-2 my-2 px-8 py-4 text-md font-semibold text-white bg-gradient-to-tr from-blue-500  to-purple-500 rounded-full shadow-lg hover:bg-opacity-75 transition duration-300 text-center"
+                    >
+                        Commercial Services
+                    </motion.a>
+                </div>
             </motion.div>
         </section>
     );

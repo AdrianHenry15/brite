@@ -6,6 +6,7 @@ import SignInModal from "@/components/user/sign-in-modal";
 import { useRouter } from "next/navigation";
 import { ClerkLoaded, UserButton, useUser } from "@clerk/nextjs";
 import { isAdmin } from "@/lib/check-admin";
+import { User2 } from "lucide-react";
 
 const UserIcon = () => {
     const { user } = useUser();
@@ -26,21 +27,6 @@ const UserIcon = () => {
                                     onClick={() => router.push("/admin/dashboard")}
                                     labelIcon={<DashboardIcon color="red" fontSize={18} />}
                                 />
-                                <UserButton.Action
-                                    label="Brite Studio"
-                                    onClick={() => router.push("/studio")}
-                                    labelIcon={<CubeIcon color="blue" fontSize={18} />}
-                                />
-                                {/* <UserButton.Action
-                                    label="All Applications"
-                                    onClick={() => router.push("/admin/applications")}
-                                    labelIcon={<BillIcon color="green" fontSize={18} />}
-                                /> */}
-                                {/* <UserButton.Action
-                                    label="All Resumes"
-                                    onClick={() => router.push("/admin/resumes")}
-                                    labelIcon={<PresentationIcon color="orange" fontSize={18} />}
-                                /> */}
                             </UserButton.MenuItems>
                         ) : (
                             <UserButton.MenuItems>
@@ -61,9 +47,9 @@ const UserIcon = () => {
                 <ClerkLoaded>
                     <button
                         onClick={() => setShowSignIn(true)}
-                        className="bg-blue-500 hover:bg-blue-600 transition-all ease-in-out hover:scale-105 duration-300 text-white font-bold py-2 px-4 rounded-full"
+                        className="bg-blue-500 hover:bg-blue-600/90 transition-all ease-in-out hover:scale-105 duration-300 text-white font-bold py-2 px-2 rounded-full"
                     >
-                        Sign In
+                        <User2 />
                     </button>
                     {showSignIn && <SignInModal setShowSignIn={setShowSignIn} />}
                 </ClerkLoaded>

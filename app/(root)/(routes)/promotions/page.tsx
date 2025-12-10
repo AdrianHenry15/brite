@@ -1,7 +1,7 @@
 import { Promotion } from "@/sanity.types";
-import { getAllPromotions } from "@/sanity/lib/promotions/getAllPromotions";
 import PromotionList from "./components/promotion-list";
 import { Metadata } from "next";
+import { getAllPromotions } from "@/sanity/lib/actions/promotions";
 
 export const metadata: Metadata = {
     title: "Current Promotions | Brite Exterior Cleaning Services",

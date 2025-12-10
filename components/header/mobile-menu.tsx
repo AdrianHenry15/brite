@@ -69,13 +69,13 @@ export default function MobileMenu() {
                     <TransitionChild
                         as={Fragment}
                         enter="transition-all ease-in-out duration-100"
-                        enterFrom="translate-x-[100%]"
-                        enterTo="translate-x-[0%] sm:translate-x-[45%] md:translate-x-[60%]"
+                        enterFrom="-translate-x-[100%]"
+                        enterTo="translate-x-0"
                         leave="transition-all ease-in-out duration-100"
                         leaveFrom="translate-x-0"
-                        leaveTo="translate-x-[100%]"
+                        leaveTo="-translate-x-[100%]"
                     >
-                        <DialogPanel className="fixed bottom-0 right-0 top-0 flex h-full flex-col bg-white pb-6 w-full sm:w-[375px]">
+                        <DialogPanel className="fixed bottom-0 left-0 top-0 flex h-full flex-col bg-white pb-6 w-full sm:w-[375px]">
                             <div className="p-4">
                                 <div className="flex items-center justify-between">
                                     <button
@@ -89,6 +89,7 @@ export default function MobileMenu() {
 
                                 <ul className="flex w-full flex-col h-full">{renderNavMenu()}</ul>
                             </div>
+
                             {/* NAV BUTTONS */}
                             <ul className="bottom-0 fixed flex flex-col self-start w-full">
                                 <Link
@@ -106,15 +107,16 @@ export default function MobileMenu() {
                                         <FaPhone className="mr-2" />
                                     </Button>
                                 </Link>
+
                                 <Link
                                     onClick={closeMobileMenu}
                                     className="w-full px-10 flex justify-start"
-                                    href={"/estimate"}
+                                    href="/estimate"
                                 >
                                     <Button
                                         roundedFull
                                         className="mb-4 w-full py-4 flex justify-center sm:w-[300px]"
-                                        name={"Estimate"}
+                                        name="Estimate"
                                     />
                                 </Link>
                             </ul>

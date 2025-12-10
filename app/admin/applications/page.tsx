@@ -1,4 +1,4 @@
-import { getAllApplications } from "@/sanity/lib/applications/getAllApplications";
+import { getAllApplications } from "@/sanity/lib/actions/applications";
 
 const AdminApplicationsPage = async () => {
     const applications = await getAllApplications();
@@ -8,13 +8,13 @@ const AdminApplicationsPage = async () => {
             <h2 className="text-3xl font-semibold mb-6 text-white text-center pt-6 md:pt-0">
                 All Applications
             </h2>
-            <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {applications.map((app) => (
+            <div className="grid px-12 lg:px-0 sm:grid-cols-1 lg:grid-cols-3 gap-6">
+                {applications.map((app: any) => (
                     <div
-                        key={app._id}
+                        key={app._id || ""}
                         className="bg-gray-50 shadow-md rounded-lg p-6 border flex flex-col"
                     >
-                        <h3 className="text-lg font-semibold text-gray-800">{app.job?.title}</h3>
+                        <h3 className="text-lg font-semibold text-gray-800">{app.job!.title!}</h3>
                         <p className="text-gray-600 mt-1">
                             {app.firstName} {app.lastName}
                         </p>

@@ -1,7 +1,7 @@
 import React from "react";
 
 interface IButtonProps {
-    name: string;
+    name?: string;
     className?: string;
     icon?: React.ReactNode;
     roundedFull?: boolean;

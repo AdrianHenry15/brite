@@ -29,17 +29,11 @@ export const metadata: Metadata = {
 export default async function HomePage() {
     return (
         <section>
-            <ButtonRow />
             <div className="relative flex w-full flex-col">
                 <Splash
                     img={SplashPic}
                     title="Brite Exterior Services"
-                    description="Your home deserves the best — Brite 
-                    provides elite maintenance services that keep your 
-                    space pristine, efficient, and worry-free. 
-                    From luxury estates to modern residences, 
-                    we handle every detail with precision and care. 
-                    Experience effortless homeownership with Brite."
+                    description="Your home deserves the best — Brite provides elite maintenance services that keep your space pristine, efficient, and worry-free. From luxury estates to modern residences, we handle every detail with precision and care. Experience effortless homeownership with Brite."
                 />
                 <div className="flex justify-center w-full">
                     <div className="absolute h-[1000px] w-full bg-gradient-to-b from-black via-blue-500 to-white"></div>

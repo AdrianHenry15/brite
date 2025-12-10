@@ -1,9 +1,9 @@
 export const isAdmin = (email: string): boolean => {
     const adminEmails = [
-        "adrianhenry2115@gmail.com",
-        "joey.mckenna@britellc.com",
-        "nick.walker@britellc.com",
-        "maui.telmo@briteclt.com",
+        process.env.NEXT_PUBLIC_ADMIN_JOEY as string,
+        process.env.NEXT_PUBLIC_ADMIN_NICK as string,
+        process.env.NEXT_PUBLIC_ADMIN_MAUI as string,
+        process.env.NEXT_PUBLIC_ADMIN_ADRIAN as string,
     ];
 
     return adminEmails.includes(email);

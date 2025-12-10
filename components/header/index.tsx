@@ -44,25 +44,18 @@ export default function Navbar() {
     return (
         <nav
             id="nav-bar"
-            className={`bg-zinc-200 text-sm font-semibold flex w-full self-center sticky top-0 z-50 shadow-md pb-14 lg:pb-0`}
+            className={`bg-zinc-200 text-sm font-semibold flex w-full self-center sticky top-0 z-50 shadow-md lg:pb-0`}
         >
             {/* MOBILE CONTAINER */}
-            <div className="absolute self-center right-0 top-12 lg:top-0 lg:hidden">
+            <div className="absolute self-center left-0 top-6 lg:top-0 lg:hidden">
                 <MobileHeader />
             </div>
 
-            <div className="absolute self-center ml-4 left-0 top-16 lg:top-0 lg:hidden">
+            <div className="absolute self-center mr-4 right-0 top-6 lg:top-0 lg:hidden">
                 <UserIcon />
             </div>
             {/* TITLE & LINKS  */}
             <div className="flex w-full mt-2 justify-evenly">
-                <Link
-                    className="absolute bg-white px-6 py-2 rounded-full self-center flex items-center underline underline-offset-2 text-blue-500 top-24 lg:top-0 lg:left-4 lg:hidden"
-                    href="tel:7048423535"
-                >
-                    <FaPhone className="mr-2" />
-                    <span>704-842-3535</span>
-                </Link>
                 <div className="flex items-center">
                     <Link href="/" className="lg:mr-10">
                         {/* TODO: LOGO */}
