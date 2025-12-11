@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import RequireAdmin from "./components/require-admin";
 import { UserButton } from "@clerk/nextjs";
 import Link from "next/link";
-import { MenuIcon, XIcon, PlusCircle, ChevronLeft } from "lucide-react";
+import { PlusCircle } from "lucide-react";
 import { usePathname } from "next/navigation";
 import AdminSidebar from "./components/sidebar";
 
@@ -36,10 +36,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                     `}
                 >
                     {/* Top Header */}
-                    <header className="sticky top-0 z-20 bg-white dark:bg-gray-800 shadow-md p-4 flex justify-between items-center">
-                        <h1 className="text-2xl font-bold text-gray-800 dark:text-white">
-                            Admin Dashboard
-                        </h1>
+                    <header className="sticky top-0 z-20 p-4 flex justify-end items-center">
                         <UserButton fallback="/" />
                     </header>
 

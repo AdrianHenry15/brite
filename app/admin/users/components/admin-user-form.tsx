@@ -18,6 +18,7 @@ export default function AdminUserForm({ initialData }: AdminUserFormProps) {
     const router = useRouter();
     const isEditing = Boolean(initialData);
 
+    // Form State
     const [form, setForm] = useState({
         firstName: initialData?.firstName || "",
         lastName: initialData?.lastName || "",
@@ -27,14 +28,49 @@ export default function AdminUserForm({ initialData }: AdminUserFormProps) {
         imageUrl: initialData?.imageUrl || "",
     });
 
+    const [errors, setErrors] = useState<Record<string, string>>({});
     const [isDragging, setIsDragging] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
+
+    // Validation Logic
+    function validateField(name: string, value: string) {
+        let error = "";
+
+        switch (name) {
+            case "firstName":
+            case "lastName":
+                if (!value.trim()) error = "This field is required.";
+                break;
+
+            case "email":
+                if (!isEditing && !value.trim()) error = "Email is required.";
+                else if (!isEditing && !/^\S+@\S+\.\S+$/.test(value))
+                    error = "Invalid email format.";
+                break;
+
+            case "password":
+                if (!isEditing) {
+                    if (value.length < 8) error = "Password must be at least 8 characters.";
+                    else if (!/[A-Z]/i.test(value)) error = "Password must contain a letter.";
+                    else if (!/[0-9]/.test(value)) error = "Password must contain a number.";
+                }
+                break;
+
+            case "confirmPassword":
+                if (!isEditing && value !== form.password) error = "Passwords do not match.";
+                break;
+        }
+
+        setErrors((prev) => ({ ...prev, [name]: error }));
+    }
 
     function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
         const { name, value } = e.target;
         setForm((prev) => ({ ...prev, [name]: value }));
+        validateField(name, value);
     }
 
+    // Drag-and-drop image
     function handleDrop(e: React.DragEvent<HTMLDivElement>) {
         e.preventDefault();
         setIsDragging(false);
@@ -55,36 +91,22 @@ export default function AdminUserForm({ initialData }: AdminUserFormProps) {
         setIsDragging(false);
     }
 
-    function validatePassword(password: string) {
-        const errors: string[] = [];
-
-        if (password.length < 8) {
-            errors.push("Password must be at least 8 characters.");
-        }
-        if (!/[A-Z]/i.test(password)) {
-            errors.push("Password must contain at least one letter.");
-        }
-        if (!/[0-9]/.test(password)) {
-            errors.push("Password must contain at least one number.");
-        }
-
-        return errors;
-    }
-
+    // Submit handler
     async function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
 
-        if (!isEditing) {
-            // BASIC PASSWORD VALIDATION
-            const errors = validatePassword(form.password);
+        // Final validation before sending
+        const newErrors: Record<string, string> = {};
 
-            if (form.password !== form.confirmPassword) {
-                return alert("Passwords do not match.");
+        Object.entries(form).forEach(([name, value]) => {
+            if (!isEditing || name !== "email") {
+                validateField(name, value);
+                if (errors[name]) newErrors[name] = errors[name];
             }
+        });
 
-            if (errors.length > 0) {
-                return alert(errors.join("\n"));
-            }
+        if (Object.keys(newErrors).length > 0) {
+            return alert("Please fix all validation errors.");
         }
 
         const method = isEditing ? "PATCH" : "POST";
@@ -114,7 +136,8 @@ export default function AdminUserForm({ initialData }: AdminUserFormProps) {
             router.push("/admin/users");
             router.refresh();
         } else {
-            alert("Failed to save user.");
+            const data = await res.json();
+            alert(data.error || "Failed to create user.");
         }
     }
 
@@ -132,109 +155,122 @@ export default function AdminUserForm({ initialData }: AdminUserFormProps) {
         }
     }
 
+    // Shared Input Component
+    const InputGroup = ({
+        label,
+        name,
+        required = false,
+        children,
+    }: {
+        label: string;
+        name: string;
+        required?: boolean;
+        children: React.ReactNode;
+    }) => (
+        <div>
+            <label className="block text-sm font-medium mb-1">
+                {label} {required && <span className="text-red-500">*</span>}
+            </label>
+            {children}
+            {errors[name] && <p className="text-red-500 text-sm mt-1">{errors[name]}</p>}
+        </div>
+    );
+
     return (
         <form
             onSubmit={handleSubmit}
             className="space-y-6 bg-white dark:bg-gray-800 p-6 rounded-lg border border-gray-200 dark:border-gray-700 shadow"
         >
             {/* First Name */}
-            <div>
-                <label className="block text-sm font-medium mb-1">First Name</label>
+            <InputGroup label="First Name" name="firstName" required>
                 <input
                     type="text"
                     name="firstName"
                     value={form.firstName}
                     onChange={handleChange}
-                    required
-                    className="w-full bg-gray-100 dark:bg-gray-700 text-white p-2 rounded"
+                    className={`w-full bg-gray-100 dark:bg-gray-700 text-white p-2 rounded ${
+                        errors.firstName ? "border border-red-500" : ""
+                    }`}
                 />
-            </div>
+            </InputGroup>
 
             {/* Last Name */}
-            <div>
-                <label className="block text-sm font-medium mb-1">Last Name</label>
+            <InputGroup label="Last Name" name="lastName" required>
                 <input
                     type="text"
                     name="lastName"
                     value={form.lastName}
                     onChange={handleChange}
-                    required
-                    className="w-full bg-gray-100 dark:bg-gray-700 text-white p-2 rounded"
+                    className={`w-full bg-gray-100 dark:bg-gray-700 text-white p-2 rounded ${
+                        errors.lastName ? "border border-red-500" : ""
+                    }`}
                 />
-            </div>
+            </InputGroup>
 
-            {/* Email (Create only) */}
+            {/* Email */}
             {!isEditing && (
-                <div>
-                    <label className="block text-sm font-medium mb-1">Email Address</label>
+                <InputGroup label="Email Address" name="email" required>
                     <input
                         type="email"
                         name="email"
                         value={form.email}
                         onChange={handleChange}
-                        required
-                        className="w-full bg-gray-100 dark:bg-gray-700 text-white p-2 rounded"
+                        className={`w-full bg-gray-100 dark:bg-gray-700 text-white p-2 rounded ${
+                            errors.email ? "border border-red-500" : ""
+                        }`}
                     />
-                </div>
+                </InputGroup>
             )}
 
-            {/* Password + Confirm Password (Create only) */}
+            {/* Password Fields */}
             {!isEditing && (
                 <>
-                    {/* Password */}
-                    <div>
-                        <label className="block text-sm font-medium mb-1">Password</label>
+                    <InputGroup label="Password" name="password" required>
                         <div className="relative">
                             <input
                                 type={showPassword ? "text" : "password"}
                                 name="password"
                                 value={form.password}
                                 onChange={handleChange}
-                                required
-                                minLength={8}
-                                className="w-full bg-gray-100 dark:bg-gray-700 text-white p-2 rounded pr-12"
+                                className={`w-full bg-gray-100 dark:bg-gray-700 text-white p-2 rounded pr-12 ${
+                                    errors.password ? "border border-red-500" : ""
+                                }`}
                             />
-
-                            {/* Show/hide toggle */}
                             <button
                                 type="button"
                                 onClick={() => setShowPassword((prev) => !prev)}
-                                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-300"
+                                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-200"
                             >
                                 {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                             </button>
                         </div>
-                    </div>
+                    </InputGroup>
 
-                    {/* Confirm Password */}
-                    <div>
-                        <label className="block text-sm font-medium mb-1">Confirm Password</label>
+                    <InputGroup label="Confirm Password" name="confirmPassword" required>
                         <input
                             type={showPassword ? "text" : "password"}
                             name="confirmPassword"
                             value={form.confirmPassword}
                             onChange={handleChange}
-                            required
-                            minLength={8}
-                            className="w-full bg-gray-100 dark:bg-gray-700 text-white p-2 rounded"
+                            className={`w-full bg-gray-100 dark:bg-gray-700 text-white p-2 rounded ${
+                                errors.confirmPassword ? "border border-red-500" : ""
+                            }`}
                         />
-                    </div>
+                    </InputGroup>
                 </>
             )}
 
-            {/* Drag & Drop Image Upload */}
-            <div>
-                <label className="block text-sm font-medium mb-1">Profile Image</label>
-
+            {/* Image Upload */}
+            <InputGroup label="Profile Image" name="imageUrl">
                 <div
                     onDrop={handleDrop}
                     onDragOver={handleDragOver}
                     onDragLeave={handleDragLeave}
-                    className={`
-                        border-2 border-dashed rounded-lg p-6 text-center cursor-pointer 
-                        transition
-                        ${isDragging ? "border-blue-400 bg-blue-50 dark:bg-gray-700" : "border-gray-400"}
-                    `}
+                    className={`border-2 border-dashed rounded-lg p-6 text-center cursor-pointer transition ${
+                        isDragging
+                            ? "border-blue-400 bg-blue-50 dark:bg-gray-700"
+                            : "border-gray-400"
+                    }`}
                 >
                     {form.imageUrl ? (
                         <img
@@ -257,7 +293,7 @@ export default function AdminUserForm({ initialData }: AdminUserFormProps) {
                     placeholder="https://example.com/image.jpg"
                     className="w-full mt-3 bg-gray-100 dark:bg-gray-700 text-white p-2 rounded"
                 />
-            </div>
+            </InputGroup>
 
             {/* Actions */}
             <div className="flex gap-4">

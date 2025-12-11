@@ -46,7 +46,7 @@ const UserIcon = () => {
             ) : (
                 <ClerkLoaded>
                     <button
-                        onClick={() => setShowSignIn(true)}
+                        onClick={() => setShowSignIn((prev) => !prev)}
                         className="bg-blue-500 hover:bg-blue-600/90 transition-all ease-in-out hover:scale-105 duration-300 text-white font-bold py-2 px-2 rounded-full"
                     >
                         <User2 />
