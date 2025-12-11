@@ -52,19 +52,30 @@ export async function GET(_: Request, { params }: Params) {
 
 export async function PATCH(req: Request, { params }: { params: { id: string } }) {
     try {
-        const updates = await req.json();
         const id = params.id;
+        const updates = await req.json();
 
-        const [firstName, ...rest] = updates.fullName.split(" ");
-        const lastName = rest.join(" ");
+        const { firstName, lastName, imageUrl } = updates;
 
+        // 1. Update Clerk user
         const user = await clerkClient.users.updateUser(id, {
             firstName,
             lastName,
             publicMetadata: {
-                imageUrl: updates.imageUrl ?? undefined,
+                imageUrl: imageUrl ?? undefined,
             },
         });
+
+        // 2. Update Sanity user
+        await sanityClient
+            .patch(`clerk-${id}`)
+            .set({
+                firstName,
+                lastName,
+                fullName: `${firstName} ${lastName}`,
+                imageUrl: imageUrl ?? "",
+            })
+            .commit();
 
         return NextResponse.json({ user });
     } catch (err) {

@@ -2,12 +2,10 @@ import { clerkClient } from "@/clerk/client";
 import { sanityClient } from "@/sanity/lib/client";
 import { NextResponse } from "next/server";
 
-// GET: Fetch all users
+// GET: Fetch all Clerk users
 export async function GET() {
     try {
-        const users = await clerkClient.users.getUserList({
-            limit: 100,
-        });
+        const users = await clerkClient.users.getUserList({ limit: 100 });
 
         return NextResponse.json({
             data: users.data,
@@ -19,15 +17,21 @@ export async function GET() {
     }
 }
 
+// POST: Create Clerk + Sanity user
 export async function POST(req: Request) {
     try {
-        const { firstName, lastName, email, imageUrl } = await req.json();
+        const { firstName, lastName, email, password, imageUrl } = await req.json();
+
+        if (!email || !password) {
+            return NextResponse.json({ error: "Email and password are required" }, { status: 400 });
+        }
 
         // 1. Create Clerk user
         const clerkUser = await clerkClient.users.createUser({
             firstName,
             lastName,
             emailAddress: [email],
+            password,
             publicMetadata: {
                 imageUrl,
             },
@@ -38,21 +42,33 @@ export async function POST(req: Request) {
         // 2. Create Sanity user mapped to Clerk ID
         const sanityUser = await sanityClient.create({
             _type: "user",
-            _id: `clerk-${clerkId}`, // prevents duplicates
+            _id: `clerk-${clerkId}`,
             clerkId,
+            firstName,
+            lastName,
             fullName: `${firstName} ${lastName}`,
             email,
-            imageUrl,
+            imageUrl: imageUrl || "",
             createdAt: new Date().toISOString(),
         });
 
-        return NextResponse.json({
-            clerkUser,
-            sanityUser,
-            message: "User created successfully",
-        });
-    } catch (err) {
-        console.error("User creation error:", err);
-        return NextResponse.json({ error: "Failed to create user" }, { status: 500 });
+        return NextResponse.json(
+            {
+                clerkUser,
+                sanityUser,
+                message: "User created successfully",
+            },
+            { status: 201 },
+        );
+    } catch (err: any) {
+        console.error("Clerk error DETAILS:", JSON.stringify(err, null, 2));
+
+        return NextResponse.json(
+            {
+                message: "Failed to create user",
+                clerkErrors: err?.errors ?? null,
+            },
+            { status: err?.status || 500 },
+        );
     }
 }

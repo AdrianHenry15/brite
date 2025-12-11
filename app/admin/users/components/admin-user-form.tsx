@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { Eye, EyeOff } from "lucide-react";
 
 interface AdminUserFormProps {
     initialData?: {
@@ -21,10 +22,13 @@ export default function AdminUserForm({ initialData }: AdminUserFormProps) {
         firstName: initialData?.firstName || "",
         lastName: initialData?.lastName || "",
         email: initialData?.emailAddresses?.[0]?.emailAddress || "",
+        password: "",
+        confirmPassword: "",
         imageUrl: initialData?.imageUrl || "",
     });
 
     const [isDragging, setIsDragging] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
 
     function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
         const { name, value } = e.target;
@@ -51,16 +55,59 @@ export default function AdminUserForm({ initialData }: AdminUserFormProps) {
         setIsDragging(false);
     }
 
+    function validatePassword(password: string) {
+        const errors: string[] = [];
+
+        if (password.length < 8) {
+            errors.push("Password must be at least 8 characters.");
+        }
+        if (!/[A-Z]/i.test(password)) {
+            errors.push("Password must contain at least one letter.");
+        }
+        if (!/[0-9]/.test(password)) {
+            errors.push("Password must contain at least one number.");
+        }
+
+        return errors;
+    }
+
     async function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
+
+        if (!isEditing) {
+            // BASIC PASSWORD VALIDATION
+            const errors = validatePassword(form.password);
+
+            if (form.password !== form.confirmPassword) {
+                return alert("Passwords do not match.");
+            }
+
+            if (errors.length > 0) {
+                return alert(errors.join("\n"));
+            }
+        }
 
         const method = isEditing ? "PATCH" : "POST";
         const endpoint = isEditing ? `/api/users/${initialData?.id}` : `/api/users`;
 
+        const payload = isEditing
+            ? {
+                  firstName: form.firstName,
+                  lastName: form.lastName,
+                  imageUrl: form.imageUrl,
+              }
+            : {
+                  firstName: form.firstName,
+                  lastName: form.lastName,
+                  email: form.email,
+                  password: form.password,
+                  imageUrl: form.imageUrl,
+              };
+
         const res = await fetch(endpoint, {
             method,
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(form),
+            body: JSON.stringify(payload),
         });
 
         if (res.ok) {
@@ -116,7 +163,7 @@ export default function AdminUserForm({ initialData }: AdminUserFormProps) {
                 />
             </div>
 
-            {/* Email */}
+            {/* Email (Create only) */}
             {!isEditing && (
                 <div>
                     <label className="block text-sm font-medium mb-1">Email Address</label>
@@ -131,6 +178,50 @@ export default function AdminUserForm({ initialData }: AdminUserFormProps) {
                 </div>
             )}
 
+            {/* Password + Confirm Password (Create only) */}
+            {!isEditing && (
+                <>
+                    {/* Password */}
+                    <div>
+                        <label className="block text-sm font-medium mb-1">Password</label>
+                        <div className="relative">
+                            <input
+                                type={showPassword ? "text" : "password"}
+                                name="password"
+                                value={form.password}
+                                onChange={handleChange}
+                                required
+                                minLength={8}
+                                className="w-full bg-gray-100 dark:bg-gray-700 text-white p-2 rounded pr-12"
+                            />
+
+                            {/* Show/hide toggle */}
+                            <button
+                                type="button"
+                                onClick={() => setShowPassword((prev) => !prev)}
+                                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-300"
+                            >
+                                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                            </button>
+                        </div>
+                    </div>
+
+                    {/* Confirm Password */}
+                    <div>
+                        <label className="block text-sm font-medium mb-1">Confirm Password</label>
+                        <input
+                            type={showPassword ? "text" : "password"}
+                            name="confirmPassword"
+                            value={form.confirmPassword}
+                            onChange={handleChange}
+                            required
+                            minLength={8}
+                            className="w-full bg-gray-100 dark:bg-gray-700 text-white p-2 rounded"
+                        />
+                    </div>
+                </>
+            )}
+
             {/* Drag & Drop Image Upload */}
             <div>
                 <label className="block text-sm font-medium mb-1">Profile Image</label>
@@ -140,7 +231,7 @@ export default function AdminUserForm({ initialData }: AdminUserFormProps) {
                     onDragOver={handleDragOver}
                     onDragLeave={handleDragLeave}
                     className={`
-                        border-2 border-dashed rounded-lg p-6 text-center cursor-pointer
+                        border-2 border-dashed rounded-lg p-6 text-center cursor-pointer 
                         transition
                         ${isDragging ? "border-blue-400 bg-blue-50 dark:bg-gray-700" : "border-gray-400"}
                     `}
@@ -158,7 +249,6 @@ export default function AdminUserForm({ initialData }: AdminUserFormProps) {
                     )}
                 </div>
 
-                {/* URL input fallback */}
                 <input
                     type="text"
                     name="imageUrl"
@@ -171,7 +261,10 @@ export default function AdminUserForm({ initialData }: AdminUserFormProps) {
 
             {/* Actions */}
             <div className="flex gap-4">
-                <button className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded">
+                <button
+                    type="submit"
+                    className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded"
+                >
                     {isEditing ? "Update User" : "Create User"}
                 </button>
 
