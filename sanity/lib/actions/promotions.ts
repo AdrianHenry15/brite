@@ -1,9 +1,9 @@
-import { client } from "../client";
+import { sanityClient } from "../client";
 
 // GET ALL PROMOTIONS
 export const getAllPromotions = async () => {
     try {
-        return await client.fetch(`
+        return await sanityClient.fetch(`
             *[_type == "promotion"] | order(startDate desc){
                 _id,
                 title,
@@ -25,7 +25,7 @@ export const getAllPromotions = async () => {
 // GET PROMOTION BY ID
 export const getPromotionById = async (id: string) => {
     try {
-        return await client.getDocument(id);
+        return await sanityClient.getDocument(id);
     } catch (error) {
         console.error("Error fetching promotion by ID:", error);
         return null;
@@ -35,7 +35,7 @@ export const getPromotionById = async (id: string) => {
 // GET PROMOTION BY SLUG
 export const getPromotionBySlug = async (slug: string) => {
     try {
-        const promotion = await client.fetch(
+        const promotion = await sanityClient.fetch(
             `
             *[_type == "promotion" && slug.current == $slug][0]{
                 _id,
@@ -70,7 +70,7 @@ export const createPromotion = async (payload: {
     status?: string;
 }) => {
     try {
-        const newPromotion = await client.create({
+        const newPromotion = await sanityClient.create({
             _type: "promotion",
             ...payload,
             slug: {
@@ -118,7 +118,7 @@ export const updatePromotion = async (
             };
         }
 
-        const updated = await client.patch(id).set(patch).commit();
+        const updated = await sanityClient.patch(id).set(patch).commit();
 
         return { success: true, data: updated };
     } catch (error) {
@@ -130,7 +130,7 @@ export const updatePromotion = async (
 // DELETE PROMOTION BY ID
 export const deletePromotionById = async (id: string) => {
     try {
-        await client.delete(id);
+        await sanityClient.delete(id);
 
         return {
             success: true,

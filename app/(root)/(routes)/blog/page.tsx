@@ -1,4 +1,4 @@
-import { getAllBlogs } from "@/sanity/lib/blogs/getAllBlogs";
+import { getAllBlogs } from "@/sanity/lib/actions/blogs";
 import BlogCard from "./components/blog-card";
 import { Metadata } from "next";
 

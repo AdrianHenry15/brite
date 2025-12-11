@@ -1,9 +1,9 @@
-import { client } from "../client";
+import { sanityClient } from "../client";
 
 // GET ALL APPLICATIONS
 export const getAllApplications = async () => {
     try {
-        return await client.fetch(`
+        return await sanityClient.fetch(`
             *[_type == "application"] | order(publishedAt desc){
                 _id,
                 firstName,
@@ -27,7 +27,7 @@ export const getAllApplications = async () => {
 // GET APPLICATION BY ID
 export const getApplicationById = async (id: string) => {
     try {
-        return await client.fetch(
+        return await sanityClient.fetch(
             `
             *[_type == "application" && _id == $id][0]{
                 _id,
@@ -61,7 +61,7 @@ export const createApplication = async (payload: {
     publishedAt?: string;
 }) => {
     try {
-        const newApp = await client.create({
+        const newApp = await sanityClient.create({
             _type: "application",
 
             job: payload.jobId
@@ -108,7 +108,7 @@ export const updateApplication = async (
             };
         }
 
-        const updated = await client.patch(id).set(patch).commit();
+        const updated = await sanityClient.patch(id).set(patch).commit();
         return { success: true, data: updated };
     } catch (error) {
         console.error("Error updating application:", error);
@@ -119,7 +119,7 @@ export const updateApplication = async (
 // DELETE APPLICATION BY ID
 export const deleteApplicationById = async (id: string) => {
     try {
-        await client.delete(id);
+        await sanityClient.delete(id);
 
         return { success: true, message: "Application deleted successfully." };
     } catch (error: any) {

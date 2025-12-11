@@ -1,9 +1,9 @@
-import { client } from "../client";
+import { sanityClient } from "../client";
 
 // GET ALL RESUMES
 export const getAllResumes = async () => {
     try {
-        return await client.fetch(`
+        return await sanityClient.fetch(`
             *[_type == "resume"] | order(uploadedAt desc){
               _id,
               _createdAt,
@@ -27,7 +27,7 @@ export const getAllResumes = async () => {
 // GET RESUME BY ID
 export const getResumeById = async (id: string) => {
     try {
-        const resume = await client.getDocument(id);
+        const resume = await sanityClient.getDocument(id);
 
         return resume || null;
     } catch (error) {
@@ -39,7 +39,7 @@ export const getResumeById = async (id: string) => {
 // GET RESUME BY SLUG
 export const getResumeBySlug = async (slug: string) => {
     try {
-        const resume = await client.fetch(
+        const resume = await sanityClient.fetch(
             `
             *[_type == "resume" && slug.current == $slug][0]{
                 _id,
@@ -85,7 +85,7 @@ export const createResume = async ({
         // Create slug based on asset
         const slug = `resume-${fileAssetId}`.toLowerCase();
 
-        const newResume = await client.create({
+        const newResume = await sanityClient.create({
             _type: "resume",
             uploadedAt: new Date().toISOString(),
             user: {
@@ -123,7 +123,7 @@ export const updateResume = async ({
     try {
         const newSlug = `resume-${newFileAssetId}`;
 
-        const updated = await client
+        const updated = await sanityClient
             .patch(id)
             .set({
                 resumeFile: {
@@ -151,7 +151,7 @@ export const updateResume = async ({
 // DELETE RESUME BY ID
 export const deleteResumeById = async (id: string) => {
     try {
-        await client.delete(id);
+        await sanityClient.delete(id);
 
         return {
             success: true,
@@ -169,15 +169,18 @@ export const deleteResumeById = async (id: string) => {
 // DELETE RESUME BY SLUG
 export const deleteResumeBySlug = async (slug: string) => {
     try {
-        const doc = await client.fetch(`*[_type == "resume" && slug.current == $slug][0]{ _id }`, {
-            slug,
-        });
+        const doc = await sanityClient.fetch(
+            `*[_type == "resume" && slug.current == $slug][0]{ _id }`,
+            {
+                slug,
+            },
+        );
 
         if (!doc?._id) {
             return { success: false, message: "Resume not found." };
         }
 
-        await client.delete(doc._id);
+        await sanityClient.delete(doc._id);
 
         return { success: true, message: "Resume deleted successfully." };
     } catch (error: any) {

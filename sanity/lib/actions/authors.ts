@@ -1,9 +1,9 @@
-import { client } from "../client";
+import { sanityClient } from "../client";
 
 // GET ALL AUTHORS
 export const getAllAuthors = async () => {
     try {
-        return await client.fetch(`
+        return await sanityClient.fetch(`
             *[_type == "author"] | order(name asc){
                 _id,
                 name,
@@ -24,7 +24,7 @@ export const getAllAuthors = async () => {
 // GET AUTHOR BY ID
 export const getAuthorById = async (id: string) => {
     try {
-        return await client.getDocument(id);
+        return await sanityClient.getDocument(id);
     } catch (error) {
         console.error("Error fetching author by ID:", error);
         return null;
@@ -38,7 +38,7 @@ export const createAuthor = async (payload: {
     imageAssetId?: string;
 }) => {
     try {
-        const newAuthor = await client.create({
+        const newAuthor = await sanityClient.create({
             _type: "author",
             name: payload.name,
             bio: payload.bio || "",
@@ -82,7 +82,7 @@ export const updateAuthor = async (
             };
         }
 
-        const updated = await client.patch(id).set(patch).commit();
+        const updated = await sanityClient.patch(id).set(patch).commit();
 
         return { success: true, data: updated };
     } catch (error) {
@@ -94,7 +94,7 @@ export const updateAuthor = async (
 // DELETE AUTHOR BY ID
 export const deleteAuthorById = async (id: string) => {
     try {
-        await client.delete(id);
+        await sanityClient.delete(id);
 
         return { success: true, message: "Author deleted successfully." };
     } catch (error: any) {

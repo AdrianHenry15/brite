@@ -1,9 +1,9 @@
-import { client } from "../client";
+import { sanityClient } from "../client";
 
 // GET ALL BLOGS
 export const getAllBlogs = async () => {
     try {
-        return await client.fetch(`
+        return await sanityClient.fetch(`
             *[_type == "blog"] | order(publishedAt desc){
                 _id,
                 title,
@@ -27,7 +27,7 @@ export const getAllBlogs = async () => {
 // GET BLOG BY ID
 export const getBlogById = async (id: string) => {
     try {
-        return await client.getDocument(id);
+        return await sanityClient.getDocument(id);
     } catch (error) {
         console.error("Error fetching blog by ID:", error);
         return null;
@@ -37,7 +37,7 @@ export const getBlogById = async (id: string) => {
 // GET BLOG BY SLUG
 export const getBlogBySlug = async (slug: string) => {
     try {
-        const blog = await client.fetch(
+        const blog = await sanityClient.fetch(
             `
             *[_type == "blog" && slug.current == $slug][0]{
                 _id,
@@ -91,7 +91,7 @@ export const createBlog = async (payload: {
             .replace(/[^a-z0-9-]/g, "")
             .slice(0, 96);
 
-        const newBlog = await client.create({
+        const newBlog = await sanityClient.create({
             _type: "blog",
             title: payload.title,
             excerpt: payload.excerpt || "",
@@ -167,7 +167,7 @@ export const updateBlog = async (
             };
         }
 
-        const updated = await client.patch(id).set(patch).commit();
+        const updated = await sanityClient.patch(id).set(patch).commit();
 
         return { success: true, data: updated };
     } catch (error) {
@@ -179,7 +179,7 @@ export const updateBlog = async (
 // DELETE BLOG BY ID
 export const deleteBlogById = async (id: string) => {
     try {
-        await client.delete(id);
+        await sanityClient.delete(id);
 
         return {
             success: true,

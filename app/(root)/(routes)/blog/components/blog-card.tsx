@@ -2,8 +2,6 @@ import { Blog } from "@/sanity.types";
 import { imageUrl } from "@/sanity/lib/image-url";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
-import UserDefaultImage from "@/public/assets/icons/user (1).png"; // Make sure to import the default image
 
 interface IBlogCardProps {
     blog: Blog;
@@ -24,15 +22,19 @@ const BlogCard = (props: IBlogCardProps) => {
     }).format(new Date(blog.publishedAt!));
 
     // Truncate the excerpt for a cleaner look
-    const truncatedExcerpt =
-        blog.excerpt!.length > 100 ? `${blog.excerpt!.slice(0, 100)}...` : blog.excerpt;
+    const excerpt = blog.excerpt || "";
+    const truncatedExcerpt = excerpt.length > 100 ? `${excerpt.slice(0, 100)}...` : excerpt;
+
+    const imageSrc = blog.mainImage
+        ? imageUrl(blog.mainImage).url().toString()
+        : "/placeholder.png";
 
     return (
         <Link key={blog._id} href={`/blog/${blog.slug?.current || ""}`}>
             <div className="bg-white shadow-lg rounded-lg overflow-hidden cursor-pointer hover:shadow-xl transition transform hover:scale-105">
                 {/* Blog image */}
                 <Image
-                    src={blog.mainImage?.asset ? imageUrl(blog.mainImage.asset).url() : ""}
+                    src={imageSrc}
                     alt={blog.title || "Blog Image"}
                     width={400}
                     height={250}

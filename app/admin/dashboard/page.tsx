@@ -15,15 +15,19 @@ import { useEffect, useState } from "react";
 import StatCard from "./components/stat-card";
 import { useApplicationStore } from "@/store/application-store";
 import UsersList from "./components/users-list";
+import { Application, Blog, Promotion } from "@/sanity.types";
+import { getAllApplications } from "@/sanity/lib/actions/applications";
+import { getAllBlogs } from "@/sanity/lib/actions/blogs";
+import { getAllPromotions } from "@/sanity/lib/actions/promotions";
 
 export default function AdminDashboard() {
     // Users
     const { user } = useUser();
     const [users, setUsers] = useState<any[]>([]);
+    const [applications, setApplications] = useState<Application[]>([]);
+    const [blogs, setBlogs] = useState<Blog[]>([]);
+    const [promotions, setPromotions] = useState<Promotion[]>([]);
     const [totalUserCount, setTotalUserCount] = useState(0);
-
-    // Applications
-    const applicationStore = useApplicationStore();
 
     // Loading & Error States
     const [isLoading, setIsLoading] = useState(true);
@@ -35,8 +39,14 @@ export default function AdminDashboard() {
             try {
                 const response = await fetch("/api/users");
                 const data = await response.json();
+                const applicationsData = await getAllApplications();
+                const blogsData = await getAllBlogs();
+                const promotionsData = await getAllPromotions();
                 setTotalUserCount(data.totalCount);
                 setUsers(data.data);
+                setApplications(applicationsData);
+                setBlogs(blogsData);
+                setPromotions(promotionsData);
             } catch (err) {
                 setError("Failed to fetch users");
             } finally {
@@ -59,7 +69,7 @@ export default function AdminDashboard() {
             {/* Stats Section */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
                 <StatCard
-                    link=""
+                    link="/admin/users"
                     color_gradient="blue"
                     icon={<UsersIcon />}
                     title="Total Users"
@@ -70,21 +80,21 @@ export default function AdminDashboard() {
                     color_gradient="green"
                     icon={<FileIcon />}
                     title="Applications"
-                    content={""}
+                    content={promotions.length.toString()}
                 />
                 <StatCard
-                    link=""
+                    link="/admin/blogs"
                     color_gradient="purple"
                     icon={<PenBoxIcon />}
                     title="Blogs"
-                    content="0"
+                    content={blogs.length.toString()}
                 />
                 <StatCard
                     link="/admin/promotions"
                     color_gradient="yellow"
                     icon={<CoinsIcon />}
                     title="Promotions"
-                    content="0"
+                    content={promotions.length.toString()}
                 />
             </div>
 

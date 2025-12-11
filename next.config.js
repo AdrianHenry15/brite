@@ -15,6 +15,7 @@ const nextConfig = {
   },
   env: {
     CLERK_SECRET_KEY: process.env.CLERK_SECRET_KEY,
+    CLERK_WEBHOOK_SECRET: process.env.CLERK_WEBHOOK_SECRET,
     GOOGLE_API_KEY: process.env.GOOGLE_API_KEY,
     GOOGLE_PLACE_ID: process.env.GOOGLE_PLACE_ID,
     SANITY_API_TOKEN: process.env.SANITY_API_TOKEN,

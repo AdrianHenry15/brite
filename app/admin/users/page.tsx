@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import UsersList from "../dashboard/components/users-list";
 import useUserStore from "@/store/user-store";
 

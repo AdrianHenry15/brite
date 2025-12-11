@@ -1,5 +1,6 @@
 import { isAdmin } from "@/lib/check-admin";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 interface IUsersListCardProps {
@@ -12,8 +13,8 @@ const UsersListCard = ({ user }: IUsersListCardProps) => {
     };
 
     return (
-        <div
-            // href={`users/${user.id}`}
+        <Link
+            href={`users/${user.id}`}
             className="relative bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-2xl shadow-lg p-6 w-full max-w-xs mx-auto transform transition-all duration-500 hover:scale-105 hover:shadow-xl hover:-translate-y-2 hover:rotate-2 hover:cursor-pointer"
         >
             {/* User Image */}
@@ -51,7 +52,7 @@ const UsersListCard = ({ user }: IUsersListCardProps) => {
 
             {/* Hover animation gradient effect */}
             <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
-        </div>
+        </Link>
     );
 };
 

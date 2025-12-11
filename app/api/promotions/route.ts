@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { Promotion } from "@/sanity.types";
-import { client } from "@/sanity/lib/client";
+import { sanityClient } from "@/sanity/lib/client";
 import { createPromotion } from "@/sanity/lib/actions/promotions";
 
 export async function GET() {
@@ -8,7 +8,7 @@ export async function GET() {
         const now = new Date().toISOString();
 
         // Fetch all promotions
-        const promotions: Promotion[] = await client.fetch(`*[_type == "promotion"]`);
+        const promotions: Promotion[] = await sanityClient.fetch(`*[_type == "promotion"]`);
 
         // Determine the new status
         const updatedPromotions = promotions.map((promotion) => {
@@ -25,7 +25,7 @@ export async function GET() {
         });
 
         // Batch update the statuses in Sanity
-        const transaction = client.transaction();
+        const transaction = sanityClient.transaction();
         updatedPromotions.forEach((promotion) => {
             transaction.patch(promotion._id, { set: { status: promotion.status } });
         });

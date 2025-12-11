@@ -1,4 +1,3 @@
-import React from "react";
 import UsersListCard from "./users-list-card";
 
 interface IUsersListProps {

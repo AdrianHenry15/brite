@@ -1,9 +1,9 @@
-import { client } from "../client";
+import { sanityClient } from "../client";
 
 // GET ALL JOBS
 export const getAllJobs = async () => {
     try {
-        return await client.fetch(`
+        return await sanityClient.fetch(`
             *[_type == "job"] | order(publishedAt desc){
                 _id,
                 title,
@@ -22,7 +22,7 @@ export const getAllJobs = async () => {
 // GET JOB BY ID
 export const getJobById = async (id: string) => {
     try {
-        return await client.getDocument(id);
+        return await sanityClient.getDocument(id);
     } catch (error) {
         console.error("Error fetching job by ID:", error);
         return null;
@@ -32,7 +32,7 @@ export const getJobById = async (id: string) => {
 // GET JOB BY SLUG
 export const getJobBySlug = async (slug: string) => {
     try {
-        const job = await client.fetch(
+        const job = await sanityClient.fetch(
             `
             *[_type == "job" && slug.current == $slug][0]{
                 _id,
@@ -69,7 +69,7 @@ export const createJob = async (payload: {
             .replace(/[^a-z0-9-]/g, "")
             .slice(0, 96);
 
-        const newJob = await client.create({
+        const newJob = await sanityClient.create({
             _type: "job",
             ...payload,
             slug: { _type: "slug", current: slug },
@@ -107,7 +107,7 @@ export const updateJob = async (
             };
         }
 
-        const updated = await client.patch(id).set(patch).commit();
+        const updated = await sanityClient.patch(id).set(patch).commit();
 
         return { success: true, data: updated };
     } catch (error) {
@@ -119,7 +119,7 @@ export const updateJob = async (
 // DELETE JOB BY ID
 export const deleteJobById = async (id: string) => {
     try {
-        await client.delete(id);
+        await sanityClient.delete(id);
 
         return {
             success: true,

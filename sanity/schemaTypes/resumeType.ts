@@ -18,6 +18,14 @@ export const resumeType = defineType({
             validation: (Rule) => Rule.required(),
         }),
         defineField({
+            name: "userId",
+            title: "User ID (Clerk)",
+            type: "string",
+            hidden: true,
+            validation: (Rule) => Rule.required(),
+        }),
+
+        defineField({
             name: "slug",
             title: "Slug",
             type: "slug",

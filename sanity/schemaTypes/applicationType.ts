@@ -14,6 +14,14 @@ export const applicationType = defineType({
             to: [{ type: "job" }], // Ref the "resume" type here
         }),
         defineField({
+            name: "userId",
+            title: "User ID (Clerk)",
+            type: "string",
+            hidden: true,
+            validation: (Rule) => Rule.required(),
+        }),
+
+        defineField({
             name: "firstName",
             title: "First Name",
             type: "string",

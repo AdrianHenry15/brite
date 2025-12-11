@@ -1,4 +1,4 @@
-import { client } from "@/sanity/lib/client";
+import { sanityClient } from "@/sanity/lib/client";
 
 // Function to check if the user has applied for a specific job
 export default async function checkIfUserApplied(
@@ -11,7 +11,7 @@ export default async function checkIfUserApplied(
         userId,
     };
 
-    const result = await client.fetch(query, params);
+    const result = await sanityClient.fetch(query, params);
 
     return result.length > 0; // If the result is non-empty, the user has applied
 }
