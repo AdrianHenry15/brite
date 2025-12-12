@@ -21,7 +21,7 @@ const ProductItem = (props: ProductItemProps) => {
         >
             <div className="flex w-[300px] h-[170px] relative">
                 <Image
-                    className="object-cover opacity-75 flex rounded-md w-full h-full"
+                    className="object-cover  flex rounded-md w-full h-full"
                     width={400}
                     height={400}
                     src={product.image}
@@ -30,7 +30,7 @@ const ProductItem = (props: ProductItemProps) => {
                 <Image
                     src={Logo}
                     alt="logo"
-                    className="flex absolute left-2 bottom-2 w-12 sm:w-16"
+                    className="flex drop-shadow-lg bg-white/25 rounded-lg absolute left-2 bottom-2 w-12 sm:w-16"
                 />
             </div>
             {/* PRODUCT TAB */}

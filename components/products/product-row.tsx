@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import React from "react";
 import { motion } from "framer-motion";
 
 import logoImage from "@/public/assets/icons/brite-logo.png";
@@ -18,11 +17,13 @@ import {
     ExteriorCleaningProducts,
     HolidayLightingProducts,
 } from "@/lib/Products";
+import { TailwindProps } from "@react-email/components";
 
 interface IProductRowProps {
     category: Category;
     title: string;
     className?: string;
+    gradient?: "blue" | "white";
 }
 
 const ProductRow = (props: IProductRowProps) => {
@@ -32,8 +33,10 @@ const ProductRow = (props: IProductRowProps) => {
         ...HolidayLightingProducts,
         ...CommercialServicesProducts,
     ];
+    const BlueGradient = "bg-gradient-to-b from-blue-600 via-blue-200 to-white";
+    const WhiteGradient = "bg-gradient-to-b from-white via-blue-200 to-blue-600";
     // Props
-    const { className, title, category } = props;
+    const { className, title, category, gradient } = props;
 
     // Variants for animation
     const itemVariants = {
@@ -49,9 +52,18 @@ const ProductRow = (props: IProductRowProps) => {
                   (product) => product.category.toLowerCase() === category.toLowerCase(),
               );
 
+    const getGradient = (gradient?: "blue" | "white") => {
+        if (gradient === "blue") {
+            return BlueGradient;
+        } else if (gradient === "white") {
+            return WhiteGradient;
+        } else {
+            return "";
+        }
+    };
     return (
         <div
-            className={`${className} w-full text-white relative border-y border-white shadow-lg overflow-hidden bg-white`}
+            className={`${className} ${getGradient(gradient)} bg-blue-600 w-full text-white relative overflow-hidden`}
         >
             <div className="flex flex-col justify-center items-center w-full py-24 md:py-48">
                 {/* Description Title for specific category */}

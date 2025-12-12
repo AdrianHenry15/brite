@@ -1,12 +1,9 @@
-import React from "react";
-
 import SocialProof from "./components/social-proof";
 import ProductRow from "../../../../components/products/product-row";
 import { Metadata } from "next";
 import ContactFormOverlay from "../../../../components/forms/overlay";
 import SplashPic from "@/public/assets/imgs/action-2.jpg";
 import Splash from "../../../../components/splash";
-import ButtonRow from "./components/button-row";
 
 export const metadata: Metadata = {
     title: "Brite Exterior Cleaning Services | Clean Your Property with Experts",
@@ -37,23 +34,17 @@ export default async function HomePage() {
                 />
                 <div className="flex justify-center w-full">
                     <div className="absolute h-[1000px] w-full bg-gradient-to-b from-black via-blue-500 to-white"></div>
-                    {/* Logo */}
-                    {/* <div className="absolute z-10 top-[1300px] left-32 hidden xl:flex">
-                        <Image src={Logo} alt="brite-logo" className="w-48" />
-                    </div> */}
+
                     <div className="absolute flex items-center justify-center top-[820px] w-[95%] md:w-[80%] lg:w-[70%] xl:w-[45%]">
                         <ContactFormOverlay />
                     </div>
-                    {/* Logo */}
-                    {/* <div className="absolute z-10 top-[1300px] right-32 hidden xl:flex">
-                        <Image src={Logo} alt="brite-logo" className="w-48" />
-                    </div> */}
                 </div>
             </div>
             <div className="pt-[1100px]">
                 <SocialProof />
             </div>
             <ProductRow
+                gradient="white"
                 category="Exterior Cleaning"
                 title="Transform Your Estate’s Curb Appeal – Premium Exterior Cleaning for the Finest Homes!"
             />
@@ -63,10 +54,10 @@ export default async function HomePage() {
             />
             <ProductRow
                 className="pb-24"
+                gradient="blue"
                 category="Commercial Services"
                 title="Enhance Your Business’s Image – Professional Commercial Exterior Cleaning & Holiday Lighting Services!"
             />
-            {/* <WelcomeMessage /> */}
         </section>
     );
 }
