@@ -55,7 +55,7 @@ const AdminSidebar = (props: IAdminSidebarProps) => {
         >
             {/* Sidebar Header */}
             <div
-                className={`${collapsed ? "justify-center" : "justify-between"} flex items-center p-4 border-b border-gray-200 dark:border-gray-700`}
+                className={`${collapsed ? "justify-center" : "justify-between border-b border-gray-200 dark:border-gray-700"} flex items-center p-4 `}
             >
                 {!collapsed && (
                     <h2 className="text-xl font-bold text-gray-800 dark:text-white">Admin Panel</h2>
@@ -64,9 +64,13 @@ const AdminSidebar = (props: IAdminSidebarProps) => {
                 {/* Collapse Toggle */}
                 <button
                     onClick={() => setCollapsed((prev) => !prev)}
-                    className="text-gray-700 dark:text-gray-300 hover:text-blue-500 transition"
+                    className={`${collapsed ? "pointer-events-none md:pointer-events-auto" : ""} text-gray-700 dark:text-gray-300 hover:text-blue-500 transition`}
                 >
-                    {collapsed ? <MenuIcon size={22} /> : <XIcon size={22} />}
+                    {collapsed ? (
+                        <MenuIcon size={22} />
+                    ) : (
+                        <XIcon className={`xl:hidden`} size={22} />
+                    )}
                 </button>
             </div>
 

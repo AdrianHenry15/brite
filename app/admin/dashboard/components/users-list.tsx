@@ -11,12 +11,13 @@ const UsersList = (props: IUsersListProps) => {
     return (
         <div className="bg-white dark:bg-gray-800 shadow-lg rounded-xl p-6 mb-8">
             <h3 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4">All Users</h3>
+
             {isLoading ? (
                 <p>Loading users...</p>
             ) : error ? (
                 <p className="text-red-500">{error}</p>
             ) : users.length > 0 ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6">
                     {users.map((user) => (
                         <UsersListCard key={user.id} user={user} />
                     ))}

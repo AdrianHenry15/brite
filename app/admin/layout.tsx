@@ -30,7 +30,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 {/* Right Content Area */}
                 <main
                     className={`
-                        flex-1 h-full ml-16 md:ml-64 transition-all duration-300
+                        flex-1 h-full ml-16 transition-all duration-300
                         ${collapsed ? "ml-16" : "ml-64"}
                         overflow-y-auto
                     `}
