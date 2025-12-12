@@ -4,7 +4,7 @@ import { Resume } from "@/sanity.types";
 
 export const revalidate = 0; // always fetch fresh resumes
 
-export default async function ResumesPage() {
+export default async function AdminResumesPage() {
     const resumes = await getAllResumes();
 
     return (

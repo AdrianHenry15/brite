@@ -1,15 +1,5 @@
-import { sanityClient } from "@/sanity/lib/client";
-import PromotionForm from "../components/promotion-form";
+const AdminPromotionPage = () => {
+    return <div>AdminPromotionPage</div>;
+};
 
-export default async function EditPromotionPage({ params }: { params: Promise<{ id: string }> }) {
-    const { id } = await params;
-    const promotion = await sanityClient.fetch(`*[_type == "promotion" && _id == $id][0]`, {
-        id,
-    });
-
-    return (
-        <div>
-            <PromotionForm promotion={promotion} />
-        </div>
-    );
-}
+export default AdminPromotionPage;

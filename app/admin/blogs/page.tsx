@@ -1,7 +1,7 @@
 import BlogCard from "@/app/(root)/(routes)/blog/components/blog-card";
 import { getAllBlogs } from "@/sanity/lib/actions/blogs";
 
-export default async function Page() {
+export default async function AdminBlogsPage() {
     const blogs = await getAllBlogs();
 
     return (
