@@ -1,19 +1,26 @@
 "use client";
 
-import React, { useState } from "react";
-import { BillIcon, CubeIcon, DashboardIcon } from "@sanity/icons";
-import SignInModal from "@/components/user/sign-in-modal";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ClerkLoaded, UserButton, useUser } from "@clerk/nextjs";
 import { isAdmin } from "@/lib/check-admin";
+import { BillIcon, DashboardIcon } from "@sanity/icons";
 import { User2 } from "lucide-react";
+import SignInModal from "../user/sign-in-modal";
 
 const UserIcon = () => {
     const { user } = useUser();
-    const [showSignIn, setShowSignIn] = useState(false);
     const router = useRouter();
+    const [mounted, setMounted] = useState(false);
+    const [showSignIn, setShowSignIn] = useState(false);
 
     const userEmail = user?.emailAddresses[0]?.emailAddress;
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    if (!mounted) return null;
 
     return (
         <ClerkLoaded>

@@ -67,12 +67,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
                         type="text/javascript"
                         src={googleMapsUrl}
                     />
-                    <Suspense fallback={<Loader />}>
-                        <ClerkLoading>
-                            <Loader />
-                        </ClerkLoading>
-                        {children}
-                    </Suspense>
+                    <ClerkLoading>
+                        <Loader />
+                    </ClerkLoading>
+                    {children}
                 </body>
             </html>
         </ClerkProvider>

@@ -79,7 +79,7 @@ const Splash = (props: ISplashProps) => {
                     {highlightText(description)}
                 </p>
 
-                <div className="flex items-center justify-center sm:flex-row flex-col">
+                <div className="flex items-center justify-center">
                     {/* Call to Action Button */}
                     <motion.a
                         href="/contact"
@@ -99,23 +99,26 @@ const Splash = (props: ISplashProps) => {
                         704-842-3535
                     </motion.a>
                 </div>
+                <hr className="" />
                 <div className="flex items-center justify-center sm:flex-row flex-col">
-                    <motion.a
-                        href="/services/exterior-cleaning"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="inline-block w-56 whitespace-nowrap mx-2 my-2 px-8 py-4 text-md font-semibold text-white bg-gradient-to-tr from-blue-500  to-purple-500 rounded-full shadow-lg hover:bg-opacity-75 transition duration-300 text-center"
-                    >
-                        Exterior Cleaning
-                    </motion.a>
-                    <motion.a
-                        href="/services/holiday-lighting"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="inline-block w-56 whitespace-nowrap mx-2 my-2 px-8 py-4 text-md font-semibold text-white bg-gradient-to-tr from-blue-500  to-purple-500 rounded-full shadow-lg hover:bg-opacity-75 transition duration-300 text-center"
-                    >
-                        Holiday Lighting
-                    </motion.a>
+                    <div className="flex items-center justify-between">
+                        <motion.a
+                            href="/services/exterior-cleaning"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="inline-block w-56 whitespace-nowrap mx-2 my-2 px-8 py-4 text-md font-semibold text-white bg-gradient-to-tr from-blue-500  to-purple-500 rounded-full shadow-lg hover:bg-opacity-75 transition duration-300 text-center"
+                        >
+                            Exterior Cleaning
+                        </motion.a>
+                        <motion.a
+                            href="/services/holiday-lighting"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="inline-block w-56 whitespace-nowrap mx-2 my-2 px-8 py-4 text-md font-semibold text-white bg-gradient-to-tr from-blue-500  to-purple-500 rounded-full shadow-lg hover:bg-opacity-75 transition duration-300 text-center"
+                        >
+                            Holiday Lighting
+                        </motion.a>
+                    </div>
                     <motion.a
                         href="/services/commercial-services"
                         whileHover={{ scale: 1.05 }}

@@ -128,13 +128,6 @@ export default function AdminDashboard() {
                         <WebcamIcon size={32} className="mx-auto mb-3" />
                         <span className="text-xl font-semibold">Go To Website</span>
                     </Link>
-                    <Link
-                        href="/studio"
-                        className="bg-red-600 text-white p-6 rounded-xl shadow-lg text-center hover:bg-purple-600 transform hover:scale-105 transition-all duration-300"
-                    >
-                        <Laptop2Icon size={32} className="mx-auto mb-3" />
-                        <span className="text-xl font-semibold">Brite Studio</span>
-                    </Link>
                 </div>
             </div>
         </div>
