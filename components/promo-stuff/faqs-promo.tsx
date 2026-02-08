@@ -6,10 +6,7 @@ import Link from "next/link";
 
 const FAQPromo = () => {
     return (
-        <section className="relative w-full py-48 px-6 bg-gradient-to-b from-blue-700 to-blue-400 text-white text-center">
-            {/* Background Overlay for Better Readability */}
-            <div className="absolute inset-0 bg-black/40"></div>
-
+        <section className="relative w-full py-12 px-6 bg-gradient-to-b from-blue-900 to-blue-500 text-white text-center">
             {/* Content Wrapper */}
             <motion.div
                 initial={{ opacity: 0, y: 50 }}

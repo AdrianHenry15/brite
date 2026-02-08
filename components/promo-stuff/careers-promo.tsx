@@ -6,10 +6,7 @@ import Link from "next/link";
 
 const CareersPromo = () => {
     return (
-        <section className="relative w-full py-48 bg-gradient-to-b from-blue-500 to-blue-700 text-white text-center">
-            {/* Background Accent */}
-            <div className="absolute inset-0 bg-gradient-to-b from-blue-600 via-blue-500 to-blue-700 opacity-60"></div>
-
+        <section className="relative w-full py-12 bg-gradient-to-b from-blue-900 to-blue-500 text-white text-center">
             {/* Content Wrapper */}
             <motion.div
                 initial={{ opacity: 0, y: 50 }}

@@ -3,6 +3,52 @@ import { Metadata } from "next";
 import CommercialServicesImg from "@/public/assets/imgs/action-3.jpg";
 import FAQPromo from "@/components/promo-stuff/faqs-promo";
 import Splash from "@/components/splash";
+import ServicesComponent from "@/components/services/services-component";
+
+export const commercialServices = [
+    {
+        id: "commercial-gutter-cleaning",
+        title: "Gutter Cleaning",
+        description:
+            "Prevent costly water damage and drainage failures with scheduled commercial gutter cleaning. We remove debris, clear downspouts, and ensure proper water flow for large-scale buildings and facilities.",
+    },
+    {
+        id: "commercial-window-cleaning",
+        title: "Window Cleaning",
+        description:
+            "Professional window cleaning for storefronts, office buildings, and commercial properties. Improve visibility, natural light, and maintain a polished, professional appearance.",
+    },
+    {
+        id: "sidewalk-cleaning",
+        title: "Sidewalk Cleaning",
+        description:
+            "High-traffic sidewalks accumulate grime, gum, and stains. Our commercial sidewalk cleaning restores safety, improves curb appeal, and reduces slip hazards.",
+    },
+    {
+        id: "dumpster-pad-cleaning",
+        title: "Dumpster Pad Cleaning",
+        description:
+            "Eliminate odors, grease buildup, and bacteria with routine dumpster pad cleaning. Essential for health compliance and maintaining a sanitary commercial environment.",
+    },
+    {
+        id: "building-washing",
+        title: "Building Washing",
+        description:
+            "Complete exterior building washing using pressure and soft washing methods to remove dirt, mold, and pollutants while protecting surfaces and finishes.",
+    },
+    {
+        id: "roof-washing",
+        title: "Roof Washing",
+        description:
+            "Low-pressure roof washing designed for commercial roofs. Removes organic growth and extends roof lifespan without compromising structural integrity.",
+    },
+    {
+        id: "christmas-lighting",
+        title: "Commercial Christmas Lighting",
+        description:
+            "Professional holiday lighting installation, maintenance, and removal for commercial properties. Create a festive, inviting atmosphere without operational downtime.",
+    },
+];
 
 export const metadata: Metadata = {
     title: "Commercial Services | Brite Exterior Cleaning Services",
@@ -32,6 +78,7 @@ const CommercialServicesPage = () => {
             />
 
             <FAQPromo />
+            <ServicesComponent title="Commercial Services" services={commercialServices} />
         </section>
     );
 };

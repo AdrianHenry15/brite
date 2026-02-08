@@ -1,3 +1,5 @@
+import { StaticImageData } from "next/image";
+
 // Unions
 export type FAQNav =
     | "Brite"
@@ -81,3 +83,11 @@ export type TestimonialsType = {
     role: string;
     testimonial: string;
 };
+
+export interface ServiceType {
+    id: string;
+    title: string;
+    description: string;
+    beforeImage?: StaticImageData;
+    afterImage?: StaticImageData;
+}

@@ -6,7 +6,7 @@ import Link from "next/link";
 
 const BlogPromo = () => {
     return (
-        <section className="relative w-full py-48 text-white text-center bg-gradient-to-b from-blue-900 to-blue-500">
+        <section className="relative w-full py-12 text-white text-center bg-gradient-to-b from-blue-900 to-blue-500">
             {/* Content Wrapper */}
             <motion.div
                 initial={{ opacity: 0, y: 50 }}

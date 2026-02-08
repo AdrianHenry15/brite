@@ -3,7 +3,42 @@ import { Metadata } from "next";
 import Splash from "@/components/splash";
 import ExteriorCleaningImg from "@/public/assets/imgs/ec-1.jpg";
 import BlogPromo from "@/components/promo-stuff/blog-promo";
-import FAQPromo from "@/components/promo-stuff/faqs-promo";
+import ServiceCard from "../../../../../components/services/service-card";
+import ServiceComponent from "@/components/services/services-component";
+import ServicesComponent from "@/components/services/services-component";
+
+const exteriorCleaningServices = [
+    {
+        id: "gutter-cleaning",
+        title: "Gutter Cleaning",
+        description:
+            "Prevent water damage and preserve your home’s foundation with thorough debris removal and downspout flushing.",
+    },
+    {
+        id: "window-cleaning",
+        title: "Window Cleaning",
+        description:
+            "Crystal-clear window detailing that enhances natural light and restores a flawless exterior appearance.",
+    },
+    {
+        id: "pressure-washing",
+        title: "Pressure Washing",
+        description:
+            "High-powered surface cleaning to remove built-up grime from driveways, walkways, and hardscapes.",
+    },
+    {
+        id: "soft-washing",
+        title: "Soft Washing",
+        description:
+            "Low-pressure, eco-safe cleaning ideal for roofs, siding, and delicate surfaces.",
+    },
+    {
+        id: "stain-removal",
+        title: "Stain Removal",
+        description:
+            "Targeted treatment to eliminate rust, organic stains, and discoloration without surface damage.",
+    },
+];
 
 export const metadata: Metadata = {
     title: "Luxury Exterior Cleaning Services | Brite Estate Care",
@@ -32,6 +67,12 @@ const ExteriorCleaningPage = () => {
                 description="Elevate your property’s curb appeal with expert exterior cleaning. Our specialized pressure washing, window detailing, and soft washing services ensure a flawless, lasting finish for luxury homes and high-end businesses."
             />
             <BlogPromo />
+
+            {/* Exterior Services */}
+            <ServicesComponent
+                title="Exterior Cleaning Services"
+                services={exteriorCleaningServices}
+            />
         </section>
     );
 };
