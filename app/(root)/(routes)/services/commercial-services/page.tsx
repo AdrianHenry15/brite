@@ -5,7 +5,7 @@ import FAQPromo from "@/components/promo-stuff/faqs-promo";
 import Splash from "@/components/splash";
 import ServicesComponent from "@/components/services/services-component";
 
-export const commercialServices = [
+const commercialServices = [
     {
         id: "commercial-gutter-cleaning",
         title: "Gutter Cleaning",

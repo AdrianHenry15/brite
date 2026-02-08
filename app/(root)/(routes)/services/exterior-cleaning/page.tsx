@@ -3,8 +3,6 @@ import { Metadata } from "next";
 import Splash from "@/components/splash";
 import ExteriorCleaningImg from "@/public/assets/imgs/ec-1.jpg";
 import BlogPromo from "@/components/promo-stuff/blog-promo";
-import ServiceCard from "../../../../../components/services/service-card";
-import ServiceComponent from "@/components/services/services-component";
 import ServicesComponent from "@/components/services/services-component";
 
 const exteriorCleaningServices = [
