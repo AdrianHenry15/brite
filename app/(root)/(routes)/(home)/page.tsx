@@ -30,8 +30,6 @@ export const metadata: Metadata = {
 export default async function HomePage() {
     return (
         <section className="w-full bg-background text-foreground">
-            <ButtonRow />
-
             <div className="relative flex w-full flex-col">
                 <Splash
                     img={SplashPic}

@@ -40,19 +40,19 @@ export default function Navbar() {
     return (
         <nav
             id="nav-bar"
-            className="sticky top-0 z-50 flex w-full self-center border-b border-border bg-background/90 pb-14 text-sm font-semibold text-foreground shadow-sm backdrop-blur-md lg:pb-0"
+            className="sticky top-0 z-50 flex w-full self-center border-b border-border bg-background/90 pb-14 text-sm font-semibold text-foreground shadow-sm backdrop-blur-md xl:pb-0"
         >
-            <div className="absolute right-0 top-12 self-center lg:top-0 lg:hidden">
+            <div className="absolute right-0 top-12 self-center xl:top-0 xl:hidden">
                 <MobileHeader />
             </div>
 
-            <div className="absolute left-0 top-16 ml-4 self-center lg:top-0 lg:hidden">
+            <div className="absolute left-0 top-16 ml-4 self-center xl:top-0 xl:hidden">
                 <UserIcon />
             </div>
 
             <div className="mt-2 flex w-full justify-evenly">
                 <Link
-                    className="absolute top-24 flex items-center self-center rounded-full border border-border bg-card px-6 py-2 text-primary underline underline-offset-2 shadow-sm transition-colors hover:bg-muted lg:left-4 lg:top-0 lg:hidden"
+                    className="absolute top-24 flex items-center self-center rounded-full border border-border bg-card px-6 py-2 text-primary underline underline-offset-2 shadow-sm transition-colors hover:bg-muted xl:left-4 xl:top-0 xl:hidden"
                     href="tel:7048423535"
                 >
                     <FaPhone className="mr-2" />
@@ -60,7 +60,7 @@ export default function Navbar() {
                 </Link>
 
                 <div className="flex items-center">
-                    <Link href="/" className="lg:mr-10" aria-label="Brite Exterior Cleaning home">
+                    <Link href="/" className="xl:mr-10" aria-label="Brite Exterior Cleaning home">
                         <Image
                             className="pb-2"
                             src={Logo}
@@ -70,17 +70,17 @@ export default function Navbar() {
                         />
                     </Link>
 
-                    <ul className="hidden items-center lg:flex">{renderNavMenu()}</ul>
+                    <ul className="hidden items-center xl:flex">{renderNavMenu()}</ul>
                 </div>
 
-                <ul className="hidden items-center lg:flex">
+                <ul className="hidden items-center xl:flex">
                     <li>
                         <Link className="mr-4" href="tel:7048423535">
                             <Button
                                 leftChildren
                                 roundedFull
                                 name="704-842-3535"
-                                className="border border-border bg-card text-card-foreground hover:bg-muted"
+                                className="border border-border bg-card text-card-foreground hover:bg-muted xl:mt-5 xl:mr-4"
                                 altColor
                             >
                                 <FaPhone className="mr-2" />

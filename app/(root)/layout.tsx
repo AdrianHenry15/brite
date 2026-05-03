@@ -4,6 +4,7 @@ import Navbar from "@/components/header";
 import Footer from "@/components/footer";
 import ContactFormContainer from "@/components/forms/contact-form";
 import PromotionalBanner from "@/components/promo-stuff/promotional-banner";
+import ButtonRow from "./(routes)/(home)/components/button-row";
 
 export const metadata: Metadata = {
     metadataBase: new URL("https://briteclt.com"),
@@ -64,6 +65,8 @@ export const metadata: Metadata = {
 export default function SetupLayout({ children }: { children: React.ReactNode }) {
     return (
         <div className="flex min-h-dvh w-full flex-col bg-background text-foreground">
+            <ButtonRow />
+
             <Navbar />
 
             <PromotionalBanner />
