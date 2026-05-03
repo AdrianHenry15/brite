@@ -10,68 +10,82 @@ const exteriorCleaningServices = [
         id: "gutter-cleaning",
         title: "Gutter Cleaning",
         description:
-            "Prevent water damage and preserve your home’s foundation with thorough debris removal and downspout flushing.",
+            "Prevent water damage and preserve your home’s foundation with thorough debris removal, downspout flushing, and exterior drainage care.",
     },
     {
         id: "window-cleaning",
         title: "Window Cleaning",
         description:
-            "Crystal-clear window detailing that enhances natural light and restores a flawless exterior appearance.",
+            "Crystal-clear window detailing that enhances natural light, improves curb appeal, and restores a polished exterior appearance.",
     },
     {
         id: "pressure-washing",
         title: "Pressure Washing",
         description:
-            "High-powered surface cleaning to remove built-up grime from driveways, walkways, and hardscapes.",
+            "Professional pressure washing for driveways, walkways, patios, hardscapes, and exterior surfaces with built-up dirt or grime.",
     },
     {
         id: "soft-washing",
         title: "Soft Washing",
         description:
-            "Low-pressure, eco-safe cleaning ideal for roofs, siding, and delicate surfaces.",
+            "Low-pressure exterior washing for roofs, siding, stucco, and delicate surfaces that need a safer, controlled cleaning method.",
     },
     {
         id: "stain-removal",
         title: "Stain Removal",
         description:
-            "Targeted treatment to eliminate rust, organic stains, and discoloration without surface damage.",
+            "Targeted exterior stain treatment for rust, organic buildup, mildew, algae, and discoloration without unnecessary surface damage.",
     },
 ];
 
 export const metadata: Metadata = {
-    title: "Luxury Exterior Cleaning Services | Brite Estate Care",
+    title: "Exterior Cleaning Services | Brite Exterior Cleaning",
     description:
-        "Brite Estate Care offers elite exterior cleaning services tailored for luxury homes and high-end businesses. Experience pristine perfection with our premium pressure washing, window detailing, and soft washing services.",
+        "Professional exterior cleaning services for homes and businesses, including pressure washing, soft washing, gutter cleaning, window cleaning, and stain removal.",
+    alternates: {
+        canonical: "/services/exterior-cleaning",
+    },
     openGraph: {
-        title: "Luxury Exterior Cleaning Services | Brite Estate Care",
+        title: "Exterior Cleaning Services | Brite Exterior Cleaning",
         description:
-            "Maintain the elegance of your estate with Brite Estate Care. Our specialized exterior cleaning services ensure your property remains in pristine condition, enhancing its value and curb appeal.",
-        url: "https://briteclt.com/services/exterior-cleaning",
+            "Restore your property’s curb appeal with professional pressure washing, soft washing, window cleaning, gutter cleaning, and exterior stain removal.",
+        url: "/services/exterior-cleaning",
+        siteName: "Brite Exterior Cleaning",
+        type: "website",
+        images: [
+            {
+                url: "/assets/imgs/ec-1.jpg",
+                width: 1200,
+                height: 630,
+                alt: "Professional exterior cleaning service by Brite Exterior Cleaning",
+            },
+        ],
     },
     twitter: {
         card: "summary_large_image",
-        title: "Luxury Exterior Cleaning Services | Brite Estate Care",
+        title: "Exterior Cleaning Services | Brite Exterior Cleaning",
         description:
-            "Brite Estate Care delivers unparalleled exterior cleaning solutions for luxury homes and high-end businesses. Elevate your estate’s sophistication with our meticulous detailing services.",
+            "Pressure washing, soft washing, gutter cleaning, window cleaning, and stain removal for cleaner, brighter properties.",
+        images: ["/assets/imgs/ec-1.jpg"],
     },
 };
 
 const ExteriorCleaningPage = () => {
     return (
-        <section className="w-full flex flex-col items-center">
+        <main className="flex w-full flex-col items-center bg-background text-foreground">
             <Splash
                 img={ExteriorCleaningImg}
                 title="Exterior Cleaning"
-                description="Elevate your property’s curb appeal with expert exterior cleaning. Our specialized pressure washing, window detailing, and soft washing services ensure a flawless, lasting finish for luxury homes and high-end businesses."
+                description="Elevate your property’s curb appeal with expert exterior cleaning. Our specialized pressure washing, window detailing, gutter cleaning, and soft washing services deliver a clean, lasting finish for homes and businesses."
             />
+
             <BlogPromo />
 
-            {/* Exterior Services */}
             <ServicesComponent
                 title="Exterior Cleaning Services"
                 services={exteriorCleaningServices}
             />
-        </section>
+        </main>
     );
 };
 

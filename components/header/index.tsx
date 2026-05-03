@@ -11,98 +11,105 @@ import { NavMenu } from "../../lib/constants";
 import { NavMenuType } from "@/lib/types";
 import UserIcon from "./user-icon";
 import Button from "@/components/button";
+import PromotionalBanner from "../promo-stuff/promotional-banner";
+import ButtonRow from "@/app/(root)/(routes)/(home)/components/button-row";
 
 export default function Navbar() {
     const pathname = usePathname();
 
-    const renderNavMenu = () => {
-        return NavMenu.map((item: NavMenuType) => {
-            const isActive = pathname === item.link;
-
-            return (
-                <li key={item.title}>
-                    <Link
-                        href={item.link}
-                        aria-current={isActive ? "page" : undefined}
-                        className={`mx-2 flex items-center rounded-full px-3 py-2 transition-colors duration-200 ${
-                            isActive
-                                ? "bg-primary text-primary-foreground"
-                                : "text-muted-foreground hover:bg-muted hover:text-primary"
-                        }`}
-                    >
-                        {item.title}
-                    </Link>
-                </li>
-            );
-        });
-    };
-
     return (
-        <nav
-            id="nav-bar"
-            className="sticky top-0 z-50 flex w-full self-center border-b border-border bg-background/90 pb-14 text-sm font-semibold text-foreground shadow-sm backdrop-blur-md xl:pb-0"
-        >
-            <div className="absolute right-0 top-12 self-center xl:top-0 xl:hidden">
-                <MobileHeader />
-            </div>
+        <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 text-foreground shadow-sm backdrop-blur-md">
+            <ButtonRow />
 
-            <div className="absolute left-0 top-16 ml-4 self-center xl:top-0 xl:hidden">
-                <UserIcon />
-            </div>
+            <nav className="w-full">
+                <div className="mx-auto flex min-h-20 w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+                    {/* Mobile left */}
+                    <div className="flex w-14 items-center xl:hidden">
+                        <UserIcon />
+                    </div>
 
-            <div className="mt-2 flex w-full justify-evenly">
-                <Link
-                    className="absolute top-24 flex items-center self-center rounded-full border border-border bg-card px-6 py-2 text-primary underline underline-offset-2 shadow-sm transition-colors hover:bg-muted xl:left-4 xl:top-0 xl:hidden"
-                    href="tel:7048423535"
-                >
-                    <FaPhone className="mr-2" />
-                    <span>704-842-3535</span>
-                </Link>
-
-                <div className="flex items-center">
-                    <Link href="/" className="xl:mr-10" aria-label="Brite Exterior Cleaning home">
+                    {/* Logo */}
+                    <Link
+                        href="/"
+                        aria-label="Brite Exterior Cleaning home"
+                        className="flex shrink-0 items-center justify-center"
+                    >
                         <Image
-                            className="pb-2"
                             src={Logo}
                             alt="Brite Exterior Cleaning logo"
-                            width={75}
+                            width={72}
                             priority
+                            className="h-auto"
                         />
                     </Link>
 
-                    <ul className="hidden items-center xl:flex">{renderNavMenu()}</ul>
-                </div>
+                    {/* Desktop nav */}
+                    <ul className="hidden items-center justify-center gap-1 xl:flex">
+                        {NavMenu.map((item: NavMenuType) => {
+                            const isActive = pathname === item.link;
 
-                <ul className="hidden items-center xl:flex">
-                    <li>
-                        <Link className="mr-4" href="tel:7048423535">
+                            return (
+                                <li key={item.title}>
+                                    <Link
+                                        href={item.link}
+                                        aria-current={isActive ? "page" : undefined}
+                                        className={`rounded-full px-3 py-2 text-sm font-semibold transition-colors ${
+                                            isActive
+                                                ? "bg-primary text-primary-foreground"
+                                                : "text-muted-foreground hover:bg-muted hover:text-primary"
+                                        }`}
+                                    >
+                                        {item.title}
+                                    </Link>
+                                </li>
+                            );
+                        })}
+                    </ul>
+
+                    {/* Desktop actions */}
+                    <div className="hidden items-center gap-3 xl:flex">
+                        <Link href="tel:7048423535">
                             <Button
                                 leftChildren
                                 roundedFull
                                 name="704-842-3535"
-                                className="border border-border bg-card text-card-foreground hover:bg-muted xl:mt-5 xl:mr-4"
+                                className="border border-border bg-card text-card-foreground hover:bg-muted"
                                 altColor
                             >
                                 <FaPhone className="mr-2" />
                             </Button>
                         </Link>
-                    </li>
 
-                    <li>
                         <Link href="/estimate">
                             <Button
-                                className="animate-pulse bg-primary text-primary-foreground hover:bg-brite-blue"
                                 roundedFull
                                 name="Get Your Free Estimate"
+                                className="bg-primary text-primary-foreground hover:bg-brite-blue"
                             />
                         </Link>
-                    </li>
 
-                    <li className="ml-4">
                         <UserIcon />
-                    </li>
-                </ul>
-            </div>
-        </nav>
+                    </div>
+
+                    {/* Mobile right */}
+                    <div className="flex w-14 items-center justify-end xl:hidden">
+                        <MobileHeader />
+                    </div>
+                </div>
+
+                {/* Mobile phone CTA */}
+                <div className="border-t border-border px-4 py-2 xl:hidden">
+                    <Link
+                        href="tel:7048423535"
+                        className="mx-auto flex w-fit items-center justify-center rounded-full border border-border bg-card px-4 py-2 text-sm font-semibold text-primary shadow-sm"
+                    >
+                        <FaPhone className="mr-2" />
+                        704-842-3535
+                    </Link>
+                </div>
+            </nav>
+
+            <PromotionalBanner />
+        </header>
     );
 }

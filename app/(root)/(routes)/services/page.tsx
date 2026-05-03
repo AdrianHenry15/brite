@@ -1,74 +1,123 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { Metadata } from "next";
+
 import PressureWashing from "@/public/assets/imgs/ex-cleaning.png";
 import ChristmasLightingSplash from "@/public/assets/imgs/christmas-lights.jpg";
 import CommercialServicePic from "@/public/assets/imgs/h-b-jn.jpg";
 
-import { Metadata } from "next";
-
 export const metadata: Metadata = {
-    title: "Our Services | Brite Exterior Cleaning Services",
+    title: "Exterior Cleaning Services in Charlotte, NC",
     description:
-        "Discover the range of exterior cleaning services offered by Brite Exterior Cleaning, including pressure washing, window cleaning, and more. Serving Charlotte, NC, and surrounding areas.",
+        "Explore Brite Exterior Cleaning services in Charlotte, NC, including exterior cleaning, holiday lighting, and commercial property cleaning.",
+
     openGraph: {
-        title: "Our Services | Brite Exterior Cleaning Services",
+        title: "Exterior Cleaning Services | Brite Exterior Cleaning",
         description:
-            "Explore the variety of professional exterior cleaning services provided by Brite Exterior Cleaning. We specialize in pressure washing, window cleaning, and other residential and commercial services.",
-        url: "https://briteclt.com/services",
+            "Professional residential and commercial exterior cleaning services in Charlotte, NC.",
+        url: "/services",
+        siteName: "Brite Exterior Cleaning",
+        type: "website",
+        images: [
+            {
+                url: "/assets/imgs/brite-pic-1.jpg",
+                width: 1200,
+                height: 630,
+                alt: "Brite Exterior Cleaning services in Charlotte, NC",
+            },
+        ],
     },
+
     twitter: {
         card: "summary_large_image",
-        title: "Our Services | Brite Exterior Cleaning Services",
+        title: "Exterior Cleaning Services | Brite Exterior Cleaning",
         description:
-            "Learn about the exterior cleaning services offered by Brite Exterior Cleaning. From pressure washing to window cleaning, we have you covered!",
+            "Explore Brite's exterior cleaning, holiday lighting, and commercial cleaning services in Charlotte, NC.",
+        images: ["/assets/imgs/brite-pic-1.jpg"],
+    },
+
+    alternates: {
+        canonical: "/services",
     },
 };
 
 const choices = [
     {
         title: "Exterior Cleaning",
+        description: "Pressure washing, house washing, and surface cleaning.",
         image: PressureWashing,
-        link: "/services/exterior-cleaning",
+        href: "/services/exterior-cleaning",
     },
     {
         title: "Holiday Lighting",
+        description: "Professional seasonal lighting installation and maintenance.",
         image: ChristmasLightingSplash,
-        link: "/services/holiday-lighting",
+        href: "/services/holiday-lighting",
     },
     {
         title: "Commercial Services",
+        description: "Exterior cleaning for commercial properties and facilities.",
         image: CommercialServicePic,
-        link: "/services/commercial-services",
+        href: "/services/commercial-services",
     },
 ];
 
 export default function ServicesPage() {
     return (
-        <div className="flex lg:h-screen w-screen items-center justify-center bg-gradient-to-b from-blue-950 via-blue-900 to-white text-white px-4 py-24">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-6xl px-6">
-                {choices.map((choice) => (
-                    <Link
-                        key={choice.title}
-                        href={choice.link}
-                        className="relative group overflow-hidden rounded-xl shadow-lg hover:shadow-blue-500/50 transition-shadow duration-300"
-                    >
-                        <div className="relative w-full h-80 rounded-xl overflow-hidden">
-                            <Image
-                                src={choice.image}
-                                alt={choice.title}
-                                layout="fill"
-                                objectFit="cover"
-                                className="group-hover:scale-110 transition-transform duration-500"
-                            />
-                        </div>
-                        <div className="absolute inset-0 bg-gradient-to-b from-black/40 to-blue-900/70 flex items-center justify-center rounded-xl">
-                            <h2 className="text-white text-3xl font-extrabold tracking-widest uppercase text-center group-hover:text-blue-400 transition-colors duration-300">
-                                {choice.title}
-                            </h2>
-                        </div>
-                    </Link>
-                ))}
-            </div>
-        </div>
+        <main className="w-full bg-background text-foreground">
+            <section className="relative overflow-hidden border-b border-border bg-gradient-to-b from-brite-navy via-background to-background px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
+                <div className="mx-auto max-w-6xl text-center">
+                    <p className="mb-3 text-sm font-bold uppercase tracking-[0.22em] text-primary">
+                        Our Services
+                    </p>
+
+                    <h1 className="text-balance text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl">
+                        Professional exterior cleaning services for homes and businesses.
+                    </h1>
+
+                    <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg">
+                        Choose the service that fits your property needs and request a free estimate
+                        from the Brite team.
+                    </p>
+                </div>
+
+                <div className="mx-auto mt-12 grid w-full max-w-6xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                    {choices.map((choice) => (
+                        <Link
+                            key={choice.title}
+                            href={choice.href}
+                            className="group overflow-hidden rounded-2xl border border-border bg-card text-card-foreground shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary hover:shadow-xl hover:shadow-primary/10"
+                        >
+                            <div className="relative aspect-[4/3] w-full overflow-hidden bg-muted">
+                                <Image
+                                    src={choice.image}
+                                    alt={choice.title}
+                                    fill
+                                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                    placeholder="blur"
+                                />
+
+                                <div className="absolute inset-0 bg-gradient-to-t from-background/85 via-background/20 to-transparent" />
+                            </div>
+
+                            <div className="p-5">
+                                <h2 className="text-xl font-bold text-foreground transition-colors group-hover:text-primary">
+                                    {choice.title}
+                                </h2>
+
+                                <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                                    {choice.description}
+                                </p>
+
+                                <span className="mt-5 inline-flex text-sm font-bold text-primary">
+                                    View service →
+                                </span>
+                            </div>
+                        </Link>
+                    ))}
+                </div>
+            </section>
+        </main>
     );
 }

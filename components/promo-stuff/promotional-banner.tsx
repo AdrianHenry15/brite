@@ -1,27 +1,28 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Promotion } from "@/sanity.types";
+import React, { useEffect, useMemo, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
 import axios from "axios";
 
+import { Promotion } from "@/sanity.types";
+
 const PromotionalBanner = () => {
     const [promotions, setPromotions] = useState<Promotion[]>([]);
-    const [visiblePromotions, setVisiblePromotions] = useState(new Set<string>());
+    const [hiddenPromotions, setHiddenPromotions] = useState<Set<string>>(new Set());
     const [currentIndex, setCurrentIndex] = useState(0);
 
     useEffect(() => {
         const fetchPromotions = async () => {
             try {
                 const { data } = await axios.get("/api/promotions");
+
                 const activePromotions = data.promotions.filter(
-                    (p: Promotion) => p.status === "active",
+                    (promotion: Promotion) => promotion.status === "active",
                 );
 
                 setPromotions(activePromotions);
-                setVisiblePromotions(new Set(activePromotions.map((p: Promotion) => p.title)));
             } catch (error) {
                 console.error("Error fetching promotions:", error);
             }
@@ -33,80 +34,86 @@ const PromotionalBanner = () => {
         return () => clearInterval(interval);
     }, []);
 
+    const visiblePromotions = useMemo(() => {
+        return promotions.filter(
+            (promotion) => promotion.title && !hiddenPromotions.has(promotion.title),
+        );
+    }, [promotions, hiddenPromotions]);
+
     useEffect(() => {
-        if (promotions.length < 1) return;
+        if (visiblePromotions.length <= 1) return;
 
         const interval = setInterval(() => {
-            setCurrentIndex((prevIndex) => {
-                let nextIndex = (prevIndex + 1) % promotions.length;
-
-                while (!visiblePromotions.has(promotions[nextIndex].title!)) {
-                    nextIndex = (nextIndex + 1) % promotions.length;
-
-                    if (nextIndex === prevIndex) return prevIndex;
-                }
-
-                return nextIndex;
-            });
+            setCurrentIndex((prev) => (prev + 1) % visiblePromotions.length);
         }, 5000);
 
         return () => clearInterval(interval);
-    }, [promotions, visiblePromotions]);
+    }, [visiblePromotions.length]);
 
-    const handleClose = (e: React.MouseEvent, title: string) => {
-        e.stopPropagation();
+    useEffect(() => {
+        if (currentIndex >= visiblePromotions.length) {
+            setCurrentIndex(0);
+        }
+    }, [currentIndex, visiblePromotions.length]);
 
-        setVisiblePromotions((prev) => {
-            const newSet = new Set(prev);
-            newSet.delete(title);
-            return newSet;
+    const currentPromotion = visiblePromotions[currentIndex];
+
+    if (!currentPromotion?.title) return null;
+
+    const handleClose = (event: React.MouseEvent) => {
+        event.preventDefault();
+        event.stopPropagation();
+
+        setHiddenPromotions((prev) => {
+            const next = new Set(prev);
+            next.add(currentPromotion.title!);
+            return next;
         });
     };
-
-    const currentPromotion = promotions[currentIndex];
-
-    if (!currentPromotion || !visiblePromotions.has(currentPromotion.title!)) return null;
 
     return (
         <AnimatePresence mode="wait">
             <motion.div
                 key={currentPromotion.title}
-                initial={{ y: -50, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: -50, opacity: 0 }}
-                transition={{ duration: 0.5 }}
-                className="sticky top-[144px] z-30 flex w-full cursor-pointer flex-col items-center justify-center border-b border-border bg-gradient-to-r from-primary via-brite-blue to-accent p-2 text-center text-sm font-medium text-primary-foreground shadow-sm lg:top-[87px] md:flex-row"
-                onClick={(e) => e.stopPropagation()}
+                initial={{ opacity: 0, y: -8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.2 }}
+                className="w-full border-t border-border bg-gradient-to-r from-primary via-brite-blue to-accent text-primary-foreground"
             >
-                <Link
-                    href="/promotions"
-                    className="mx-10 inline-flex flex-wrap items-center justify-center gap-1 transition-opacity hover:opacity-90"
-                >
-                    <span aria-hidden="true">{renderIcon(currentPromotion.icon)}</span>
+                <div className="relative mx-auto flex min-h-11 w-full max-w-7xl items-center justify-center px-10 py-2 text-center text-xs font-semibold sm:px-12 sm:text-sm">
+                    <Link
+                        href="/promotions"
+                        className="line-clamp-2 inline-flex max-w-full flex-wrap items-center justify-center gap-x-1 gap-y-0.5 leading-5 transition-opacity hover:opacity-90 sm:line-clamp-none"
+                    >
+                        <span aria-hidden="true">{renderIcon(currentPromotion.icon)}</span>
 
-                    <span className="mx-2 font-extrabold tracking-wider">
-                        {currentPromotion.title}
-                    </span>
+                        <span className="font-extrabold tracking-wide">
+                            {currentPromotion.title}
+                        </span>
 
-                    <span aria-hidden="true">-</span>
+                        {currentPromotion.discountPercentage ? (
+                            <span className="rounded-full bg-background/15 px-2 py-0.5 font-extrabold">
+                                {currentPromotion.discountPercentage}% Off
+                            </span>
+                        ) : null}
 
-                    <span className="mx-2 rounded-full bg-background/15 px-2 py-0.5 font-extrabold text-primary-foreground">
-                        {currentPromotion.discountPercentage}% Off
-                    </span>
+                        {currentPromotion.description ? (
+                            <span className="hidden sm:inline">
+                                — {currentPromotion.description}
+                            </span>
+                        ) : null}
+                    </Link>
 
-                    <span aria-hidden="true">-</span>
-
-                    <span>{currentPromotion.description}</span>
-                </Link>
-
-                <button
-                    type="button"
-                    aria-label="Dismiss promotion"
-                    className="absolute right-4 top-1/2 z-50 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full text-primary-foreground transition-colors hover:bg-background/15"
-                    onClick={(e) => handleClose(e, currentPromotion.title!)}
-                >
-                    <XMarkIcon className="h-5 w-5" />
-                </button>
+                    <button
+                        type="button"
+                        aria-label="Dismiss promotion"
+                        onClick={handleClose}
+                        className="absolute right-2 top-1/2 flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-full text-primary-foreground transition-colors hover:bg-background/15 sm:right-3"
+                    >
+                        <XMarkIcon className="h-4 w-4" />
+                    </button>
+                </div>
             </motion.div>
         </AnimatePresence>
     );

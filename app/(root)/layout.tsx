@@ -65,11 +65,9 @@ export const metadata: Metadata = {
 export default function SetupLayout({ children }: { children: React.ReactNode }) {
     return (
         <div className="flex min-h-dvh w-full flex-col bg-background text-foreground">
-            <ButtonRow />
+            {/* <ButtonRow />  */}
 
             <Navbar />
-
-            <PromotionalBanner />
 
             <main className="flex w-full flex-1 flex-col bg-background">{children}</main>
 
