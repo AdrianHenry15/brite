@@ -1,43 +1,61 @@
+import { Metadata } from "next";
+
 import JobOpenings from "./job-openings/components/job-opening-section";
 import About from "./components/about";
 import Hero from "./components/hero";
 
 import { getAllJobOpenings } from "@/sanity/lib/job-openings/getAllJobOpenings";
-import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Join Our Team | Careers at Brite Exterior Cleaning Services",
+    title: "Careers | Brite Exterior Cleaning",
     description:
-        "Explore career opportunities at Brite Exterior Cleaning, offering jobs in exterior cleaning, pressure washing, holiday lighting, and more in Charlotte, NC and surrounding areas.",
-    openGraph: {
-        title: "Join Our Team | Careers at Brite Exterior Cleaning Services",
-        description:
-            "We're hiring! Join Brite Exterior Cleaning and become part of a team that offers services like pressure washing, gutter cleaning, and holiday lighting installation in Charlotte, NC.",
-        url: "https://briteclt.com/careers",
+        "Explore career opportunities with Brite Exterior Cleaning in Charlotte, NC. View open roles in exterior cleaning, pressure washing, soft washing, and holiday lighting.",
+
+    alternates: {
+        canonical: "/careers",
     },
+
+    openGraph: {
+        title: "Careers | Brite Exterior Cleaning",
+        description:
+            "Join Brite Exterior Cleaning and build a career in professional exterior cleaning, pressure washing, soft washing, and holiday lighting services.",
+        url: "/careers",
+        siteName: "Brite Exterior Cleaning",
+        type: "website",
+        locale: "en_US",
+    },
+
     twitter: {
         card: "summary_large_image",
-        title: "Join Our Team | Careers at Brite Exterior Cleaning Services",
+        title: "Careers | Brite Exterior Cleaning",
         description:
-            "Start your career with Brite Exterior Cleaning! We're hiring for exterior cleaning, pressure washing, and holiday lighting positions in Charlotte, NC.",
+            "Brite Exterior Cleaning is hiring in Charlotte, NC. Explore open roles in exterior cleaning, pressure washing, and holiday lighting.",
     },
+
+    robots: {
+        index: true,
+        follow: true,
+    },
+
+    keywords: [
+        "Brite Exterior Cleaning careers",
+        "exterior cleaning jobs Charlotte NC",
+        "pressure washing jobs Charlotte NC",
+        "soft washing jobs",
+        "holiday lighting jobs",
+        "cleaning service careers Charlotte",
+    ],
 };
 
 const CareersPage = async () => {
-    // Fetch job openings and testimonials
     const jobs = await getAllJobOpenings();
 
     return (
-        <div className="bg-gray-50 min-h-screen">
-            {/* Hero Section */}
+        <main className="min-h-screen w-full bg-background text-foreground">
             <Hero />
-
-            {/* About Section */}
             <About />
-
-            {/* Job Openings Section */}
             <JobOpenings jobs={jobs} />
-        </div>
+        </main>
     );
 };
 

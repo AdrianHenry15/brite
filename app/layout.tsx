@@ -7,13 +7,10 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { ClerkLoading, ClerkProvider } from "@clerk/nextjs";
 import { Metadata } from "next";
 import { draftMode } from "next/headers";
-import { VisualEditing } from "next-sanity/visual-editing";
 
 import { Loader } from "../components/loader";
-import DisableDraftMode from "../components/disable-draft-mode";
 import GoogleTagManagerScript from "@/lib/google-tag-manager/script";
 import GoogleTagManagerNoScript from "@/lib/google-tag-manager/no-script";
-import { SanityLive } from "../sanity/lib/live";
 import { ThemeProvider } from "@/providers/theme-provider";
 
 import "./globals.css";
@@ -59,17 +56,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
                 </head>
 
                 <body
-                    className={`${nunito.className} font-sans bg-background text-foreground antialiased`}
+                    className={`${nunito.variable} min-h-screen font-sans bg-background text-foreground antialiased`}
                 >
                     <ThemeProvider>
                         <GoogleTagManagerNoScript />
-
-                        {isDraftMode && (
-                            <>
-                                <DisableDraftMode />
-                                <VisualEditing />
-                            </>
-                        )}
 
                         <Analytics />
                         <SpeedInsights />
@@ -82,8 +72,6 @@ export default async function RootLayout({ children }: { children: React.ReactNo
                         </ClerkLoading>
 
                         {children}
-
-                        <SanityLive />
                     </ThemeProvider>
                 </body>
             </html>

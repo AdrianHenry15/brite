@@ -1,33 +1,60 @@
 import React from "react";
+import { Metadata } from "next";
 
 import "../globals.css";
 import Navbar from "../../components/header";
 import Footer from "../../components/footer";
-import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Careers | Brite Exterior Cleaning Services",
+    title: "Careers | Brite Exterior Cleaning",
     description:
-        "Join the Brite Exterior Cleaning team! Explore career opportunities in exterior cleaning services, including pressure washing and holiday lighting installation, in Charlotte, NC and surrounding areas.",
-    openGraph: {
-        title: "Careers | Brite Exterior Cleaning Services",
-        description:
-            "Looking for a rewarding career? Brite Exterior Cleaning is hiring! Explore our job opportunities in exterior cleaning services in Charlotte, NC.",
-        url: "https://briteclt.com/careers",
+        "Explore career opportunities with Brite Exterior Cleaning in Charlotte, NC, including exterior cleaning, pressure washing, soft washing, and holiday lighting roles.",
+
+    alternates: {
+        canonical: "/careers",
     },
+
+    openGraph: {
+        title: "Careers | Brite Exterior Cleaning",
+        description:
+            "Join Brite Exterior Cleaning and build a career in professional exterior cleaning, pressure washing, soft washing, and holiday lighting services.",
+        url: "/careers",
+        siteName: "Brite Exterior Cleaning",
+        type: "website",
+        locale: "en_US",
+    },
+
     twitter: {
         card: "summary_large_image",
-        title: "Careers | Brite Exterior Cleaning Services",
+        title: "Careers | Brite Exterior Cleaning",
         description:
-            "Start your career with Brite Exterior Cleaning! We're hiring for positions in exterior cleaning, pressure washing, and holiday lighting installation in Charlotte, NC.",
+            "Brite Exterior Cleaning is hiring in Charlotte, NC. Explore opportunities in exterior cleaning, pressure washing, and holiday lighting.",
     },
+
+    robots: {
+        index: true,
+        follow: true,
+    },
+
+    keywords: [
+        "Brite Exterior Cleaning careers",
+        "exterior cleaning jobs Charlotte NC",
+        "pressure washing jobs Charlotte NC",
+        "soft washing careers",
+        "holiday lighting jobs",
+        "cleaning service jobs Charlotte",
+    ],
 };
 
 export default async function CareersLayout({ children }: { children: React.ReactNode }) {
     return (
-        <div className="w-full flex flex-col items-center h-full">
+        <div className="flex min-h-screen w-full flex-col bg-background text-foreground">
             <Navbar />
-            <div className="w-full flex flex-col bg-white">{children}</div>
+
+            <div className="flex w-full flex-1 flex-col bg-background text-foreground">
+                {children}
+            </div>
+
             <Footer />
         </div>
     );
