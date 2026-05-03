@@ -1,64 +1,109 @@
+import { Metadata } from "next";
+
 import { Promotion } from "@/sanity.types";
 import { getAllPromotions } from "@/sanity/lib/promotions/getAllPromotions";
 import PromotionList from "./components/promotion-list";
-import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Current Promotions | Brite Exterior Cleaning Services",
+    title: "Exterior Cleaning Promotions | Brite Exterior Cleaning",
     description:
-        "Check out Brite Exterior Cleaning's current promotions and special offers on exterior cleaning services. Save big on residential and commercial cleaning services in Charlotte, NC.",
-    openGraph: {
-        title: "Current Promotions | Brite Exterior Cleaning Services",
-        description:
-            "Explore the latest promotions and discounts on exterior cleaning services offered by Brite Exterior Cleaning. Don't miss out on our limited-time offers!",
-        url: "https://briteclt.com/promotions",
+        "View current exterior cleaning promotions, seasonal discounts, and special offers from Brite Exterior Cleaning in Charlotte, NC.",
+
+    alternates: {
+        canonical: "/promotions",
     },
+
+    openGraph: {
+        title: "Exterior Cleaning Promotions | Brite Exterior Cleaning",
+        description:
+            "Explore active and upcoming promotions for pressure washing, soft washing, window cleaning, gutter cleaning, and exterior cleaning services.",
+        url: "/promotions",
+        siteName: "Brite Exterior Cleaning",
+        type: "website",
+        locale: "en_US",
+    },
+
     twitter: {
         card: "summary_large_image",
-        title: "Current Promotions | Brite Exterior Cleaning Services",
+        title: "Exterior Cleaning Promotions | Brite Exterior Cleaning",
         description:
-            "Take advantage of our current promotions and save on exterior cleaning services from Brite Exterior Cleaning. View our latest deals!",
+            "Save on professional exterior cleaning services with current promotions and seasonal offers from Brite Exterior Cleaning.",
     },
+
+    robots: {
+        index: true,
+        follow: true,
+    },
+
+    keywords: [
+        "Brite Exterior Cleaning promotions",
+        "exterior cleaning deals Charlotte NC",
+        "pressure washing specials",
+        "soft washing promotions",
+        "window cleaning discounts",
+        "gutter cleaning specials",
+        "Charlotte exterior cleaning offers",
+    ],
 };
 
 export default async function PromotionsPage() {
     const promotions = await getAllPromotions();
 
     const sortByDate = (a: Promotion, b: Promotion) =>
-        new Date(a.startDate!).getTime() - new Date(b.startDate!).getTime();
+        new Date(a.startDate ?? "").getTime() - new Date(b.startDate ?? "").getTime();
 
     const activePromotions = promotions
-        .filter((p: Promotion) => p.status === "active")
+        .filter((promotion: Promotion) => promotion.status === "active")
         .sort(sortByDate);
 
     const upcomingPromotions = promotions
-        .filter((p: Promotion) => p.status === "upcoming")
+        .filter((promotion: Promotion) => promotion.status === "upcoming")
         .sort(sortByDate);
 
     const expiredPromotions = promotions
-        .filter((p: Promotion) => p.status === "expired")
+        .filter((promotion: Promotion) => promotion.status === "expired")
         .sort(sortByDate);
 
     return (
-        <div className="max-w-5xl mx-auto px-12 py-16 bg-gradient-to-b from-blue-500 via-pink-400 to-white">
-            <h1 className="text-3xl font-bold text-center mb-6">All Promotions</h1>
+        <main className="min-h-screen w-full bg-background text-foreground">
+            <section className="mx-auto flex w-full max-w-6xl flex-col gap-10 px-4 py-16 sm:px-6 lg:px-8">
+                <header className="mx-auto max-w-3xl text-center">
+                    <p className="text-sm font-semibold uppercase tracking-[0.3em] text-primary">
+                        Special Offers
+                    </p>
 
-            <section className="mb-8">
-                <h2 className="text-2xl font-semibold text-green-400 mb-4">🔥 Active Promotions</h2>
-                <PromotionList promotions={activePromotions} />
-            </section>
+                    <h1 className="mt-3 text-balance text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
+                        Current Promotions
+                    </h1>
 
-            <section className="mb-8">
-                <h2 className="text-2xl font-semibold text-yellow-500 mb-4">
-                    ⏳ Upcoming Promotions
-                </h2>
-                <PromotionList promotions={upcomingPromotions} />
-            </section>
+                    <p className="mt-4 text-pretty text-base leading-7 text-muted-foreground sm:text-lg">
+                        Browse active, upcoming, and previous offers from Brite Exterior Cleaning.
+                    </p>
+                </header>
 
-            <section className="mb-8">
-                <h2 className="text-2xl font-semibold text-gray-500 mb-4">📅 Expired Promotions</h2>
-                <PromotionList promotions={expiredPromotions} />
+                <div className="rounded-3xl border border-border bg-card p-4 text-card-foreground shadow-xl shadow-primary/10 sm:p-6 lg:p-8">
+                    <section className="mb-10">
+                        <h2 className="mb-4 text-2xl font-semibold tracking-tight text-primary">
+                            Active Promotions
+                        </h2>
+                        <PromotionList promotions={activePromotions} />
+                    </section>
+
+                    <section className="mb-10 border-t border-border pt-10">
+                        <h2 className="mb-4 text-2xl font-semibold tracking-tight text-foreground">
+                            Upcoming Promotions
+                        </h2>
+                        <PromotionList promotions={upcomingPromotions} />
+                    </section>
+
+                    <section className="border-t border-border pt-10">
+                        <h2 className="mb-4 text-2xl font-semibold tracking-tight text-muted-foreground">
+                            Expired Promotions
+                        </h2>
+                        <PromotionList promotions={expiredPromotions} />
+                    </section>
+                </div>
             </section>
-        </div>
+        </main>
     );
 }
