@@ -1,42 +1,49 @@
 import Image from "next/image";
-import React from "react";
 import Link from "next/link";
 
 import { ProductType } from "@/lib/types";
-
 import Logo from "@/public/assets/icons/brite-logo-alt.png";
 
 interface ProductItemProps {
     product: ProductType;
 }
 
-const ProductItem = (props: ProductItemProps) => {
-    // Props
-    const { product } = props;
+const ProductItem = ({ product }: ProductItemProps) => {
+    const href = `/${product.category.toLowerCase().replace(/\s+/g, "-")}`;
 
     return (
         <Link
-            href={`/${product.category.toLowerCase().replace(/\s+/g, "-")}`}
-            className="hover:scale-105 transition-transform duration-300 ease-in-out relative items-center justify-center flex flex-col px-12 flex-shrink-0 w-[400px] h-[280px] rounded-md border-white"
+            href={href}
+            className="group flex h-full min-h-[320px] w-full flex-col overflow-hidden rounded-2xl border border-border bg-card text-card-foreground shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary hover:shadow-xl hover:shadow-primary/10"
         >
-            <div className="flex w-[300px] h-[170px] relative">
+            <div className="relative aspect-[16/10] w-full overflow-hidden bg-muted">
                 <Image
-                    className="object-cover opacity-75 flex rounded-md w-full h-full"
-                    width={400}
-                    height={400}
                     src={product.image}
                     alt={product.title}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    className="object-cover opacity-90 transition duration-300 group-hover:scale-105 group-hover:opacity-100"
                 />
-                <Image
-                    src={Logo}
-                    alt="logo"
-                    className="flex absolute left-2 bottom-2 w-12 sm:w-16"
-                />
+
+                <div className="absolute inset-0 bg-gradient-to-t from-background/50 via-transparent to-transparent" />
+
+                <div className="absolute bottom-3 left-3 z-10 flex h-12 w-12 items-center justify-center rounded-full bg-background/90 p-1 shadow-sm backdrop-blur-sm sm:h-14 sm:w-14">
+                    <Image
+                        src={Logo}
+                        alt="Brite logo"
+                        width={40}
+                        height={40}
+                        className="object-contain"
+                    />
+                </div>
             </div>
-            {/* PRODUCT TAB */}
-            <div className="flex flex-col bottom-0 items-start p-1 text-xs w-full rounded-full whitespace-nowrap">
-                <p className="flex text-black font-semibold mr-2 ml-1">{product.title}</p>
-                <p className="flex text-zinc-400 font-semibold mr-2 ml-1 w-[300px] text-wrap">
+
+            <div className="flex flex-1 flex-col p-4">
+                <p className="text-base font-bold text-foreground transition-colors group-hover:text-primary">
+                    {product.title}
+                </p>
+
+                <p className="mt-2 line-clamp-3 text-sm leading-6 text-muted-foreground">
                     {product.description}
                 </p>
             </div>

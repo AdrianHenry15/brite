@@ -1,34 +1,37 @@
 import React from "react";
-import { Controller } from "react-hook-form";
+import {
+    Controller,
+    type Control,
+    type FieldErrors,
+    type FieldValues,
+    type Path,
+} from "react-hook-form";
 
-interface DropdownProps {
-    inputName: string;
+interface DropdownProps<T extends FieldValues> {
+    inputName: Path<T>;
     inputLabel: string;
-    control: any;
-    errors: any;
+    control: Control<T>;
+    errors: FieldErrors<T>;
     options: string[];
-    textColor: "light" | "dark";
-    onChange?: (value: string) => void; // Add onChange prop here
+    onChange?: (value: string) => void;
 }
 
-const Dropdown: React.FC<DropdownProps> = ({
+const Dropdown = <T extends FieldValues>({
     inputName,
-    textColor,
     inputLabel,
     control,
     errors,
     options,
-    onChange, // Destructure the onChange prop
-}) => {
+    onChange,
+}: DropdownProps<T>) => {
+    const errorMessage = errors[inputName]?.message as string | undefined;
+
     return (
         <div className="mb-4">
-            <label
-                className={`${
-                    textColor === "light" ? "text-white" : "text-gray-700"
-                } block text-sm font-medium`}
-            >
+            <label htmlFor={inputName} className="mb-2 block text-sm font-semibold text-foreground">
                 {inputLabel}
             </label>
+
             <Controller
                 name={inputName}
                 control={control}
@@ -36,26 +39,26 @@ const Dropdown: React.FC<DropdownProps> = ({
                 render={({ field }) => (
                     <select
                         {...field}
+                        id={inputName}
                         onChange={(e) => {
-                            field.onChange(e); // Update form control value
-                            if (onChange) {
-                                // Check if onChange exists before calling
-                                onChange(e.target.value);
-                            }
+                            field.onChange(e);
+                            onChange?.(e.target.value);
                         }}
-                        className="mt-1 block w-full px-3 py-2  text-gray-700 border-gray-700 border-[1px] bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                        className="block w-full rounded-xl border border-input bg-background px-3 py-2 text-sm text-foreground shadow-sm outline-none transition-colors placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-60"
                     >
                         <option value="">Select an option</option>
-                        {options.map((option, index) => (
-                            <option className="text-gray-700" key={index} value={option}>
+
+                        {options.map((option) => (
+                            <option key={option} value={option}>
                                 {option}
                             </option>
                         ))}
                     </select>
                 )}
             />
-            {errors[inputName] && (
-                <p className="text-red-500 text-xs mt-1">{errors[inputName].message}</p>
+
+            {errorMessage && (
+                <p className="mt-1 text-xs font-medium text-red-500">{errorMessage}</p>
             )}
         </div>
     );

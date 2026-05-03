@@ -13,30 +13,26 @@ import UserIcon from "./user-icon";
 import Button from "@/components/button";
 
 export default function Navbar() {
-    // Constants
     const pathname = usePathname();
 
-    // State
-    // const [servicesMenuOpen, setServicesMenuOpen] = useState(false);
-
-    // Functions
     const renderNavMenu = () => {
         return NavMenu.map((item: NavMenuType) => {
+            const isActive = pathname === item.link;
+
             return (
-                <Link
-                    // onClick={() => setServicesMenuOpen(false)}
-                    key={item.title}
-                    href={item.link}
-                    className="mr-2"
-                >
-                    <li
-                        className={` flex items-center mx-2 transition-all duration-300 ease-in-out hover:text-blue-600 hover:underline ${
-                            pathname === item.link ? "underline" : ""
+                <li key={item.title}>
+                    <Link
+                        href={item.link}
+                        aria-current={isActive ? "page" : undefined}
+                        className={`mx-2 flex items-center rounded-full px-3 py-2 transition-colors duration-200 ${
+                            isActive
+                                ? "bg-primary text-primary-foreground"
+                                : "text-muted-foreground hover:bg-muted hover:text-primary"
                         }`}
                     >
                         {item.title}
-                    </li>
-                </Link>
+                    </Link>
+                </li>
             );
         });
     };
@@ -44,56 +40,67 @@ export default function Navbar() {
     return (
         <nav
             id="nav-bar"
-            className={`bg-zinc-200 text-sm font-semibold flex w-full self-center sticky top-0 z-50 shadow-md pb-14 lg:pb-0`}
+            className="sticky top-0 z-50 flex w-full self-center border-b border-border bg-background/90 pb-14 text-sm font-semibold text-foreground shadow-sm backdrop-blur-md lg:pb-0"
         >
-            {/* MOBILE CONTAINER */}
-            <div className="absolute self-center right-0 top-12 lg:top-0 lg:hidden">
+            <div className="absolute right-0 top-12 self-center lg:top-0 lg:hidden">
                 <MobileHeader />
             </div>
 
-            <div className="absolute self-center ml-4 left-0 top-16 lg:top-0 lg:hidden">
+            <div className="absolute left-0 top-16 ml-4 self-center lg:top-0 lg:hidden">
                 <UserIcon />
             </div>
-            {/* TITLE & LINKS  */}
-            <div className="flex w-full mt-2 justify-evenly">
+
+            <div className="mt-2 flex w-full justify-evenly">
                 <Link
-                    className="absolute bg-white px-6 py-2 rounded-full self-center flex items-center underline underline-offset-2 text-blue-500 top-24 lg:top-0 lg:left-4 lg:hidden"
+                    className="absolute top-24 flex items-center self-center rounded-full border border-border bg-card px-6 py-2 text-primary underline underline-offset-2 shadow-sm transition-colors hover:bg-muted lg:left-4 lg:top-0 lg:hidden"
                     href="tel:7048423535"
                 >
                     <FaPhone className="mr-2" />
                     <span>704-842-3535</span>
                 </Link>
+
                 <div className="flex items-center">
-                    <Link href="/" className="lg:mr-10">
-                        {/* TODO: LOGO */}
-                        <Image className="pb-2" src={Logo} alt="logo" width={75} />
-                    </Link>
-                    {/* LINKS  */}
-                    <ul className="hidden text-gray-600 items-center lg:flex">{renderNavMenu()}</ul>
-                </div>
-                {/* NAV BUTTONS */}
-                <ul className="hidden items-center lg:flex">
-                    <Link className="mr-4" href="tel:7048423535">
-                        <Button
-                            leftChildren
-                            roundedFull
-                            name="704-842-3535"
-                            className="bg-white"
-                            altColor
-                        >
-                            <FaPhone className="mr-2" />
-                        </Button>
-                    </Link>
-                    <Link href={"/estimate"}>
-                        <Button
-                            className="animate-pulse"
-                            roundedFull
-                            name="Get Your Free Estimate"
+                    <Link href="/" className="lg:mr-10" aria-label="Brite Exterior Cleaning home">
+                        <Image
+                            className="pb-2"
+                            src={Logo}
+                            alt="Brite Exterior Cleaning logo"
+                            width={75}
+                            priority
                         />
                     </Link>
-                    <div className="ml-4">
+
+                    <ul className="hidden items-center lg:flex">{renderNavMenu()}</ul>
+                </div>
+
+                <ul className="hidden items-center lg:flex">
+                    <li>
+                        <Link className="mr-4" href="tel:7048423535">
+                            <Button
+                                leftChildren
+                                roundedFull
+                                name="704-842-3535"
+                                className="border border-border bg-card text-card-foreground hover:bg-muted"
+                                altColor
+                            >
+                                <FaPhone className="mr-2" />
+                            </Button>
+                        </Link>
+                    </li>
+
+                    <li>
+                        <Link href="/estimate">
+                            <Button
+                                className="animate-pulse bg-primary text-primary-foreground hover:bg-brite-blue"
+                                roundedFull
+                                name="Get Your Free Estimate"
+                            />
+                        </Link>
+                    </li>
+
+                    <li className="ml-4">
                         <UserIcon />
-                    </div>
+                    </li>
                 </ul>
             </div>
         </nav>

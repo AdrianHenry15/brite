@@ -1,13 +1,16 @@
-"use client";
+import { Loader } from "@/components/loader";
 
-import { Loader } from "../components/loader";
-
-const Loading = () => {
+export default function Loading() {
     return (
-        <div className="flex h-full w-full items-center absolute justify-center self-center text-center">
+        <main
+            role="status"
+            aria-live="polite"
+            aria-label="Loading page content"
+            className="fixed inset-0 z-50 flex min-h-dvh w-full items-center justify-center bg-background/90 text-foreground backdrop-blur-sm"
+        >
             <Loader />
-        </div>
-    );
-};
 
-export default Loading;
+            <span className="sr-only">Loading...</span>
+        </main>
+    );
+}

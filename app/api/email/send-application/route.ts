@@ -3,8 +3,6 @@ import JobApplicationEmailTemplate from "@/components/email-templates/job-applic
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY as string);
-
 // Define client email (hiring team)
 const CLIENT_EMAILS = [
     "nick.walker@briteclt.com",
@@ -13,6 +11,7 @@ const CLIENT_EMAILS = [
 ]; // Replace with the actual client email
 
 export async function POST(req: NextRequest) {
+    const resend = new Resend(process.env.RESEND_API_KEY as string);
     try {
         const { applicantName, applicantEmail, applicantPhoneNumber, job } = await req.json();
 

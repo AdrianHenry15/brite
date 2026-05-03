@@ -29,7 +29,6 @@ const PromotionalBanner = () => {
 
         fetchPromotions();
 
-        // Re-fetch promotions every 5 minutes to keep it updated
         const interval = setInterval(fetchPromotions, 5 * 60 * 1000);
         return () => clearInterval(interval);
     }, []);
@@ -40,10 +39,13 @@ const PromotionalBanner = () => {
         const interval = setInterval(() => {
             setCurrentIndex((prevIndex) => {
                 let nextIndex = (prevIndex + 1) % promotions.length;
+
                 while (!visiblePromotions.has(promotions[nextIndex].title!)) {
                     nextIndex = (nextIndex + 1) % promotions.length;
-                    if (nextIndex === prevIndex) return prevIndex; // All promotions hidden
+
+                    if (nextIndex === prevIndex) return prevIndex;
                 }
+
                 return nextIndex;
             });
         }, 5000);
@@ -53,6 +55,7 @@ const PromotionalBanner = () => {
 
     const handleClose = (e: React.MouseEvent, title: string) => {
         e.stopPropagation();
+
         setVisiblePromotions((prev) => {
             const newSet = new Set(prev);
             newSet.delete(title);
@@ -61,6 +64,7 @@ const PromotionalBanner = () => {
     };
 
     const currentPromotion = promotions[currentIndex];
+
     if (!currentPromotion || !visiblePromotions.has(currentPromotion.title!)) return null;
 
     return (
@@ -71,22 +75,34 @@ const PromotionalBanner = () => {
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: -50, opacity: 0 }}
                 transition={{ duration: 0.5 }}
-                className="sticky top-[144px] lg:top-[87px] z-30 w-full bg-gradient-to-r from-blue-500 to-pink-500 text-gray-100 text-center p-2 text-sm cursor-pointer flex flex-col md:flex-row items-center justify-center"
-                onClick={(e) => e.stopPropagation()} // Prevent navigation on click
+                className="sticky top-[144px] z-30 flex w-full cursor-pointer flex-col items-center justify-center border-b border-border bg-gradient-to-r from-primary via-brite-blue to-accent p-2 text-center text-sm font-medium text-primary-foreground shadow-sm lg:top-[87px] md:flex-row"
+                onClick={(e) => e.stopPropagation()}
             >
-                <Link href={"/promotions"}>
-                    {renderIcon(currentPromotion.icon)}
-                    <span className="font-bold tracking-wider mx-2">
+                <Link
+                    href="/promotions"
+                    className="mx-10 inline-flex flex-wrap items-center justify-center gap-1 transition-opacity hover:opacity-90"
+                >
+                    <span aria-hidden="true">{renderIcon(currentPromotion.icon)}</span>
+
+                    <span className="mx-2 font-extrabold tracking-wider">
                         {currentPromotion.title}
-                    </span>{" "}
-                    -
-                    <span className="font-bold text-white mx-2">
+                    </span>
+
+                    <span aria-hidden="true">-</span>
+
+                    <span className="mx-2 rounded-full bg-background/15 px-2 py-0.5 font-extrabold text-primary-foreground">
                         {currentPromotion.discountPercentage}% Off
-                    </span>{" "}
-                    - {currentPromotion.description}
+                    </span>
+
+                    <span aria-hidden="true">-</span>
+
+                    <span>{currentPromotion.description}</span>
                 </Link>
+
                 <button
-                    className="absolute right-4 top-1/2 z-50 transform -translate-y-1/2 text-white"
+                    type="button"
+                    aria-label="Dismiss promotion"
+                    className="absolute right-4 top-1/2 z-50 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full text-primary-foreground transition-colors hover:bg-background/15"
                     onClick={(e) => handleClose(e, currentPromotion.title!)}
                 >
                     <XMarkIcon className="h-5 w-5" />

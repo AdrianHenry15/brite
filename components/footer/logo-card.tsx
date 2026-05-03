@@ -1,22 +1,28 @@
 import Image from "next/image";
-import React from "react";
 import { FaRegCopyright } from "react-icons/fa6";
 
 import Logo from "@/public/assets/icons/brite-logo.png";
 
 const LogoCard = () => {
     return (
-        <span className="flex flex-col justify-center items-center my-4 border-b-[1px] border-zinc-900 border-b-1 pt-10 pb-16 md:flex-1 md:border-none md:justify-start">
-            <div className="flex flex-col items-center md:rounded-2xl md:p-10">
-                <span className="mb-2">
-                    <Image loading="eager" width={100} src={Logo} alt="logo" />
-                </span>
-                <span className="flex items-center text-xs text-zinc-500">
-                    <FaRegCopyright className="mx-2" />
-                    2026 Brite Exterior Cleaning
-                </span>
-            </div>
-        </span>
+        <div className="flex flex-col items-center text-center md:items-start md:text-left">
+            <Image
+                src={Logo}
+                width={96}
+                height={96}
+                alt="Brite Exterior Cleaning logo"
+                className="mb-4"
+            />
+
+            <p className="max-w-xs text-sm leading-6 text-muted-foreground">
+                Professional residential and commercial exterior cleaning services in Charlotte, NC.
+            </p>
+
+            <p className="mt-4 flex items-center justify-center text-xs text-muted-foreground md:justify-start">
+                <FaRegCopyright className="mr-2" aria-hidden="true" />
+                <span>2026 Brite Exterior Cleaning</span>
+            </p>
+        </div>
     );
 };
 

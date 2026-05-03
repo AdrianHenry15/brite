@@ -1,27 +1,77 @@
-import React from "react";
+import type { Metadata } from "next";
 
-import Navbar from "../../components/header";
-import Footer from "../../components/footer";
+import Navbar from "@/components/header";
+import Footer from "@/components/footer";
+import ContactFormContainer from "@/components/forms/contact-form";
+import PromotionalBanner from "@/components/promo-stuff/promotional-banner";
 
-import "../globals.css";
-import ContactFormContainer from "../../components/forms/contact-form";
-import PromotionalBanner from "../../components/promo-stuff/promotional-banner";
-import { Metadata } from "next";
-
-// Define metadata for the layout
 export const metadata: Metadata = {
-    title: "Brite | Professional Exterior Cleaning Services",
+    metadataBase: new URL("https://briteclt.com"),
+
+    title: {
+        default: "Brite Exterior Cleaning | Professional Cleaning Services",
+        template: "%s | Brite Exterior Cleaning",
+    },
+
     description:
-        "Explore our high-quality exterior cleaning services. Get in touch with Brite for all your cleaning needs.",
+        "Professional exterior cleaning services including pressure washing, roof cleaning, and driveway restoration. Serving residential and commercial clients.",
+
+    keywords: [
+        "exterior cleaning",
+        "pressure washing",
+        "soft washing",
+        "roof cleaning",
+        "trash bin cleaning",
+        "house washing",
+        "Charlotte exterior cleaning",
+        "North Carolina exterior cleaning",
+    ],
+
+    openGraph: {
+        title: "Brite Exterior Cleaning",
+        description: "High-quality exterior cleaning services for homes and businesses.",
+        url: "https://briteclt.com",
+        siteName: "Brite Exterior Cleaning",
+        images: [
+            {
+                url: "/assets/imgs/brite-pic-1.jpg", // you should add this
+                width: 1200,
+                height: 630,
+                alt: "Brite Exterior Cleaning Services",
+            },
+        ],
+        locale: "en_US",
+        type: "website",
+    },
+
+    twitter: {
+        card: "summary_large_image",
+        title: "Brite Exterior Cleaning",
+        description: "Professional pressure washing and exterior cleaning services.",
+        images: ["/assets/imgs/brite-pic-1.jpg"],
+    },
+
+    robots: {
+        index: true,
+        follow: true,
+    },
+
+    icons: {
+        icon: "/assets/icons/brite-logo.png",
+    },
 };
 
-export default async function SetupLayout({ children }: { children: React.ReactNode }) {
+export default function SetupLayout({ children }: { children: React.ReactNode }) {
     return (
-        <div className="w-full flex flex-col items-center h-full">
+        <div className="flex min-h-dvh w-full flex-col bg-background text-foreground">
             <Navbar />
+
             <PromotionalBanner />
-            <div className="w-full flex flex-col bg-white">{children}</div>
+
+            <main className="flex w-full flex-1 flex-col bg-background">{children}</main>
+
             <ContactFormContainer />
+
             <Footer />
         </div>
     );

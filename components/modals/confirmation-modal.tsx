@@ -1,17 +1,22 @@
 import { Dialog, DialogPanel, DialogTitle, Transition, TransitionChild } from "@headlessui/react";
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 
-interface IConfirmationModalProps {
+interface ConfirmationModalProps {
     isOpen: boolean;
     closeModal: () => void;
     confirmEstimate: () => void;
     loading?: boolean;
 }
 
-const ConfirmationModal = (props: IConfirmationModalProps) => {
+const ConfirmationModal = ({
+    isOpen,
+    closeModal,
+    confirmEstimate,
+    loading = false,
+}: ConfirmationModalProps) => {
     return (
-        <Transition appear show={props.isOpen} as={Fragment}>
-            <Dialog as="div" className="relative z-50" onClose={props.closeModal}>
+        <Transition appear show={isOpen} as={Fragment}>
+            <Dialog as="div" className="relative z-50" onClose={closeModal}>
                 <TransitionChild
                     as={Fragment}
                     enter="ease-out duration-300"
@@ -21,7 +26,7 @@ const ConfirmationModal = (props: IConfirmationModalProps) => {
                     leaveFrom="opacity-100"
                     leaveTo="opacity-0"
                 >
-                    <div className="fixed inset-0 bg-black/25" />
+                    <div className="fixed inset-0 bg-background/80 backdrop-blur-sm" />
                 </TransitionChild>
 
                 <div className="fixed inset-0 overflow-y-auto">
@@ -35,39 +40,38 @@ const ConfirmationModal = (props: IConfirmationModalProps) => {
                             leaveFrom="opacity-100 scale-100"
                             leaveTo="opacity-0 scale-95"
                         >
-                            <DialogPanel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-center align-middle shadow-xl transition-all">
+                            <DialogPanel className="w-full max-w-md transform overflow-hidden rounded-2xl border border-border bg-card p-6 text-center text-card-foreground shadow-xl shadow-primary/10 transition-all">
                                 <DialogTitle
                                     as="h3"
-                                    className="text-lg font-medium leading-6 text-gray-900 border-b-[1px] pb-2"
+                                    className="border-b border-border pb-3 text-lg font-semibold leading-6 text-foreground"
                                 >
                                     Confirm Your Estimate Request
                                 </DialogTitle>
-                                <div className="my-4">
-                                    <p className="text-sm text-gray-500">
-                                        Confirm your Estimate Request and someone from our team will
-                                        be in touch with you about your project
+
+                                <div className="my-5">
+                                    <p className="text-sm leading-6 text-muted-foreground">
+                                        Confirm your estimate request and someone from our team will
+                                        be in touch with you about your project.
                                     </p>
                                 </div>
 
-                                <div className="mt-4 justify-center">
-                                    <button
-                                        disabled={props.loading}
-                                        type="button"
-                                        className={`inline-flex justify-center rounded-md border border-transparent px-4 py-2 mr-4 mt-2 text-sm font-medium text-blue-900 ${
-                                            props.loading
-                                                ? "bg-gray-300 cursor-not-allowed"
-                                                : "bg-blue-100 hover:bg-blue-200"
-                                        } focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2`}
-                                        onClick={!props.loading ? props.confirmEstimate : undefined}
-                                    >
-                                        {props.loading ? "Sending..." : "Get Your Free Estimate"}
-                                    </button>
+                                <div className="mt-4 flex flex-col-reverse justify-center gap-3 sm:flex-row">
                                     <button
                                         type="button"
-                                        className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                                        onClick={props.closeModal}
+                                        onClick={closeModal}
+                                        disabled={loading}
+                                        className="inline-flex justify-center rounded-full border border-border bg-card px-5 py-2.5 text-sm font-semibold text-card-foreground transition-colors hover:bg-muted disabled:cursor-not-allowed disabled:opacity-60"
                                     >
                                         Cancel
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        disabled={loading}
+                                        onClick={confirmEstimate}
+                                        className="inline-flex justify-center rounded-full bg-primary px-5 py-2.5 text-sm font-bold text-primary-foreground transition-colors hover:bg-brite-blue focus:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-60"
+                                    >
+                                        {loading ? "Sending..." : "Get Your Free Estimate"}
                                     </button>
                                 </div>
                             </DialogPanel>
