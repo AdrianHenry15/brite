@@ -12,7 +12,7 @@ const HomeSplash = () => {
     return (
         <div className="relative w-full text-white h-screen">
             {/* SHADOW */}
-            <div className="z-10 w-full h-screen bg-gradient-to-r from-black flex absolute"></div>
+            <div className="z-10 w-full h-screen bg-gradient-to-r from-black flex absolute" />
             <div className="w-full flex justify-center items-center h-screen relative">
                 <Image
                     loading="eager"

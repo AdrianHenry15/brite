@@ -81,7 +81,7 @@ const Splash = (props: ISplashProps) => {
 
                 {/* Call to Action Button */}
                 <motion.a
-                    href="/contact"
+                    href="/contact-us"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     className="mt-6 inline-block bg-blue-500 px-8 py-4 text-lg font-semibold text-white rounded-full shadow-lg hover:bg-opacity-75 duration-300 transition"
