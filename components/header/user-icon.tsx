@@ -29,20 +29,19 @@ function ThemeToggleButton() {
     );
 }
 
-const UserIcon = () => {
+export default function UserIcon() {
     const { user } = useUser();
-    const { theme, setTheme } = useTheme();
     const [showSignIn, setShowSignIn] = useState(false);
     const router = useRouter();
 
     const userEmail = user?.primaryEmailAddress?.emailAddress;
-    const nextTheme = theme === "light" ? "dark" : theme === "dark" ? "system" : "light";
-    const ThemeIcon = theme === "dark" ? Moon : theme === "system" ? Monitor : Sun;
 
     return (
         <ClerkLoaded>
             {user ? (
                 <div className="flex min-w-0 items-center gap-2">
+                    <ThemeToggleButton />
+
                     <UserButton
                         appearance={{
                             elements: {
@@ -55,36 +54,7 @@ const UserIcon = () => {
                                 userButtonPopoverActionButtonText: "text-card-foreground",
                             },
                         }}
-                    >
-                        <UserButton.MenuItems>
-                            <UserButton.Action
-                                label={`Theme: ${theme ?? "system"}`}
-                                onClick={() => setTheme(nextTheme)}
-                                labelIcon={<ThemeIcon className="h-4 w-4" />}
-                            />
-
-                            {isAdmin(userEmail ?? "") ? (
-                                <>
-                                    <UserButton.Action
-                                        label="Admin Dashboard"
-                                        onClick={() => router.push("/admin/dashboard")}
-                                        labelIcon={<DashboardIcon fontSize={18} />}
-                                    />
-                                    <UserButton.Action
-                                        label="Brite Studio"
-                                        onClick={() => router.push("/studio")}
-                                        labelIcon={<CubeIcon fontSize={18} />}
-                                    />
-                                </>
-                            ) : (
-                                <UserButton.Action
-                                    label="My Applications"
-                                    onClick={() => router.push("/careers/my-applications")}
-                                    labelIcon={<BillIcon />}
-                                />
-                            )}
-                        </UserButton.MenuItems>
-                    </UserButton>
+                    ></UserButton>
 
                     <div className="hidden min-w-0 text-xs sm:block">
                         <p className="text-muted-foreground">Welcome Back</p>
@@ -100,7 +70,7 @@ const UserIcon = () => {
                     <button
                         type="button"
                         onClick={() => setShowSignIn(true)}
-                        className="rounded-full bg-primary whitespace-nowrap px-4 py-2 text-sm font-bold text-primary-foreground transition-colors hover:bg-brite-blue"
+                        className="whitespace-nowrap rounded-full bg-primary px-4 py-2 text-sm font-bold text-primary-foreground transition-colors hover:bg-primary/90"
                     >
                         Sign In
                     </button>
@@ -110,6 +80,4 @@ const UserIcon = () => {
             )}
         </ClerkLoaded>
     );
-};
-
-export default UserIcon;
+}
