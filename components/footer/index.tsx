@@ -1,46 +1,41 @@
 "use client";
 
-import React from "react";
 import Link from "next/link";
-
 import { MdCopyright } from "react-icons/md";
 
 import ContactCard from "./contact-card";
-import SocialsCard from "./socials-card";
 import FooterMenu from "./footer-menu";
 import LogoCard from "./logo-card";
+import SocialsCard from "./socials-card";
 
-const Footer = () => {
+export default function Footer() {
     return (
-        // FULL CONTAINER
-        <footer className="w-full bg-black text-white flex flex-col justify-center px-4">
-            {/* FOOTER MENU */}
-            <div className="flex flex-col self-center w-full md:flex-row md:py-2">
-                <LogoCard />
-                <div className="flex flex-col md:flex-row md:w-1/2 md:self-center">
+        <footer className="w-full border-t border-border bg-card text-card-foreground">
+            <div className="w-full px-4 py-12 sm:px-6 lg:px-12 xl:px-16 2xl:px-24">
+                {" "}
+                <div className="grid gap-10 md:grid-cols-3 lg:grid-cols-[1fr_1.5fr_1fr] lg:gap-16">
+                    {" "}
+                    <LogoCard />
                     <FooterMenu />
                     <ContactCard />
                 </div>
-            </div>
-            {/* SOCIALS  */}
-            <SocialsCard />
-            {/* CREATED BY */}
-            <div className="flex flex-col items-center justify-center text-center self-center w-full border-t-[1px] py-14 text-xs border-zinc-900">
-                <div className="flex flex-col items-center">
-                    <p className="text-xs">Created by</p>
-                    {/* THIRD GEN LOGO */}
+                <div className="mt-10 border-t border-border pt-6">
+                    <SocialsCard />
+                </div>
+                <div className="mt-6 flex flex-col items-center justify-between gap-3 border-t border-border pt-6 text-center text-xs text-muted-foreground sm:flex-row">
+                    <p>© 2026 Brite Exterior Cleaning. All rights reserved.</p>
+
                     <Link
-                        className="flex items-center"
-                        target="_blank"
                         href="https://www.thirdgenerationstudios.com/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center transition-colors hover:text-primary"
                     >
-                        <MdCopyright size={12} className="mb-2 mr-1 text-zinc-700" />
-                        <p className="text-zinc-500">Third Generation Studios</p>
+                        <MdCopyright size={12} className="mr-1" aria-hidden="true" />
+                        <span>Third Generation Studios</span>
                     </Link>
                 </div>
             </div>
         </footer>
     );
-};
-
-export default Footer;
+}

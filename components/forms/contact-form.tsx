@@ -1,9 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { Button } from "@mui/material";
 import React, { useState } from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm, type SubmitHandler } from "react-hook-form";
 import { usePathname } from "next/navigation";
 
 import Logo from "@/public/assets/icons/brite-logo.png";
@@ -28,15 +27,16 @@ type FormValues = {
     service: string;
     comment: string;
     referralSource: string;
+    authorization: boolean;
 };
 
 const ContactFormOverlay = () => {
     const pathname = usePathname();
 
-    const [isOpen, setIsOpen] = useState(false);
+    const [isConfirmOpen, setIsConfirmOpen] = useState(false);
     const [estimateSuccess, setEstimateSuccess] = useState(false);
     const [estimateFail, setEstimateFail] = useState(false);
-    const [loading, setLoading] = useState(false);
+    const [isSubmittingEstimate, setIsSubmittingEstimate] = useState(false);
 
     const SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID as string;
     const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID as string;
@@ -47,160 +47,218 @@ const ContactFormOverlay = () => {
         handleSubmit,
         getValues,
         control,
+        reset,
         formState: { errors },
-    } = useForm<FormValues>();
+    } = useForm<FormValues>({
+        defaultValues: {
+            firstName: "",
+            lastName: "",
+            phone: "",
+            email: "",
+            address: "",
+            service: "",
+            comment: "",
+            referralSource: "",
+            authorization: false,
+        },
+    });
 
-    const onSubmit: SubmitHandler<FormValues> = async (data) => {
-        setLoading(true);
-
-        setIsOpen(true); // Show confirmation modal
-
-        setLoading(false);
+    const onSubmit: SubmitHandler<FormValues> = () => {
+        setIsConfirmOpen(true);
     };
 
-    const confirmEstimate = () => {
-        if (loading) return;
-        setLoading(true);
+    const confirmEstimate = async () => {
+        if (isSubmittingEstimate) return;
+
+        setIsSubmittingEstimate(true);
+
+        const values = getValues();
 
         const templateParams = {
-            firstName: getValues("firstName"),
-            lastName: getValues("lastName"),
-            phone: getValues("phone"),
-            email: getValues("email"),
-            address: getValues("address"),
-            service: getValues("service"),
-            comment: getValues("comment"),
-            referralSource: getValues("referralSource"),
+            firstName: values.firstName,
+            lastName: values.lastName,
+            phone: values.phone,
+            email: values.email,
+            address: values.address,
+            service: values.service,
+            comment: values.comment,
+            referralSource: values.referralSource,
         };
 
-        sendEmail(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY, PRIVATE_KEY)
-            .then(({ success }) => {
-                setEstimateSuccess(success);
-                setEstimateFail(!success);
-                setIsOpen(false); // Close confirmation modal
-            })
-            .catch(() => setEstimateFail(true))
-            .finally(() => setLoading(false));
+        try {
+            const { success } = await sendEmail(
+                SERVICE_ID,
+                TEMPLATE_ID,
+                templateParams,
+                PUBLIC_KEY,
+                PRIVATE_KEY,
+            );
+
+            setEstimateSuccess(success);
+            setEstimateFail(!success);
+            setIsConfirmOpen(false);
+
+            if (success) reset();
+        } catch {
+            setEstimateFail(true);
+        } finally {
+            setIsSubmittingEstimate(false);
+        }
     };
 
     return (
         <section
             id="contact-form-overlay"
-            className="flex flex-col items-center px-4 py-20 relative w-full"
+            className="relative flex w-full max-w-full flex-col items-center overflow-hidden bg-background px-4 py-16 text-foreground sm:px-6 lg:px-8 lg:py-20"
         >
-            {isOpen && (
+            {isConfirmOpen && (
                 <ConfirmationModal
                     confirmEstimate={confirmEstimate}
-                    isOpen={isOpen}
-                    closeModal={() => setIsOpen(false)}
+                    isOpen={isConfirmOpen}
+                    closeModal={() => setIsConfirmOpen(false)}
                 />
             )}
+
             {estimateSuccess && (
                 <SuccessModal
                     title="Estimate Request Successful"
-                    description="Your Estimate Request has been successfully submitted."
+                    description="Your estimate request has been successfully submitted."
                     isOpen={estimateSuccess}
                     closeModal={() => setEstimateSuccess(false)}
                 />
             )}
+
             {estimateFail && (
                 <SuccessModal
                     title="Estimate Request Failed"
-                    description="Your Estimate Request submission failed. Please try again."
+                    description="Your estimate request failed. Please try again."
                     isOpen={estimateFail}
                     closeModal={() => setEstimateFail(false)}
                 />
             )}
-            {loading && <Loader />}
-            <div className="absolute hidden top-[250px] left-20 2xl:flex">
-                <Image loading="eager" src={HandyMan} alt="Handyman" />
+
+            {isSubmittingEstimate && <Loader />}
+
+            {/* Decorative image (fixed overflow issues) */}
+            <div className="pointer-events-none absolute left-[200px] top-[250px] hidden 2xl:block">
+                <Image
+                    loading="eager"
+                    src={HandyMan}
+                    alt="Brite exterior cleaning specialist"
+                    className="max-w-[420px] object-contain"
+                />
             </div>
-            <h1 className="text-3xl mb-10 font-light animate-bounce">
-                {pathname === "/contact-us" ? "Contact Us" : "Get Your Free Estimate!"}
-            </h1>
-            <div className="flex flex-col w-full p-6 rounded-2xl shadow-blue-600 shadow-lg border-2 md:w-[850px]">
-                <div className="flex justify-center">
-                    <Image loading="eager" width={100} src={Logo} alt="Brite Logo" />
-                </div>
-                <form className="self-center w-full md:w-2/3" onSubmit={handleSubmit(onSubmit)}>
-                    <h5 className="font-semibold text-lg text-black mb-2 underline">
-                        Contact Info
-                    </h5>
-                    <Input
-                        inputName="firstName"
-                        inputLabel="First Name"
-                        placeholder="First Name*"
-                        control={control}
-                        errors={errors}
-                        validationRules={{ required: "First Name is required" }}
-                    />
-                    <Input
-                        inputName="lastName"
-                        inputLabel="Last Name"
-                        placeholder="Last Name*"
-                        control={control}
-                        errors={errors}
-                        validationRules={{ required: "Last Name is required" }}
-                    />
-                    <Input
-                        inputName="phone"
-                        inputLabel="Phone Number"
-                        placeholder="Phone Number*"
-                        control={control}
-                        errors={errors}
-                        validationRules={{ required: "Phone number is required" }}
-                    />
-                    <Input
-                        inputName="email"
-                        inputLabel="Email"
-                        placeholder="Email*"
-                        control={control}
-                        errors={errors}
-                        validationRules={{ required: "Email is required" }}
-                    />
-                    <Input
-                        inputName="address"
-                        inputLabel="Address"
-                        placeholder="Address*"
-                        control={control}
-                        errors={errors}
-                        validationRules={{ required: "Address is required" }}
-                    />
-                    <Dropdown
-                        errors={errors}
-                        inputName="service"
-                        inputLabel="Choose Service:"
-                        control={control}
-                        options={ServicesList}
-                        textColor="dark"
-                    />
-                    <Dropdown
-                        inputName="referralSource"
-                        inputLabel="How Did You Hear About Us?"
-                        control={control}
-                        errors={errors}
-                        options={ReferralSources}
-                        textColor="dark"
-                    />
-                    <Textarea
-                        inputName="comment"
-                        inputLabel="Comment"
-                        placeholder="Comment"
-                        control={control}
-                    />
-                    <AuthorizationCheckbox inputName="authorization" control={control} />
-                    <Button
-                        type="submit"
-                        variant="contained"
-                        color="primary"
-                        disabled={loading}
-                        className="bg-blue-500"
-                        fullWidth
-                        sx={{ mt: 2 }}
+
+            {/* Content container */}
+            <div className="mx-auto flex w-full max-w-5xl flex-col items-center">
+                <h1 className="mb-10 text-center text-3xl font-light tracking-tight text-foreground sm:text-4xl">
+                    {pathname === "/contact-us" ? "Contact Us" : "Get Your Free Estimate!"}
+                </h1>
+
+                {/* Form Card */}
+                <div className="w-full max-w-3xl rounded-2xl border border-border bg-card p-5 text-card-foreground shadow-xl shadow-primary/10 sm:p-6 md:p-8">
+                    <div className="mb-6 flex justify-center">
+                        <Image
+                            loading="eager"
+                            width={100}
+                            src={Logo}
+                            alt="Brite Exterior Cleaning logo"
+                        />
+                    </div>
+
+                    <form
+                        className="mx-auto flex w-full max-w-2xl flex-col"
+                        onSubmit={handleSubmit(onSubmit)}
                     >
-                        {loading ? "Submitting..." : "Submit"}
-                    </Button>
-                </form>
+                        <h5 className="mb-4 text-lg font-semibold text-card-foreground underline decoration-primary underline-offset-4">
+                            Contact Info
+                        </h5>
+
+                        <Input
+                            inputName="firstName"
+                            inputLabel="First Name"
+                            placeholder="First Name*"
+                            control={control}
+                            errors={errors}
+                            validationRules={{ required: "First name is required" }}
+                        />
+
+                        <Input
+                            inputName="lastName"
+                            inputLabel="Last Name"
+                            placeholder="Last Name*"
+                            control={control}
+                            errors={errors}
+                            validationRules={{ required: "Last name is required" }}
+                        />
+
+                        <Input
+                            inputName="phone"
+                            inputLabel="Phone Number"
+                            placeholder="Phone Number*"
+                            control={control}
+                            errors={errors}
+                            validationRules={{ required: "Phone number is required" }}
+                        />
+
+                        <Input
+                            inputName="email"
+                            inputLabel="Email"
+                            placeholder="Email*"
+                            control={control}
+                            errors={errors}
+                            validationRules={{
+                                required: "Email is required",
+                                pattern: {
+                                    value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                                    message: "Enter a valid email address",
+                                },
+                            }}
+                        />
+
+                        <Input
+                            inputName="address"
+                            inputLabel="Address"
+                            placeholder="Address*"
+                            control={control}
+                            errors={errors}
+                            validationRules={{ required: "Address is required" }}
+                        />
+
+                        <Dropdown<FormValues>
+                            errors={errors}
+                            inputName="service"
+                            inputLabel="Choose Service:"
+                            control={control}
+                            options={ServicesList}
+                        />
+
+                        <Dropdown<FormValues>
+                            inputName="referralSource"
+                            inputLabel="How Did You Hear About Us?"
+                            control={control}
+                            errors={errors}
+                            options={ReferralSources}
+                        />
+
+                        <Textarea
+                            inputName="comment"
+                            inputLabel="Comment"
+                            placeholder="Comment"
+                            control={control}
+                        />
+
+                        <AuthorizationCheckbox inputName="authorization" control={control} />
+
+                        <button
+                            type="submit"
+                            disabled={isSubmittingEstimate}
+                            className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-primary px-6 py-3 font-bold text-primary-foreground shadow-sm transition-colors hover:bg-brite-blue focus:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-60"
+                        >
+                            {isSubmittingEstimate ? "Submitting..." : "Submit"}
+                        </button>
+                    </form>
+                </div>
             </div>
         </section>
     );

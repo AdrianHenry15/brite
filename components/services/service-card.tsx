@@ -7,19 +7,23 @@ interface Props {
 
 const ServiceCard = ({ service }: Props) => {
     return (
-        <div className="flex flex-col gap-4 rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
+        <article className="flex flex-col gap-4 rounded-2xl border border-border bg-card p-6 text-card-foreground shadow-sm">
             <div className="flex flex-col gap-2">
-                <h3 className="text-xl font-semibold tracking-tight">{service.title}</h3>
-                <p className="text-sm text-neutral-600">{service.description}</p>
+                <h3 className="text-xl font-semibold tracking-tight text-card-foreground">
+                    {service.title}
+                </h3>
+
+                <p className="text-sm leading-6 text-muted-foreground">{service.description}</p>
             </div>
 
             {(service.beforeImage || service.afterImage) && (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                     {service.beforeImage && (
-                        <div className="relative">
-                            <span className="absolute top-2 left-2 z-10 rounded bg-black/70 px-2 py-1 text-xs text-white">
+                        <div className="relative overflow-hidden rounded-xl">
+                            <span className="absolute left-2 top-2 z-10 rounded-md bg-foreground/80 px-2 py-1 text-xs font-medium text-background">
                                 Before
                             </span>
+
                             <Image
                                 src={service.beforeImage}
                                 alt={`${service.title} before`}
@@ -29,10 +33,11 @@ const ServiceCard = ({ service }: Props) => {
                     )}
 
                     {service.afterImage && (
-                        <div className="relative">
-                            <span className="absolute top-2 left-2 z-10 rounded bg-black/70 px-2 py-1 text-xs text-white">
+                        <div className="relative overflow-hidden rounded-xl">
+                            <span className="absolute left-2 top-2 z-10 rounded-md bg-foreground/80 px-2 py-1 text-xs font-medium text-background">
                                 After
                             </span>
+
                             <Image
                                 src={service.afterImage}
                                 alt={`${service.title} after`}
@@ -42,7 +47,7 @@ const ServiceCard = ({ service }: Props) => {
                     )}
                 </div>
             )}
-        </div>
+        </article>
     );
 };
 

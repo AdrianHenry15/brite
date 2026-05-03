@@ -1,18 +1,20 @@
+// FAQContainer.tsx
 import React from "react";
 
-interface IFAQContainerProps {
+interface FAQContainerProps {
     title: string;
     children: React.ReactNode;
     id: string;
 }
 
-const FAQContainer = (props: IFAQContainerProps) => {
+export default function FAQContainer({ title, children, id }: FAQContainerProps) {
     return (
-        <div id={props.id} className="flex flex-col w-full flex-1 px-10 lg:px-32 px">
-            <h5 className="text-blue-600 text-4xl font-semibold">{props.title}</h5>
-            {props.children}
-        </div>
-    );
-};
+        <section id={id} className="flex w-full flex-1 flex-col px-6 py-10 sm:px-6 lg:px-24">
+            <h2 className="text-3xl font-semibold tracking-tight text-primary sm:text-4xl">
+                {title}
+            </h2>
 
-export default FAQContainer;
+            <div className="mt-6 flex flex-col gap-6 text-foreground">{children}</div>
+        </section>
+    );
+}

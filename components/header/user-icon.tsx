@@ -1,72 +1,112 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { BillIcon, CubeIcon, DashboardIcon } from "@sanity/icons";
-import SignInModal from "@/components/user/sign-in-modal";
-import { useRouter } from "next/navigation";
+import { Monitor, Moon, Sun } from "lucide-react";
 import { ClerkLoaded, UserButton, useUser } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
+import { useTheme } from "next-themes";
+
+import SignInModal from "@/components/user/sign-in-modal";
 import { isAdmin } from "@/lib/check-admin";
+
+function ThemeToggleButton() {
+    const { theme, setTheme } = useTheme();
+
+    const nextTheme = theme === "light" ? "dark" : theme === "dark" ? "system" : "light";
+    const Icon = theme === "dark" ? Moon : theme === "system" ? Monitor : Sun;
+
+    return (
+        <button
+            type="button"
+            onClick={() => setTheme(nextTheme)}
+            aria-label={`Switch theme to ${nextTheme}`}
+            title={`Theme: ${theme ?? "system"}`}
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-border bg-card text-card-foreground transition-colors hover:bg-muted hover:text-primary"
+        >
+            <Icon className="h-4 w-4" />
+        </button>
+    );
+}
 
 const UserIcon = () => {
     const { user } = useUser();
+    const { theme, setTheme } = useTheme();
     const [showSignIn, setShowSignIn] = useState(false);
     const router = useRouter();
 
-    const userEmail = user?.emailAddresses[0]?.emailAddress;
+    const userEmail = user?.primaryEmailAddress?.emailAddress;
+    const nextTheme = theme === "light" ? "dark" : theme === "dark" ? "system" : "light";
+    const ThemeIcon = theme === "dark" ? Moon : theme === "system" ? Monitor : Sun;
 
     return (
         <ClerkLoaded>
             {user ? (
-                <div className="flex items-center space-x-2">
-                    <UserButton>
-                        {isAdmin(userEmail as string) ? (
-                            <UserButton.MenuItems>
-                                <UserButton.Action
-                                    label="Admin Dashboard"
-                                    onClick={() => router.push("/admin/dashboard")}
-                                    labelIcon={<DashboardIcon color="red" fontSize={18} />}
-                                />
-                                <UserButton.Action
-                                    label="Brite Studio"
-                                    onClick={() => router.push("/studio")}
-                                    labelIcon={<CubeIcon color="blue" fontSize={18} />}
-                                />
-                                {/* <UserButton.Action
-                                    label="All Applications"
-                                    onClick={() => router.push("/admin/applications")}
-                                    labelIcon={<BillIcon color="green" fontSize={18} />}
-                                /> */}
-                                {/* <UserButton.Action
-                                    label="All Resumes"
-                                    onClick={() => router.push("/admin/resumes")}
-                                    labelIcon={<PresentationIcon color="orange" fontSize={18} />}
-                                /> */}
-                            </UserButton.MenuItems>
-                        ) : (
-                            <UserButton.MenuItems>
+                <div className="flex min-w-0 items-center gap-2">
+                    <UserButton
+                        appearance={{
+                            elements: {
+                                avatarBox:
+                                    "h-10 w-10 border border-border ring-0 transition hover:ring-2 hover:ring-primary",
+                                userButtonPopoverCard:
+                                    "border border-border bg-card text-card-foreground shadow-xl",
+                                userButtonPopoverActionButton:
+                                    "text-card-foreground hover:bg-muted",
+                                userButtonPopoverActionButtonText: "text-card-foreground",
+                            },
+                        }}
+                    >
+                        <UserButton.MenuItems>
+                            <UserButton.Action
+                                label={`Theme: ${theme ?? "system"}`}
+                                onClick={() => setTheme(nextTheme)}
+                                labelIcon={<ThemeIcon className="h-4 w-4" />}
+                            />
+
+                            {isAdmin(userEmail ?? "") ? (
+                                <>
+                                    <UserButton.Action
+                                        label="Admin Dashboard"
+                                        onClick={() => router.push("/admin/dashboard")}
+                                        labelIcon={<DashboardIcon fontSize={18} />}
+                                    />
+                                    <UserButton.Action
+                                        label="Brite Studio"
+                                        onClick={() => router.push("/studio")}
+                                        labelIcon={<CubeIcon fontSize={18} />}
+                                    />
+                                </>
+                            ) : (
                                 <UserButton.Action
                                     label="My Applications"
                                     onClick={() => router.push("/careers/my-applications")}
                                     labelIcon={<BillIcon />}
                                 />
-                            </UserButton.MenuItems>
-                        )}
+                            )}
+                        </UserButton.MenuItems>
                     </UserButton>
-                    <div className="hidden sm:block text-xs">
-                        <p className="text-gray-400">Welcome Back</p>
-                        <p className="font-bold">{user.fullName}!</p>
+
+                    <div className="hidden min-w-0 text-xs sm:block">
+                        <p className="text-muted-foreground">Welcome Back</p>
+                        <p className="max-w-[130px] truncate font-bold text-foreground">
+                            {user.fullName ?? "User"}!
+                        </p>
                     </div>
                 </div>
             ) : (
-                <ClerkLoaded>
+                <div className="flex items-center gap-2">
+                    <ThemeToggleButton />
+
                     <button
+                        type="button"
                         onClick={() => setShowSignIn(true)}
-                        className="bg-blue-500 hover:bg-blue-600 transition-all ease-in-out hover:scale-105 duration-300 text-white font-bold py-2 px-4 rounded-full"
+                        className="rounded-full bg-primary whitespace-nowrap px-4 py-2 text-sm font-bold text-primary-foreground transition-colors hover:bg-brite-blue"
                     >
                         Sign In
                     </button>
+
                     {showSignIn && <SignInModal setShowSignIn={setShowSignIn} />}
-                </ClerkLoaded>
+                </div>
             )}
         </ClerkLoaded>
     );

@@ -8,16 +8,18 @@ interface IBackButtonProps {
     link: string;
 }
 
-export default function BackButton(props: IBackButtonProps) {
-    const { title, link } = props;
-
+export default function BackButton({ title, link }: IBackButtonProps) {
     return (
         <Link
             href={link}
-            className="mt-6 py-2 flex items-center text-gray-700 rounded-md hover:text-blue-600 transition"
+            className="group mt-6 inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors hover:text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-md"
         >
-            <FaChevronLeft size={12} className="mr-4" />
-            <p>{title}</p>
+            <FaChevronLeft
+                size={12}
+                className="transition-transform duration-200 group-hover:-translate-x-0.5"
+                aria-hidden="true"
+            />
+            <span>{title}</span>
         </Link>
     );
 }

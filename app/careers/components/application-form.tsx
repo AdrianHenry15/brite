@@ -1,9 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { Button } from "@mui/material";
 import React, { useState } from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useRouter } from "next/navigation";
+import { useForm, type SubmitHandler } from "react-hook-form";
 
 import Logo from "@/public/assets/icons/brite-logo.png";
 import sendEmail from "@/lib/email-service";
@@ -23,9 +23,10 @@ interface IApplicationFormProps {
     job: string;
 }
 
-const ApplicationForm = (props: IApplicationFormProps) => {
+const ApplicationForm = ({ job }: IApplicationFormProps) => {
+    const router = useRouter();
+
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const [success, setSuccess] = useState(false);
     const [fail, setFail] = useState(false);
 
     const SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID as string;
@@ -37,40 +38,56 @@ const ApplicationForm = (props: IApplicationFormProps) => {
         handleSubmit,
         control,
         formState: { errors },
-    } = useForm<ApplicationFormValues>();
+    } = useForm<ApplicationFormValues>({
+        defaultValues: {
+            firstName: "",
+            lastName: "",
+            email: "",
+            phone: "",
+            address: "",
+        },
+    });
 
     const onSubmit: SubmitHandler<ApplicationFormValues> = async (data) => {
+        if (isSubmitting) return;
+
         setIsSubmitting(true);
+        setFail(false);
 
         const templateParams = {
             firstName: data.firstName,
             lastName: data.lastName,
             email: data.email,
+            reply_to: data.email,
             phone: data.phone,
             address: data.address,
-            jobOpening: props.job,
+            jobOpening: job,
         };
 
-        sendEmail(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY, PRIVATE_KEY)
-            .then(({ success }) => {
-                setSuccess(success);
-                setFail(!success);
-            })
-            .catch(() => setFail(true))
-            .finally(() => setIsSubmitting(false));
+        try {
+            const { success } = await sendEmail(
+                SERVICE_ID,
+                TEMPLATE_ID,
+                templateParams,
+                PUBLIC_KEY,
+                PRIVATE_KEY,
+            );
+
+            if (!success) {
+                setFail(true);
+                return;
+            }
+
+            router.push("/careers/job-openings/application/success");
+        } catch {
+            setFail(true);
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (
-        <section className="flex flex-col items-center px-4 py-12 md:py-16 lg:py-20 w-full">
-            {/* Success & Failure Modals */}
-            {success && (
-                <SuccessModal
-                    title="Application Submitted"
-                    description="Your application has been successfully submitted."
-                    isOpen={success}
-                    closeModal={() => setSuccess(false)}
-                />
-            )}
+        <section className="flex w-full flex-col items-center bg-background px-4 py-12 text-foreground md:py-16 lg:py-20">
             {fail && (
                 <SuccessModal
                     title="Application Failed"
@@ -80,19 +97,20 @@ const ApplicationForm = (props: IApplicationFormProps) => {
                 />
             )}
 
-            {/* Loading Indicator */}
             {isSubmitting && <Loader />}
 
-            {/* Form Container */}
-            <div className="flex flex-col w-full max-w-md md:max-w-lg lg:max-w-xl bg-white shadow-lg rounded-xl p-6 sm:p-8">
-                {/* Logo Section */}
-                <div className="flex justify-center mb-4">
-                    <Image loading="eager" width={90} src={Logo} alt="Company Logo" />
+            <div className="flex w-full max-w-xl flex-col rounded-2xl border border-border bg-card p-6 text-card-foreground shadow-xl shadow-primary/10 sm:p-8">
+                <div className="mb-6 flex justify-center">
+                    <Image
+                        loading="eager"
+                        width={90}
+                        src={Logo}
+                        alt="Brite Exterior Cleaning logo"
+                    />
                 </div>
 
-                {/* Form */}
                 <form className="w-full space-y-4" onSubmit={handleSubmit(onSubmit)}>
-                    <h5 className="text-lg font-semibold text-center text-gray-800 underline">
+                    <h5 className="text-center text-lg font-semibold text-card-foreground underline decoration-primary underline-offset-4">
                         Personal Information
                     </h5>
 
@@ -104,6 +122,7 @@ const ApplicationForm = (props: IApplicationFormProps) => {
                         errors={errors}
                         validationRules={{ required: "First Name is required" }}
                     />
+
                     <Input
                         inputName="lastName"
                         inputLabel="Last Name"
@@ -112,14 +131,22 @@ const ApplicationForm = (props: IApplicationFormProps) => {
                         errors={errors}
                         validationRules={{ required: "Last Name is required" }}
                     />
+
                     <Input
                         inputName="email"
                         inputLabel="Email"
                         placeholder="Email*"
                         control={control}
                         errors={errors}
-                        validationRules={{ required: "Email is required" }}
+                        validationRules={{
+                            required: "Email is required",
+                            pattern: {
+                                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                                message: "Enter a valid email address",
+                            },
+                        }}
                     />
+
                     <Input
                         inputName="phone"
                         inputLabel="Phone Number"
@@ -128,6 +155,7 @@ const ApplicationForm = (props: IApplicationFormProps) => {
                         errors={errors}
                         validationRules={{ required: "Phone number is required" }}
                     />
+
                     <Input
                         inputName="address"
                         inputLabel="Address"
@@ -137,17 +165,13 @@ const ApplicationForm = (props: IApplicationFormProps) => {
                         validationRules={{ required: "Address is required" }}
                     />
 
-                    {/* Submit Button */}
-                    <Button
+                    <button
                         type="submit"
-                        variant="contained"
-                        color="primary"
-                        className="bg-blue-500 hover:bg-blue-600 transition duration-200"
-                        fullWidth
-                        sx={{ mt: 2, py: 1.5, fontSize: "1rem" }}
+                        disabled={isSubmitting}
+                        className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-primary px-6 py-3 text-base font-bold text-primary-foreground shadow-sm transition-colors hover:bg-brite-blue focus:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-60"
                     >
-                        Submit Application
-                    </Button>
+                        {isSubmitting ? "Submitting..." : "Submit Application"}
+                    </button>
                 </form>
             </div>
         </section>

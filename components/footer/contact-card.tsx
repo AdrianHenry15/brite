@@ -1,50 +1,51 @@
 import Link from "next/link";
-import React from "react";
 
-const ContactCard = () => {
+export default function ContactCard() {
     return (
-        <div className="flex flex-1 flex-col justify-start items-start w-full py-10 md:py-0 md:text-left">
-            <div className="flex flex-col text-xs w-full flex-1">
-                <Link href={"/contact-us"} className="font-light tracking-wider text-2xl pb-4">
-                    Contact Us
-                </Link>
-                <div className="w-full">
-                    <address className="text-gray-400 pb-4">
-                        10130 Mallard Creek Rd. Suite 300 Charlotte, NC 28262
-                    </address>
-                    <div className="flex flex-col text-gray-400">
-                        <span className="pb-4">
-                            <label className="text-white">Office: </label>
-                            <Link
-                                className="hover:underline underline-offset-2"
-                                href="tel:7048423535"
-                            >
-                                704-842-3535
-                            </Link>
-                        </span>
-                        <span className="pb-4">
-                            <label className="text-white">Sales: </label>
-                            <Link
-                                className="hover:underline underline-offset-2"
-                                href="email:joey.mckenna@britellc.com"
-                            >
-                                nick.walker@briteclt.com
-                            </Link>
-                        </span>
-                        <span className="pb-4">
-                            <label className="text-white">Other Inquiries: </label>
-                            <Link
-                                className="hover:underline underline-offset-2"
-                                href="email:nick.walker@britellc.com"
-                            >
-                                joey.mckenna@briteclt.com
-                            </Link>
-                        </span>
-                    </div>
-                </div>
+        <div className="flex flex-col items-center text-center md:items-start md:text-left">
+            <h5 className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+                Contact
+            </h5>
+
+            <address className="not-italic text-sm leading-6 text-muted-foreground">
+                10130 Mallard Creek Rd.
+                <br />
+                Suite 300
+                <br />
+                Charlotte, NC 28262
+            </address>
+
+            <div className="mt-4 flex flex-col gap-2 text-sm">
+                <p>
+                    <span className="text-foreground">Office: </span>
+                    <Link
+                        href="tel:7048423535"
+                        className="text-muted-foreground hover:text-primary"
+                    >
+                        704-842-3535
+                    </Link>
+                </p>
+
+                <p>
+                    <span className="text-foreground">Sales: </span>
+                    <Link
+                        href="mailto:nick.walker@briteclt.com"
+                        className="text-muted-foreground hover:text-primary"
+                    >
+                        nick.walker@briteclt.com
+                    </Link>
+                </p>
+
+                <p>
+                    <span className="text-foreground">Other: </span>
+                    <Link
+                        href="mailto:joey.mckenna@briteclt.com"
+                        className="text-muted-foreground hover:text-primary"
+                    >
+                        joey.mckenna@briteclt.com
+                    </Link>
+                </p>
             </div>
         </div>
     );
-};
-
-export default ContactCard;
+}

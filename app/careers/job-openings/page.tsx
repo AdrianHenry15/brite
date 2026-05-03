@@ -1,73 +1,84 @@
 import React from "react";
+import { Metadata } from "next";
+
 import JobOpeningsCard from "./components/card";
 import { getAllJobOpenings } from "@/sanity/lib/job-openings/getAllJobOpenings";
 
-import { Metadata } from "next";
-
 export const metadata: Metadata = {
-    title: "Current Job Openings | Brite Exterior Cleaning Services",
+    title: "Current Job Openings | Brite Exterior Cleaning",
     description:
-        "Browse the latest job openings at Brite Exterior Cleaning. Join our team and work in exterior cleaning, pressure washing, holiday lighting installation, and more in Charlotte, NC and surrounding areas.",
-    openGraph: {
-        title: "Current Job Openings | Brite Exterior Cleaning Services",
-        description:
-            "Looking for a new job? Explore the latest career opportunities at Brite Exterior Cleaning in Charlotte, NC, including positions in pressure washing, gutter cleaning, and holiday lighting installation.",
-        url: "https://briteclt.com/careers/job-openings",
+        "Browse current job openings at Brite Exterior Cleaning in Charlotte, NC, including exterior cleaning, pressure washing, soft washing, and holiday lighting roles.",
+
+    alternates: {
+        canonical: "/careers/job-openings",
     },
+
+    openGraph: {
+        title: "Current Job Openings | Brite Exterior Cleaning",
+        description:
+            "Explore open roles with Brite Exterior Cleaning and join a team serving homes and businesses across Charlotte, NC.",
+        url: "/careers/job-openings",
+        siteName: "Brite Exterior Cleaning",
+        type: "website",
+        locale: "en_US",
+    },
+
     twitter: {
         card: "summary_large_image",
-        title: "Current Job Openings | Brite Exterior Cleaning Services",
-        description:
-            "Find your next job with Brite Exterior Cleaning. We're hiring for various positions, including exterior cleaning, pressure washing, and holiday lighting installation in Charlotte, NC.",
+        title: "Current Job Openings | Brite Exterior Cleaning",
+        description: "Find current job openings with Brite Exterior Cleaning in Charlotte, NC.",
     },
+
+    robots: {
+        index: true,
+        follow: true,
+    },
+
+    keywords: [
+        "Brite Exterior Cleaning jobs",
+        "current job openings Charlotte NC",
+        "exterior cleaning jobs",
+        "pressure washing jobs Charlotte NC",
+        "soft washing jobs",
+        "holiday lighting jobs Charlotte NC",
+    ],
 };
 
 const JobOpeningsPage = async () => {
     const jobs = await getAllJobOpenings();
 
     return (
-        <div className="bg-gray-50 min-h-screen py-16 px-6">
-            {/* Page Header */}
-            <div className="text-center mb-12">
-                <h1 className="text-4xl font-bold text-gray-800 mb-4">Join Our Team</h1>
-                <p className="text-lg text-gray-600">
-                    Explore exciting career opportunities at Brite and help us brighten Charlotte,
-                    NC!
-                </p>
-            </div>
+        <main className="min-h-screen w-full bg-background px-4 py-16 text-foreground sm:px-6 lg:px-8">
+            <section className="mx-auto flex w-full max-w-6xl flex-col">
+                <header className="mx-auto mb-12 max-w-3xl text-center">
+                    <p className="text-sm font-semibold uppercase tracking-[0.3em] text-primary">
+                        Careers
+                    </p>
 
-            {/* Job Listings */}
-            {Array.isArray(jobs) && jobs.length > 0 ? (
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {jobs.map((job) => (
-                        <JobOpeningsCard key={job._id} job={job} />
-                    ))}
-                </div>
-            ) : (
-                <p className="text-center text-gray-500 pb-48">
-                    We currently have no job openings available. Please check back later!
-                </p>
-            )}
+                    <h1 className="mt-3 text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
+                        Join Our Team
+                    </h1>
 
-            {/* Call-to-Action */}
-            {/* <div className="mt-16 text-center">
-                <h2 className="text-2xl font-semibold text-gray-800">
-                    Don't see a role that fits you?
-                </h2>
-                <p className="text-gray-600 mt-2 px-10">
-                    We're always looking for talented individuals. Send us your resume and tell us
-                    how you can make a difference at Brite.
-                </p>
-                <Button
-                    variant="outlined"
-                    color="primary"
-                    size="large"
-                    className="mt-6 border-blue-500 text-blue-500 hover:bg-blue-50"
-                >
-                    Submit Your Resume
-                </Button>
-            </div> */}
-        </div>
+                    <p className="mt-4 text-base leading-7 text-muted-foreground sm:text-lg">
+                        Explore career opportunities at Brite and help us brighten Charlotte, NC.
+                    </p>
+                </header>
+
+                {Array.isArray(jobs) && jobs.length > 0 ? (
+                    <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+                        {jobs.map((job) => (
+                            <JobOpeningsCard key={job._id ?? job.slug?.current} job={job} />
+                        ))}
+                    </div>
+                ) : (
+                    <div className="rounded-2xl border border-dashed border-border bg-muted/40 px-6 py-12 text-center">
+                        <p className="text-sm text-muted-foreground">
+                            We currently have no job openings available. Please check back later!
+                        </p>
+                    </div>
+                )}
+            </section>
+        </main>
     );
 };
 

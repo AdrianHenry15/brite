@@ -1,57 +1,132 @@
 @tailwind base;
-@tailwind utilities;
 @tailwind components;
-/* @import url("https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap"); */
+@tailwind utilities;
 
-#base {
-    background: rgb(0, 50, 92);
-    display: inline-block;
-    height: 55px;
-    margin-left: 20px;
-    margin-top: 55px;
-    position: relative;
-    width: 100px;
-}
-#base:before {
-    border-bottom: 35px solid rgb(0, 50, 92);
-    border-left: 50px solid transparent;
-    border-right: 50px solid transparent;
-    content: "";
-    height: 0;
-    left: 0;
-    position: absolute;
-    top: -35px;
-    width: 0;
+@layer base {
+    :root {
+        --background: 0 0% 100%;
+        --foreground: 212 35% 12%;
+
+        --card: 0 0% 100%;
+        --card-foreground: 212 35% 12%;
+
+        --primary: 205 100% 45%;
+        --primary-foreground: 0 0% 100%;
+
+        --secondary: 198 95% 56%;
+        --secondary-foreground: 212 35% 12%;
+
+        --muted: 210 30% 96%;
+        --muted-foreground: 215 16% 42%;
+
+        --accent: 190 100% 60%;
+        --accent-foreground: 212 35% 12%;
+
+        --border: 210 20% 88%;
+        --input: 210 20% 88%;
+        --ring: 205 100% 45%;
+
+        --brite-navy: 207 100% 18%;
+        --brite-blue: 205 100% 45%;
+        --brite-sky: 195 100% 62%;
+        --brite-foam: 190 75% 94%;
+    }
+
+    .dark {
+        --background: 212 42% 8%;
+        --foreground: 0 0% 98%;
+
+        --card: 212 38% 11%;
+        --card-foreground: 0 0% 98%;
+
+        --primary: 205 100% 55%;
+        --primary-foreground: 212 45% 8%;
+
+        --secondary: 198 90% 48%;
+        --secondary-foreground: 0 0% 100%;
+
+        --muted: 212 30% 16%;
+        --muted-foreground: 215 18% 72%;
+
+        --accent: 190 100% 55%;
+        --accent-foreground: 212 45% 8%;
+
+        --border: 212 25% 22%;
+        --input: 212 25% 22%;
+        --ring: 205 100% 55%;
+
+        --brite-navy: 207 100% 12%;
+        --brite-blue: 205 100% 55%;
+        --brite-sky: 195 100% 65%;
+        --brite-foam: 205 35% 16%;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        @apply bg-background text-foreground antialiased;
+    }
+
+    * {
+        @apply border-border;
+    }
 }
 
-.fade-in-from-top {
-    opacity: 0;
-    transform: translateY(-20px);
-    transition:
-        opacity 0.8s ease-in-out,
-        transform 0.8s ease-in-out;
-}
-.fade-in {
-    opacity: 0;
-    /* transform: translateY(-20px); */
-    transition:
-        opacity 0.8s ease-in-out,
-        transform 0.8s ease-in-out;
-}
-/* Add the following to create a stagger effect based on index */
-.fade-in:nth-child(1) {
-    transition-delay: 0.111s;
-}
+@layer components {
+    .house-base {
+        background: hsl(var(--brite-navy));
+        display: inline-block;
+        height: 55px;
+        margin-left: 20px;
+        margin-top: 55px;
+        position: relative;
+        width: 100px;
+    }
 
-.fade-in:nth-child(2) {
-    transition-delay: 0.153s;
-}
+    .house-base::before {
+        border-bottom: 35px solid hsl(var(--brite-navy));
+        border-left: 50px solid transparent;
+        border-right: 50px solid transparent;
+        content: "";
+        height: 0;
+        left: 0;
+        position: absolute;
+        top: -35px;
+        width: 0;
+    }
 
-.fade-in:nth-child(3) {
-    transition-delay: 0.185s;
-}
+    .fade-in-from-top {
+        opacity: 0;
+        transform: translateY(-20px);
+        transition:
+            opacity 0.8s ease-in-out,
+            transform 0.8s ease-in-out;
+    }
 
-.fade-in.show {
-    opacity: 1;
-    transform: translateY(0);
+    .fade-in {
+        opacity: 0;
+        transition:
+            opacity 0.8s ease-in-out,
+            transform 0.8s ease-in-out;
+    }
+
+    .fade-in:nth-child(1) {
+        transition-delay: 0.111s;
+    }
+
+    .fade-in:nth-child(2) {
+        transition-delay: 0.153s;
+    }
+
+    .fade-in:nth-child(3) {
+        transition-delay: 0.185s;
+    }
+
+    .fade-in.show,
+    .fade-in-from-top.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

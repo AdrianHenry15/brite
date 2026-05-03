@@ -1,26 +1,34 @@
 import Link from "next/link";
-import React from "react";
-
 import { AiFillFacebook, AiOutlineInstagram } from "react-icons/ai";
 
-const SocialsCard = () => {
+const socialLinks = [
+    {
+        label: "Facebook",
+        href: "https://www.facebook.com/britelightingllc",
+        icon: AiFillFacebook,
+    },
+    {
+        label: "Instagram",
+        href: "https://www.instagram.com/briteclt/",
+        icon: AiOutlineInstagram,
+    },
+];
+
+export default function SocialsCard() {
     return (
-        <div className="flex w-full justify-evenly py-10 border-y-[1px] border-zinc-900">
-            <Link
-                className="hover:scale-125 transition-all duration-300 ease-in-out"
-                target="_blank"
-                href="https://www.facebook.com/britelightingllc"
-            >
-                <AiFillFacebook size={25} />
-            </Link>
-            <Link target="_blank" href="https://www.instagram.com/briteclt/">
-                <AiOutlineInstagram
-                    className="hover:scale-125 transition-all duration-300 ease-in-out"
-                    size={25}
-                />
-            </Link>
+        <div className="flex items-center justify-center gap-4">
+            {socialLinks.map(({ label, href, icon: Icon }) => (
+                <Link
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Visit Brite Exterior Cleaning on ${label}`}
+                    className="text-muted-foreground transition-colors hover:text-primary"
+                >
+                    <Icon size={22} aria-hidden="true" />
+                </Link>
+            ))}
         </div>
     );
-};
-
-export default SocialsCard;
+}

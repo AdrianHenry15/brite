@@ -1,16 +1,84 @@
+import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
+import { PortableText, PortableTextComponents } from "@portabletext/react";
+
+import BackButton from "@/components/back-button";
+import UserDefaultImage from "@/public/assets/icons/user (1).png";
 import { getBlogBySlug } from "@/sanity/lib/blogs/getBlogBySlug";
 import { imageUrl } from "@/sanity/lib/image-url";
-import { PortableText, PortableTextComponents } from "@portabletext/react";
-import UserDefaultImage from "@/public/assets/icons/user (1).png";
-import BackButton from "@/components/back-button";
 
-export default async function BlogPageBySlug({ params }: { params: Promise<{ slug: string }> }) {
-    const slug = (await params).slug;
+type PageProps = {
+    params: Promise<{ slug: string }>;
+};
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+    const { slug } = await params;
+    const blog = await getBlogBySlug(slug);
+
+    if (!blog) {
+        return {
+            title: "Blog Post Not Found | Brite Exterior Cleaning",
+            robots: {
+                index: false,
+                follow: false,
+            },
+        };
+    }
+
+    const title = `${blog.title} | Brite Exterior Cleaning`;
+    const description =
+        blog.excerpt ??
+        "Read exterior cleaning tips, maintenance advice, and company updates from Brite Exterior Cleaning.";
+
+    const image = blog.mainImage?.asset ? imageUrl(blog.mainImage.asset).url() : undefined;
+
+    return {
+        title,
+        description,
+        alternates: {
+            canonical: `/blog/${slug}`,
+        },
+        openGraph: {
+            title,
+            description,
+            url: `/blog/${slug}`,
+            siteName: "Brite Exterior Cleaning",
+            type: "article",
+            locale: "en_US",
+            publishedTime: blog.publishedAt ?? undefined,
+            authors: blog.author?.name ? [blog.author.name] : undefined,
+            images: image
+                ? [
+                      {
+                          url: image,
+                          width: 1200,
+                          height: 630,
+                          alt: blog.title ?? "Brite Exterior Cleaning blog post",
+                      },
+                  ]
+                : undefined,
+        },
+        twitter: {
+            card: image ? "summary_large_image" : "summary",
+            title,
+            description,
+            images: image ? [image] : undefined,
+        },
+        robots: {
+            index: true,
+            follow: true,
+        },
+    };
+}
+
+export default async function BlogPageBySlug({ params }: PageProps) {
+    const { slug } = await params;
+
     if (!slug) return notFound();
 
     const blog = await getBlogBySlug(slug);
+
     if (!blog) return notFound();
 
     const portableTextComponents: PortableTextComponents = {
@@ -18,35 +86,57 @@ export default async function BlogPageBySlug({ params }: { params: Promise<{ slu
             image: ({ value }) => (
                 <Image
                     src={imageUrl(value.asset).url()}
-                    alt="Blog Image"
+                    alt={blog.title || "Blog image"}
                     width={800}
                     height={500}
-                    className="w-full rounded-lg my-4"
+                    className="my-6 w-full rounded-2xl object-cover"
                 />
             ),
         },
         block: {
-            h1: ({ children }) => <h1 className="text-3xl font-bold my-4">{children}</h1>,
-            h2: ({ children }) => <h2 className="text-2xl font-semibold my-3">{children}</h2>,
-            h3: ({ children }) => <h3 className="text-xl font-semibold my-2">{children}</h3>,
-            normal: ({ children }) => <p className="text-gray-700 leading-relaxed">{children}</p>,
+            h1: ({ children }) => (
+                <h1 className="my-6 text-3xl font-bold tracking-tight text-foreground">
+                    {children}
+                </h1>
+            ),
+            h2: ({ children }) => (
+                <h2 className="my-5 text-2xl font-semibold tracking-tight text-foreground">
+                    {children}
+                </h2>
+            ),
+            h3: ({ children }) => (
+                <h3 className="my-4 text-xl font-semibold tracking-tight text-foreground">
+                    {children}
+                </h3>
+            ),
+            normal: ({ children }) => (
+                <p className="my-4 leading-7 text-muted-foreground">{children}</p>
+            ),
             blockquote: ({ children }) => (
-                <blockquote className="border-l-4 border-blue-500 pl-4 italic my-4 text-gray-600">
+                <blockquote className="my-6 border-l-4 border-primary bg-muted/40 py-3 pl-4 italic text-muted-foreground">
                     {children}
                 </blockquote>
             ),
         },
         list: {
-            bullet: ({ children }) => <ul className="list-disc pl-6">{children}</ul>,
-            number: ({ children }) => <ol className="list-decimal pl-6">{children}</ol>,
+            bullet: ({ children }) => (
+                <ul className="my-4 list-disc space-y-2 pl-6 text-muted-foreground">{children}</ul>
+            ),
+            number: ({ children }) => (
+                <ol className="my-4 list-decimal space-y-2 pl-6 text-muted-foreground">
+                    {children}
+                </ol>
+            ),
         },
         marks: {
-            strong: ({ children }) => <strong className="font-bold">{children}</strong>,
+            strong: ({ children }) => (
+                <strong className="font-bold text-foreground">{children}</strong>
+            ),
             em: ({ children }) => <em className="italic">{children}</em>,
             link: ({ value, children }) => (
                 <a
                     href={value?.href}
-                    className="text-blue-500 underline"
+                    className="font-medium text-primary underline underline-offset-4"
                     target="_blank"
                     rel="noopener noreferrer"
                 >
@@ -59,48 +149,66 @@ export default async function BlogPageBySlug({ params }: { params: Promise<{ slu
     const authorImageUrl = blog.author?.image
         ? imageUrl(blog.author.image).url()
         : UserDefaultImage;
-    const authorName = blog.author?.name || "Unknown Author";
+
+    const authorName = blog.author?.name || "Brite Exterior Cleaning";
+
     const publishedDate = blog.publishedAt
         ? new Intl.DateTimeFormat("en-US", {
               year: "numeric",
               month: "long",
               day: "numeric",
           }).format(new Date(blog.publishedAt))
-        : "Unknown Date";
+        : "Recently posted";
 
     return (
-        <div className="max-w-3xl mx-auto p-6">
-            <BackButton title="Back to Blog" link="/blog" />
+        <main className="min-h-screen w-full bg-background px-4 py-16 text-foreground sm:px-6 lg:px-8">
+            <article className="mx-auto w-full max-w-3xl">
+                <BackButton title="Back to Blog" link="/blog" />
 
-            <h1 className="text-3xl font-bold mb-4">{blog.title}</h1>
-            <div className="flex items-center gap-3 text-gray-600 text-sm">
-                <Image
-                    src={authorImageUrl}
-                    alt={authorName}
-                    width={40}
-                    height={40}
-                    className="rounded-full w-6 h-6 object-cover"
-                />
-                <p>
-                    By <span className="font-semibold">{authorName}</span> • {publishedDate}
-                </p>
-            </div>
+                <header className="mt-8 border-b border-border pb-8">
+                    <p className="text-sm font-semibold uppercase tracking-[0.3em] text-primary">
+                        Brite Blog
+                    </p>
 
-            {blog.mainImage?.asset && (
-                <Image
-                    src={imageUrl(blog.mainImage.asset).url()}
-                    alt={blog.title || "Blog Image"}
-                    width={800}
-                    height={400}
-                    className="w-full my-6 rounded-lg"
-                />
-            )}
+                    <h1 className="mt-3 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+                        {blog.title}
+                    </h1>
 
-            <div className="prose prose-lg max-w-none text-gray-700 pb-10">
-                <PortableText value={blog.body || []} components={portableTextComponents} />
-            </div>
+                    <div className="mt-5 flex items-center gap-3 text-sm text-muted-foreground">
+                        <Image
+                            src={authorImageUrl}
+                            alt={authorName}
+                            width={40}
+                            height={40}
+                            className="h-10 w-10 rounded-full border border-border object-cover"
+                        />
 
-            <BackButton title="Back to Blog" link="/blog" />
-        </div>
+                        <p>
+                            By <span className="font-semibold text-foreground">{authorName}</span> •{" "}
+                            {publishedDate}
+                        </p>
+                    </div>
+                </header>
+
+                {blog.mainImage?.asset && (
+                    <Image
+                        src={imageUrl(blog.mainImage.asset).url()}
+                        alt={blog.title || "Blog image"}
+                        width={800}
+                        height={400}
+                        priority
+                        className="my-8 w-full rounded-2xl object-cover shadow-sm"
+                    />
+                )}
+
+                <div className="pb-10">
+                    <PortableText value={blog.body || []} components={portableTextComponents} />
+                </div>
+
+                <div className="border-t border-border pt-8">
+                    <BackButton title="Back to Blog" link="/blog" />
+                </div>
+            </article>
+        </main>
     );
 }

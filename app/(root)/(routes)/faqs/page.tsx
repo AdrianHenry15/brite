@@ -4,6 +4,7 @@ import React from "react";
 import ScrollUpBtn from "../../../../components/scroll-up-btn";
 import FAQContainer from "./components/container";
 import FAQItem from "./components/item";
+import FAQSidebarNav from "./components/faq-nav";
 import {
     BriteFAQs,
     ExteriorCleaningFAQs,
@@ -13,127 +14,145 @@ import {
     TrashBinCleaningFAQs,
     WindowCleaningFAQs,
 } from "@/lib/FAQItems";
-import FAQSidebarNav from "./components/sidebar-nav";
 import { FAQNavMenu } from "@/lib/constants";
 
 export const metadata: Metadata = {
-    title: "Frequently Asked Questions | Brite Exterior Cleaning Services",
+    title: "Frequently Asked Questions | Brite Exterior Cleaning",
     description:
-        "Have questions about exterior cleaning services? Find answers to the most common questions about Brite's cleaning services, pricing, and process.",
-    openGraph: {
-        title: "Frequently Asked Questions | Brite Exterior Cleaning Services",
-        description:
-            "Find answers to the most common questions about Brite's exterior cleaning services, pricing, and process.",
-        url: "https://briteclt.com/faqs",
+        "Find answers to common questions about Brite Exterior Cleaning services, pricing, estimates, pressure washing, soft washing, window cleaning, holiday lighting, and more.",
+
+    alternates: {
+        canonical: "/faqs",
     },
+
+    openGraph: {
+        title: "Frequently Asked Questions | Brite Exterior Cleaning",
+        description:
+            "Answers to common questions about Brite Exterior Cleaning services, pricing, estimates, and service process.",
+        url: "/faqs",
+        siteName: "Brite Exterior Cleaning",
+        type: "website",
+        locale: "en_US",
+    },
+
     twitter: {
         card: "summary_large_image",
-        title: "Frequently Asked Questions | Brite Exterior Cleaning Services",
+        title: "Frequently Asked Questions | Brite Exterior Cleaning",
         description:
-            "Find answers to the most common questions about Brite's exterior cleaning services, pricing, and process.",
+            "Get answers about Brite Exterior Cleaning services, pricing, estimates, and exterior cleaning processes.",
     },
+
+    robots: {
+        index: true,
+        follow: true,
+    },
+
+    keywords: [
+        "Brite Exterior Cleaning FAQ",
+        "exterior cleaning questions",
+        "pressure washing FAQ",
+        "soft washing FAQ",
+        "window cleaning FAQ",
+        "holiday lighting FAQ",
+        "Charlotte exterior cleaning questions",
+    ],
 };
 
 export default function FAQsPage() {
     return (
-        <section className="flex flex-col w-full bg-white relative">
-            {/* TITLE */}
-            <h5 className="text-[60px] text-white tracking-wider pl-6 bg-blue-600 py-4 md:py-24">
-                FAQs
-            </h5>
-            {/* MAIN PAGE WORKSPACE */}
-            <div className="flex flex-col w-full mb-10 md:my-10 md:flex-row">
-                {/* FAQs Sidebar Nav */}
+        <main className="relative flex min-h-screen w-full flex-col bg-background text-foreground">
+            <header className="w-full bg-gradient-to-r from-primary/95 via-primary to-primary/80 px-4 py-16 text-primary-foreground sm:px-6 md:py-24 lg:px-8">
+                <div className="mx-auto max-w-6xl">
+                    <p className="text-sm font-semibold uppercase tracking-[0.3em] text-primary-foreground/80">
+                        Help Center
+                    </p>
+
+                    <h1 className="mt-3 text-5xl font-bold tracking-tight sm:text-6xl">FAQs</h1>
+
+                    <p className="mt-4 max-w-2xl text-base leading-7 text-primary-foreground/85 sm:text-lg">
+                        Find answers to common questions about our services, estimates, scheduling,
+                        and exterior cleaning process.
+                    </p>
+                </div>
+            </header>
+
+            <section className="mx-auto flex w-full max-w-7xl flex-col gap-8 px-4 py-10 sm:px-6 lg:flex-row lg:px-8">
                 <FAQSidebarNav items={FAQNavMenu} />
-                <div className="flex flex-col flex-1 w-full relative">
-                    {/* FAQs */}
-                    {/* BRITE */}
+
+                <div className="flex w-full flex-1 flex-col">
                     <FAQContainer title="Brite" id="brite">
-                        {BriteFAQs.map((item, index) => {
-                            return (
-                                <FAQItem
-                                    key={index}
-                                    question={item.question}
-                                    answer={item.answer}
-                                />
-                            );
-                        })}
+                        {BriteFAQs.map((item) => (
+                            <FAQItem
+                                key={item.question}
+                                question={item.question}
+                                answer={item.answer}
+                            />
+                        ))}
                     </FAQContainer>
-                    {/* EXTERIOR CLEANING */}
+
                     <FAQContainer title="Exterior Cleaning" id="exterior-cleaning">
-                        {ExteriorCleaningFAQs.map((item, index) => {
-                            return (
-                                <FAQItem
-                                    key={index}
-                                    question={item.question}
-                                    answer={item.answer}
-                                />
-                            );
-                        })}
+                        {ExteriorCleaningFAQs.map((item) => (
+                            <FAQItem
+                                key={item.question}
+                                question={item.question}
+                                answer={item.answer}
+                            />
+                        ))}
                     </FAQContainer>
-                    {/* HOLIDAY LIGHTING */}
+
                     <FAQContainer title="Holiday Lighting" id="holiday-lighting">
-                        {HolidayLightingFAQs.map((item, index) => {
-                            return (
-                                <FAQItem
-                                    key={index}
-                                    question={item.question}
-                                    answer={item.answer}
-                                />
-                            );
-                        })}
+                        {HolidayLightingFAQs.map((item) => (
+                            <FAQItem
+                                key={item.question}
+                                question={item.question}
+                                answer={item.answer}
+                            />
+                        ))}
                     </FAQContainer>
-                    {/* PRESSURE WASHING */}
+
                     <FAQContainer title="Pressure Washing" id="pressure-washing">
-                        {PressureWashingFAQs.map((item, index) => {
-                            return (
-                                <FAQItem
-                                    key={index}
-                                    question={item.question}
-                                    answer={item.answer}
-                                />
-                            );
-                        })}
+                        {PressureWashingFAQs.map((item) => (
+                            <FAQItem
+                                key={item.question}
+                                question={item.question}
+                                answer={item.answer}
+                            />
+                        ))}
                     </FAQContainer>
-                    {/* SOFT WASHING */}
+
                     <FAQContainer title="Soft Washing" id="soft-washing">
-                        {SoftWashingFAQs.map((item, index) => {
-                            return (
-                                <FAQItem
-                                    key={index}
-                                    question={item.question}
-                                    answer={item.answer}
-                                />
-                            );
-                        })}
+                        {SoftWashingFAQs.map((item) => (
+                            <FAQItem
+                                key={item.question}
+                                question={item.question}
+                                answer={item.answer}
+                            />
+                        ))}
                     </FAQContainer>
-                    {/* TRASH BIN CLEANING */}
+
                     <FAQContainer title="Trash Bin Cleaning" id="trash-bin-cleaning">
-                        {TrashBinCleaningFAQs.map((item, index) => {
-                            return (
-                                <FAQItem
-                                    key={index}
-                                    question={item.question}
-                                    answer={item.answer}
-                                />
-                            );
-                        })}
+                        {TrashBinCleaningFAQs.map((item) => (
+                            <FAQItem
+                                key={item.question}
+                                question={item.question}
+                                answer={item.answer}
+                            />
+                        ))}
                     </FAQContainer>
-                    {/* WINDOW CLEANING */}
+
                     <FAQContainer title="Window Cleaning" id="window-cleaning">
-                        {WindowCleaningFAQs.map((item, index) => {
-                            return (
-                                <FAQItem
-                                    key={index}
-                                    question={item.question}
-                                    answer={item.answer}
-                                />
-                            );
-                        })}
+                        {WindowCleaningFAQs.map((item) => (
+                            <FAQItem
+                                key={item.question}
+                                question={item.question}
+                                answer={item.answer}
+                            />
+                        ))}
                     </FAQContainer>
                 </div>
-            </div>
+            </section>
+
             <ScrollUpBtn />
-        </section>
+        </main>
     );
 }

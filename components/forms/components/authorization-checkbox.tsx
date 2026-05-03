@@ -1,76 +1,65 @@
 "use client";
 
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
-import { Controller } from "react-hook-form";
+import React from "react";
+import {
+    Controller,
+    type Control,
+    type FieldValues,
+    type Path,
+    type RegisterOptions,
+} from "react-hook-form";
 
-interface IAuthorizationCheckboxProps {
-    inputName: string;
-    control: any;
-    validationRules?: any;
+interface AuthorizationCheckboxProps<T extends FieldValues> {
+    inputName: Path<T>;
+    control: Control<T>;
+    validationRules?: RegisterOptions<T, Path<T>>;
 }
 
-const AuthorizationCheckbox = ({
+const AuthorizationCheckbox = <T extends FieldValues>({
     inputName,
     control,
     validationRules,
-}: IAuthorizationCheckboxProps) => {
-    const [error, setError] = useState(false);
-
-    useEffect(() => {
-        let timer: any;
-        if (error) {
-            timer = setTimeout(() => {
-                setError(false);
-            }, 5000); // Display error for 5 seconds
-        }
-        return () => clearTimeout(timer);
-    }, [error]);
+}: AuthorizationCheckboxProps<T>) => {
     return (
         <Controller
-            rules={validationRules}
             name={inputName}
             control={control}
-            defaultValue={true}
-            render={({ field }) => (
-                <div className="flex flex-col">
-                    <div className="flex items-start" onClick={() => setError(true)}>
-                        <div className=" flex cursor-not-allowed">
-                            <input
-                                className="mr-2 pointer-events-none"
-                                type="checkbox"
-                                {...field}
-                                defaultChecked
-                                onChange={(e) => {
-                                    field.onChange(e.target.checked);
-                                    console.log("Checkbox value:", e.target.checked);
-                                }}
-                            />
-                        </div>
-                        <label className="text-xs text-zinc-400">
-                            By clicking here, you authorize Brite Exterior Services, to reach out to
-                            you by call, email, or text in accordance with our
+            rules={validationRules}
+            defaultValue={true as never}
+            render={({ field, fieldState }) => (
+                <div className="mt-4 flex flex-col gap-2">
+                    <label className="flex items-start gap-3 rounded-xl border border-border bg-muted/40 p-3 text-xs leading-5 text-muted-foreground">
+                        <input
+                            type="checkbox"
+                            checked={Boolean(field.value)}
+                            onChange={(e) => field.onChange(e.target.checked)}
+                            className="mt-1 h-4 w-4 rounded border-input accent-primary"
+                        />
+
+                        <span>
+                            By clicking here, you authorize Brite Exterior Services to reach out to
+                            you by call, email, or text in accordance with our{" "}
                             <Link
                                 target="_blank"
-                                className="text-blue-500 ml-1 hover:underline underline-offset-2"
+                                rel="noopener noreferrer"
+                                className="font-semibold text-primary underline-offset-2 hover:underline"
                                 href="/privacy-policy"
                             >
                                 Privacy Policy
                             </Link>
-                            . You can reply "STOP" to opt out at any time.
-                        </label>
-                    </div>
-                    {/* ERROR */}
-                    <aside
-                        className={`text-red-600 text-xs mt-2 ml-6 ${
-                            error ? "opacity-100" : "opacity-0"
-                        }`}
-                    >
-                        You must be authorized to proceed
-                    </aside>
+                            . You can reply &quot;STOP&quot; to opt out at any time.
+                        </span>
+                    </label>
+
+                    {fieldState.error?.message && (
+                        <p className="ml-1 text-xs font-medium text-destructive">
+                            {fieldState.error.message}
+                        </p>
+                    )}
                 </div>
             )}
-        ></Controller>
+        />
     );
 };
 

@@ -11,91 +11,105 @@ import { NavMenu } from "../../lib/constants";
 import { NavMenuType } from "@/lib/types";
 import UserIcon from "./user-icon";
 import Button from "@/components/button";
+import PromotionalBanner from "../promo-stuff/promotional-banner";
+import ButtonRow from "@/app/(root)/(routes)/(home)/components/button-row";
 
 export default function Navbar() {
-    // Constants
     const pathname = usePathname();
 
-    // State
-    // const [servicesMenuOpen, setServicesMenuOpen] = useState(false);
-
-    // Functions
-    const renderNavMenu = () => {
-        return NavMenu.map((item: NavMenuType) => {
-            return (
-                <Link
-                    // onClick={() => setServicesMenuOpen(false)}
-                    key={item.title}
-                    href={item.link}
-                    className="mr-2"
-                >
-                    <li
-                        className={` flex items-center mx-2 transition-all duration-300 ease-in-out hover:text-blue-600 hover:underline ${
-                            pathname === item.link ? "underline" : ""
-                        }`}
-                    >
-                        {item.title}
-                    </li>
-                </Link>
-            );
-        });
-    };
-
     return (
-        <nav
-            id="nav-bar"
-            className={`bg-zinc-200 text-sm font-semibold flex w-full self-center sticky top-0 z-50 shadow-md pb-14 lg:pb-0`}
-        >
-            {/* MOBILE CONTAINER */}
-            <div className="absolute self-center right-0 top-12 lg:top-0 lg:hidden">
-                <MobileHeader />
-            </div>
+        <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 text-foreground shadow-sm backdrop-blur-md">
+            <ButtonRow />
 
-            <div className="absolute self-center ml-4 left-0 top-16 lg:top-0 lg:hidden">
-                <UserIcon />
-            </div>
-            {/* TITLE & LINKS  */}
-            <div className="flex w-full mt-2 justify-evenly">
-                <Link
-                    className="absolute bg-white px-6 py-2 rounded-full self-center flex items-center underline underline-offset-2 text-blue-500 top-24 lg:top-0 lg:left-4 lg:hidden"
-                    href="tel:7048423535"
-                >
-                    <FaPhone className="mr-2" />
-                    <span>704-842-3535</span>
-                </Link>
-                <div className="flex items-center">
-                    <Link href="/" className="lg:mr-10">
-                        {/* TODO: LOGO */}
-                        <Image className="pb-2" src={Logo} alt="logo" width={75} />
-                    </Link>
-                    {/* LINKS  */}
-                    <ul className="hidden text-gray-600 items-center lg:flex">{renderNavMenu()}</ul>
-                </div>
-                {/* NAV BUTTONS */}
-                <ul className="hidden items-center lg:flex">
-                    <Link className="mr-4" href="tel:7048423535">
-                        <Button
-                            leftChildren
-                            roundedFull
-                            name="704-842-3535"
-                            className="bg-white"
-                            altColor
-                        >
-                            <FaPhone className="mr-2" />
-                        </Button>
-                    </Link>
-                    <Link href={"/estimate"}>
-                        <Button
-                            className="animate-pulse"
-                            roundedFull
-                            name="Get Your Free Estimate"
-                        />
-                    </Link>
-                    <div className="ml-4">
+            <nav className="w-full">
+                <div className="mx-auto flex min-h-20 w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+                    {/* Mobile left */}
+                    <div className="flex w-14 items-center xl:hidden">
                         <UserIcon />
                     </div>
-                </ul>
-            </div>
-        </nav>
+
+                    {/* Logo */}
+                    <Link
+                        href="/"
+                        aria-label="Brite Exterior Cleaning home"
+                        className="flex shrink-0 items-center justify-center"
+                    >
+                        <Image
+                            src={Logo}
+                            alt="Brite Exterior Cleaning logo"
+                            width={72}
+                            priority
+                            className="h-auto"
+                        />
+                    </Link>
+
+                    {/* Desktop nav */}
+                    <ul className="hidden items-center justify-center gap-1 xl:flex">
+                        {NavMenu.map((item: NavMenuType) => {
+                            const isActive = pathname === item.link;
+
+                            return (
+                                <li key={item.title}>
+                                    <Link
+                                        href={item.link}
+                                        aria-current={isActive ? "page" : undefined}
+                                        className={`rounded-full px-3 py-2 text-sm font-semibold transition-colors ${
+                                            isActive
+                                                ? "bg-primary text-primary-foreground"
+                                                : "text-muted-foreground hover:bg-muted hover:text-primary"
+                                        }`}
+                                    >
+                                        {item.title}
+                                    </Link>
+                                </li>
+                            );
+                        })}
+                    </ul>
+
+                    {/* Desktop actions */}
+                    <div className="hidden items-center gap-3 xl:flex">
+                        <Link href="tel:7048423535">
+                            <Button
+                                leftChildren
+                                roundedFull
+                                name="704-842-3535"
+                                className="border border-border bg-card text-card-foreground hover:bg-muted"
+                                altColor
+                            >
+                                <FaPhone className="mr-2" />
+                            </Button>
+                        </Link>
+
+                        <Link href="/estimate">
+                            <Button
+                                roundedFull
+                                name="Get Your Free Estimate"
+                                className="bg-primary text-primary-foreground hover:bg-brite-blue"
+                            />
+                        </Link>
+
+                        <UserIcon />
+                    </div>
+
+                    {/* Mobile right */}
+                    <div className="flex w-14 items-center justify-end xl:hidden">
+                        <MobileHeader />
+                    </div>
+                </div>
+
+                {/* Mobile phone CTA */}
+                <div className="border-t border-border px-4 py-2 xl:hidden">
+                    <Link
+                        href="tel:7048423535"
+                        className="mx-auto flex w-fit items-center justify-center rounded-full border border-border bg-card px-4 py-2 text-sm font-semibold text-primary shadow-sm"
+                    >
+                        <FaPhone className="mr-2" />
+                        704-842-3535
+                    </Link>
+                </div>
+            </nav>
+
+            <PromotionalBanner />
+        </header>
     );
 }
