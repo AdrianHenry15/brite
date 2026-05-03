@@ -14,9 +14,9 @@ const socialLinks = [
     },
 ];
 
-const SocialsCard = () => {
+export default function SocialsCard() {
     return (
-        <div className="flex items-center justify-center gap-3">
+        <div className="flex items-center justify-center gap-4">
             {socialLinks.map(({ label, href, icon: Icon }) => (
                 <Link
                     key={label}
@@ -24,13 +24,11 @@ const SocialsCard = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`Visit Brite Exterior Cleaning on ${label}`}
-                    className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-background text-muted-foreground transition-colors hover:border-primary hover:bg-primary hover:text-primary-foreground"
+                    className="text-muted-foreground transition-colors hover:text-primary"
                 >
-                    <Icon size={21} aria-hidden="true" />
+                    <Icon size={22} aria-hidden="true" />
                 </Link>
             ))}
         </div>
     );
-};
-
-export default SocialsCard;
+}

@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 
 import { AltNavMenu, NavMenu } from "../../lib/constants";
 
-const FooterMenu = () => {
+export default function FooterMenu() {
     const pathname = usePathname();
 
     const menuItems = [...NavMenu, ...AltNavMenu].filter(
@@ -14,11 +14,12 @@ const FooterMenu = () => {
 
     return (
         <nav className="flex flex-col items-center text-center md:items-start md:text-left">
-            <h5 className="mb-4 text-sm font-bold uppercase tracking-[0.18em] text-foreground">
+            <h5 className="mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
                 Company
             </h5>
 
-            <ul className="grid grid-cols-2 gap-x-8 gap-y-3 text-sm">
+            <ul className="flex flex-wrap justify-center gap-x-8 gap-y-3 text-sm md:justify-start">
+                {" "}
                 {menuItems.map((item) => {
                     const href = item.title === "Services" ? "/services" : item.link;
                     const isActive = pathname === href;
@@ -28,10 +29,10 @@ const FooterMenu = () => {
                             <Link
                                 href={href}
                                 aria-current={isActive ? "page" : undefined}
-                                className={`transition-colors hover:text-primary ${
+                                className={`transition-colors ${
                                     isActive
-                                        ? "font-semibold text-primary underline underline-offset-4"
-                                        : "text-muted-foreground"
+                                        ? "text-primary underline underline-offset-4"
+                                        : "text-muted-foreground hover:text-foreground"
                                 }`}
                             >
                                 {item.title}
@@ -42,6 +43,4 @@ const FooterMenu = () => {
             </ul>
         </nav>
     );
-};
-
-export default FooterMenu;
+}
