@@ -1,17 +1,17 @@
+// FAQItem.tsx
 import React from "react";
 
-interface IFAQItemProps {
+interface FAQItemProps {
     question: string;
     answer: string;
 }
 
-const FAQItem = (props: IFAQItemProps) => {
+export default function FAQItem({ question, answer }: FAQItemProps) {
     return (
-        <div className="flex flex-col border-b-[1px] border-zinc-300 w-full mb-10 pb-10">
-            <h5 className="text-slate-500 my-6 text-xl font-bold">{props.question}</h5>
-            <p className="text-sm text-slate-500">{props.answer}</p>
-        </div>
-    );
-};
+        <article className="mb-10 w-full border-b border-border pb-10">
+            <h3 className="my-4 text-lg font-semibold text-foreground sm:text-xl">{question}</h3>
 
-export default FAQItem;
+            <p className="text-sm leading-relaxed text-muted-foreground">{answer}</p>
+        </article>
+    );
+}
